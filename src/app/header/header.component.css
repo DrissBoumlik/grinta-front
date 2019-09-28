@@ -1,0 +1,30 @@
+.navbar {
+  border-radius: 0;
+  border: none;
+}
+.navbar-default {
+  margin-bottom: 0;
+  background-color: #81D400;
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a, .navbar-brand {
+  color: #ffffff;
+}
+
+.navbar .input-group {
+  display: block;
+}
+
+.navbar .input-group .search-input {
+  width: 90%;
+}
+
+.user-picture {
+  width: 50px;
+}
+.navbar-nav>li>a {
+  padding: 15px 5px;
+}
+.navbar-nav>li>a.no-padding {
+  padding: 0;
+}
