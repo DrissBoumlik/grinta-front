@@ -25,7 +25,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/assets/styles/login-style.css"
+              "src/assets/styles/style.css"
             ],
             "scripts": []
           },
