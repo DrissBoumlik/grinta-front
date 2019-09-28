@@ -1,6 +1,7 @@
-
-<div class="center">
-  <div class="middle">
+<div class="main">
+  <div class="container">
+    <div class="center">
+      <div class="middle">
     <div id="login">
 
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
@@ -13,7 +14,7 @@
           </p> <!-- JS because of IE support; better: placeholder="Username" -->
           <p>
             <span class="fa fa-lock"></span>
-            <input formControlName="password" type="password" Placeholder="Password">
+            <input formControlName="password" type="password" Placeholder="Password" autocomplete="">
           </p> <!-- JS because of IE support; better: placeholder="Password" -->
 
           <div>
@@ -36,5 +37,7 @@
       <div class="clearfix"></div>
     </div>
 
+  </div>
+    </div>
   </div>
 </div>
