@@ -1,0 +1,66 @@
+.container {
+  padding-top: 50px;
+}
+
+.form-wrapper {
+  margin-bottom: 10px;
+  border: 1px solid #eee;
+  padding: 10px;
+}
+
+.new-post-header {
+  background-color: #eee;
+  padding: 5px;
+}
+
+.new-post-content {
+  padding: 30px 10px;
+}
+
+hr {
+  margin: 10px 0;
+}
+
+.post {
+  padding: 10px 0;
+}
+
+.post>div {
+  margin-bottom: 20px;
+  padding: 0 5px;
+}
+.post>.post-img{
+  padding: 0;
+}
+.post>div:last-child {
+  margin: 0;
+}
+.user-name {
+  color: #81D400;
+}
+.user-picture {
+  width: 100%;
+}
+.user-img {
+  height:50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.post-wrapper {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 5px 0;
+  margin-bottom: 10px;
+}
+
+.form-control {
+  border: none;
+  box-shadow: none;
+}
+
+.no-resize {
+  resize: none;
+}
