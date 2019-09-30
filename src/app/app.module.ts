@@ -10,13 +10,17 @@ import { UserComponent } from './user/user.component';
 import {LoginService} from './login/login.service';
 import { HeaderComponent } from './header/header.component';
 import { PostService } from './user/post/post.service';
+import { PostComponent } from './user/post/post.component';
+import { FriendComponent } from './user/friend/friend.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserComponent,
-    HeaderComponent
+    HeaderComponent,
+    PostComponent,
+    FriendComponent
   ],
   imports: [
     BrowserModule,
