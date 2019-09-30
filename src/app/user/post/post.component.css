@@ -1,0 +1,38 @@
+
+.post-wrapper {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 5px 0;
+  margin-bottom: 10px;
+}
+
+.post {
+  padding: 10px 0;
+}
+
+.post>div {
+  margin-bottom: 10px;
+  padding: 0 5px;
+}
+
+.user-name {
+  color: #81D400;
+}
+
+.user-img {
+  height:50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.post>.post-img{
+  padding: 0;
+}
+.post>div:last-child {
+  margin: 0;
+}
+
+.btn-like {
+  margin-left: 10px;
+}
