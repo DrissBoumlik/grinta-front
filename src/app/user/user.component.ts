@@ -1,3 +1,4 @@
+import { FormGroup, FormControl } from '@angular/forms';
 import { PostService } from './post/post.service';
 import { LoginService } from './../login/login.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,6 +16,11 @@ import { Post } from './post/post.model';
 export class UserComponent implements OnInit {
   user: User;
   posts : Post[];
+  friends : User[];
+  sharePostForm = new FormGroup({
+    'content': new FormControl(null),
+    'image': new FormControl(null)
+  });
   headers = new HttpHeaders({
         'Content-Type': 'application/json',
         "Authorization": 'Bearer ' + localStorage.getItem('_token'), Accept: "application/json"
@@ -38,15 +44,16 @@ export class UserComponent implements OnInit {
     }
     this.posts = this.postService.getPosts(1);
     this.postService.postEvent.subscribe(
-      (friendsPosts) => {
-        this.posts = friendsPosts;
+      (response: any) => {
+        this.posts = response.posts;
+        this.friends = response.friends;
       }
     );
-    // this.http.get('http://127.0.0.1:8000/api/posts?page=1', {headers: this.headers})
-    //   .toPromise()
-    //   .then((friendsPosts: any) => {
-    //     this.posts = friendsPosts;
-    //   })
-    //   .catch(this.loginService.handleError);
+  }
+
+  onSubmit() {
+    let content = this.sharePostForm.get('content').value;
+    let image = this.sharePostForm.get('image').value;
+    this.postService.sharePost(content, image);
   }
 }
