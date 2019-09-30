@@ -1,3 +1,7 @@
+body {
+  background-color: #eee;
+}
+
 .capitalize {
   text-transform: capitalize;
 }
@@ -8,4 +12,8 @@
 
 .pointer {
   cursor: pointer;
+}
+
+.user-picture {
+  width: 50px;
 }
