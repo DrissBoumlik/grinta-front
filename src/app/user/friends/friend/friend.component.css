@@ -1,0 +1,16 @@
+.friend-wrapper {
+  /* margin-bottom: 10px; */
+  cursor: pointer;
+}
+
+.friend {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.friend:hover {
+  background-color: #eee;
+}
+.friend-name {
+  padding: 15px 0;
+}

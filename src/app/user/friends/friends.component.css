@@ -1,0 +1,25 @@
+
+.friends-list {
+  height: 300px;
+  overflow-y: auto;
+}
+
+.search-friend {
+  padding-top: 15px;
+}
+.search-friend .search {
+  background-color: #eee;
+  border: none;
+  box-shadow: none;
+}
+
+.friends {
+  background-color: #fff;
+  padding: 15px 15px;
+  border-radius: 5px;
+}
+
+.chat-header h3 {
+  margin-top: 0;
+  margin-bottom: 30px;
+}
