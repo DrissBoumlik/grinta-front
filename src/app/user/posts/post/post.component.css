@@ -16,6 +16,10 @@
   padding: 0 5px;
 }
 
+.post-header h3 {
+  margin: 5px 0;
+}
+
 .user-name {
   color: #81D400;
 }
@@ -29,10 +33,24 @@
 .post>.post-img{
   padding: 0;
 }
+.post-img img {
+  border-radius: 5px;
+}
 .post>div:last-child {
   margin: 0;
 }
 
+.post-content {
+  padding: 0 10px!important;
+}
+
 .btn-like {
   margin-left: 10px;
+}
+
+@media (max-width: 500px) {
+
+  .post-header-txt h3{
+    font-size: 2rem;
+  }
 }

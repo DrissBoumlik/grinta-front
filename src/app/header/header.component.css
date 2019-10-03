@@ -23,6 +23,10 @@
   width: 90%;
 }
 
+.navbar-form {
+  box-shadow: none;
+}
+
 .user-picture {
   width: 50px;
   transform: scale(.7);
@@ -72,5 +76,8 @@
 
 @media (max-width: 500px) {
 
+  .navbar-default .input-group .search-input{
+    width: 88%;
+  }
 }
 
