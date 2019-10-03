@@ -3,14 +3,20 @@
     <div class="post-header">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-2 col-xs-2">
+          <div class="col-md-2 col-xs-2 post-header-img">
               <img class="user-img" src="{{ post.user.picture }}" alt="">
           </div>
-          <div class="col-md-10 col-xs-10">
-            <div class="row">
-              <span class="user-name capitalize">{{ post.user.name }}</span><br>
+          <div class="col-md-10 col-xs-10 post-header-headline">
+            <div class="post-header-txt">
+              <h3>
+                <span class="user-name capitalize">{{ post.user.name }}</span>
+                <span *ngIf='post.owner'> shared
+                  <span *ngIf='post.user_id !== post.post_owner_id' class="clr-blue">{{ post.owner.name }}'s</span>
+                  <span *ngIf='post.user_id === post.post_owner_id'>his</span> post
+                </span>
+              </h3>
             </div>
-            <div class="row">
+            <div class="post-date">
               <span>{{ post.created_at | date : 'mediumDate'}}</span>
             </div>
           </div>
