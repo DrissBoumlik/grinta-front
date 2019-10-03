@@ -1,0 +1,19 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 col-md-offset-1">
+      <div class="container-fluid">
+        <div class="row">
+          <app-new-post [user]="user"></app-new-post>
+        </div>
+        <div class="row posts">
+          <app-post *ngFor="let post of posts; let i = index"
+          [post]="post"></app-post>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <app-friends [friends]="friends"></app-friends>
+    </div>
+  </div>
+</div>
