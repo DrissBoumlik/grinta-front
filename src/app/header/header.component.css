@@ -25,6 +25,7 @@
 
 .user-picture {
   width: 50px;
+  transform: scale(.7);
 }
 .navbar-nav>li>a {
   padding: 15px 5px;
@@ -32,3 +33,44 @@
 .navbar-nav>li>a.no-padding {
   padding: 0;
 }
+
+@media (max-width: 820px) {
+  .navbar .input-group .search-input {
+    width: 85%;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-right {
+    margin-right: 0!important;
+  }
+}
+@media (max-width: 768px) {
+  .navbar-default {
+    padding: 5px 0;
+  }
+  .navbar-right {
+    margin-right: 0;
+    margin-left: 20px!important;
+    margin: 10px 20px;
+  }
+  .navbar-default .navbar-form {
+    border: 0!important;
+  }
+  .navbar-default .input-group .search-input{
+    width: 90%;
+  }
+  .navbar-default .navbar-nav > li > a {
+    color: #000;
+  }
+  .navbar-default .navbar-nav>.open>a,
+  .navbar-default .navbar-nav>.open>a:hover,
+  .navbar-default .navbar-nav>.open>a:focus {
+    background-color: #81D400;
+  }
+}
+
+@media (max-width: 500px) {
+
+}
+
