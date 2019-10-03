@@ -24,7 +24,8 @@
       <img src="{{ post.image }}" alt="" style="width: 100%">
     </div>
     <div class="interactions">
-      <button type="submit" class="btn btn-success btn-like capitalize" (click)='onLikePost(i)' [disabled]="postLiked">j'aime</button>
+      <button type="submit" class="btn btn-success btn-like capitalize" (click)='onLikePost()' [disabled]="postLiked">j'aime</button>
+      <button type="submit" class="btn btn-primary btn-like capitalize" (click)='onSharePost()'>partager</button>
     </div>
   </div>
 </div>

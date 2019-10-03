@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Post } from './post.model';
 import { PostService } from './post.service';
-import { User } from '../user.model';
+import { User } from '../../user.model';
 import { LoginService } from 'src/app/login/login.service';
 
 @Component({
@@ -30,6 +30,14 @@ export class PostComponent implements OnInit {
       console.log('You already like this post');
       return;
     }
-    this.postService.likePost(this.post);
+    this.postService.likePost(this.post).subscribe((response: any) => {
+      console.log(response);
+    });
+  }
+
+  onSharePost() {
+    this.postService.sharePost(this.post.content, this.post.image, this.post.user_id).subscribe((response) => {
+          this.postService.addPost(response.post);
+    });
   }
 }
