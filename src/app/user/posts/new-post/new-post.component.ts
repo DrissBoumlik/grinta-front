@@ -32,7 +32,6 @@ export class NewPostComponent implements OnInit {
         value: reader.result
       })
     };
-    console.log(this.sharePostForm.get('image').value);
   }
 
   onSharePost() {
