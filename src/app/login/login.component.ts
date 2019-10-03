@@ -12,7 +12,7 @@ import { User } from '../user/user.model';
 export class LoginComponent implements OnInit {
   user: User;
   loginForm = new FormGroup({
-    username: new FormControl('gennaro60@example.net', Validators.required),
+    username: new FormControl('a@a.a', Validators.required),
     password: new FormControl('123123123', Validators.required)
   });
   constructor(private loginService: LoginService,
@@ -26,11 +26,12 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.loginService.login(this.loginForm.value.username, this.loginForm.value.password);
-    this.loginService.loginEvent.subscribe(
-      (user) => {
-        this.router.navigate(['user'], { relativeTo: this.route });
-      }
-    );
+    this.loginService.login(this.loginForm.value.username, this.loginForm.value.password)
+    .subscribe((response: any) => {
+      localStorage.setItem('_token', response.success.token);
+      localStorage.setItem('_user', JSON.stringify(response.success.user));
+      this.user = response.success.user;
+      this.router.navigate(['user'], { relativeTo: this.route });
+    });
   }
 }

@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   constructor(private loginService: LoginService,
               private router: Router) { }
 
-
+  //* TODO: Responsive styles for Header
   ngOnInit() {
     let logged = localStorage.getItem('_user') !== null && localStorage.getItem('_user') !== undefined;
     if(logged) {
@@ -30,9 +30,12 @@ export class HeaderComponent implements OnInit {
     });
   }
   onLogout() {
-    this.loginService.logout();
-    this.loginService.logoutEvent.subscribe(
-      () => this.router.navigate(['/'])
-    );
+    this.loginService.logout().subscribe((response: any) => {
+      console.log(response);
+    });
+  }
+
+  onSearch() {
+
   }
 }
