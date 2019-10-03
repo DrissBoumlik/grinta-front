@@ -1,0 +1,43 @@
+<form [formGroup]="sharePostForm" enctype="multipart/form-data">
+  <div class="form-wrapper">
+    <div class="new-post">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="new-post-header">
+              <h4>Nouvelle Publication</h4>
+            </div>
+          </div>
+        </div>
+        <div class="new-post-content">
+          <div class="row">
+            <div class="col-md-2 col-xs-2"><img src="{{ user.picture }}" alt="" class="user-picture"></div>
+            <div class="col-md-10 col-xs-10">
+              <textarea formControlName="content" id="" rows="3" class="form-control post-content no-resize" placeholder="Nouvelle Publication"></textarea>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row new-post-send">
+          <div class="col-md-12">
+            <div class="pull-left">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                      <span class="btn btn-basic btn-file">
+                        <label for="image">Ajouter image/video</label>
+                        <input accept="image/*,video/*"
+                        type="file" id="image" class="hidden"
+                        (change)="onFileChange($event.srcElement.files)">
+                      </span>
+                    </span>
+                  </div>
+            </div>
+            <div class="pull-right">
+              <button type="submit" class="btn btn-success" (click)="onSharePost()">Partager</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
