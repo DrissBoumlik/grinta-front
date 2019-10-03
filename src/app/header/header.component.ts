@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
   }
   onLogout() {
     this.loginService.logout().subscribe((response: any) => {
-      console.log(response);
+      this.router.navigate(['/']);
     });
   }
 
