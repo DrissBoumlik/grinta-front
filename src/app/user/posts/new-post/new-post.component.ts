@@ -34,7 +34,7 @@ export class NewPostComponent implements OnInit {
     };
   }
 
-  onSharePost() {
+  onCreatePost() {
     let content = this.sharePostForm.get('content').value;
     let image = this.sharePostForm.get('image').value;
     this.postService.createPost(content, image).subscribe((response) => {
