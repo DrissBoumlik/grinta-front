@@ -1,0 +1,13 @@
+
+.comment-wrapper {
+  margin: 0 0 10px;
+}
+
+.btn-comment {
+  background-color: transparent;
+  padding: 0;
+}
+
+.user-name {
+  color: #81D400;
+}

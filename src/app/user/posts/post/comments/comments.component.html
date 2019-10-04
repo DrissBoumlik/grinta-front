@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <app-comment *ngFor="let comment of comments; let i = index"
+        [comment]="comment">
+    </app-comment>
+    <div class="row post-comment-action">
+      <div class="col-md-12 col-xs-12">
+        <form [formGroup]="CommentForm">
+          <input formControlName="content" type="text" class="form-control bg-gray no-border-shadow comment" placeholder="Ecrire un commentaire">
+          <button class="btn btn-info btn-comment" (click)="onCreateComment()">Envoyer</button>
+        </form>
+      </div>
+    </div>
+</div>
