@@ -2,6 +2,10 @@ body {
   background-color: #eee;
 }
 
+hr {
+  margin: 10px 0;
+}
+
 .capitalize {
   text-transform: capitalize;
 }
@@ -20,4 +24,38 @@ body {
 
 .clr-blue {
   color: #337ab7;
+}
+
+.bg-gray {
+  background-color: #eee;
+}
+
+.no-border {
+  border: none;
+}
+
+.no-shadow {
+  box-shadow: none;
+}
+
+.no-border-shadow, .no-border-shadow:focus {
+  border: none;
+  box-shadow: none;
+}
+.img-fit {
+  width: 100%;
+}
+
+.w-h-50 {
+  width: 50px;
+  height: 50px;
+}
+
+.mg-sides {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.round {
+  border-radius: 50%;
 }
