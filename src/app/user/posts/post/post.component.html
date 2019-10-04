@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-2 col-xs-2 post-header-img">
-              <img class="user-img" src="{{ post.user.picture }}" alt="">
+              <img class="user-picture round w-h-50" src="{{ post.user.picture }}" alt="">
           </div>
           <div class="col-md-10 col-xs-10 post-header-headline">
             <div class="post-header-txt">
@@ -32,6 +32,12 @@
     <div class="interactions">
       <button type="submit" class="btn btn-success btn-like capitalize" (click)='onLikePost()' [disabled]="postLiked">j'aime</button>
       <button type="submit" class="btn btn-primary btn-like capitalize" (click)='onSharePost()'>partager</button>
+      <button type="submit" class="btn btn-info btn-like capitalize">commenter</button>
     </div>
+    <hr>
+    <app-comments
+    [post]="post"
+    [comments]="post.comments">
+    </app-comments>
   </div>
 </div>
