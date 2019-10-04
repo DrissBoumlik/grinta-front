@@ -9,5 +9,6 @@ export class Post {
     public user: User,
     public owner: User,
     public likers: [],
+    public comments: [],
     public created_at: string) {}
 }
