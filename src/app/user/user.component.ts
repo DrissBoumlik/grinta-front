@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from './user.model';
 
 @Component({
   selector: 'app-user',
@@ -6,5 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent{
-
+  user: User;
+  constructor() {
+    this.user = JSON.parse(localStorage.getItem('_user')) as User;
+    console.log(this.user);
+  }
 }

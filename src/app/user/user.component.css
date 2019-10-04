@@ -1,0 +1,22 @@
+.user-profile {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.profile-wrapper {
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.user-picture {
+  margin: 0 auto;
+  width: 60px;
+  height: auto;
+}
+
+.user-info {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
