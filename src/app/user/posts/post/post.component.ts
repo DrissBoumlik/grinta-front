@@ -36,7 +36,9 @@ export class PostComponent implements OnInit {
   }
 
   onSharePost() {
-    this.postService.sharePost(this.post.content, this.post.image, this.post.user_id).subscribe((response) => {
+    let owner_id = this.post.post_owner_id === null ? this.post.user_id : this.post.post_owner_id;
+    this.postService.sharePost(this.post.content, this.post.image, owner_id).subscribe((response) => {
+          console.log(response);
           this.postService.addPost(response.post);
     });
   }
