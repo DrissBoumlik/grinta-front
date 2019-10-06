@@ -1,19 +1,21 @@
 <div class="comment-wrapper">
-  <div class="comment">
+  <div class="comment-container">
     <div class="row">
-      <div class="col-md-2 col-xs-2">
+      <div class="comment-user-picture pd-sides-5 pull-left">
         <img src="{{ comment.user.picture }}" alt="" class="user-picture round w-h-50">
       </div>
-      <div class="col-md-10 col-xs-10">
+      <div class="comment-user-content pd-sides-5 pull-left">
         <div class="comment">
-          <span class="user-name">{{ comment.user.name }}</span>
-          <i class="fas fa-caret-right mg-sides"></i>
-          <span>{{ comment.content }}</span>
-        </div>
-        <div class="comment-interaction">
-          <button class="btn btn-comment">J'aime</button>
-          <i class="fas fa-hashtag mg-sides"></i>
-          <span>{{ comment.created_at | date : 'mediumDate'}}</span>
+          <div class="comment-content">
+            <span class="user-name">{{ comment.user.firstname }} {{ comment.user.lastname }}</span>
+            <i class="fas fa-caret-right mg-sides"></i>
+            <span>{{ comment.content }}</span>
+          </div>
+          <div class="comment-interaction">
+            <button class="btn btn-like-comment">J'aime</button>
+            <span class="mg-sides">·</span>
+            <span>{{ comment.created_at | date : 'mediumDate'}}</span>
+          </div>
         </div>
       </div>
     </div>
