@@ -48,9 +48,37 @@
   margin-left: 10px;
 }
 
+
+@media (max-width: 1200px) {
+
+  .post-header-headline {
+    width: 80%;
+  }
+}
+
+
+@media (max-width: 993px) {
+
+  .post-header-headline {
+    width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .post-header-headline {
+    width: 80%;
+  }
+}
+
+
 @media (max-width: 500px) {
 
   .post-header-txt h3{
-    font-size: 2rem;
+    font-size: 1.7rem;
+  }
+}
+@media (max-width: 768px) {
+  .post-header-headline {
+    width: 70%;
   }
 }

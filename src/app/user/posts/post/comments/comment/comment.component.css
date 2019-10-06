@@ -3,11 +3,49 @@
   margin: 0 0 10px;
 }
 
-.btn-comment {
+.comment-container {
+  padding-left: 15px;
+}
+
+.btn-like-comment {
   background-color: transparent;
   padding: 0;
 }
 
 .user-name {
   color: #81D400;
+}
+.comment {
+  background-color: #F2F3F5;
+  border-radius: 10px;
+  padding: 10px;
+  display: inline-block;
+}
+
+.comment-user-content {
+  width: 90%;
+}
+
+
+@media (max-width: 1200px) {
+  .comment-user-content {
+    width: 87%;
+  }
+}
+
+@media (max-width: 692px) {
+  .comment-user-content {
+    width: 88%;
+  }
+}
+
+@media (max-width: 565px) {
+  .comment-user-content {
+    width: 85%;
+  }
+}
+@media (max-width: 500px) {
+  .comment-user-content {
+    width: 80%;
+  }
 }
