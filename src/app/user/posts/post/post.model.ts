@@ -8,7 +8,7 @@ export class Post {
     public image: string,
     public user: User,
     public owner: User,
-    public likers: [],
-    public comments: [],
+    public likers: User[],
+    public comments: Comment[],
     public created_at: string) {}
 }
