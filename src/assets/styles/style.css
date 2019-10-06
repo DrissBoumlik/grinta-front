@@ -17,7 +17,9 @@ hr {
 .pointer {
   cursor: pointer;
 }
-
+.center {
+  text-align: center;
+}
 .user-picture {
   width: 50px;
 }
@@ -52,10 +54,23 @@ hr {
 }
 
 .mg-sides {
-  margin-right: 5px;
-  margin-left: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .round {
   border-radius: 50%;
+}
+
+.fz-tiny {
+  font-size: .5rem;
+}
+
+.pd-sides {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.pd-sides-5 {
+  padding-left: 5px;
+  padding-right: 5px;
 }
