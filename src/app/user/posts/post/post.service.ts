@@ -22,7 +22,7 @@ export class PostService {
               private errorService: ErrorService,
               private http: HttpClient) {}
 
-  getPosts(page = null) {
+  getPosts(page = 1) {
     return this.http.get(environment.baseApiUrl + '/posts?page=' + page, {headers: this.headers});
   }
 

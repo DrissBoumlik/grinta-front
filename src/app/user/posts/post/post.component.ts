@@ -3,6 +3,7 @@ import { Post } from './post.model';
 import { PostService } from './post.service';
 import { User } from '../../user.model';
 import { LoginService } from 'src/app/login/login.service';
+import * as jquery from 'jquery';
 
 @Component({
   selector: 'app-post',
@@ -41,5 +42,9 @@ export class PostComponent implements OnInit {
           console.log(response);
           this.postService.addPost(response.post);
     });
+  }
+
+  onFocusInput() {
+    jQuery('#comment-' + this.post.id).focus();
   }
 }
