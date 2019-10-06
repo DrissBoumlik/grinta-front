@@ -12,18 +12,17 @@ import { User } from '../user/user.model';
 export class HeaderComponent implements OnInit {
   searchForm: FormGroup;
   userImage: string;
-  username: string;
+  firstname: string;
 
   constructor(private loginService: LoginService,
               private router: Router) { }
 
-  //* TODO: Responsive styles for Header
   ngOnInit() {
     let logged = localStorage.getItem('_user') !== null && localStorage.getItem('_user') !== undefined;
     if(logged) {
       let user = JSON.parse(localStorage.getItem('_user')) as User;
       this.userImage = user.picture;
-      this.username = user.name;
+      this.firstname = user.firstname;
     }
     this.searchForm = new FormGroup({
       q: new FormControl(null)
