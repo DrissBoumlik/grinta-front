@@ -30,6 +30,10 @@ export class PostService {
     return this.http.post(environment.baseApiUrl + '/like-post', {post: post}, {headers: this.headers});
   }
 
+  unlikePost(post: Post) {
+    return this.http.delete(environment.baseApiUrl + '/unlike-post/' + post.id, {headers: this.headers});
+  }
+
   createPost(content: string, image: File): Observable<any> {
     return this.http.post(environment.baseApiUrl + '/posts', {content: content, image: image}, {headers: this.headers});
   }

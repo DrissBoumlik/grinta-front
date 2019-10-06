@@ -20,20 +20,28 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('_user')) as User;
-    let alreadyLiker = this.post.likers.some((liker: any) => liker.id === this.user.id);
-    if(alreadyLiker) this.postLiked = true;
+    this.postLiked = this.post.likers.some((liker: any) => liker.id === this.user.id);
   }
 
   onLikePost() {
-    let alreadyLiker = this.post.likers.some((liker: any) => liker.id === this.user.id);
-    this.postLiked = true;
-    if(alreadyLiker) {
+    this.postLiked = this.post.likers.some((liker: any) => liker.id === this.user.id);
+    if(this.postLiked) {
       console.log('You already like this post');
-      return;
+      this.postService.unlikePost(this.post).subscribe((response: any) => {
+        console.log(response);
+        if (response.code === 200) {
+          this.post.likers.shift();
+        }
+      });
+    } else {
+      this.postService.likePost(this.post).subscribe((response: any) => {
+        console.log(response);
+        if (response.code === 200) {
+          this.post.likers.unshift(this.user);
+        }
+      });
     }
-    this.postService.likePost(this.post).subscribe((response: any) => {
-      console.log(response);
-    });
+    this.postLiked = !this.postLiked;
   }
 
   onSharePost() {
