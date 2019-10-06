@@ -12,7 +12,7 @@
             <span>{{ comment.content }}</span>
           </div>
           <div class="comment-interaction">
-            <button class="btn btn-like-comment">J'aime</button>
+            <button class="btn btn-like-comment capitalize" (click)='onLikeComment()' [ngClass]="{'liked': commentLiked}">j'aime</button>
             <span class="mg-sides">·</span>
             <span>{{ comment.created_at | date : 'mediumDate'}}</span>
           </div>

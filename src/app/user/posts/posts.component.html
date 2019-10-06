@@ -14,14 +14,12 @@
           <app-post *ngFor="let post of posts; let i = index"
           [post]="post"></app-post>
         </div>
-        <!-- TODO: check https://github.danielcardoso.net/load-awesome/animations.html -->
         <!-- <ngx-spinner></ngx-spinner> -->
         <ngx-spinner
           bdColor="rgba(51,51,51,0.8)"
           size="medium"
           color="#fff"
-          type="pacman"
-        >
+          type="pacman">
           <p style="font-size: 20px; color: white">Loading...</p>
         </ngx-spinner>
         <div class="row load-more center" *ngIf="!gotAllPosts">

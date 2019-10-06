@@ -30,7 +30,7 @@
       <img src="{{ post.image }}" alt="" style="width: 100%">
     </div>
     <div class="interactions">
-      <button type="submit" class="btn btn-success btn-like capitalize" (click)='onLikePost()' [disabled]="postLiked">j'aime</button>
+      <button type="submit" class="btn btn-success btn-like capitalize" (click)='onLikePost()' [ngClass]="{'liked': postLiked}">j'aime</button>
       <button type="submit" class="btn btn-primary btn-like capitalize" (click)='onSharePost()'>partager</button>
       <button type="submit" class="btn btn-info btn-like capitalize" (click)="onFocusInput()">commenter</button>
     </div>
