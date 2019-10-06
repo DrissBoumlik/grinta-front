@@ -1,3 +1,7 @@
+* {
+  outline: none!important;
+}
+
 body {
   background-color: #eee;
 }
@@ -73,4 +77,11 @@ hr {
 .pd-sides-5 {
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.liked, .liked:hover, .liked:focus {
+  color: blue;
+  font-weight: bolder;
+  background-color: transparent;
+  border-color: transparent;
 }

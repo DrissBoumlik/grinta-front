@@ -174,3 +174,19 @@ fieldset{
 .uppercase{
   text-transform: uppercase;
 }
+
+
+/* Custom Responsive styles */
+
+@media (max-width: 600px) {
+  .login-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .logo {
+    margin-bottom: 20px;
+  }
+  .login {
+    border-right: none;
+  }
+}
