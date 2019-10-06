@@ -21,6 +21,7 @@
     "@angular/router": "~8.2.5",
     "@types/jquery": "^3.3.31",
     "ngx-infinite-scroll": "^8.0.0",
+    "ngx-spinner": "^8.0.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
