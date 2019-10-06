@@ -3,15 +3,15 @@
     <div class="post-header">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-2 col-xs-2 post-header-img">
+          <div class="post-header-img pd-sides pull-left">
               <img class="user-picture round w-h-50" src="{{ post.user.picture }}" alt="">
           </div>
-          <div class="col-md-10 col-xs-10 post-header-headline">
+          <div class="post-header-headline pd-sides pull-left">
             <div class="post-header-txt">
               <h3>
-                <span class="user-name capitalize">{{ post.user.name }}</span>
+                <span class="user-name capitalize">{{ post.user.firstname }} {{ post.user.lastname }}</span>
                 <span *ngIf='post.owner'> shared
-                  <span *ngIf='post.user_id !== post.post_owner_id' class="clr-blue">{{ post.owner.name }}'s</span>
+                  <span *ngIf='post.user_id !== post.post_owner_id' class="clr-blue">{{ post.owner.firstname }}'s</span>
                   <span *ngIf='post.user_id === post.post_owner_id'>his</span> post
                 </span>
               </h3>
@@ -32,7 +32,7 @@
     <div class="interactions">
       <button type="submit" class="btn btn-success btn-like capitalize" (click)='onLikePost()' [disabled]="postLiked">j'aime</button>
       <button type="submit" class="btn btn-primary btn-like capitalize" (click)='onSharePost()'>partager</button>
-      <button type="submit" class="btn btn-info btn-like capitalize">commenter</button>
+      <button type="submit" class="btn btn-info btn-like capitalize" (click)="onFocusInput()">commenter</button>
     </div>
     <hr>
     <app-comments
