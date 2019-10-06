@@ -21,16 +21,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     let userLogged = localStorage.getItem('_token') !== null && localStorage.getItem('_token') !== undefined;
-    if(userLogged)
-      this.router.navigate(['/user']);
+    if(userLogged) {
+      this.router.navigate(['/posts']);
+    }
   }
 
   onLogin() {
+    console.log(this.loginForm.value);
     this.loginService.login(this.loginForm.value.username, this.loginForm.value.password)
     .subscribe((response: any) => {
+      console.log(response);
       localStorage.setItem('_token', response.success.token);
       localStorage.setItem('_user', JSON.stringify(response.success.user));
-      this.user = response.success.user;
+      this.user = this.loginService.user = response.success.user;
       this.router.navigate(['posts'], { relativeTo: this.route });
     });
   }
