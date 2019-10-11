@@ -18,11 +18,11 @@ export class HeaderComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    let logged = localStorage.getItem('_user') !== null && localStorage.getItem('_user') !== undefined;
+    // let logged = localStorage.getItem('_user') !== null && localStorage.getItem('_user') !== undefined;
+    let logged = this.loginService.user !== null && this.loginService.user !== undefined;
     if(logged) {
-      let user = JSON.parse(localStorage.getItem('_user')) as User;
-      this.userImage = user.picture;
-      this.firstname = user.firstname;
+      this.userImage = this.loginService.user.picture;
+      this.firstname = this.loginService.user.firstname;
     }
     this.searchForm = new FormGroup({
       q: new FormControl(null)
