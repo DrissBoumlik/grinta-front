@@ -175,7 +175,6 @@ fieldset{
   text-transform: uppercase;
 }
 
-
 /* Custom Responsive styles */
 
 @media (max-width: 600px) {
@@ -187,6 +186,7 @@ fieldset{
     margin-bottom: 20px;
   }
   .login {
-    border-right: none;
+    border-right: none!important;
   }
+
 }
