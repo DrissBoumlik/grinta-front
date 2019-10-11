@@ -3,7 +3,8 @@
 }
 
 body {
-  background-color: #eee;
+  margin: 0;
+  background-color: #F2F3F5;
 }
 
 hr {
@@ -21,8 +22,14 @@ hr {
 .pointer {
   cursor: pointer;
 }
-.center {
+.align-left {
+  text-align: left;
+}
+.align-center {
   text-align: center;
+}
+.align-right {
+  text-align: right;
 }
 .user-picture {
   width: 50px;
@@ -33,7 +40,7 @@ hr {
 }
 
 .bg-gray {
-  background-color: #eee;
+  background-color: #F2F3F5;
 }
 
 .no-border {
@@ -80,8 +87,58 @@ hr {
 }
 
 .liked, .liked:hover, .liked:focus {
-  color: blue;
+  color: #81D400;
+  text-decoration: underline;
   font-weight: bolder;
   background-color: transparent;
   border-color: transparent;
+}
+
+
+
+.card {
+  text-align: center;
+  border: 1px solid rgb(51, 51, 51);
+  border-radius: 5px;
+  height: 350px;
+  overflow: hidden;
+}
+
+.card a, .card a:hover {
+  text-decoration: none;
+  color: rgb(51, 51, 51);
+}
+
+.card-media {
+  width: 100%;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-text {
+  text-align: justify;
+}
+
+.card-wrapper {
+  margin-bottom: 10px;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.comment-reply-form {
+  margin-top: 5px;
+}
+.btn-send-comment {
+  position: absolute;
+  top: 2px;
+  right: 3px;
+  padding: 4px 10px;
 }
