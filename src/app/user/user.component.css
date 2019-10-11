@@ -3,6 +3,10 @@
   padding-bottom: 100px;
 }
 
+.container {
+  margin-bottom: 30px;
+}
+
 .profile-wrapper {
   border-radius: 5px;
   padding: 20px;

@@ -22,13 +22,13 @@
           type="pacman">
           <p style="font-size: 20px; color: white">Loading...</p>
         </ngx-spinner>
-        <div class="row load-more center" *ngIf="!gotAllPosts">
+        <div class="row load-more align-center" *ngIf="!gotAllPosts">
           <div class="col-md-12">
             <a class="btn btn-load-more capitalize"
             (click)="onScroll()">load more</a>
           </div>
         </div>
-        <div class="row load-more center uppercase" *ngIf="gotAllPosts">
+        <div class="row load-more align-center uppercase" *ngIf="gotAllPosts">
             <div class="alert alert-info" role="alert">
               No more data to load
             </div>

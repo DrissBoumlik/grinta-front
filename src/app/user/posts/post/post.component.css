@@ -1,7 +1,7 @@
 
 .post-wrapper {
   background-color: #fff;
-  border: 1px solid #eee;
+  border: 1px solid #F2F3F5;
   border-radius: 5px;
   padding: 5px 0;
   margin-bottom: 10px;
@@ -9,6 +9,20 @@
 
 .post {
   padding: 10px 0;
+  position: relative;
+}
+
+.post-edition {
+  cursor: pointer;
+  position: absolute;
+  color: #7a7a7a;
+  font-size: 2rem;
+  right: 10px;
+  top: 0;
+}
+.post-edition .dropdown-menu {
+  right: 0;
+  left: unset;
 }
 
 .post>div {
@@ -35,6 +49,7 @@
 }
 .post-img img {
   border-radius: 5px;
+  width: 100%;
 }
 .post>div:last-child {
   margin: 0;
@@ -43,9 +58,20 @@
 .post-content {
   padding: 0 10px!important;
 }
-
-.btn-like {
+.interactions {
   margin-left: 10px;
+}
+.interactions .btn:hover {
+  text-decoration: underline;
+}
+/* .btn-like {
+  margin-left: 10px;
+} */
+
+.btn {
+  color: #81D400;
+  background-color: transparent;
+  border: none;
 }
 
 

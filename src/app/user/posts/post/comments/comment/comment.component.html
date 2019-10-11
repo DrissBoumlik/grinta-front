@@ -5,16 +5,45 @@
         <img src="{{ comment.user.picture }}" alt="" class="user-picture round w-h-50">
       </div>
       <div class="comment-user-content pd-sides-5 pull-left">
-        <div class="comment">
+        <div class="comment bg-gray">
           <div class="comment-content">
-            <span class="user-name">{{ comment.user.firstname }} {{ comment.user.lastname }}</span>
+            <span class="user-name"><a routerLink="/{{ comment.user.username }}">{{ comment.user.firstname }} {{ comment.user.lastname }}</a></span>
             <i class="fas fa-caret-right mg-sides"></i>
             <span>{{ comment.content }}</span>
           </div>
           <div class="comment-interaction">
-            <button class="btn btn-like-comment capitalize" (click)='onLikeComment()' [ngClass]="{'liked': commentLiked}">j'aime</button>
+            <button class="btn btn-action-comment btn-like-comment capitalize" (click)='onLikeComment()' [ngClass]="{'liked': commentLiked}">j'aime</button>
             <span class="mg-sides">·</span>
             <span>{{ comment.created_at | date : 'mediumDate'}}</span>
+            <span class="mg-sides">.</span>
+            <button class="btn btn-action-comment btn-answer-comment capitalize" (click)="onWillReply()">répondre</button>
+          </div>
+        </div>
+      </div>
+      <div class="comment-edition dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+        <ul class="dropdown-menu pointer">
+          <li *ngIf="ownComment"><a>Edit</a></li>
+          <li><a>Hide</a></li>
+          <li *ngIf="ownComment"><a (click)="onDeleteComment()">Delete</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="replies">
+        <app-reply class="reply" *ngFor="let reply of comment.replies"
+        [reply]="reply">
+        </app-reply>
+        <div class="row" *ngIf="willReply">
+          <div class="col-md-12 col-xs-12">
+            <form [formGroup]="ReplyForm" class="relative comment-reply-form">
+              <img src="{{ user.picture }}" alt="" class="pd-sides-5 round">
+              <input formControlName="content" type="text" id="reply-{{ comment.id }}"
+              class="form-control bg-gray no-border-shadow input-comment pd-sides-5" placeholder="Ecrire un commentaire..." required>
+              <button class="btn btn-info btn-send-comment" type="submit" (click)="onCreateReply()">Envoyer</button>
+            </form>
           </div>
         </div>
       </div>

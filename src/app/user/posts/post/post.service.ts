@@ -1,51 +1,76 @@
-import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from './../../../../environments/environment';
+import { Observable, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
-import { ErrorService } from '../../../shared/error.service';
-import { LoginService } from '../../../login/login.service';
 import { Post } from './post.model';
-import { environment } from '../../../../environments/environment';
-import { User } from '../../user.model';
-
+import { Comment } from './comments/comment/comment.model';
 
 @Injectable()
 export class PostService {
-  posts : Post[] = [];
-  postsUpdated = new Subject<Post[]>();
+  post: Post;
+  postCommentsUpdated = new Subject<Comment[]>();
+
   headers = new HttpHeaders({
-        // 'Content-Type': 'application/json',
-        "Authorization": 'Bearer ' + localStorage.getItem('_token'), Accept: "application/json"
-      });
-  constructor(private loginService: LoginService,
-              private errorService: ErrorService,
-              private http: HttpClient) {}
+    // 'Content-Type': 'application/json',
+    "Authorization": 'Bearer ' + localStorage.getItem('_token'), Accept: "application/json"
+  });
+  constructor(private http: HttpClient) {}
 
-  getPosts(page = 1) {
-    return this.http.get(environment.baseApiUrl + '/posts?page=' + page, {headers: this.headers});
+  createComment(user_id: number, post_id: number, content: string, parent_id: number = null): Observable<any> {
+    return this.http.post(environment.baseApiUrl + '/comments',
+      {user_id: user_id, post_id: post_id, content: content, parent_id: parent_id},
+      {headers: this.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
   }
 
-  likePost(post: Post) {
-    return this.http.post(environment.baseApiUrl + '/like-post', {post: post}, {headers: this.headers});
+  addComment(comment: Comment) {
+    this.post.comments.unshift(comment);
+    this.postCommentsUpdated.next(this.post.comments);
   }
 
-  unlikePost(post: Post) {
-    return this.http.delete(environment.baseApiUrl + '/unlike-post/' + post.id, {headers: this.headers});
+  removeComment(comment: Comment) {
+    this.post.comments = this.post.comments.filter((_comment) => _comment.id !== comment.id);
+    this.postCommentsUpdated.next(this.post.comments);
   }
 
-  createPost(content: string, image: File): Observable<any> {
-    return this.http.post(environment.baseApiUrl + '/posts', {content: content, image: image}, {headers: this.headers});
+  likeComment(comment: Comment) {
+    return this.http.post(environment.baseApiUrl + '/like-comment',
+      {comment: comment}, {headers: this.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
   }
 
-  sharePost(content: string, image: string, postOwnerId: number): Observable<any> {
-    return this.http.post(environment.baseApiUrl + '/posts', {content: content, image: image, postOwnerId: postOwnerId}, {headers: this.headers});
+  unlikeComment(comment: Comment) {
+    return this.http.delete(environment.baseApiUrl + '/unlike-comment/' + comment.id,
+      {headers: this.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
   }
 
 
-
-  addPost(post: Post) {
-    this.posts.unshift(post);
-    this.postsUpdated.next(this.posts);
+  deleteComment(comment: Comment) {
+    return this.http.delete(environment.baseApiUrl + '/comments/' + comment.id,
+      {headers: this.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
   }
 }

@@ -9,7 +9,7 @@ import { User } from '../../user.model';
 export class FriendComponent implements OnInit {
   @Input() friend: User;
   constructor() { }
-  //* TODO: Responsive styles for friends list
+  
   ngOnInit() {
   }
 

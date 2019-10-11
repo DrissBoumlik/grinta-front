@@ -2,12 +2,6 @@
   margin-top: 20px;
 }
 
-.btn-send-comment {
-  position: absolute;
-  top: 2px;
-  right: 17px;
-  padding: 4px;
-}
 
 input.ng-touched.ng-invalid{
   border: red 1px solid;

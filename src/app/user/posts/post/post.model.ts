@@ -1,3 +1,4 @@
+import { Comment } from './comments/comment/comment.model';
 import { User } from '../../user.model';
 export class Post {
   constructor(
@@ -11,4 +12,12 @@ export class Post {
     public likers: User[],
     public comments: Comment[],
     public created_at: string) {}
+
+    addComment(comment: Comment) {
+      this.comments.unshift(comment);
+    }
+
+    updateComments(comments: Comment[]) {
+      this.comments = comments;
+    }
 }

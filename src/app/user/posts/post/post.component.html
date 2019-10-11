@@ -1,5 +1,12 @@
 <div class="post-wrapper">
   <div class="post">
+    <div class="post-edition dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+      <ul class="dropdown-menu pointer">
+        <li><a class="hidden">Edit</a></li>
+        <li><a (click)="onDeletePost()">Delete</a></li>
+      </ul>
+    </div>
     <div class="post-header">
       <div class="container-fluid">
         <div class="row">
@@ -9,9 +16,9 @@
           <div class="post-header-headline pd-sides pull-left">
             <div class="post-header-txt">
               <h3>
-                <span class="user-name capitalize">{{ post.user.firstname }} {{ post.user.lastname }}</span>
+                <span class="user-name capitalize"><a routerLink="/{{ post.user.username }}">{{ post.user.firstname }} {{ post.user.lastname }}</a></span>
                 <span *ngIf='post.owner'> shared
-                  <span *ngIf='post.user_id !== post.post_owner_id' class="clr-blue">{{ post.owner.firstname }}'s</span>
+                  <span *ngIf='post.user_id !== post.post_owner_id'><a class="clr-blue" routerLink="/{{ post.owner.username }}">{{ post.owner.firstname }}</a>'s</span>
                   <span *ngIf='post.user_id === post.post_owner_id'>his</span> post
                 </span>
               </h3>
@@ -27,17 +34,18 @@
       <p>{{ post.content }}</p>
     </div>
     <div class="post-img">
-      <img src="{{ post.image }}" alt="" style="width: 100%">
+      <img src="{{ post.image }}" alt="" style="height: 100px;">
     </div>
     <div class="interactions">
       <button type="submit" class="btn btn-success btn-like capitalize" (click)='onLikePost()' [ngClass]="{'liked': postLiked}">j'aime</button>
+      <span>·</span>
       <button type="submit" class="btn btn-primary btn-like capitalize" (click)='onSharePost()'>partager</button>
+      <span>·</span>
       <button type="submit" class="btn btn-info btn-like capitalize" (click)="onFocusInput()">commenter</button>
     </div>
     <hr>
     <app-comments
-    [post]="post"
-    [comments]="post.comments">
+    [post]="post">
     </app-comments>
   </div>
 </div>

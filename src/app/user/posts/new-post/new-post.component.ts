@@ -1,6 +1,6 @@
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Input, HostListener, ViewChild } from '@angular/core';
-import { PostService } from '../post/post.service';
+import { UserService } from '../../user.service';
 import { User } from '../../user.model';
 
 @Component({
@@ -17,7 +17,7 @@ export class NewPostComponent implements OnInit {
     image: new FormControl(null)
   });
 
-  constructor(private postService: PostService, private fb: FormBuilder) {}
+  constructor(private userService: UserService, private fb: FormBuilder) {}
 
   ngOnInit() {
   }
@@ -37,8 +37,8 @@ export class NewPostComponent implements OnInit {
   onCreatePost() {
     let content = this.sharePostForm.get('content').value;
     let image = this.sharePostForm.get('image').value;
-    this.postService.createPost(content, image).subscribe((response) => {
-          this.postService.addPost(response.post);
+    this.userService.createPost(content, image).subscribe((response) => {
+          this.userService.addPost(response.post);
     });
     this.sharePostForm.reset();
   }

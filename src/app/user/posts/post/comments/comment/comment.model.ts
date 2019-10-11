@@ -1,4 +1,4 @@
-import { User } from 'src/app/user/user.model';
+import { User } from '../../../../user.model';
 
 export class Comment {
   constructor(
@@ -6,6 +6,7 @@ export class Comment {
     public user_id: number,
     public post_id: number,
     public content: string,
+    public replies: Comment[],
     public user: User,
     public likers: User[],
     public created_at: string) {}
