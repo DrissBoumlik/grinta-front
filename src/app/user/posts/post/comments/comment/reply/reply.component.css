@@ -1,0 +1,43 @@
+
+.reply-wrapper {
+  margin: 0 0 10px;
+}
+
+.reply-container {
+  padding-left: 15px;
+  position: relative;
+}
+
+.btn-action-comment {
+  background-color: transparent;
+  padding: 0;
+}
+
+.user-name {
+  color: #81D400;
+}
+.reply {
+  background-color: #F2F3F5;
+  border-radius: 10px;
+  padding: 10px;
+  display: inline-block;
+}
+.reply-user-content {
+  /* width: 90%; */
+  max-width: calc(100% - 120px);
+  word-break: break-word;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.reply-edition {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+.reply-edition .dropdown-menu {
+  right: 0;
+  left: unset;
+}

@@ -1,0 +1,33 @@
+<div class="reply-wrapper">
+  <div class="reply-container">
+    <div class="row">
+      <div class="reply-user-picture pd-sides-5 pull-left">
+        <img src="{{ reply.user.picture }}" alt="" class="user-picture round w-h-50">
+      </div>
+      <div class="reply-user-content pd-sides-5 pull-left">
+        <div class="reply bg-gray">
+          <div class="reply-content">
+            <span class="user-name"><a routerLink="/{{ reply.user.username }}">{{ reply.user.firstname }} {{ reply.user.lastname }}</a></span>
+            <i class="fas fa-caret-right mg-sides"></i>
+            <span>{{ reply.content }}</span>
+          </div>
+          <div class="reply-interaction">
+            <button class="btn btn-action-comment btn-action-reply btn-like-reply capitalize" (click)='onLikeReply()' [ngClass]="{'liked': replyLiked}">j'aime</button>
+            <span class="mg-sides">·</span>
+            <span>{{ reply.created_at | date : 'mediumDate'}}</span>
+            <!-- <span class="mg-sides">.</span>
+            <button class="btn btn-action-comment btn-action-reply btn-answer-reply capitalize">répondre</button> -->
+          </div>
+        </div>
+      </div>
+      <div class="reply-edition dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+        <ul class="dropdown-menu pointer">
+          <li *ngIf="ownReply"><a>Edit</a></li>
+          <li><a>Hide</a></li>
+          <li *ngIf="ownReply"><a (click)="onDeleteReply()">Delete</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

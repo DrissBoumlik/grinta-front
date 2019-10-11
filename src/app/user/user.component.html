@@ -1,19 +1,32 @@
 <app-header></app-header>
-<p>This is your profile</p>
-<div class="container user-profile">
-  <div class="row">
-    <div class="col-md-6 col-xs-8 col-md-offset-3 col-xs-offset-2">
-      <div class="profile-wrapper">
-        <div class="profile row">
-          <div class="col-md-12">
-            <div class="user-info">
-              <img src="{{ user.picture }}" alt="" class="user-picture round">
+<div class="container-fluid user-profile">
+  <div class="container">
+    <div class="row">
+      <div class="user-data align-center">
+        <h2>Profile</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-xs-8 col-md-offset-3 col-xs-offset-2">
+        <div class="profile-wrapper">
+          <div class="profile row">
+            <div class="col-md-12">
+              <div class="user-info">
+                <img src="{{ user.picture }}" alt="" class="user-picture round">
+              </div>
+              <div class="user-info user-name">{{ user.firstname }} {{ user.lastname }}</div>
+              <div class="user-info user-email">{{ user.email }}</div>
             </div>
-            <div class="user-info user-name">{{ user.firstname }} {{ user.lastname }}</div>
-            <div class="user-info user-email">{{ user.email }}</div>
           </div>
         </div>
       </div>
     </div>
+    <hr>
+    <app-albums
+    [albums]="user.albums"></app-albums>
+    <hr>
+
+    <app-medias
+    [medias]="user.medias"></app-medias>
   </div>
 </div>

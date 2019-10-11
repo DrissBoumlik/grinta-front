@@ -1,0 +1,21 @@
+
+<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+  <div class="card-wrapper">
+    <div class="card">
+      <a [routerLink]="['/' + album.name]">
+        <div class="media" *ngIf="album.medias?.length">
+          <video *ngIf="album.medias[0].type === 'video'" class="card-vid-top card-media" src="{{ album.medias[0].media_url }}" controls></video>
+          <img *ngIf="album.medias[0].type === 'image'" class="card-img-top card-media" src="{{ album.medias[0].media_url }}" alt="Card image cap">
+        </div>
+        <div class="media" *ngIf="!album.medias?.length">
+          <img class="card-vid-top card-media" src="http://media-assets.dv/images/wallpaper%20minimalism%20minimalist%201920x1080.png" alt="">
+        </div>
+        <!-- <img class="card-img-top" src="{{ album.medias[0].media_url }}" alt="Card image cap"> -->
+        <div class="card-body">
+          <h5 class="card-title">{{ album.name }}</h5>
+          <p class="card-text">{{ album.description }}</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="medias-wrapper" *ngIf="medias?.length">
+  <div class="row">
+    <div class="albums-header align-center">
+      <h3>Medias</h3>
+    </div>
+  </div>
+  <div class="row">
+    <app-media *ngFor="let media of medias"
+    [media]="media"></app-media>
+  </div>
+</div>

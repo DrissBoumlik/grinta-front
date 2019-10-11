@@ -1,0 +1,11 @@
+<div class="albums-wrapper" *ngIf="albums?.length">
+  <div class="row">
+    <div class="albums-header align-center">
+      <h3>Albums</h3>
+    </div>
+  </div>
+  <div class="row">
+    <app-album *ngFor="let album of albums"
+    [album]="album"></app-album>
+  </div>
+</div>
