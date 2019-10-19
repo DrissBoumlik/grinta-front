@@ -1,1 +1,27 @@
-<p>events works!</p>
+<div class="events">
+  <div class="header">
+    <h3 class="capitalize align-center">Your Events</h3>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let event of user?.events">
+      <div class="event-row clearfix">
+        <div class="event-image float-left mg-sides"><img src="{{ event.image }}" alt="" class="round" style="width: 20px;"></div>
+        <div class="event-name float-left">{{ event.name }}</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="events">
+  <div class="header">
+    <h3 class="capitalize align-center">Your invitations</h3>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let event of user?.event_invitations">
+      <div class="event-row clearfix">
+        <div class="event-image float-left mg-sides"><img src="{{ event.image }}" alt="" class="round" style="width: 20px;"></div>
+        <div class="event-name float-left">{{ event.name }}</div>
+      </div>
+    </li>
+  </ul>
+</div>
