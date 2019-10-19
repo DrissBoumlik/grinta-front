@@ -1,1 +1,13 @@
-<p>userlikes works!</p>
+<div class="posts">
+  <div class="header">
+    <h3 class="capitalize align-center">Likes</h3>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let page of profile?.liked_pages">
+      <div class="post-row clearfix">
+        <div class="post-image float-left mg-sides"><img src="{{ page.image }}" alt="" class="round" style="width: 20px; height: 20px;"></div>
+        <div class="post-content float-left">{{ page.name }}</div>
+      </div>
+    </li>
+  </ul>
+</div>

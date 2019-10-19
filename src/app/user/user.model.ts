@@ -20,6 +20,7 @@ export class User {
     public events: Event[],
     public event_invitations: Event[],
     public posts: Post[],
+    public liked_pages: Page[],
     public medias: Media[],
     public albums: Album[]
   ) {}
