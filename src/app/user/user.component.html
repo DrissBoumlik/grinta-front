@@ -1,32 +1,48 @@
 <app-header></app-header>
-<div class="container-fluid user-profile">
+<div class="user-profile container-fluid">
   <div class="container">
-    <div class="row">
-      <div class="user-data align-center">
-        <h2>Profile</h2>
-      </div>
+    <div class="user-cover">
+      <img src="{{ profile?.cover }}" alt="">
     </div>
     <div class="row">
-      <div class="col-md-6 col-xs-8 col-md-offset-3 col-xs-offset-2">
+      <div class="profile-data">
         <div class="profile-wrapper">
-          <div class="profile row">
-            <div class="col-md-12">
-              <div class="user-info">
-                <img src="{{ user.picture }}" alt="" class="user-picture round">
-              </div>
-              <div class="user-info user-name">{{ user.firstname }} {{ user.lastname }}</div>
-              <div class="user-info user-email">{{ user.email }}</div>
+          <div class="profile row relative">
+            <div class="user-info round user-img">
+              <img src="{{ profile?.picture }}" alt="" class="user-picture round">
             </div>
+            <div class="user-info user-name">{{ profile?.firstname }} {{ profile?.lastname }}</div>
+            <div class="user-info user-email hidden">{{ profile?.email }}</div>
           </div>
         </div>
       </div>
     </div>
-    <hr>
-    <app-albums
-    [albums]="user.albums"></app-albums>
-    <hr>
-
-    <app-medias
-    [medias]="user.medias"></app-medias>
+    <div class="row align-center profile-menu">
+      <div class="col-md-3 col-sm-3 col-xs-3 profile-menu-item">
+        <a routerLink="/{{ profile?.username }}/posts" routerLinkActive="active">
+          <span class="block capitalize pd-10">posts</span>
+        </a>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-3 profile-menu-item">
+        <a routerLink="/{{ profile?.username }}/medias" routerLinkActive="active">
+          <span class="block capitalize pd-10">média</span>
+        </a>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-3 profile-menu-item">
+        <a routerLink="/{{ profile?.username }}/likes" routerLinkActive="active">
+          <span class="block capitalize pd-10">j'aime</span>
+        </a>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-3 profile-menu-item">
+        <div class="dropdown pd-10">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plus <b class="caret"></b></a>
+          <ul class="dropdown-menu pointer w-100">
+            <li><a routerLink="/{{ profile?.username }}/pages">Pages</a></li>
+            <li><a routerLink="/{{ profile?.username }}/events">Events</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
   </div>
 </div>

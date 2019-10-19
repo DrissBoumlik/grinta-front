@@ -2,29 +2,50 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { environment } from './../../environments/environment';
-
-import { LoginService } from '../login/login.service';
+import { environment } from '../../environments/environment';
 import { User } from './user.model';
 import { Post } from './posts/post/post.model';
 
 @Injectable()
 export class UserService {
-  friends : User[] = [];
-  posts : Post[] = [];
+  static headers = undefined;
+  user: User;
+  profile: User;
+  friends: User[] = [];
+  // posts: Post[] = [];
+  profileLoaded = new Subject<User>();
+
   postsUpdated = new Subject<Post[]>();
 
-  headers = undefined;
-
-  constructor (private http: HttpClient) {
-    this.headers = new HttpHeaders({
-      // 'Content-Type': 'application/json',
-      "Authorization": 'Bearer ' + localStorage.getItem('_token'), Accept: "application/json"
+  constructor(private http: HttpClient) {
+    UserService.headers = new HttpHeaders({
+      Accept: 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('_token')
     });
   }
 
+  static getHeaders() {
+    UserService.headers = new HttpHeaders({
+      Accept: 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('_token')
+    });
+  }
+
+  getPosts(page = 1, profileId = null) {
+    profileId = profileId === null ? '' : profileId + '/';
+    UserService.getHeaders();
+    return this.http.get(environment.baseApiUrl + '/posts/' + profileId + '?page=' + page, {headers: UserService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error),
+        )
+      );
+  }
+
   getFriends() {
-    return this.http.get(environment.baseApiUrl + '/friends', {headers: this.headers})
+    UserService.getHeaders();
+    return this.http.get(environment.baseApiUrl + '/friends', {headers: UserService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -35,10 +56,14 @@ export class UserService {
 
   getProfile(username: string = null) {
     let url = environment.baseApiUrl + '/user-profile/' + (username === null ? '' : username);
-    return this.http.get(url, {headers: this.headers})
+    return this.http.get(url, {headers: UserService.headers})
     .pipe(
       tap(
-        data => console.log(data),
+        (data: any) => {
+          this.user = data.user;
+          this.profileLoaded.next(this.user);
+          console.log(data);
+        },
         error => console.log(error.status),
       )
     );
@@ -46,27 +71,17 @@ export class UserService {
 
 
   addPost(post: Post) {
-    this.posts.unshift(post);
-    this.postsUpdated.next(this.posts);
+    this.user.posts.unshift(post);
+    this.postsUpdated.next(this.user.posts);
   }
 
   removePost(post: Post) {
-    this.posts = this.posts.filter((_post) => _post.id !== post.id);
-    this.postsUpdated.next(this.posts);
-  }
-
-  getPosts(page = 1) {
-    return this.http.get(environment.baseApiUrl + '/posts?page=' + page, {headers: this.headers})
-      .pipe(
-        tap(
-          data => console.log(data),
-          error => console.log(error),
-        )
-      );
+    this.user.posts = this.user.posts.filter((_post) => _post.id !== post.id);
+    this.postsUpdated.next(this.user.posts);
   }
 
   likePost(post: Post) {
-    return this.http.post(environment.baseApiUrl + '/like-post', {post: post}, {headers: this.headers})
+    return this.http.post(environment.baseApiUrl + '/like-post', {post}, {headers: UserService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -76,7 +91,7 @@ export class UserService {
   }
 
   unlikePost(post: Post) {
-    return this.http.delete(environment.baseApiUrl + '/unlike-post/' + post.id, {headers: this.headers})
+    return this.http.delete(environment.baseApiUrl + '/unlike-post/' + post.id, {headers: UserService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -86,7 +101,7 @@ export class UserService {
   }
 
   createPost(content: string, image: File): Observable<any> {
-    return this.http.post(environment.baseApiUrl + '/posts', {content: content, image: image}, {headers: this.headers})
+    return this.http.post(environment.baseApiUrl + '/posts', {content, image}, {headers: UserService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -96,7 +111,8 @@ export class UserService {
   }
 
   sharePost(content: string, image: string, postOwnerId: number): Observable<any> {
-    return this.http.post(environment.baseApiUrl + '/posts', {content: content, image: image, postOwnerId: postOwnerId}, {headers: this.headers})
+    return this.http.post(environment.baseApiUrl + '/posts',
+      {content, image, postOwnerId}, {headers: UserService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -105,8 +121,31 @@ export class UserService {
       );
   }
 
-  deletePost($post_id) {
-    return this.http.delete(environment.baseApiUrl + '/posts/' + $post_id, {headers: this.headers})
+  deletePost(post_id: number) {
+    return this.http.delete(environment.baseApiUrl + '/posts/' + post_id, {headers: UserService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
+  }
+
+  createPage(name, pagename, image, cover, type, description) {
+    return this.http.post(environment.baseApiUrl + '/pages',
+      {name, pagename, image, cover, type, description},
+      {headers: UserService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
+  }
+  createEvent(name, date, limit_signup, address, location, image, cover, type, description) {
+    return this.http.post(environment.baseApiUrl + '/events',
+      {name,  date, limit_signup, address, location, image, cover, type, description},
+      {headers: UserService.headers})
       .pipe(
         tap(
           data => console.log(data),
