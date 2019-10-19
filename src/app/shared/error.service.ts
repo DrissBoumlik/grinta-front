@@ -2,6 +2,7 @@ import { Subject } from 'rxjs';
 import { environment } from './../../environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { tap } from 'rxjs/operators';
 
 
 @Injectable()
@@ -19,7 +20,13 @@ export class ErrorService {
         'Content-Type': 'application/json',
         "Authorization": 'Bearer ' + localStorage.getItem('_token'), Accept: "application/json"
       });
-      this.http.get(environment.baseApiUrl + '/logout', {headers: headers});
+      this.http.get(environment.baseApiUrl + '/logout', {headers: headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
     }
     return Promise.reject(error.message || error);
   }

@@ -1,3 +1,6 @@
+
+/*Tags*/
+
 * {
   outline: none!important;
 }
@@ -9,6 +12,19 @@ body {
 
 hr {
   margin: 10px 0;
+}
+
+
+/*Classes*/
+
+.clearfix:before {
+  display: table;
+  content: " ";
+}
+.clearfix:after {
+  display: table;
+  content: " ";
+  clear: both;
 }
 
 .capitalize {
@@ -77,10 +93,15 @@ hr {
   font-size: .5rem;
 }
 
+.pd-10 {
+  padding: 10px;
+}
+
 .pd-sides {
   padding-left: 10px;
   padding-right: 10px;
 }
+
 .pd-sides-5 {
   padding-left: 5px;
   padding-right: 5px;
@@ -93,8 +114,6 @@ hr {
   background-color: transparent;
   border-color: transparent;
 }
-
-
 
 .card {
   text-align: center;
@@ -133,9 +152,38 @@ hr {
   position: absolute;
 }
 
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.inline {
+  display: inline;
+}
+
 .comment-reply-form {
   margin-top: 5px;
 }
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.clear-both {
+  clear: both;
+}
+
+.w-100 {
+  width: 100%;
+}
+
 .btn-send-comment {
   position: absolute;
   top: 2px;

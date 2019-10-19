@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -33,6 +33,11 @@ import { ReplyComponent } from './user/posts/post/comments/comment/reply/reply.c
 import {LoginService} from './login/login.service';
 import { UserService } from './user/user.service';
 import { ErrorService } from './shared/error.service';
+import { UserPostsComponent } from './user/profile/userposts/userposts.component';
+import { UserMediasComponent } from './user/profile/usermedias/usermedias.component';
+import { UserLikesComponent } from './user/profile/userlikes/userlikes.component';
+import { HomeComponent } from './user/home/home.component';
+import {ProfileService} from './user/profile/profile.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +62,10 @@ import { ErrorService } from './shared/error.service';
     NewEventComponent,
     EventComponent,
     ReplyComponent,
+    UserPostsComponent,
+    UserMediasComponent,
+    UserLikesComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +76,7 @@ import { ErrorService } from './shared/error.service';
     InfiniteScrollModule,
     NgxSpinnerModule
   ],
-  providers: [UserService, LoginService, ErrorService],
+  providers: [UserService, ProfileService, LoginService, ErrorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
