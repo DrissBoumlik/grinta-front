@@ -5,7 +5,7 @@
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let page of user?.pages">
       <div class="page-row clearfix">
-        <div class="page-image float-left mg-sides"><img src="{{ page.image }}" alt="" class="round" style="width: 20px;"></div>
+        <div class="page-image float-left mg-sides"><img src="{{ page.image }}" alt="" class="round" style="width: 20px; height: 20px;"></div>
         <div class="page-name float-left">{{ page.name }}</div>
       </div>
     </li>
@@ -19,7 +19,7 @@
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let page of user?.managed_pages">
       <div class="page-row clearfix">
-        <div class="page-image float-left mg-sides"><img src="{{ page.image }}" alt="" class="round" style="width: 20px;"></div>
+        <div class="page-image float-left mg-sides"><img src="{{ page.image }}" alt="" class="round" style="width: 20px; height: 20px;"></div>
         <div class="page-name float-left">{{ page.name }}</div>
       </div>
     </li>
@@ -28,12 +28,12 @@
 
 <div class="pages">
   <div class="header">
-    <h3 class="capitalize align-center">Invitations</h3>
+    <h3 class="capitalize align-center">Pages you were invited to</h3>
   </div>
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let page of user?.page_invitations">
       <div class="page-row clearfix">
-        <div class="page-image float-left mg-sides"><img src="{{ page.image }}" alt="" class="round" style="width: 20px;"></div>
+        <div class="page-image float-left mg-sides"><img src="{{ page.image }}" alt="" class="round" style="width: 20px; ;"></div>
         <div class="page-name float-left">{{ page.name }}</div>
       </div>
     </li>
