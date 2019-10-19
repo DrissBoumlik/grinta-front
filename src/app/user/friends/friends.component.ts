@@ -8,7 +8,7 @@ import { User } from '../user.model';
   styleUrls: ['./friends.component.css']
 })
 export class FriendsComponent implements OnInit {
-  @Input() friends : User[];
+  @Input() friends: User[];
   noFriends = false;
 
   constructor(private userService: UserService) { }
@@ -19,5 +19,4 @@ export class FriendsComponent implements OnInit {
       this.noFriends = this.friends.length <= 0;
     });
   }
-
 }
