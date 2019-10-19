@@ -10,7 +10,6 @@ import { Post } from './posts/post/post.model';
 export class UserService {
   static headers = undefined;
   user: User;
-  profile: User;
   friends: User[] = [];
   // posts: Post[] = [];
   profileLoaded = new Subject<User>();

@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 
 import {User} from '../user.model';
 import { NgxSpinnerService } from 'ngx-spinner';
+import {ProfileService} from '../profile/profile.service';
 
 @Component({
   selector: 'app-posts',
@@ -17,8 +18,12 @@ export class PostsComponent implements OnInit {
   // posts: Post[] = [];
   friends: User[];
   page = 1;
+  scroll = true;
+  gotAllPosts = false;
+
   constructor(private loginService: LoginService,
               private userService: UserService,
+              private profileService: ProfileService,
               private router: Router,
               private spinner: NgxSpinnerService) { }
 
@@ -28,7 +33,7 @@ export class PostsComponent implements OnInit {
     this.user = this.profile ? this.profile : this.loginService.user;
     this.user.posts = [];
     if (this.profile) {
-      this.userService.profile = this.user;
+      this.profileService.profile = this.user;
     } else {
       this.userService.user = this.user;
     }
@@ -48,7 +53,7 @@ export class PostsComponent implements OnInit {
         /** spinner ends after 1 second = 1000ms */
         this.spinner.hide();
         if (this.profile) {
-          this.userService.profile.posts = this.user.posts;
+          this.profileService.profile.posts = this.user.posts;
         } else {
           this.userService.user.posts = this.user.posts;
         }
@@ -60,8 +65,6 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  scroll = true;
-  gotAllPosts = false;
   onScroll() {
     if (this.scroll && !this.gotAllPosts) {
       this.scroll = false;
