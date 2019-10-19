@@ -10,19 +10,16 @@ import { User } from '../user/user.model';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  user: User;
   searchForm: FormGroup;
-  userImage: string;
-  firstname: string;
 
   constructor(private loginService: LoginService,
               private router: Router) { }
 
   ngOnInit() {
-    // let logged = localStorage.getItem('_user') !== null && localStorage.getItem('_user') !== undefined;
-    let logged = this.loginService.user !== null && this.loginService.user !== undefined;
-    if(logged) {
-      this.userImage = this.loginService.user.picture;
-      this.firstname = this.loginService.user.firstname;
+    const logged = this.loginService.user !== null && this.loginService.user !== undefined;
+    if (logged) {
+      this.user = this.loginService.user;
     }
     this.searchForm = new FormGroup({
       q: new FormControl(null)
