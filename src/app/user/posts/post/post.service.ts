@@ -9,19 +9,21 @@ import { Comment } from './comments/comment/comment.model';
 
 @Injectable()
 export class PostService {
+  static headers = undefined;
   post: Post;
   postCommentsUpdated = new Subject<Comment[]>();
 
-  headers = new HttpHeaders({
-    // 'Content-Type': 'application/json',
-    "Authorization": 'Bearer ' + localStorage.getItem('_token'), Accept: "application/json"
-  });
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    PostService.headers = new HttpHeaders({
+      Accept: 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('_token')
+    });
+  }
 
   createComment(user_id: number, post_id: number, content: string, parent_id: number = null): Observable<any> {
     return this.http.post(environment.baseApiUrl + '/comments',
-      {user_id: user_id, post_id: post_id, content: content, parent_id: parent_id},
-      {headers: this.headers})
+      {user_id, post_id, content, parent_id},
+      {headers: PostService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -42,7 +44,7 @@ export class PostService {
 
   likeComment(comment: Comment) {
     return this.http.post(environment.baseApiUrl + '/like-comment',
-      {comment: comment}, {headers: this.headers})
+      {comment}, {headers: PostService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -53,7 +55,7 @@ export class PostService {
 
   unlikeComment(comment: Comment) {
     return this.http.delete(environment.baseApiUrl + '/unlike-comment/' + comment.id,
-      {headers: this.headers})
+      {headers: PostService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -65,7 +67,7 @@ export class PostService {
 
   deleteComment(comment: Comment) {
     return this.http.delete(environment.baseApiUrl + '/comments/' + comment.id,
-      {headers: this.headers})
+      {headers: PostService.headers})
       .pipe(
         tap(
           data => console.log(data),

@@ -4,7 +4,6 @@ import { Post } from './post.model';
 import { UserService } from '../../user.service';
 import { PostService } from './post.service';
 import { User } from '../../user.model';
-import * as jquery from 'jquery';
 
 @Component({
   selector: 'app-post',
@@ -16,6 +15,7 @@ export class PostComponent implements OnInit {
   @Input() post: Post;
   user: User;
   likers = [];
+  ownPost = false;
   postLiked = false;
 
   constructor(private userService: UserService,
@@ -25,6 +25,7 @@ export class PostComponent implements OnInit {
   ngOnInit() {
     // this.user = JSON.parse(localStorage.getItem('_user')) as User;
     this.user = this.loginService.user;
+    this.ownPost = this.user.id === this.post.user_id;
     this.postLiked = this.post.likers.some((liker: any) => liker.id === this.user.id);
     this.postService.postCommentsUpdated.subscribe((comments) => {
       this.post.comments = comments;
@@ -33,7 +34,7 @@ export class PostComponent implements OnInit {
 
   onLikePost() {
     this.postLiked = this.post.likers.some((liker: any) => liker.id === this.user.id);
-    if(this.postLiked) {
+    if (this.postLiked) {
       console.log('You unlike this post');
       this.userService.unlikePost(this.post).subscribe((response: any) => {
         if (response.code === 200) {

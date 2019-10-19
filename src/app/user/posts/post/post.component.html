@@ -3,8 +3,9 @@
     <div class="post-edition dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
       <ul class="dropdown-menu pointer">
-        <li><a class="hidden">Edit</a></li>
-        <li><a (click)="onDeletePost()">Delete</a></li>
+        <li><a *ngIf="ownPost">Edit</a></li>
+        <li><a>Hide</a></li>
+        <li><a *ngIf="ownPost" (click)="onDeletePost()">Delete</a></li>
       </ul>
     </div>
     <div class="post-header">

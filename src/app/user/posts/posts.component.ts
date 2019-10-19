@@ -1,13 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {Component, Input, OnInit} from '@angular/core';
 import { UserService } from '../user.service';
 import { LoginService } from '../../login/login.service';
 import {Router} from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import {User} from '../user.model';
-import { Post } from '../posts/post/post.model';
-import { environment } from '../../../environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -16,11 +12,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
+  @Input() profile: User = null;
   user: User;
-  posts : Post[] = [];
-  friends : User[];
+  // posts: Post[] = [];
+  friends: User[];
   page = 1;
-
   constructor(private loginService: LoginService,
               private userService: UserService,
               private router: Router,
@@ -29,24 +25,33 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     this.loginService.isLogged(this.router);
 
-    this.user = this.loginService.user;
-
+    this.user = this.profile ? this.profile : this.loginService.user;
+    this.user.posts = [];
+    if (this.profile) {
+      this.userService.profile = this.user;
+    } else {
+      this.userService.user = this.user;
+    }
     this.userService.postsUpdated.subscribe((posts) => {
-      this.posts = posts;
+      this.user.posts = posts;
     });
-
     this.getPosts();
   }
 
   getPosts() {
-    this.userService.getPosts(this.page).subscribe((response: any) => {
+    console.log(this.profile);
+    this.userService.getPosts(this.page, this.profile ? this.profile.id : null).subscribe((response: any) => {
       /** spinner starts on init */
       this.spinner.show();
+      this.user.posts.push(...response.posts);
       setTimeout(() => {
         /** spinner ends after 1 second = 1000ms */
         this.spinner.hide();
-        this.posts.push(...response.posts);
-        this.userService.posts = this.posts;
+        if (this.profile) {
+          this.userService.profile.posts = this.user.posts;
+        } else {
+          this.userService.user.posts = this.user.posts;
+        }
       }, 1000);
 
       if (!response.posts.length) {
@@ -58,7 +63,7 @@ export class PostsComponent implements OnInit {
   scroll = true;
   gotAllPosts = false;
   onScroll() {
-    if(this.scroll && !this.gotAllPosts) {
+    if (this.scroll && !this.gotAllPosts) {
       this.scroll = false;
       this.page++;
       this.getPosts();

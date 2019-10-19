@@ -1,18 +1,17 @@
-<app-header></app-header>
-<div class="container">
+
   <div class="row">
-    <div class="col-md-7 col-md-offset-1">
+    <div class="col-md-8">
       <div class="container-fluid">
         <div class="row">
           <app-new-post [user]="user"></app-new-post>
         </div>
         <div class="row posts"
-        infiniteScroll
-        [infiniteScrollDistance]="1"
-        [infiniteScrollThrottle]="50"
-        (scrolled)="onScroll()">
-          <app-post *ngFor="let post of posts; let i = index"
-          [post]="post"></app-post>
+             infiniteScroll
+             [infiniteScrollDistance]="1"
+             [infiniteScrollThrottle]="50"
+             (scrolled)="onScroll()">
+          <app-post *ngFor="let post of user?.posts; let i = index"
+                    [post]="post"></app-post>
         </div>
         <!-- <ngx-spinner></ngx-spinner> -->
         <ngx-spinner
@@ -25,13 +24,13 @@
         <div class="row load-more align-center" *ngIf="!gotAllPosts">
           <div class="col-md-12">
             <a class="btn btn-load-more capitalize"
-            (click)="onScroll()">load more</a>
+               (click)="onScroll()">load more</a>
           </div>
         </div>
         <div class="row load-more align-center uppercase" *ngIf="gotAllPosts">
-            <div class="alert alert-info" role="alert">
-              No more data to load
-            </div>
+          <div class="alert alert-info" role="alert">
+            No more data to load
+          </div>
         </div>
       </div>
     </div>
@@ -39,4 +38,4 @@
       <app-friends [friends]="friends"></app-friends>
     </div>
   </div>
-</div>
+

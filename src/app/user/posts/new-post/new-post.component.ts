@@ -23,20 +23,20 @@ export class NewPostComponent implements OnInit {
   }
   onFileChange(files: FileList) {
     this.imageToUpload = files.item(0);
-    let reader = new FileReader();
+    const reader = new FileReader();
     reader.readAsDataURL(this.imageToUpload);
     reader.onload = (data) => {
       this.sharePostForm.get('image').setValue({
         filename: this.imageToUpload.name,
         filetype: this.imageToUpload.type,
         value: reader.result
-      })
+      });
     };
   }
 
   onCreatePost() {
-    let content = this.sharePostForm.get('content').value;
-    let image = this.sharePostForm.get('image').value;
+    const content = this.sharePostForm.get('content').value;
+    const image = this.sharePostForm.get('image').value;
     this.userService.createPost(content, image).subscribe((response) => {
           this.userService.addPost(response.post);
     });

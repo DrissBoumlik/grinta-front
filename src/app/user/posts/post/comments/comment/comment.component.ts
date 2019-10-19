@@ -5,7 +5,6 @@ import { Comment } from './comment.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { PostService } from '../../post.service';
 import { User } from 'src/app/user/user.model';
-import * as jquery from 'jquery';
 
 @Component({
   selector: 'app-comment',
@@ -31,7 +30,6 @@ export class CommentComponent implements OnInit {
   ngOnInit() {
     this.user = this.loginService.user;
     this.ownComment = this.user.id === this.comment.user_id;
-    console.log(this.user.id, this.comment.user_id);
     this.commentLiked = this.comment.likers.some((liker: any) => liker.id === this.loginService.user.id);
     this.commentService.comment = this.comment;
     this.commentService.repliesUpdated.subscribe((comment) => {
