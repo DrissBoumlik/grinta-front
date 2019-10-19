@@ -78,7 +78,7 @@
 
 @media (max-width: 565px) {
   .comment-user-content {
-    width: 85%;
+    /*width: 85%;*/
   }
 }
 @media (max-width: 500px) {
