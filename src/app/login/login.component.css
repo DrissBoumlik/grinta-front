@@ -16,6 +16,8 @@ div.main{
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0264d6', endColorstr='#1c2b5a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   height:calc(100vh);
   width:100%;
+
+  margin: -100px 0;
 }
 
 [class*="fontawesome-"]:before {

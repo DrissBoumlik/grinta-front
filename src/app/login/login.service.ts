@@ -13,7 +13,6 @@ import { UserService } from '../user/user.service';
 export class LoginService {
   public user: User;
   headers = new HttpHeaders({'Content-Type': 'application/json'});
-  // private http: HttpClient = new HttpClient();
 
   constructor(private http: HttpClient,
               private userService: UserService) {
@@ -22,11 +21,14 @@ export class LoginService {
 
   login(username: string, password: string) {
     return this.http.post(environment.baseApiUrl + '/login',
-      JSON.stringify({username: username, email: username, password: password}),
+      JSON.stringify({username, email: username, password}),
       {headers: this.headers})
       .pipe(
         tap(
-          data => console.log(data),
+          (response: any) => {
+            localStorage.setItem('_token', response.success.token);
+            localStorage.setItem('_user', JSON.stringify(response.success.user));
+          },
           error => console.log(error.status),
         )
       );
@@ -37,9 +39,9 @@ export class LoginService {
     localStorage.removeItem('_user');
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      "Authorization": 'Bearer ' + localStorage.getItem('_token'), Accept: "application/json"
+      Authorization: 'Bearer ' + localStorage.getItem('_token')
     });
-    return this.http.get(environment.baseApiUrl + '/logout', {headers: headers})
+    return this.http.get(environment.baseApiUrl + '/logout', {headers})
     .pipe(
       tap(
         data => console.log(data),
@@ -51,7 +53,7 @@ export class LoginService {
   isLogged(router: Router) {
 
     let userLogged = localStorage.getItem('_token') !== null && localStorage.getItem('_token') !== undefined;
-    if(!userLogged)
+    if (!userLogged)
       router.navigate(['/']);
   }
 
