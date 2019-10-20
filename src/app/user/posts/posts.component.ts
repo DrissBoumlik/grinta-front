@@ -30,6 +30,11 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     this.loginService.isLogged(this.router);
 
+    this.profileService.profileLoaded.subscribe((user: User) => {
+      this.profile = user;
+      this.getPosts();
+    });
+
     this.user = this.profile ? this.profile : this.loginService.user;
     this.user.posts = [];
     if (this.profile) {
@@ -40,11 +45,15 @@ export class PostsComponent implements OnInit {
     this.userService.postsUpdated.subscribe((posts) => {
       this.user.posts = posts;
     });
-    this.getPosts();
+    if (!this.profile) {
+      this.getPosts();
+    }
   }
 
   getPosts() {
+    console.log('profile *************');
     console.log(this.profile);
+    console.log('profile *************');
     this.userService.getPosts(this.page, this.profile ? this.profile.id : null).subscribe((response: any) => {
       /** spinner starts on init */
       this.spinner.show();
@@ -52,12 +61,14 @@ export class PostsComponent implements OnInit {
       setTimeout(() => {
         /** spinner ends after 1 second = 1000ms */
         this.spinner.hide();
-        if (this.profile) {
-          this.profileService.profile.posts = this.user.posts;
-        } else {
-          this.userService.user.posts = this.user.posts;
-        }
       }, 1000);
+      if (this.profile) {
+        console.log('profile');
+        this.profileService.profile.posts = this.user.posts;
+      } else {
+        console.log('user');
+        this.userService.user.posts = this.user.posts;
+      }
 
       if (!response.posts.length) {
         this.gotAllPosts = true;

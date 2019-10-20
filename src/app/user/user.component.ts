@@ -22,11 +22,12 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.loginService.isLogged(this.router);
     const username = this.route.snapshot.params.username;
+    console.log('username : ' + username);
     this.profileService.getProfile(username).subscribe((response: any) => {
       this.profile = response.user;
       localStorage.setItem('_profile', JSON.stringify(this.profile));
     });
-    this.profile = JSON.parse(localStorage.getItem('_profile'));
-    this.profile = (this.profile === undefined || this.profile === null) ? this.profileService.profile : this.profile;
+    // this.profile = JSON.parse(localStorage.getItem('_profile'));
+    // this.profile = (this.profile === undefined || this.profile === null) ? this.profileService.profile : this.profile;
   }
 }

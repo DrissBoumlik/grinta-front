@@ -23,13 +23,13 @@ export class UserPostsComponent implements OnInit {
   ngOnInit() {
     this.profileService.profileLoaded.subscribe((user: User) => {
       this.user = user;
-      this.userService.user.posts = this.posts;
+      this.profileService.profile.posts = this.posts;
+      console.log(this.user);
     });
-    this.user = JSON.parse(localStorage.getItem('_profile'));
-    this.user = (this.user === undefined || this.user === null) ? this.profileService.profile : this.user;
-    this.loginService.isLogged(this.router);
+    // this.user = JSON.parse(localStorage.getItem('_profile'));
+    // this.user = (this.user === undefined || this.user === null) ? this.profileService.profile : this.user;
 
-    console.log(this.user);
+    this.loginService.isLogged(this.router);
 
     this.userService.postsUpdated.subscribe((posts) => {
       this.posts = posts;
