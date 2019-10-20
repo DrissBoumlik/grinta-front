@@ -35,7 +35,7 @@
       <p>{{ post.content }}</p>
     </div>
     <div class="post-img">
-      <img src="{{ post.image }}" alt="" style="height: 100px;">
+      <img src="{{ post.image }}" alt="">
     </div>
     <div class="interactions">
       <button type="submit" class="btn btn-success btn-like capitalize" (click)='onLikePost()' [ngClass]="{'liked': postLiked}">j'aime</button>
