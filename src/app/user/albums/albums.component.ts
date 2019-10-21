@@ -1,5 +1,5 @@
 import { Album } from './album/album.model';
-import { LoginService } from 'src/app/login/login.service';
+import { AuthService } from 'src/app/Auth/auth.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../user.model';
 
@@ -10,7 +10,7 @@ import { User } from '../user.model';
 })
 export class AlbumsComponent implements OnInit {
   @Input() albums: Album[];
-  constructor(private loginService: LoginService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }

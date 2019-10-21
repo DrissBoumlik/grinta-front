@@ -1,5 +1,5 @@
 import { Media } from './media/media.model';
-import { LoginService } from 'src/app/login/login.service';
+import { AuthService } from 'src/app/Auth/auth.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/user/user.model';
 
@@ -10,7 +10,7 @@ import { User } from 'src/app/user/user.model';
 })
 export class MediasComponent implements OnInit {
   @Input() medias: Media[];
-  constructor(private loginService: LoginService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }

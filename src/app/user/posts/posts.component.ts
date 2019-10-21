@@ -1,11 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { UserService } from '../user.service';
-import { LoginService } from '../../login/login.service';
+import { AuthService } from '../../Auth/auth.service';
 import {Router} from '@angular/router';
 
 import {User} from '../user.model';
 import { NgxSpinnerService } from 'ngx-spinner';
-import {ProfileService} from '../profile/profile.service';
 
 @Component({
   selector: 'app-posts',
@@ -13,48 +12,29 @@ import {ProfileService} from '../profile/profile.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  @Input() profile: User = null;
-  user: User;
-  // posts: Post[] = [];
-  friends: User[];
+  @Input() user: User;
   page = 1;
   scroll = true;
   gotAllPosts = false;
 
-  constructor(private loginService: LoginService,
+  constructor(private authService: AuthService,
               private userService: UserService,
-              private profileService: ProfileService,
               private router: Router,
               private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    this.loginService.isLogged(this.router);
-
-    this.profileService.profileLoaded.subscribe((user: User) => {
-      this.profile = user;
-      this.getPosts();
-    });
-
-    this.user = this.profile ? this.profile : this.loginService.user;
+    this.authService.isLogged(this.router);
+    this.user = this.userService.user;
     this.user.posts = [];
-    if (this.profile) {
-      this.profileService.profile = this.user;
-    } else {
-      this.userService.user = this.user;
-    }
     this.userService.postsUpdated.subscribe((posts) => {
       this.user.posts = posts;
     });
-    if (!this.profile) {
-      this.getPosts();
-    }
+
+    this.getPosts();
   }
 
   getPosts() {
-    console.log('profile *************');
-    console.log(this.profile);
-    console.log('profile *************');
-    this.userService.getPosts(this.page, this.profile ? this.profile.id : null).subscribe((response: any) => {
+    this.userService.getPosts(this.page).subscribe((response: any) => {
       /** spinner starts on init */
       this.spinner.show();
       this.user.posts.push(...response.posts);
@@ -62,13 +42,7 @@ export class PostsComponent implements OnInit {
         /** spinner ends after 1 second = 1000ms */
         this.spinner.hide();
       }, 1000);
-      if (this.profile) {
-        console.log('profile');
-        this.profileService.profile.posts = this.user.posts;
-      } else {
-        console.log('user');
-        this.userService.user.posts = this.user.posts;
-      }
+      this.userService.user.posts = this.user.posts;
 
       if (!response.posts.length) {
         this.gotAllPosts = true;
