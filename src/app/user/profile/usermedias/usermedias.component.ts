@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../user.model';
 import {UserService} from '../../user.service';
 import {ProfileService} from '../profile.service';
+import {AuthService} from '../../../Auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-usermedias',
@@ -12,25 +14,15 @@ export class UserMediasComponent implements OnInit {
   profile: User;
 
   constructor(private userService: UserService,
-              private profileService: ProfileService) {
-    this.profile = this.profileService.profile;
-  }
+              private profileService: ProfileService,
+              private authService: AuthService,
+              private router: Router) {}
 
   ngOnInit() {
-    this.profileService.profileLoaded.subscribe((user: User) => {
-      this.profile = user;
-      console.log(this.profile);
-      // this.userService.posts = this.posts;
+    this.profileService.profileLoaded.subscribe((profile: User) => {
+      this.profile = profile;
     });
-    // this.user = JSON.parse(localStorage.getItem('_profile'));
-    // this.user = (this.user === undefined || this.user === null) ? this.userService.profile : this.user;
-    // this.loginService.isLogged(this.router);
-    //
-    // console.log(this.user);
-    //
-    // this.userService.postsUpdated.subscribe((posts) => {
-    //   this.posts = posts;
-    // });
+    this.profile = this.profileService.profile;
   }
 
 }

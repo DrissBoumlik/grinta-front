@@ -1,6 +1,6 @@
 import { CommentService } from './comment.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { LoginService } from 'src/app/login/login.service';
+import { AuthService } from 'src/app/Auth/auth.service';
 import { Comment } from './comment.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { PostService } from '../../post.service';
@@ -22,15 +22,15 @@ export class CommentComponent implements OnInit {
     content: new FormControl(null, Validators.required),
   });
 
-  constructor(private loginService: LoginService,
+  constructor(private authService: AuthService,
               private postService: PostService,
               private commentService: CommentService,
               private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.user = this.loginService.user;
+    this.user = this.authService.user;
     this.ownComment = this.user.id === this.comment.user_id;
-    this.commentLiked = this.comment.likers.some((liker: any) => liker.id === this.loginService.user.id);
+    this.commentLiked = this.comment.likers.some((liker: any) => liker.id === this.authService.user.id);
     this.commentService.comment = this.comment;
     this.commentService.repliesUpdated.subscribe((comment) => {
       this.comment = comment;
@@ -38,7 +38,7 @@ export class CommentComponent implements OnInit {
   }
 
   onLikeComment() {
-    this.commentLiked = this.comment.likers.some((liker: any) => liker.id === this.loginService.user.id);
+    this.commentLiked = this.comment.likers.some((liker: any) => liker.id === this.authService.user.id);
     if (this.commentLiked) {
       console.log('You unlike this comment');
       this.postService.unlikeComment(this.comment).subscribe((response: any) => {
@@ -49,7 +49,7 @@ export class CommentComponent implements OnInit {
     } else {
       this.postService.likeComment(this.comment).subscribe((response: any) => {
         if (response.code === 200) {
-          this.comment.likers.unshift(this.loginService.user);
+          this.comment.likers.unshift(this.authService.user);
         }
       });
     }

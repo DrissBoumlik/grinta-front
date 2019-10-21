@@ -1,7 +1,7 @@
 import { CommentService } from './../comment.service';
 import { User } from './../../../../../user.model';
 import { PostService } from '../../../post.service';
-import { LoginService } from './../../../../../../login/login.service';
+import { AuthService } from '../../../../../../Auth/auth.service';
 import { Comment } from "../comment.model";
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -16,18 +16,18 @@ export class ReplyComponent implements OnInit {
   replyLiked = false;
   ownReply = false;
 
-  constructor(private loginService: LoginService,
+  constructor(private authService: AuthService,
               private postService: PostService,
               private commentService: CommentService) { }
 
   ngOnInit() {
-    this.replyLiked = this.reply.likers.some((liker: any) => liker.id === this.loginService.user.id);
-    this.user = this.loginService.user;
+    this.replyLiked = this.reply.likers.some((liker: any) => liker.id === this.authService.user.id);
+    this.user = this.authService.user;
     this.ownReply = this.user.id === this.reply.user_id;
   }
 
   onLikeReply() {
-    this.replyLiked = this.reply.likers.some((liker: any) => liker.id === this.loginService.user.id);
+    this.replyLiked = this.reply.likers.some((liker: any) => liker.id === this.authService.user.id);
     if(this.replyLiked) {
       console.log('You unlike this comment');
       this.postService.unlikeComment(this.reply).subscribe((response: any) => {
@@ -38,7 +38,7 @@ export class ReplyComponent implements OnInit {
     } else {
       this.postService.likeComment(this.reply).subscribe((response: any) => {
         if (response.code === 200) {
-          this.reply.likers.unshift(this.loginService.user);
+          this.reply.likers.unshift(this.authService.user);
         }
       });
     }

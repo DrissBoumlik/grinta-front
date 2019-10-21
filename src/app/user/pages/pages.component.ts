@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../user.model';
-import {UserService} from '../user.service';
+import {ProfileService} from '../profile/profile.service';
 
 @Component({
   selector: 'app-pages',
@@ -8,17 +8,17 @@ import {UserService} from '../user.service';
   styleUrls: ['./pages.component.css']
 })
 export class PagesComponent implements OnInit {
-  user: User;
+  profile: User;
+  noPages = true;
 
-  constructor(private userService: UserService) { }
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
-    this.userService.profileLoaded.subscribe((user: User) => {
-      this.user = user;
-      console.log(this.userService.user);
+    this.profileService.profileLoaded.subscribe((profile: User) => {
+      this.profile = profile;
+      this.noPages = this.profile.pages.length === 0 && this.profile.managed_pages.length === 0 && this.profile.page_invitations.length === 0;
     });
-    this.user = this.userService.user ? this.userService.user : (JSON.parse(localStorage.getItem('_profile')) as User);
-    console.log(this.user);
+    this.profile = this.profileService.profile;
   }
 
 }

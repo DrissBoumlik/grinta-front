@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../user.service';
 import {User} from '../../user.model';
-import {LoginService} from '../../../login/login.service';
-import {Router} from '@angular/router';
-import {Post} from '../../posts/post/post.model';
 import {ProfileService} from '../profile.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-userposts',
@@ -12,28 +10,54 @@ import {ProfileService} from '../profile.service';
   styleUrls: ['./userposts.component.css']
 })
 export class UserPostsComponent implements OnInit {
-  user: User;
-  posts: Post[] = [];
+  profile: User;
+  friends: User[];
+  page = 1;
+  firstTime = true;
+  scroll = true;
+  gotAllPosts = false;
 
   constructor(private userService: UserService,
               private profileService: ProfileService,
-              private loginService: LoginService,
-              private router: Router) { }
+              private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    this.profileService.profileLoaded.subscribe((user: User) => {
-      this.user = user;
-      this.profileService.profile.posts = this.posts;
-      console.log(this.user);
-    });
-    // this.user = JSON.parse(localStorage.getItem('_profile'));
-    // this.user = (this.user === undefined || this.user === null) ? this.profileService.profile : this.user;
-
-    this.loginService.isLogged(this.router);
-
-    this.userService.postsUpdated.subscribe((posts) => {
-      this.posts = posts;
+    this.profileService.profileLoaded.subscribe((profile: User) => {
+      this.profile = profile;
+      this.profile.posts = [];
+      console.log(this.profile);
+      this.getPosts();
+      this.firstTime = false;
     });
   }
+
+
+  getPosts() {
+    this.userService.getPosts(this.page, this.profile.id).subscribe((response: any) => {
+      /** spinner starts on init */
+      this.spinner.show();
+      this.profile.posts.push(...response.posts);
+      setTimeout(() => {
+        /** spinner ends after 1 second = 1000ms */
+        this.spinner.hide();
+      }, 1000);
+
+      this.profileService.profile.posts = this.profile.posts;
+
+      if (!response.posts.length) {
+        this.gotAllPosts = true;
+      }
+    });
+  }
+
+  onScroll() {
+    if (this.scroll && !this.gotAllPosts && !this.firstTime) {
+      this.scroll = false;
+      this.page++;
+      this.getPosts();
+      this.scroll = true;
+    }
+  }
+
 
 }

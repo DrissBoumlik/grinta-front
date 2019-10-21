@@ -1,5 +1,5 @@
 import { User } from './../../../user.model';
-import { LoginService } from 'src/app/login/login.service';
+import { AuthService } from 'src/app/Auth/auth.service';
 import { PostService } from '../post.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Comment } from "./comment/comment.model";
@@ -24,10 +24,10 @@ export class CommentsComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private postService: PostService,
-              private loginService: LoginService) {}
+              private authService: AuthService) {}
 
   ngOnInit() {
-    this.user = this.loginService.user;
+    this.user = this.authService.user;
     this.postService.post = this.post;
     this.postService.postCommentsUpdated.subscribe((comments) => {
       this.post.comments = comments;

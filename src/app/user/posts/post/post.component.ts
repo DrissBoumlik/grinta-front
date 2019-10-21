@@ -1,9 +1,10 @@
-import { LoginService } from './../../../login/login.service';
+import { AuthService } from '../../../Auth/auth.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Post } from './post.model';
 import { UserService } from '../../user.service';
 import { PostService } from './post.service';
 import { User } from '../../user.model';
+import {ProfileService} from '../../profile/profile.service';
 
 @Component({
   selector: 'app-post',
@@ -14,17 +15,16 @@ import { User } from '../../user.model';
 export class PostComponent implements OnInit {
   @Input() post: Post;
   user: User;
-  likers = [];
   ownPost = false;
   postLiked = false;
 
   constructor(private userService: UserService,
               private postService: PostService,
-              private loginService: LoginService) { }
+              private authService: AuthService) { }
 
   ngOnInit() {
     // this.user = JSON.parse(localStorage.getItem('_user')) as User;
-    this.user = this.loginService.user;
+    this.user = this.authService.user;
     this.ownPost = this.user.id === this.post.user_id;
     this.postLiked = this.post.likers.some((liker: any) => liker.id === this.user.id);
     this.postService.postCommentsUpdated.subscribe((comments) => {
@@ -52,7 +52,7 @@ export class PostComponent implements OnInit {
   }
 
   onSharePost() {
-    let owner_id = this.post.post_owner_id === null ? this.post.user_id : this.post.post_owner_id;
+    const owner_id = this.post.post_owner_id === null ? this.post.user_id : this.post.post_owner_id;
     this.userService.sharePost(this.post.content, this.post.image, owner_id).subscribe((response) => {
           this.userService.addPost(response.post);
     });

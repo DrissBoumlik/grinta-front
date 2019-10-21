@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../user.model';
-import {UserService} from '../user.service';
+import {ProfileService} from '../profile/profile.service';
 
 @Component({
   selector: 'app-events',
@@ -9,17 +9,17 @@ import {UserService} from '../user.service';
 })
 export class EventsComponent implements OnInit {
 
-  user: User;
+  profile: User;
+  noEvents = true;
 
-  constructor(private userService: UserService) { }
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
-    this.userService.profileLoaded.subscribe((user: User) => {
-      this.user = user;
-      console.log(this.userService.user);
+    this.profileService.profileLoaded.subscribe((profile: User) => {
+      this.profile = profile;
+      this.noEvents = this.profile.events.length === 0 && this.profile.event_invitations.length === 0;
     });
-    this.user = this.userService.user ? this.userService.user : (JSON.parse(localStorage.getItem('_profile')) as User);
-    console.log(this.user);
+    this.profile = this.profileService.profile;
   }
 
 }

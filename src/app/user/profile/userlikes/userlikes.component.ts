@@ -9,15 +9,13 @@ import {User} from '../../user.model';
 })
 export class UserLikesComponent implements OnInit {
   profile: User;
-  constructor(private profileService: ProfileService) {
-    this.profile = this.profileService.profile;
-  }
+  constructor(private profileService: ProfileService) {}
 
   ngOnInit() {
-    this.profileService.profileLoaded.subscribe((user: User) => {
-      this.profile = user;
-      console.log(this.profile);
+    this.profileService.profileLoaded.subscribe((profile: User) => {
+      this.profile = profile;
     });
+    this.profile = this.profileService.profile;
   }
 
 }
