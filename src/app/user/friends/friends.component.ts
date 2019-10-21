@@ -8,7 +8,7 @@ import { User } from '../user.model';
   styleUrls: ['./friends.component.css']
 })
 export class FriendsComponent implements OnInit {
-  @Input() friends: User[];
+  friends: User[];
   noFriends = false;
 
   constructor(private userService: UserService) { }
