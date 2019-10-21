@@ -8,7 +8,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './Auth/login/login.component';
 import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './header/header.component';
 import { PostComponent } from './user/posts/post/post.component';
@@ -30,7 +30,7 @@ import { NewEventComponent } from './user/events/new-event/new-event.component';
 import { EventComponent } from './user/events/event/event.component';
 import { ReplyComponent } from './user/posts/post/comments/comment/reply/reply.component';
 
-import {LoginService} from './login/login.service';
+import {AuthService} from './Auth/auth.service';
 import { UserService } from './user/user.service';
 import { ErrorService } from './shared/error.service';
 import { UserPostsComponent } from './user/profile/userposts/userposts.component';
@@ -38,6 +38,7 @@ import { UserMediasComponent } from './user/profile/usermedias/usermedias.compon
 import { UserLikesComponent } from './user/profile/userlikes/userlikes.component';
 import { HomeComponent } from './user/home/home.component';
 import {ProfileService} from './user/profile/profile.service';
+import { RegisterComponent } from './Auth/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +67,7 @@ import {ProfileService} from './user/profile/profile.service';
     UserMediasComponent,
     UserLikesComponent,
     HomeComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,7 @@ import {ProfileService} from './user/profile/profile.service';
     InfiniteScrollModule,
     NgxSpinnerModule
   ],
-  providers: [UserService, ProfileService, LoginService, ErrorService],
+  providers: [UserService, ProfileService, AuthService, ErrorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

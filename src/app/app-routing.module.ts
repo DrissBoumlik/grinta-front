@@ -3,7 +3,7 @@ import { NewPageComponent } from './user/pages/new-page/new-page.component';
 import { PostsComponent } from './user/posts/posts.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './Auth/login/login.component';
 import {UserComponent} from './user/user.component';
 import {UserPostsComponent} from './user/profile/userposts/userposts.component';
 import {UserMediasComponent} from './user/profile/usermedias/usermedias.component';
@@ -11,11 +11,13 @@ import {UserLikesComponent} from './user/profile/userlikes/userlikes.component';
 import {EventsComponent} from './user/events/events.component';
 import {PagesComponent} from './user/pages/pages.component';
 import {HomeComponent} from './user/home/home.component';
+import {RegisterComponent} from './Auth/register/register.component';
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent},
   { path: 'home', component: HomeComponent},
   { path: ':username', component: UserComponent, children: [
       { path: '', component: UserPostsComponent },
