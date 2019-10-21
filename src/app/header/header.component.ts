@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {LoginService} from '../login/login.service';
+import {AuthService} from '../Auth/auth.service';
 import {Router} from '@angular/router';
 import { User } from '../user/user.model';
 
@@ -13,20 +13,20 @@ export class HeaderComponent implements OnInit {
   user: User;
   searchForm: FormGroup;
 
-  constructor(private loginService: LoginService,
+  constructor(private authService: AuthService,
               private router: Router) { }
 
   ngOnInit() {
-    const logged = this.loginService.user !== null && this.loginService.user !== undefined;
+    const logged = this.authService.user !== null && this.authService.user !== undefined;
     if (logged) {
-      this.user = this.loginService.user;
+      this.user = this.authService.user;
     }
     this.searchForm = new FormGroup({
       q: new FormControl(null)
     });
   }
   onLogout() {
-    this.loginService.logout().subscribe((response: any) => {
+    this.authService.logout().subscribe((response: any) => {
       this.router.navigate(['/']);
     });
   }
