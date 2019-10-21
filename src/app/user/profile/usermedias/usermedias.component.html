@@ -1,6 +1,14 @@
-<div class="container-fluid">
-  <app-albums [albums]="profile?.albums"></app-albums>
+
+<div class="albums" *ngIf="profile?.albums?.length">
+  <div class="container-fluid">
+    <app-albums [albums]="profile?.albums"></app-albums>
+  </div>
 </div>
-<div class="container-fluid">
-  <app-medias [medias]="profile?.medias"></app-medias>
+
+<div class="albums" *ngIf="!profile?.albums?.length">
+  <div class="container-fluid">
+    <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+      <p class="align-center">No albums created !!!</p>
+    </div>
+  </div>
 </div>

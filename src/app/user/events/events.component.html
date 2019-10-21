@@ -1,27 +1,39 @@
-<div class="events">
-  <div class="header">
-    <h3 class="capitalize align-center">Your Events</h3>
+<div class="all-events" *ngIf="!noEvents">
+
+  <div class="events">
+    <div class="header">
+      <h3 class="capitalize align-center">Your Events</h3>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let event of profile?.events">
+        <div class="event-row clearfix">
+          <div class="event-image float-left mg-sides"><img src="{{ event.image }}" alt="" class="round" style="width: 20px; height: 20px;"></div>
+          <div class="event-name float-left">{{ event.name }}</div>
+        </div>
+      </li>
+    </ul>
   </div>
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let event of user?.events">
-      <div class="event-row clearfix">
-        <div class="event-image float-left mg-sides"><img src="{{ event.image }}" alt="" class="round" style="width: 20px; height: 20px;"></div>
-        <div class="event-name float-left">{{ event.name }}</div>
-      </div>
-    </li>
-  </ul>
+
+  <div class="events">
+    <div class="header">
+      <h3 class="capitalize align-center">Events you were invited to</h3>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let event of profile?.event_invitations">
+        <div class="event-row clearfix">
+          <div class="event-image float-left mg-sides"><img src="{{ event.image }}" alt="" class="round" style="width: 20px; height: 20px;"></div>
+          <div class="event-name float-left">{{ event.name }}</div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
 
-<div class="events">
-  <div class="header">
-    <h3 class="capitalize align-center">Events you were invited to</h3>
+
+<div class="all-pages" *ngIf="noEvents">
+  <div class="container-fluid">
+    <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+      <p class="align-center">No Events !!!</p>
+    </div>
   </div>
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let event of user?.event_invitations">
-      <div class="event-row clearfix">
-        <div class="event-image float-left mg-sides"><img src="{{ event.image }}" alt="" class="round" style="width: 20px; height: 20px;"></div>
-        <div class="event-name float-left">{{ event.name }}</div>
-      </div>
-    </li>
-  </ul>
 </div>
