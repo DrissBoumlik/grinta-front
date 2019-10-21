@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from './user.model';
 import { Post } from './posts/post/post.model';
+import {AuthService} from '../Auth/auth.service';
 
 @Injectable()
 export class UserService {
@@ -12,15 +13,12 @@ export class UserService {
   user: User;
   friends: User[] = [];
   // posts: Post[] = [];
-  profileLoaded = new Subject<User>();
 
   postsUpdated = new Subject<Post[]>();
 
-  constructor(private http: HttpClient) {
-    UserService.headers = new HttpHeaders({
-      Accept: 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem('_token')
-    });
+  constructor(private http: HttpClient,
+              private authService: AuthService) {
+    this.user = this.authService.user;
   }
 
   static getHeaders() {
@@ -30,7 +28,17 @@ export class UserService {
     });
   }
 
-  getPosts(page = 1, profileId = null) {
+  getSports() {
+    return this.http.get(environment.baseApiUrl + '/sports', {headers: UserService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error)
+        )
+      );
+  }
+
+getPosts(page = 1, profileId = null) {
     profileId = profileId === null ? '' : profileId + '/';
     UserService.getHeaders();
     return this.http.get(environment.baseApiUrl + '/posts/' + profileId + '?page=' + page, {headers: UserService.headers})
@@ -52,22 +60,6 @@ export class UserService {
         )
       );
   }
-
-  getProfile(username: string = null) {
-    let url = environment.baseApiUrl + '/user-profile/' + (username === null ? '' : username);
-    return this.http.get(url, {headers: UserService.headers})
-    .pipe(
-      tap(
-        (data: any) => {
-          this.user = data.user;
-          this.profileLoaded.next(this.user);
-          console.log(data);
-        },
-        error => console.log(error.status),
-      )
-    );
-  }
-
 
   addPost(post: Post) {
     this.user.posts.unshift(post);
