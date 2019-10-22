@@ -25,10 +25,8 @@ export class UserComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       window.scroll(0, 0);
       const username = params.username;
-      console.log(username);
       this.profileService.getProfile(username).subscribe((response: any) => {
         this.profile = response.user;
-        this.profileService.profileLoaded.next(this.profile);
         localStorage.setItem('_profile', JSON.stringify(this.profile));
       });
     });

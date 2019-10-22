@@ -14,7 +14,6 @@ export class UserService {
   friends: User[] = [];
   // posts: Post[] = [];
 
-  postsUpdated = new Subject<Post[]>();
 
   constructor(private http: HttpClient,
               private authService: AuthService) {
@@ -38,17 +37,6 @@ export class UserService {
       );
   }
 
-getPosts(page = 1, profileId = null) {
-    profileId = profileId === null ? '' : profileId + '/';
-    UserService.getHeaders();
-    return this.http.get(environment.baseApiUrl + '/posts/' + profileId + '?page=' + page, {headers: UserService.headers})
-      .pipe(
-        tap(
-          data => console.log(data),
-          error => console.log(error),
-        )
-      );
-  }
 
   getFriends() {
     UserService.getHeaders();
@@ -59,16 +47,6 @@ getPosts(page = 1, profileId = null) {
           error => console.log(error.status),
         )
       );
-  }
-
-  addPost(post: Post) {
-    this.user.posts.unshift(post);
-    this.postsUpdated.next(this.user.posts);
-  }
-
-  removePost(post: Post) {
-    this.user.posts = this.user.posts.filter((_post) => _post.id !== post.id);
-    this.postsUpdated.next(this.user.posts);
   }
 
   likePost(post: Post) {
@@ -133,6 +111,7 @@ getPosts(page = 1, profileId = null) {
         )
       );
   }
+
   createEvent(name, date, limit_signup, address, location, image, cover, type, description) {
     return this.http.post(environment.baseApiUrl + '/events',
       {name,  date, limit_signup, address, location, image, cover, type, description},

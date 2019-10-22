@@ -39,19 +39,15 @@ import { UserLikesComponent } from './user/profile/userlikes/userlikes.component
 import { HomeComponent } from './user/home/home.component';
 import {ProfileService} from './user/profile/profile.service';
 import { RegisterComponent } from './Auth/register/register.component';
+import {PostsModule} from './user/posts/posts.module';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserComponent,
     HeaderComponent,
-    PostComponent,
     FriendComponent,
     FriendsComponent,
-    PostsComponent,
-    NewPostComponent,
-    CommentsComponent,
-    CommentComponent,
     AlbumComponent,
     MediaComponent,
     AlbumsComponent,
@@ -62,7 +58,6 @@ import { RegisterComponent } from './Auth/register/register.component';
     PagesComponent,
     NewEventComponent,
     EventComponent,
-    ReplyComponent,
     UserPostsComponent,
     UserMediasComponent,
     UserLikesComponent,
@@ -76,8 +71,10 @@ import { RegisterComponent } from './Auth/register/register.component';
     HttpClientModule,
     FormsModule,
     InfiniteScrollModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    PostsModule,
   ],
+  exports: [BrowserModule, ReactiveFormsModule],
   providers: [UserService, ProfileService, AuthService, ErrorService],
   bootstrap: [AppComponent]
 })
