@@ -78,6 +78,10 @@
 .user-cover {
   overflow: hidden;
   height: 300px;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .user-cover img {
   width: 100%;
