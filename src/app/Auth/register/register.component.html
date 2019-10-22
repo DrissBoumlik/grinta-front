@@ -46,7 +46,7 @@
 
               <!-- Select Basic -->
               <div class="form-group">
-                <label class="col-md-4 col-sm-4 col-xs-12 control-label">Sex</label>
+                <label class="col-md-4 col-sm-4 col-xs-12 control-label">Sexe</label>
                 <div class="col-md-6 col-sm-6 col-xs-12 selectContainer">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -54,6 +54,20 @@
                       <option value=" " disabled></option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Select Basic -->
+              <div class="form-group">
+                <label class="col-md-4 col-sm-4 col-xs-12 control-label">City</label>
+                <div class="col-md-6 col-sm-6 col-xs-12 selectContainer">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <select formControlName="city" class="form-control selectpicker" >
+                      <option value=" " disabled></option>
+                      <option *ngFor="let city of cities" value="city.name">{{ city.name }}</option>
                     </select>
                   </div>
                 </div>
@@ -77,6 +91,17 @@
                   <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
                     <input formControlName="password" placeholder="Password" class="form-control"  type="password">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-md-4 col-sm-4 col-xs-12 control-label" >Password Confirmation</label>
+                <div class="col-md-6 col-sm-6 col-xs-12 inputGroupContainer">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
+                    <input formControlName="password_confirmation" placeholder="Password Confirmation" class="form-control"  type="password">
                   </div>
                 </div>
               </div>

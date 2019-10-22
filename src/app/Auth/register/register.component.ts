@@ -16,15 +16,18 @@ import {Sport} from '../../user/sports/sport.model';
 export class RegisterComponent implements OnInit {
   sports: Sport[] = [];
   imageToUpload: any = File;
+  cities = [];
   registerForm = new FormGroup({
     username: new FormControl('jd', Validators.required),
     firstname: new FormControl('John', Validators.required),
     lastname: new FormControl('Doe', Validators.required),
     gender: new FormControl('male', Validators.required),
+    city: new FormControl('male', Validators.required),
     picture: new FormControl(null),
     cover: new FormControl(null),
     email: new FormControl('jd@grintaaa.com', Validators.required),
     password: new FormControl('123123123', Validators.required),
+    password_confirmation: new FormControl('123123123', Validators.required),
     sport: new FormControl(null, Validators.required)
   });
   constructor(private authService: AuthService,
@@ -39,9 +42,11 @@ export class RegisterComponent implements OnInit {
     }
 
     this.userService.getSports().subscribe((response: any) => {
-      console.log(isArray(response.sports));
-      console.log(typeof response);
       this.sports = response.sports;
+    });
+
+    this.http.get('./assets/data/france-cities.json').subscribe((response: any) => {
+      this.cities = response;
     });
   }
 
@@ -74,9 +79,10 @@ export class RegisterComponent implements OnInit {
   onRegister() {
     this.authService.register(this.registerForm.value.username, this.registerForm.value.firstname,
       this.registerForm.value.lastname, this.registerForm.value.email,
-      this.registerForm.value.password, this.registerForm.value.gender,
-      this.registerForm.value.picture, this.registerForm.value.cover,
-      this.registerForm.value.sport)
+      this.registerForm.value.password, this.registerForm.value.password_confirmation,
+      this.registerForm.value.gender,this.registerForm.value.picture,
+      this.registerForm.value.cover, this.registerForm.value.sport,
+      this.registerForm.value.city)
       .subscribe((response: any) => {
         console.log(response);
         this.authService.login(this.registerForm.value.username, this.registerForm.value.password)

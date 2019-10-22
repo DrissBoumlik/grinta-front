@@ -28,6 +28,10 @@ form {
   border-left: 1px solid #fff;
 }
 
+label {
+  color: #ffffff;
+}
+
 .btn-send-wrapper {
   text-align: center;
 }
