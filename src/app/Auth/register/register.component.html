@@ -67,7 +67,7 @@
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                     <select formControlName="city" class="form-control selectpicker" >
                       <option value=" " disabled></option>
-                      <option *ngFor="let city of cities" value="city.name">{{ city.name }}</option>
+                      <option *ngFor="let city of cities" value="{{ city.name }}">{{ city.name }}</option>
                     </select>
                   </div>
                 </div>
@@ -97,7 +97,7 @@
 
               <!-- Text input-->
               <div class="form-group">
-                <label class="col-md-4 col-sm-4 col-xs-12 control-label" >Password Confirmation</label>
+                <label class="col-md-4 col-sm-4 col-xs-12 control-label" >Confirmation</label>
                 <div class="col-md-6 col-sm-6 col-xs-12 inputGroupContainer">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
