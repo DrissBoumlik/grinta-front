@@ -1,41 +1,9 @@
-
-<div class="profile-posts">
-  <div class="col-md-8">
-    <div class="container-fluid">
-      <div class="row">
-        <app-new-post [user]="profile"></app-new-post>
-      </div>
-      <div class="row posts"
-           infiniteScroll
-           [infiniteScrollDistance]="1"
-           [infiniteScrollThrottle]="50"
-           (scrolled)="onScroll()">
-        <app-post *ngFor="let post of profile?.posts; let i = index"
-                  [post]="post"></app-post>
-      </div>
-      <!-- <ngx-spinner></ngx-spinner> -->
-      <ngx-spinner
-        bdColor="rgba(51,51,51,0.8)"
-        size="medium"
-        color="#fff"
-        type="pacman">
-        <p style="font-size: 20px; color: white">Loading...</p>
-      </ngx-spinner>
-      <div class="row load-more align-center" *ngIf="!gotAllPosts">
-        <div class="col-md-12">
-          <a class="btn btn-load-more capitalize"
-             (click)="onScroll()">load more</a>
-        </div>
-      </div>
-      <div class="row load-more align-center uppercase" *ngIf="gotAllPosts">
-        <div class="alert alert-info" role="alert">
-          No more data to load
-        </div>
-      </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8">
+      <app-posts [isProfile]="true"></app-posts>
     </div>
-  </div>
-  <div class="col-md-4">
-    <div class="row">
+    <div class="col-md-4">
       <app-friends></app-friends>
     </div>
   </div>
