@@ -4,6 +4,7 @@ import { Post } from './post.model';
 import { UserService } from '../../user.service';
 import { PostService } from './post.service';
 import { User } from '../../user.model';
+import {PostsService} from '../posts.service';
 import {ProfileService} from '../../profile/profile.service';
 
 @Component({
@@ -19,11 +20,12 @@ export class PostComponent implements OnInit {
   postLiked = false;
 
   constructor(private userService: UserService,
+              private profileService: ProfileService,
               private postService: PostService,
+              private postsService: PostsService,
               private authService: AuthService) { }
 
   ngOnInit() {
-    // this.user = JSON.parse(localStorage.getItem('_user')) as User;
     this.user = this.authService.user;
     this.ownPost = this.user.id === this.post.user_id;
     this.postLiked = this.post.likers.some((liker: any) => liker.id === this.user.id);
@@ -54,7 +56,9 @@ export class PostComponent implements OnInit {
   onSharePost() {
     const owner_id = this.post.post_owner_id === null ? this.post.user_id : this.post.post_owner_id;
     this.userService.sharePost(this.post.content, this.post.image, owner_id).subscribe((response) => {
-          this.userService.addPost(response.post);
+          if (this.authService.user.id === this.profileService.profile.id) {
+            this.postsService.addPost(response.post);
+          }
     });
   }
 
@@ -68,7 +72,7 @@ export class PostComponent implements OnInit {
       return;
     }
     this.userService.deletePost(this.post.id).subscribe((response: any) => {
-      this.userService.removePost(this.post);
+      this.postsService.removePost(this.post);
     });
   }
 }
