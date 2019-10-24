@@ -1,0 +1,13 @@
+
+.liked-page-image {
+  padding: 0;
+}
+.liked-page-image img {
+  height: 100px;
+  width: 100px;
+}
+
+.liked-page-name {
+  height: 100px;
+  padding-top: 40px;
+}

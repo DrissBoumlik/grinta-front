@@ -1,0 +1,24 @@
+<div class="likes pages-wrapper" *ngIf="profile?.liked_pages?.length">
+  <div class="col-md-12">
+    <div class="header">
+      <h3 class="capitalize">
+        <i class="far fa-thumbs-up"></i>
+        Likes</h3>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6 liked-page-block" *ngFor="let page of profile?.liked_pages">
+          <app-page-item [page]="page"></app-page-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="likes" *ngIf="!profile?.liked_pages?.length">
+  <div class="container-fluid">
+    <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+      <p class="align-center">No Likes !!!</p>
+    </div>
+  </div>
+</div>

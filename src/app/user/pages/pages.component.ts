@@ -9,16 +9,25 @@ import {ProfileService} from '../profile/profile.service';
 })
 export class PagesComponent implements OnInit {
   profile: User;
-  noPages = true;
+  noPages = false;
 
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
     this.profileService.profileLoaded.subscribe((profile: User) => {
       this.profile = profile;
-      this.noPages = this.profile.pages.length === 0 && this.profile.managed_pages.length === 0 && this.profile.page_invitations.length === 0;
+      console.log(this.profile);
+      this.noPages = (this.profile.pages && this.profile.pages.length === 0)
+        && (this.profile.managed_pages && this.profile.managed_pages.length === 0)
+        && (this.profile.page_invitations && this.profile.page_invitations.length === 0);
     });
     this.profile = this.profileService.profile;
+    if (this.profile) {
+      console.log(this.profile);
+      this.noPages = (this.profile.pages && this.profile.pages.length === 0)
+        && (this.profile.managed_pages && this.profile.managed_pages.length === 0)
+        && (this.profile.page_invitations && this.profile.page_invitations.length === 0);
+    }
   }
 
 }

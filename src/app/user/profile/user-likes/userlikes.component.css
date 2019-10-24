@@ -1,7 +1,6 @@
 .pages-wrapper {
   border: 1px solid #b8b8b8;
   padding: 10px 0;
-  margin-bottom: 20px;
 }
 
 .header {
@@ -18,7 +17,6 @@
 .liked-page-block:nth-child(even) {
   margin-left: 2%;
 }
-
 
 .liked-page-image {
   padding: 0;

@@ -1,44 +1,53 @@
-<div class="all-pages" *ngIf="!noPages">
-  <div class="pages">
-    <div class="header">
-      <h3 class="capitalize align-center">Your Pages</h3>
-    </div>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let page of profile?.pages">
-        <div class="page-row clearfix">
-          <div class="page-image float-left mg-sides"><img src="{{ page.image }}" alt="" class="round" style="width: 20px; height: 20px;"></div>
-          <div class="page-name float-left">{{ page.name }}</div>
+<div class="_pages-wrapper" *ngIf="!noPages">
+  <div class="pages pages-wrapper">
+    <div class="col-md-12">
+      <div class="header">
+        <h3 class="capitalize">
+          <i class="fas fa-scroll"></i>
+          Your Pages</h3>
+      </div>
+      <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6 liked-page-block" *ngFor="let page of profile?.pages">
+          <app-page-item [page]="page"></app-page-item>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
+    </div>
   </div>
 
-  <div class="pages">
-    <div class="header">
-      <h3 class="capitalize align-center">Pages you manage</h3>
-    </div>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let page of profile?.managed_pages">
-        <div class="page-row clearfix">
-          <div class="page-image float-left mg-sides"><img src="{{ page.image }}" alt="" class="round" style="width: 20px; height: 20px;"></div>
-          <div class="page-name float-left">{{ page.name }}</div>
+  <div class="pages pages-wrapper">
+    <div class="col-md-12">
+      <div class="header">
+        <h3 class="capitalize">
+          <i class="fas fa-scroll"></i>
+          Pages you manage</h3>
+      </div>
+      <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6 liked-page-block" *ngFor="let page of profile?.managed_pages">
+          <app-page-item [page]="page"></app-page-item>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
+    </div>
   </div>
 
-  <div class="pages">
-    <div class="header">
-      <h3 class="capitalize align-center">Pages you were invited to</h3>
-    </div>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let page of profile?.page_invitations">
-        <div class="page-row clearfix">
-          <div class="page-image float-left mg-sides"><img src="{{ page.image }}" alt="" class="round" style="width: 20px; ;"></div>
-          <div class="page-name float-left">{{ page.name }}</div>
+  <div class="pages pages-wrapper">
+    <div class="col-md-12">
+      <div class="header">
+        <h3 class="capitalize">
+          <i class="fas fa-scroll"></i>
+          Pages you were invited to</h3>
+      </div>
+      <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6 liked-page-block" *ngFor="let page of profile?.page_invitations">
+          <app-page-item [page]="page"></app-page-item>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
+    </div>
   </div>
 </div>
 
