@@ -28,6 +28,7 @@ export class PostsComponent implements OnInit {
               private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    console.log('posts loaded');
     this.authService.isLogged(this.router);
     this.user = this.authService.user;
     this.user.posts = [];
@@ -46,7 +47,7 @@ export class PostsComponent implements OnInit {
   }
 
   getPosts(message) {
-    console.log(message, this.page);
+    console.log(message, this.page, this.isProfile);
     this.postsService.getPosts(this.page++, (this.isProfile ? this.user.id : null)).subscribe((response: any) => {
       this.user.posts.push(...response.posts);
       // /** spinner starts on init */
@@ -62,7 +63,7 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  onScroll() {
+  onLoadMorePosts() {
     if (this.scroll && !this.gotAllPosts) {
       this.scroll = false;
       this.getPosts('on scroll');

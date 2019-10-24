@@ -30,7 +30,7 @@ export class CommentComponent implements OnInit {
   ngOnInit() {
     this.user = this.authService.user;
     this.ownComment = this.user.id === this.comment.user_id;
-    this.commentLiked = this.comment.likers.some((liker: any) => liker.id === this.authService.user.id);
+    this.commentLiked = this.comment.likers.some((liker: User) => liker.id === this.authService.user.id);
     this.commentService.comment = this.comment;
     this.commentService.repliesUpdated.subscribe((comment) => {
       this.comment = comment;
@@ -38,7 +38,7 @@ export class CommentComponent implements OnInit {
   }
 
   onLikeComment() {
-    this.commentLiked = this.comment.likers.some((liker: any) => liker.id === this.authService.user.id);
+    this.commentLiked = this.comment.likers.some((liker: User) => liker.id === this.authService.user.id);
     if (this.commentLiked) {
       console.log('You unlike this comment');
       this.postService.unlikeComment(this.comment).subscribe((response: any) => {

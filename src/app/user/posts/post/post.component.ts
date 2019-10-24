@@ -28,14 +28,14 @@ export class PostComponent implements OnInit {
   ngOnInit() {
     this.user = this.authService.user;
     this.ownPost = this.user.id === this.post.user_id;
-    this.postLiked = this.post.likers.some((liker: any) => liker.id === this.user.id);
+    this.postLiked = this.post.likers.some((liker: User) => liker.id === this.user.id);
     this.postService.postCommentsUpdated.subscribe((comments) => {
       this.post.comments = comments;
     });
   }
 
   onLikePost() {
-    this.postLiked = this.post.likers.some((liker: any) => liker.id === this.user.id);
+    this.postLiked = this.post.likers.some((liker: User) => liker.id === this.user.id);
     if (this.postLiked) {
       console.log('You unlike this post');
       this.userService.unlikePost(this.post).subscribe((response: any) => {

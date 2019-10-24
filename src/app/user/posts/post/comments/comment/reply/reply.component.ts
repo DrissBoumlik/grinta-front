@@ -21,13 +21,13 @@ export class ReplyComponent implements OnInit {
               private commentService: CommentService) { }
 
   ngOnInit() {
-    this.replyLiked = this.reply.likers.some((liker: any) => liker.id === this.authService.user.id);
+    this.replyLiked = this.reply.likers.some((liker: User) => liker.id === this.authService.user.id);
     this.user = this.authService.user;
     this.ownReply = this.user.id === this.reply.user_id;
   }
 
   onLikeReply() {
-    this.replyLiked = this.reply.likers.some((liker: any) => liker.id === this.authService.user.id);
+    this.replyLiked = this.reply.likers.some((liker: User) => liker.id === this.authService.user.id);
     if(this.replyLiked) {
       console.log('You unlike this comment');
       this.postService.unlikeComment(this.reply).subscribe((response: any) => {
