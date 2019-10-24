@@ -49,6 +49,28 @@ export class UserService {
       );
   }
 
+  followUser(followed) {
+    UserService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/followers', {followed}, {headers: UserService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error),
+        )
+      );
+  }
+
+  AddFriend(friendId: number) {
+    UserService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/friends', {friend: friendId}, {headers: UserService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error),
+        )
+      );
+  }
+
   likePost(post: Post) {
     return this.http.post(environment.baseApiUrl + '/like-post', {post}, {headers: UserService.headers})
       .pipe(

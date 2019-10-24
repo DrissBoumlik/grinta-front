@@ -10,7 +10,7 @@ import {ProfileService} from '../profile/profile.service';
 export class EventsComponent implements OnInit {
 
   profile: User;
-  noEvents = true;
+  noEvents = false;
 
   constructor(private profileService: ProfileService) { }
 
@@ -20,6 +20,9 @@ export class EventsComponent implements OnInit {
       this.noEvents = this.profile.events.length === 0 && this.profile.event_invitations.length === 0;
     });
     this.profile = this.profileService.profile;
+    if (this.profile) {
+      this.noEvents = this.profile.events.length === 0 && this.profile.event_invitations.length === 0;
+    }
   }
 
 }

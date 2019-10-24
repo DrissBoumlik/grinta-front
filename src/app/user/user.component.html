@@ -1,10 +1,10 @@
 <app-header></app-header>
 <div class="user-profile container-fluid">
-  <div class="container">
+  <div class="user-wrapper">
     <div class="user-cover" [ngStyle]="{backgroundImage: 'url('+profile?.cover+')'}">
 <!--      <img src="{{ profile?.cover }}" alt="">-->
     </div>
-    <div class="row">
+    <div class="row relative">
       <div class="profile-data">
         <div class="profile-wrapper">
           <div class="profile row relative">
@@ -15,6 +15,10 @@
             <div class="user-info user-email hidden">{{ profile?.email }}</div>
           </div>
         </div>
+      </div>
+      <div class="profile-action" *ngIf="!myProfile">
+        <button class="btn btn-action btn-add" (click)="onAddFriend()">{{ isFriend ? 'Ajouté' : 'Ajouter' }}</button>
+        <button class="btn btn-action btn-follow" (click)="onFollowFriend()">{{ isFollowed ? 'Suivi' : 'Suivre' }}</button>
       </div>
     </div>
     <div class="row align-center profile-menu">
@@ -35,7 +39,7 @@
       </div>
       <div class="col-md-3 col-sm-3 col-xs-3 profile-menu-item">
         <div class="dropdown pd-10">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plus <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" routerLinkActive="active">Plus <b class="caret"></b></a>
           <ul class="dropdown-menu pointer w-100">
             <li><a routerLink="/{{ profile?.username }}/pages">Pages</a></li>
             <li><a routerLink="/{{ profile?.username }}/events">Events</a></li>

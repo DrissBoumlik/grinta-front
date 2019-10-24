@@ -14,12 +14,9 @@
   margin: 0;
 }
 
+
+
 .profile-data {
-  position: relative;
-}
-
-
-.profile-wrapper {
   border-radius: 5px;
   padding: 20px;
 
@@ -48,6 +45,17 @@
   font-size: 3rem;
 }
 
+.profile-action {
+  position: absolute;
+  top: -60px;
+  right: 30px;
+}
+.btn-action {
+  border-radius: 0;
+}
+.btn-add {
+  margin-right: 10px;
+}
 
 
 

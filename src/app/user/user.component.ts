@@ -12,6 +12,9 @@ import {ProfileService} from './profile/profile.service';
 })
 export class UserComponent implements OnInit {
   profile: User;
+  isFollowed = false;
+  isFriend = false;
+  myProfile = true;
 
   constructor(private userService: UserService,
               private profileService: ProfileService,
@@ -27,8 +30,28 @@ export class UserComponent implements OnInit {
       const username = params.username;
       this.profileService.getProfile(username).subscribe((response: any) => {
         this.profile = response.user;
+        if (this.profile.id !== this.authService.user.id) {
+          this.myProfile = false;
+          // Make request to seed if already follower
+          this.isFriend = this.profile.friends.some((friend: User) => friend.id === this.authService.user.id);
+          this.isFollowed = this.profile.followers.some((follower: User) => follower.id === this.authService.user.id);
+        }
         localStorage.setItem('_profile', JSON.stringify(this.profile));
       });
     });
+  }
+
+  onAddFriend() {
+    this.userService.AddFriend(this.profile.id)
+      .subscribe((response: any) => {
+        this.isFriend = true;
+      });
+  }
+
+  onFollowFriend() {
+    this.userService.followUser(this.profile.id)
+      .subscribe((response: any) => {
+        this.isFollowed = true;
+      });
   }
 }
