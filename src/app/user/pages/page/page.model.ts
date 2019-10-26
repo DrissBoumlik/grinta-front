@@ -1,3 +1,5 @@
+import {User} from '../../user.model';
+
 export class Page {
   constructor(
     public id: number,
@@ -8,5 +10,6 @@ export class Page {
     public image: string,
     public cover: string,
     public type: string,
+    public user: User
   ) {}
 }

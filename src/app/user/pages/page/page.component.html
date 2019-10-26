@@ -1,1 +1,43 @@
-<p>page works!</p>
+<app-header></app-header>
+<div class="page-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 hidden-xs">
+        <div class="right-side links align-center">
+          <div class="page-image">
+            <div class="image-wrapper">
+              <img src="{{ page?.image }}" alt="">
+            </div>
+          </div>
+          <div class="page-header">
+            <div class="name-wrapper">
+            <span>
+              <h3><a href="/pages/{{page?.pagename}}">{{ page?.name }}</a></h3>
+            </span>
+            </div>
+            <div class="pagename-wrapper">
+            <span>
+              <h4><a href="/pages/{{page?.pagename}}">@{{ page?.pagename }}</a></h4>
+            </span>
+            </div>
+          </div>
+          <div class="page-links">
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7 col-sm-8">
+        <div class="content-wrapper">
+          <div class="header-section">
+            <div class="page-cover" [ngStyle]="{backgroundImage: 'url('+page?.cover+')'}">
+              <!--      <img src="{{ profile?.cover }}" alt="">-->
+            </div>
+          </div>
+          <div class="body-section">
+            <app-posts [page]="page" [isPage]="true"></app-posts>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

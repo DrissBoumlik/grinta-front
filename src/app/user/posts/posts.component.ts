@@ -7,6 +7,8 @@ import {User} from '../user.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {PostsService} from './posts.service';
 import {ProfileService} from '../profile/profile.service';
+import {Page} from '../pages/page/page.model';
+import {PageService} from '../pages/page/page.service';
 
 @Component({
   selector: 'app-posts',
@@ -15,8 +17,11 @@ import {ProfileService} from '../profile/profile.service';
 })
 export class PostsComponent implements OnInit {
   @Input() isProfile = false;
+  @Input() isPage = false;
+  @Input() page: Page;
   user: User;
-  page = 1;
+  authUser: User;
+  queryPage = 1;
   scroll = true;
   gotAllPosts = false;
 
@@ -24,42 +29,51 @@ export class PostsComponent implements OnInit {
               private userService: UserService,
               private profileService: ProfileService,
               private postsService: PostsService,
+              private pageService: PageService,
               private router: Router,
               private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    console.log('posts loaded');
     this.authService.isLogged(this.router);
-    this.user = this.authService.user;
+    this.user = this.authUser = this.authService.user;
     this.user.posts = [];
     this.profileService.profileLoaded.subscribe((profile: User) => {
         this.user = profile;
         this.user.posts = [];
-        this.page = 1;
+        this.queryPage = 1;
         this.getPosts('profile loaded');
       });
     this.postsService.postsUpdated.subscribe((posts) => {
       this.user.posts = posts;
     });
-    if (!this.isProfile) {
+    this.pageService.pageLoaded.subscribe((page: Page) => {
+      this.page = page;
+      this.user = page.user;
+      this.user.posts = [];
+      this.getPosts('page loaded');
+    });
+    if (!this.isProfile && !this.isPage) {
       this.getPosts('not profile');
     }
   }
 
   getPosts(message) {
-    console.log(message, this.page, this.isProfile);
-    this.postsService.getPosts(this.page++, (this.isProfile ? this.user.id : null)).subscribe((response: any) => {
-      this.user.posts.push(...response.posts);
-      // /** spinner starts on init */
-      // this.spinner.show();
-      // setTimeout(() => {
-      //   /** spinner ends after 1 second = 1000ms */
-      //   this.spinner.hide();
-      // }, 1000);
+    console.log(message);
+    const profileId = this.isProfile ? this.user.id : null;
+    const pageId = this.isPage ? this.page.id : null;
+    this.postsService.getPosts(this.queryPage++, profileId, pageId)
+      .subscribe((response: any) => {
+        this.user.posts.push(...response.posts);
+        // /** spinner starts on init */
+        // this.spinner.show();
+        // setTimeout(() => {
+        //   /** spinner ends after 1 second = 1000ms */
+        //   this.spinner.hide();
+        // }, 1000);
 
-      if (!response.posts.length) {
-        this.gotAllPosts = true;
-      }
+        if (!response.posts.length) {
+          this.gotAllPosts = true;
+        }
     });
   }
 

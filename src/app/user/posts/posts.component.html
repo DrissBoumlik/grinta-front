@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <app-new-post [user]="user"></app-new-post>
+    <app-new-post [user]="authUser"></app-new-post>
   </div>
   <div class="row posts">
     <app-post *ngFor="let post of user?.posts; let i = index"

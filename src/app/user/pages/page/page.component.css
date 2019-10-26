@@ -1,0 +1,21 @@
+.page-wrapper {
+  margin-top: -50px;
+}
+.page-image {
+  margin-top: 20px;
+}
+.page-image img {
+  width: 150px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+}
+.page-cover {
+  overflow: hidden;
+  height: 300px;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
