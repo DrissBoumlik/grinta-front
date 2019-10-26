@@ -1,6 +1,5 @@
 <app-header></app-header>
 <div class="container">
-
   <form class="well form-horizontal" [formGroup]="CreatePageForm" enctype="multipart/form-data">
     <fieldset>
 
@@ -27,6 +26,21 @@
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
             <input formControlName="pagename" placeholder="Page Username" class="form-control"  type="text">
+          </div>
+        </div>
+      </div>
+
+      <!-- Text input-->
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" >Sports</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select formControlName="sport" class="form-control selectpicker" >
+              <option value=" " disabled></option>
+              <option *ngFor="let sport of sports" value="{{ sport.id }}">{{ sport.name }}</option>
+            </select>
           </div>
         </div>
       </div>
