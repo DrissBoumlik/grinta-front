@@ -3,6 +3,7 @@ import { Component, OnInit, Input, HostListener, ViewChild } from '@angular/core
 import { UserService } from '../../user.service';
 import { User } from '../../user.model';
 import {PostsService} from '../posts.service';
+import {PageService} from '../../pages/page/page.service';
 
 @Component({
   selector: 'app-new-post',
@@ -20,6 +21,7 @@ export class NewPostComponent implements OnInit {
 
   constructor(private userService: UserService,
               private postsService: PostsService,
+              private pageService: PageService,
               private fb: FormBuilder) {}
 
   ngOnInit() {
@@ -40,7 +42,8 @@ export class NewPostComponent implements OnInit {
   onCreatePost() {
     const content = this.sharePostForm.get('content').value;
     const image = this.sharePostForm.get('image').value;
-    this.userService.createPost(content, image).subscribe((response) => {
+    const pageId = this.pageService.page ? this.pageService.page.id : null;
+    this.postsService.createPost(content, image, pageId).subscribe((response: any) => {
           this.postsService.addPost(response.post);
     });
     this.sharePostForm.reset();

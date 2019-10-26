@@ -6,6 +6,7 @@ import { PostService } from './post.service';
 import { User } from '../../user.model';
 import {PostsService} from '../posts.service';
 import {ProfileService} from '../../profile/profile.service';
+import {PageService} from '../../pages/page/page.service';
 
 @Component({
   selector: 'app-post',
@@ -23,6 +24,7 @@ export class PostComponent implements OnInit {
               private profileService: ProfileService,
               private postService: PostService,
               private postsService: PostsService,
+              private pageService: PageService,
               private authService: AuthService) { }
 
   ngOnInit() {
@@ -38,13 +40,13 @@ export class PostComponent implements OnInit {
     this.postLiked = this.post.likers.some((liker: User) => liker.id === this.user.id);
     if (this.postLiked) {
       console.log('You unlike this post');
-      this.userService.unlikePost(this.post).subscribe((response: any) => {
+      this.postsService.unlikePost(this.post).subscribe((response: any) => {
         if (response.code === 200) {
           this.post.likers.shift();
         }
       });
     } else {
-      this.userService.likePost(this.post).subscribe((response: any) => {
+      this.postsService.likePost(this.post).subscribe((response: any) => {
         if (response.code === 200) {
           this.post.likers.unshift(this.user);
         }
@@ -55,8 +57,10 @@ export class PostComponent implements OnInit {
 
   onSharePost() {
     const owner_id = this.post.post_owner_id === null ? this.post.user_id : this.post.post_owner_id;
-    this.userService.sharePost(this.post.content, this.post.image, owner_id).subscribe((response) => {
-          if (this.authService.user.id === this.profileService.profile.id) {
+    const pageId = this.pageService.page ? this.pageService.page.id : null;
+    this.postsService.sharePost(this.post.content, this.post.image, owner_id, pageId).subscribe((response: any) => {
+          if ((this.profileService.profile && this.authService.user.id === this.profileService.profile.id) || this.pageService.page) {
+            console.log(this.postsService.user.posts);
             this.postsService.addPost(response.post);
           }
     });
@@ -71,7 +75,7 @@ export class PostComponent implements OnInit {
       console.log("You don't own this post");
       return;
     }
-    this.userService.deletePost(this.post.id).subscribe((response: any) => {
+    this.postsService.deletePost(this.post.id).subscribe((response: any) => {
       this.postsService.removePost(this.post);
     });
   }
