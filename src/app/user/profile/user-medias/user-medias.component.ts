@@ -6,9 +6,9 @@ import {AuthService} from '../../../Auth/auth.service';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-usermedias',
-  templateUrl: './usermedias.component.html',
-  styleUrls: ['./usermedias.component.css']
+  selector: 'app-user-medias',
+  templateUrl: './user-medias.component.html',
+  styleUrls: ['./user-medias.component.css']
 })
 export class UserMediasComponent implements OnInit {
   profile: User;

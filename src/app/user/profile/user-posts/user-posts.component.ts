@@ -6,9 +6,9 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {PostsService} from '../../posts/posts.service';
 
 @Component({
-  selector: 'app-userposts',
-  templateUrl: './userposts.component.html',
-  styleUrls: ['./userposts.component.css']
+  selector: 'app-user-posts',
+  templateUrl: './user-posts.component.html',
+  styleUrls: ['./user-posts.component.css']
 })
 export class UserPostsComponent implements OnInit {
   profile: User;

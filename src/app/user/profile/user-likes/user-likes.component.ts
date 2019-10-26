@@ -3,9 +3,9 @@ import {ProfileService} from '../profile.service';
 import {User} from '../../user.model';
 
 @Component({
-  selector: 'app-userlikes',
-  templateUrl: './userlikes.component.html',
-  styleUrls: ['./userlikes.component.css']
+  selector: 'app-user-likes',
+  templateUrl: './user-likes.component.html',
+  styleUrls: ['./user-likes.component.css']
 })
 export class UserLikesComponent implements OnInit {
   profile: User;
