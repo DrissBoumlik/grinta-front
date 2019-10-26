@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl} from '@angular/forms';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {User} from '../../user.model';
 import {UserService} from '../../user.service';
 import {Page} from '../page/page.model';
+import {Sport} from '../../sports/sport.model';
 
 @Component({
   selector: 'app-new-page',
@@ -11,6 +12,7 @@ import {Page} from '../page/page.model';
 })
 export class NewPageComponent implements OnInit {
   user: User;
+  sports: Sport[] = [];
   imageToUpload: any = File;
 
   CreatePageForm = this.fb.group({
@@ -20,6 +22,7 @@ export class NewPageComponent implements OnInit {
     cover: new FormControl(null),
     type: new FormControl('public'),
     description: new FormControl('kokokokokosss'),
+    sport: new FormControl(1, Validators.required)
   });
 
   constructor(private fb: FormBuilder,
@@ -28,6 +31,9 @@ export class NewPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.getSports().subscribe((response: any) => {
+      this.sports = response.sports;
+    });
   }
 
   onFileImageChange(files: FileList) {
@@ -59,7 +65,7 @@ export class NewPageComponent implements OnInit {
   onCreatePage() {
     this.userService.createPage(this.CreatePageForm.value.name, this.CreatePageForm.value.pagename,
       this.CreatePageForm.value.image, this.CreatePageForm.value.cover,
-      this.CreatePageForm.value.type, this.CreatePageForm.value.description)
+      this.CreatePageForm.value.type, this.CreatePageForm.value.description, this.CreatePageForm.value.sport)
       .subscribe((response: any) => console.log(response));
   }
 }
