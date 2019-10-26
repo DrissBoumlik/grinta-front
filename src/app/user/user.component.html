@@ -1,52 +1,54 @@
 <app-header></app-header>
 <div class="user-profile container-fluid">
-  <div class="user-wrapper">
-    <div class="user-cover" [ngStyle]="{backgroundImage: 'url('+profile?.cover+')'}">
-<!--      <img src="{{ profile?.cover }}" alt="">-->
-    </div>
-    <div class="row relative">
-      <div class="profile-data">
-        <div class="profile-wrapper">
-          <div class="profile row relative">
-            <div class="user-info round user-img">
-              <img src="{{ profile?.picture }}" alt="" class="user-picture round">
+  <div class="container">
+    <div class="user-wrapper">
+      <div class="user-cover" [ngStyle]="{backgroundImage: 'url('+profile?.cover+')'}">
+        <!--      <img src="{{ profile?.cover }}" alt="">-->
+      </div>
+      <div class="row relative">
+        <div class="profile-data">
+          <div class="profile-wrapper">
+            <div class="profile row relative">
+              <div class="user-info round user-img">
+                <img src="{{ profile?.picture }}" alt="" class="user-picture round">
+              </div>
+              <div class="user-info user-name">{{ profile?.firstname }} {{ profile?.lastname }}</div>
+              <div class="user-info user-email hidden">{{ profile?.email }}</div>
             </div>
-            <div class="user-info user-name">{{ profile?.firstname }} {{ profile?.lastname }}</div>
-            <div class="user-info user-email hidden">{{ profile?.email }}</div>
+          </div>
+        </div>
+        <div class="profile-action" *ngIf="!myProfile">
+          <button class="btn btn-action btn-add" (click)="onAddFriend()">{{ isFriend ? 'Ajouté' : 'Ajouter' }}</button>
+          <button class="btn btn-action btn-follow" (click)="onFollowFriend()">{{ isFollowed ? 'Suivi' : 'Suivre' }}</button>
+        </div>
+      </div>
+      <div class="row align-center profile-menu">
+        <div class="col-md-3 col-sm-3 col-xs-3 profile-menu-item">
+          <a routerLink="/{{ profile?.username }}/posts" routerLinkActive="active">
+            <span class="block capitalize pd-10">posts</span>
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-3 profile-menu-item">
+          <a routerLink="/{{ profile?.username }}/medias" routerLinkActive="active">
+            <span class="block capitalize pd-10">média</span>
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-3 profile-menu-item">
+          <a routerLink="/{{ profile?.username }}/likes" routerLinkActive="active">
+            <span class="block capitalize pd-10">j'aime</span>
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-3 profile-menu-item">
+          <div class="dropdown pd-10">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" routerLinkActive="active">Plus <b class="caret"></b></a>
+            <ul class="dropdown-menu pointer w-100">
+              <li><a routerLink="/{{ profile?.username }}/pages">Pages</a></li>
+              <li><a routerLink="/{{ profile?.username }}/events">Events</a></li>
+            </ul>
           </div>
         </div>
       </div>
-      <div class="profile-action" *ngIf="!myProfile">
-        <button class="btn btn-action btn-add" (click)="onAddFriend()">{{ isFriend ? 'Ajouté' : 'Ajouter' }}</button>
-        <button class="btn btn-action btn-follow" (click)="onFollowFriend()">{{ isFollowed ? 'Suivi' : 'Suivre' }}</button>
-      </div>
+      <router-outlet></router-outlet>
     </div>
-    <div class="row align-center profile-menu">
-      <div class="col-md-3 col-sm-3 col-xs-3 profile-menu-item">
-        <a routerLink="/{{ profile?.username }}/posts" routerLinkActive="active">
-          <span class="block capitalize pd-10">posts</span>
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-3 col-xs-3 profile-menu-item">
-        <a routerLink="/{{ profile?.username }}/medias" routerLinkActive="active">
-          <span class="block capitalize pd-10">média</span>
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-3 col-xs-3 profile-menu-item">
-        <a routerLink="/{{ profile?.username }}/likes" routerLinkActive="active">
-          <span class="block capitalize pd-10">j'aime</span>
-        </a>
-      </div>
-      <div class="col-md-3 col-sm-3 col-xs-3 profile-menu-item">
-        <div class="dropdown pd-10">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" routerLinkActive="active">Plus <b class="caret"></b></a>
-          <ul class="dropdown-menu pointer w-100">
-            <li><a routerLink="/{{ profile?.username }}/pages">Pages</a></li>
-            <li><a routerLink="/{{ profile?.username }}/events">Events</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <router-outlet></router-outlet>
   </div>
 </div>
