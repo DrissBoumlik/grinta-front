@@ -89,10 +89,21 @@ export class PostsService {
       );
   }
 
-  sharePost(content: string, image: string, postOwnerId: number, pageId: number = null): Observable<any> {
+  sharePost(content: string = null, image: string = null, postOwnerId: number = null, pageId: number = null): Observable<any> {
     PostsService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/posts',
       {content, image, postOwnerId, page_id: pageId}, {headers: PostsService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
+  }
+  updatePost(content: string, postId: number): Observable<any> {
+    PostsService.getHeaders();
+    return this.http.put(environment.baseApiUrl + '/posts/' + postId,
+      {content, post_id: postId}, {headers: PostsService.headers})
       .pipe(
         tap(
           data => console.log(data),

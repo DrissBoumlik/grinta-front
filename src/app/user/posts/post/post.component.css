@@ -68,12 +68,20 @@
   margin-left: 10px;
 } */
 
-.btn {
+.btn-action {
   color: #81D400;
   background-color: transparent;
   border: none;
 }
-
+.btn-update {
+  margin-top: 10px;
+}
+.new-post {
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 100px;
+  max-height: 200px;
+}
 
 @media (max-width: 1200px) {
 

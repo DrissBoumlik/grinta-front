@@ -7,6 +7,7 @@ import { User } from '../../user.model';
 import {PostsService} from '../posts.service';
 import {ProfileService} from '../../profile/profile.service';
 import {PageService} from '../../pages/page/page.service';
+import {FormBuilder, FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-post',
@@ -19,13 +20,19 @@ export class PostComponent implements OnInit {
   user: User;
   ownPost = false;
   postLiked = false;
+  editMode = false;
+
+  editPostForm = this.fb.group({
+    content: new FormControl(null),
+  });
 
   constructor(private userService: UserService,
               private profileService: ProfileService,
               private postService: PostService,
               private postsService: PostsService,
               private pageService: PageService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
     this.user = this.authService.user;
@@ -77,6 +84,23 @@ export class PostComponent implements OnInit {
     }
     this.postsService.deletePost(this.post.id).subscribe((response: any) => {
       this.postsService.removePost(this.post);
+    });
+  }
+
+  onUpdatePost() {
+    this.postsService.updatePost(this.editPostForm.value.content, this.post.id).subscribe((response: any) => {
+      if ((this.profileService.profile && this.authService.user.id === this.profileService.profile.id) || this.pageService.page) {
+        console.log(this.postsService.user.posts);
+      }
+      // this.postsService.addPost(response.post);
+      this.post.content = this.editPostForm.value.content;
+      this.editMode = false;
+    });
+  }
+  onEditPost() {
+    this.editMode = true;
+    this.editPostForm.patchValue({
+      content: this.post.content
     });
   }
 }

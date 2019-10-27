@@ -3,7 +3,7 @@
     <div class="post-edition dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
       <ul class="dropdown-menu pointer">
-        <li><a *ngIf="ownPost">Edit</a></li>
+        <li><a *ngIf="ownPost" (click)="onEditPost()">Edit</a></li>
         <li><a>Hide</a></li>
         <li><a *ngIf="ownPost" (click)="onDeletePost()">Delete</a></li>
       </ul>
@@ -31,18 +31,28 @@
         </div>
       </div>
     </div>
-    <div class="post-content">
-      <p>{{ post.content }}</p>
+    <div class="post-body" *ngIf="!editMode">
+      <div class="post-content">
+        <p>{{ post.content }}</p>
+      </div>
+      <div class="post-img">
+        <img src="{{ post.image }}" alt="" style="height: 100px;">
+      </div>
     </div>
-    <div class="post-img">
-      <img src="{{ post.image }}" alt="" style="height: 100px;">
+    <div class="post-edit" *ngIf="editMode">
+      <form [formGroup]="editPostForm">
+        <textarea formControlName="content" id="" cols="30" rows="10" class="form-control new-content"></textarea>
+        <div class="pull-right">
+          <button type="submit" class="btn btn-update btn-primary" (click)="onUpdatePost()">Partager</button>
+        </div>
+      </form>
     </div>
     <div class="interactions">
-      <button type="submit" class="btn btn-success btn-like capitalize" (click)='onLikePost()' [ngClass]="{'liked': postLiked}">j'aime</button>
+      <button type="submit" class="btn btn-success btn-action capitalize" (click)='onLikePost()' [ngClass]="{'liked': postLiked}">j'aime</button>
       <span>·</span>
-      <button type="submit" class="btn btn-primary btn-like capitalize" (click)='onSharePost()'>partager</button>
+      <button type="submit" class="btn btn-primary btn-action capitalize" (click)='onSharePost()'>partager</button>
       <span>·</span>
-      <button type="submit" class="btn btn-info btn-like capitalize" (click)="onFocusInput()">commenter</button>
+      <button type="submit" class="btn btn-info btn-action capitalize" (click)="onFocusInput()">commenter</button>
     </div>
     <hr>
     <app-comments
