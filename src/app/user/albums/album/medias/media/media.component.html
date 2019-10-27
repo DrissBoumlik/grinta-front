@@ -7,9 +7,6 @@
         <video *ngIf="media.type === 'video'" class="card-vid-top card-media" src="{{ media.media_url }}" controls></video>
         <img *ngIf="media.type === 'image'" class="card-img-top card-media" src="{{ media.media_url }}" alt="Card image cap">
       </div>
-      <div class="media" *ngIf="!media.media_url">
-        <img class="card-vid-top card-media" src="http://media-assets.dv/images/wallpaper%20minimalism%20minimalist%201920x1080.png" alt="">
-      </div>
       <div class="card-body hidden">
         <h5 class="card-title">{{ media.name }}</h5>
         <p class="card-text">{{ media.description }}</p>
