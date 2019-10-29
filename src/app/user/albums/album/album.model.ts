@@ -8,5 +8,15 @@ export class Album {
     public description: string,
     public user: User,
     public medias: Media[],
-    public created_at: string) {}
+    public created_at: string,
+    public thumbnail: string) {}
+
+  getThumnail() {
+     let _media = this.medias.find((media) => {
+      if (media.type !== 'video') {
+        return media;
+      }
+    });
+     this.thumbnail = _media !== undefined ? _media.media_url : 'https://images2.imgbox.com/44/60/vPRtiGOQ_o.png';
+  }
 }
