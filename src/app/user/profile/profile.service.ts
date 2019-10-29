@@ -41,4 +41,12 @@ export class ProfileService {
         )
       );
   }
+
+  getAlbum(id: number) {
+    if (this.profile) {
+      return this.profile.albums.find(album => {
+        return album.id === id;
+      });
+    }
+  }
 }
