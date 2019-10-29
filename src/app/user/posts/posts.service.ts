@@ -1,12 +1,12 @@
-import {Post} from './post/post.model';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {tap} from 'rxjs/operators';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {User} from '../user.model';
 import {Observable, Subject} from 'rxjs';
 import {AuthService} from '../../Auth/auth.service';
-import {Injectable} from '@angular/core';
 import {ProfileService} from '../profile/profile.service';
+import {Post} from './post/post.model';
+import {User} from '../user.model';
 
 @Injectable()
 export class PostsService {

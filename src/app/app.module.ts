@@ -25,7 +25,7 @@ import {AuthService} from './Auth/auth.service';
 import { UserService } from './user/user.service';
 import { ErrorService } from './shared/error.service';
 import { UserPostsComponent } from './user/profile/user-posts/user-posts.component';
-import { UserMediasComponent } from './user/profile/user-medias/user-medias.component';
+import { UserAlbumsComponent } from './user/profile/user-albums/user-albums.component';
 import { UserLikesComponent } from './user/profile/user-likes/user-likes.component';
 import { HomeComponent } from './user/home/home.component';
 import {ProfileService} from './user/profile/profile.service';
@@ -61,7 +61,7 @@ export function provideConfig() {
     NewEventComponent,
     EventComponent,
     UserPostsComponent,
-    UserMediasComponent,
+    UserAlbumsComponent,
     UserLikesComponent,
     HomeComponent,
     RegisterComponent

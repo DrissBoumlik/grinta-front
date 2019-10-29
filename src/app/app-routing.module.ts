@@ -1,18 +1,18 @@
 import { NewEventComponent } from './user/events/new-event/new-event.component';
 import { NewPageComponent } from './user/pages/new-page/new-page.component';
-import { PostsComponent } from './user/posts/posts.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from './Auth/login/login.component';
 import {UserComponent} from './user/user.component';
 import {UserPostsComponent} from './user/profile/user-posts/user-posts.component';
-import {UserMediasComponent} from './user/profile/user-medias/user-medias.component';
+import {UserAlbumsComponent} from './user/profile/user-albums/user-albums.component';
 import {UserLikesComponent} from './user/profile/user-likes/user-likes.component';
 import {EventsComponent} from './user/events/events.component';
 import {PagesComponent} from './user/pages/pages.component';
 import {HomeComponent} from './user/home/home.component';
 import {RegisterComponent} from './Auth/register/register.component';
 import {PageComponent} from './user/pages/page/page.component';
+import {AlbumComponent} from './user/albums/album/album.component';
 
 
 const routes: Routes = [
@@ -23,10 +23,13 @@ const routes: Routes = [
   { path: ':username', component: UserComponent, children: [
       { path: '', component: UserPostsComponent },
       { path: 'posts', component: UserPostsComponent },
-      { path: 'medias', component: UserMediasComponent },
+      { path: 'albums', children: [
+          { path: '', component: UserAlbumsComponent },
+          { path: ':id', component: AlbumComponent }
+        ] },
       { path: 'likes', component: UserLikesComponent },
       { path: 'pages', component: PagesComponent },
-      { path: 'events', component: EventsComponent }
+      { path: 'events', component: EventsComponent },
     ]},
   { path: 'pages', children: [
       { path: ':pagename', component: PageComponent}
