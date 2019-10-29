@@ -1,0 +1,29 @@
+.albums-wrapper {
+  padding: 10px 0;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.album-cover {
+  overflow: hidden;
+  height: 200px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.album-data {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: #ffffff;
+  font-weight: bold;
+}
+.album-name {
+  font-size: 2rem;
+}
+.media-count {
+  font-size: 1.4rem;
+}

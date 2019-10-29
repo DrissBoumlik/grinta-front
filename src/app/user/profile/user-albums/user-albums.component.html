@@ -1,0 +1,41 @@
+<div class="albums-wrapper clearfix border-grey" *ngIf="profile?.albums?.length">
+  <div class="col-md-12">
+    <div class="header">
+      <h3 class="capitalize">
+        <i class="fas fa-images"></i>
+        Albums</h3>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6 album-block" *ngFor="let album of profile?.albums">
+          <a routerLink="{{ album.id }}">
+            <div class="album-cover" [ngStyle]="{backgroundImage: 'url('+album.thumbnail+')'}">
+              <div class="album-data">
+                <div class="album-name">{{ album.name }}</div>
+                <div class="media-count">{{ album.medias.length }} Items</div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--<div class="albums" *ngIf="profile?.albums?.length">-->
+<!--  <div class="container-fluid">-->
+<!--    <app-albums [albums]="profile?.albums"></app-albums>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="albums" *ngIf="!profile?.albums?.length">
+  <div class="container-fluid">
+    <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+      <p class="align-center">No albums created !!!</p>
+    </div>
+  </div>
+</div>
