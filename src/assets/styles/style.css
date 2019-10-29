@@ -44,6 +44,10 @@ hr {
   clear: both;
 }
 
+.border-grey {
+  border: 1px solid #b8b8b8;
+}
+
 .capitalize {
   text-transform: capitalize;
 }
