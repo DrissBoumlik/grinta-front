@@ -15,9 +15,9 @@ export class AuthService {
     this.user = JSON.parse(localStorage.getItem('_user')) as User;
   }
 
-  register(username, firstname, lastname, email, password, password_confirmation, gender, picture, cover, sport, city) {
+  register(isSocial, username, firstname, lastname, email, password, password_confirmation, gender, picture, cover, sport, city) {
     return this.http.post(environment.baseApiUrl + '/register',
-      {username, firstname, lastname, email, password, password_confirmation, gender, picture, cover, sport, city},
+      {isSocial, username, firstname, lastname, email, password, password_confirmation, gender, picture, cover, sport, city},
       {headers: this.headers})
       .pipe(
         tap(
@@ -27,9 +27,9 @@ export class AuthService {
       );
   }
 
-  login(username: string, password: string) {
+    login(isSocial, username: string, password: string) {
     return this.http.post(environment.baseApiUrl + '/login',
-      JSON.stringify({username, email: username, password}),
+      JSON.stringify({isSocial, username, email: username, password}),
       {headers: this.headers})
       .pipe(
         tap(

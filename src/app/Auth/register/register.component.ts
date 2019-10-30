@@ -7,6 +7,8 @@ import {User} from '../../user/user.model';
 import {HttpClient} from '@angular/common/http';
 import {isArray} from 'util';
 import {Sport} from '../../user/sports/sport.model';
+import {GoogleLoginProvider, AuthService as SocialService, SocialUser} from 'angularx-social-login';
+import {ToolsService} from '../../shared/tools.service';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +19,8 @@ export class RegisterComponent implements OnInit {
   sports: Sport[] = [];
   imageToUpload: any = File;
   cities = [];
+  private socialUser: SocialUser;
+  private loggedIn: boolean;
   registerForm = new FormGroup({
     username: new FormControl('jd', Validators.required),
     firstname: new FormControl('John', Validators.required),
@@ -33,7 +37,9 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService,
               private userService: UserService,
               private router: Router,
-              private http: HttpClient) { }
+              private http: HttpClient,
+              private socialService: SocialService,
+              private toolsService: ToolsService) { }
 
   ngOnInit() {
     const userLogged = localStorage.getItem('_token') !== null && localStorage.getItem('_token') !== undefined;
@@ -47,6 +53,12 @@ export class RegisterComponent implements OnInit {
 
     this.http.get('./assets/data/france-cities.json').subscribe((response: any) => {
       this.cities = response;
+    });
+
+    this.socialService.authState.subscribe((user) => {
+      this.socialUser = user;
+      this.loggedIn = (user != null);
+      console.log(user);
     });
   }
 
@@ -77,7 +89,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister() {
-    this.authService.register(this.registerForm.value.username, this.registerForm.value.firstname,
+    this.authService.register(false, this.registerForm.value.username, this.registerForm.value.firstname,
       this.registerForm.value.lastname, this.registerForm.value.email,
       this.registerForm.value.password, this.registerForm.value.password_confirmation,
       this.registerForm.value.gender,this.registerForm.value.picture,
@@ -85,7 +97,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm.value.city)
       .subscribe((response: any) => {
         console.log(response);
-        this.authService.login(this.registerForm.value.username, this.registerForm.value.password)
+        this.authService.login(false, this.registerForm.value.username, this.registerForm.value.password)
           .subscribe((response2: any) => {
             this.userService.user = this.authService.user = response2.success.user;
             this.router.navigate(['home']);
@@ -95,4 +107,21 @@ export class RegisterComponent implements OnInit {
       });
   }
 
+  signUpWithGoogle() {
+    const password = Math.random().toString(36).substring(2, 12);
+    this.socialService.signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then((socialUser: SocialUser) => {
+        console.log(socialUser);
+        const username = this.toolsService.slugify(socialUser.name);
+        this.authService.register(true, username, socialUser.firstName, socialUser.lastName,
+          socialUser.email, null, null, null, socialUser.photoUrl, null, null, null)
+          .subscribe((response: any) => {
+            this.authService.login(true, username, null)
+              .subscribe((response2: any) => {
+                this.userService.user = this.authService.user = response2.success.user;
+                this.router.navigate(['home']);
+              });
+          });
+      });
+  }
 }
