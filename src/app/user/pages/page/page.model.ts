@@ -4,6 +4,7 @@ export class Page {
   constructor(
     public id: number,
     public user_id: number,
+    public sport_id: number,
     public pagename: string,
     public name: string,
     public description: string,
