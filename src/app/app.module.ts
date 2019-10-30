@@ -34,6 +34,8 @@ import {PostsModule} from './user/posts/posts.module';
 import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {PagesModule} from './user/pages/pages.module';
 import {SharedModule} from './header/shared.module';
+import {ToolsService} from './shared/tools.service';
+import {PagesService} from './user/pages/pages.service';
 
 const config = new AuthServiceConfig([
   {
@@ -80,7 +82,7 @@ export function provideConfig() {
     SocialLoginModule
   ],
   exports: [BrowserModule, ReactiveFormsModule, HeaderComponent],
-  providers: [UserService, ProfileService, AuthService, ErrorService, {provide: AuthServiceConfig, useFactory: provideConfig}],
+  providers: [UserService, ProfileService, AuthService, ErrorService, ToolsService, PagesService, {provide: AuthServiceConfig, useFactory: provideConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

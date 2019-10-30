@@ -32,7 +32,8 @@ const routes: Routes = [
       { path: 'events', component: EventsComponent },
     ]},
   { path: 'pages', children: [
-      { path: ':pagename', component: PageComponent}
+      { path: ':pagename', component: PageComponent },
+      { path: ':pagename/edit', component: NewPageComponent }
     ]},
   // { path: ':username', component: UserComponent},
   { path: 'create', children: [
