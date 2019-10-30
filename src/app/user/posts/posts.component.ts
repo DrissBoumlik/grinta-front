@@ -19,7 +19,7 @@ export class PostsComponent implements OnInit {
   @Input() isProfile = false;
   @Input() isPage = false;
   @Input() page: Page;
-  user: User;
+  @Input() user: User;
   authUser: User;
   queryPage = 1;
   scroll = true;
@@ -37,10 +37,12 @@ export class PostsComponent implements OnInit {
     this.authService.isLogged(this.router);
     this.user = this.authUser = this.authService.user;
     this.user.posts = [];
+    // this.queryPage = this.user.posts ? Math.ceil((this.user.posts.length / 10)) + 1 : 1;
+    // console.log(this.queryPage);
+    // this.user.posts = this.postsService.user.posts = this.user.posts ? this.user.posts : [];
     this.profileService.profileLoaded.subscribe((profile: User) => {
         this.user = profile;
         this.user.posts = [];
-        this.queryPage = 1;
         this.getPosts('profile loaded');
       });
     this.postsService.postsUpdated.subscribe((posts) => {
@@ -55,6 +57,9 @@ export class PostsComponent implements OnInit {
     if (!this.isProfile && !this.isPage) {
       this.getPosts('not profile');
     }
+    if (this.profileService.alreadyLoaded) {
+      this.getPosts('profile already loaded');
+    }
   }
 
   getPosts(message) {
@@ -63,14 +68,8 @@ export class PostsComponent implements OnInit {
     const pageId = this.isPage ? this.page.id : null;
     this.postsService.getPosts(this.queryPage++, profileId, pageId)
       .subscribe((response: any) => {
-        this.user.posts.push(...response.posts);
-        // /** spinner starts on init */
-        // this.spinner.show();
-        // setTimeout(() => {
-        //   /** spinner ends after 1 second = 1000ms */
-        //   this.spinner.hide();
-        // }, 1000);
-
+        this.user.posts = this.postsService.user.posts;
+        this.spinner.hide();
         if (!response.posts.length) {
           this.gotAllPosts = true;
         }
@@ -80,6 +79,7 @@ export class PostsComponent implements OnInit {
   onLoadMorePosts() {
     if (this.scroll && !this.gotAllPosts) {
       this.scroll = false;
+      this.spinner.show();
       this.getPosts('on scroll');
       this.scroll = true;
     }

@@ -1,4 +1,14 @@
-
+.page-edition {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 999;
+  padding: 0 5px;
+}
+.dropdown-menu {
+  right: 5px;
+  left: unset;
+}
 .liked-page-image {
   padding: 0;
 }

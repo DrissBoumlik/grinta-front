@@ -36,8 +36,8 @@ export class PostsService {
         tap(
           (data: any) => {
             console.log(data.posts);
-            this.user.posts = data.posts;
-            },
+            this.user.posts.push(...data.posts);
+          },
           error => console.log(error),
         )
       );
