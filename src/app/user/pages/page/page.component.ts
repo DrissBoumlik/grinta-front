@@ -22,14 +22,7 @@ export class PageComponent implements OnInit {
       this.pageService.getPage(pagename).subscribe((response: any) => {
         this.page = response.page;
         this.user = response.page.user;
-        // this.profile = response.user;
-        // if (this.profile.id !== this.authService.user.id) {
-        //   this.myProfile = false;
-        //   // Make request to seed if already follower
-        //   this.isFriend = this.profile.friends.some((friend: User) => friend.id === this.authService.user.id);
-        //   this.isFollowed = this.profile.followers.some((follower: User) => follower.id === this.authService.user.id);
-        // }
-        // localStorage.setItem('_profile', JSON.stringify(this.profile));
+        console.log(this.page.cover);
       });
     });
   }
