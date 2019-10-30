@@ -72,6 +72,18 @@ export class UserService {
       );
   }
 
+  updatePage(name, pagename, image, cover, type, description, sport) {
+    UserService.getHeaders();
+    return this.http.put(environment.baseApiUrl + '/pages',
+      {name, pagename, image, cover, type, description, sport},
+      {headers: UserService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
+  }
 
   createPage(name, pagename, image, cover, type, description, sport) {
     UserService.getHeaders();
