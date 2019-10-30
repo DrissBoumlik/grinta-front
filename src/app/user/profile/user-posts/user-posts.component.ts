@@ -12,6 +12,7 @@ import {PostsService} from '../../posts/posts.service';
 })
 export class UserPostsComponent implements OnInit {
   profile: User;
+  justLoaded = false;
 
   constructor(private userService: UserService,
               private postsService: PostsService,
@@ -21,6 +22,7 @@ export class UserPostsComponent implements OnInit {
   ngOnInit() {
     this.profileService.profileLoaded.subscribe((profile: User) => {
       this.profile = profile;
+      this.justLoaded = true;
     });
   }
 }

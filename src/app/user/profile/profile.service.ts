@@ -12,6 +12,7 @@ export class ProfileService {
   profile: User;
   posts: Post;
   profileLoaded = new Subject<User>();
+  alreadyLoaded = false;
 
   constructor(private http: HttpClient) {
     ProfileService.headers = new HttpHeaders({
@@ -35,6 +36,7 @@ export class ProfileService {
         tap(
           (data: any) => {
             this.profile = data.user;
+            this.alreadyLoaded = true;
             this.profileLoaded.next(this.profile);
           },
           error => console.log(error.status),
