@@ -26,7 +26,7 @@
       <div class="container-fluid">
       <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-6 liked-page-block" *ngFor="let page of profile?.managed_pages">
-          <app-page-item [page]="page"></app-page-item>
+          <app-page-item [page]="page" [type]="'manager'"></app-page-item>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
       <div class="container-fluid">
       <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-6 liked-page-block" *ngFor="let page of profile?.page_invitations">
-          <app-page-item [page]="page"></app-page-item>
+          <app-page-item [page]="page" [type]="'invited'"></app-page-item>
         </div>
       </div>
     </div>

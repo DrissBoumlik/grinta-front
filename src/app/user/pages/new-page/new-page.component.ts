@@ -4,6 +4,8 @@ import {User} from '../../user.model';
 import {UserService} from '../../user.service';
 import {Page} from '../page/page.model';
 import {Sport} from '../../sports/sport.model';
+import {PagesService} from '../pages.service';
+import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-new-page',
@@ -14,6 +16,7 @@ export class NewPageComponent implements OnInit {
   user: User;
   sports: Sport[] = [];
   imageToUpload: any = File;
+  editMode = false;
 
   CreatePageForm = this.fb.group({
     name: new FormControl('pageoss'),
@@ -26,13 +29,29 @@ export class NewPageComponent implements OnInit {
   });
 
   constructor(private fb: FormBuilder,
-              private userService: UserService) {
+              private pagesService: PagesService,
+              private userService: UserService,
+              private route: ActivatedRoute) {
     this.user = this.userService.user;
   }
 
   ngOnInit() {
     this.userService.getSports().subscribe((response: any) => {
       this.sports = response.sports;
+    });
+    this.route.params.subscribe((params: Params) => {
+      console.log(params.pagename);
+      const page = this.pagesService.getPageByPagename(params.pagename);
+      this.CreatePageForm.patchValue({
+        name: page.name,
+        pagename: page.pagename,
+        image: page.image,
+        cover: page.cover,
+        type: page.type,
+        description: page.description,
+        sport: page.sport_id,
+      });
+      this.editMode = true;
     });
   }
 
@@ -60,6 +79,13 @@ export class NewPageComponent implements OnInit {
         value: reader.result
       });
     };
+  }
+
+  onUpdatePage() {
+    this.userService.updatePage(this.CreatePageForm.value.name, this.CreatePageForm.value.pagename,
+      this.CreatePageForm.value.image, this.CreatePageForm.value.cover,
+      this.CreatePageForm.value.type, this.CreatePageForm.value.description, this.CreatePageForm.value.sport)
+      .subscribe((response: any) => console.log(response));
   }
 
   onCreatePage() {

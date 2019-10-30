@@ -108,7 +108,8 @@
       <div class="form-group">
         <label class="col-md-4 control-label"></label>
         <div class="col-md-4">
-          <button type="submit" class="btn btn-warning" (click)="onCreatePage()">Send <span class="glyphicon glyphicon-send"></span></button>
+          <button type="submit" class="btn btn-warning" (click)="onCreatePage()">Send <span class="glyphicon glyphicon-send" *ngIf="!editMode"></span></button>
+          <button type="submit" class="btn btn-warning" (click)="onUpdatePage()">Update <span class="glyphicon glyphicon-send" *ngIf="editMode"></span></button>
         </div>
       </div>
 
