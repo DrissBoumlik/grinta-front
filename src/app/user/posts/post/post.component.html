@@ -43,6 +43,7 @@
       <form [formGroup]="editPostForm">
         <textarea formControlName="content" id="" cols="30" rows="10" class="form-control new-content"></textarea>
         <div class="pull-right">
+          <button type="submit" class="btn btn-update btn-default" (click)="onCancel()">Annuler</button>
           <button type="submit" class="btn btn-update btn-primary" (click)="onUpdatePost()">Partager</button>
         </div>
       </form>

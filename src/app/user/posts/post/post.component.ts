@@ -103,4 +103,8 @@ export class PostComponent implements OnInit {
       content: this.post.content
     });
   }
+
+  onCancel() {
+    this.editMode = false;
+  }
 }
