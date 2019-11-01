@@ -9,6 +9,7 @@ export class SearchService {
   static headers = undefined;
   results: {header: string, image: string, link: string}[];
   resultsLoaded = new Subject<{header: string, image: string, link: string}>();
+  resultsShowed = new Subject<boolean>();
 
   constructor(private http: HttpClient) {}
 
@@ -27,6 +28,7 @@ export class SearchService {
           (data: any) => {
             console.log(data);
             this.resultsLoaded.next(data.results);
+            this.resultsShowed.next(data.results.length > 0);
           },
           error => console.log(error)
         )
