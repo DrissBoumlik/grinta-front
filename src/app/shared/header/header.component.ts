@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {AuthService} from '../Auth/auth.service';
+import {AuthService} from '../../Auth/auth.service';
 import {Router} from '@angular/router';
-import { User } from '../user/user.model';
+import { User } from '../../user/user.model';
+import {SearchService} from '../search.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,6 @@ import { User } from '../user/user.model';
 })
 export class HeaderComponent implements OnInit {
   user: User;
-  searchForm: FormGroup;
 
   constructor(private authService: AuthService,
               private router: Router) { }
@@ -21,9 +21,6 @@ export class HeaderComponent implements OnInit {
     if (logged) {
       this.user = this.authService.user;
     }
-    this.searchForm = new FormGroup({
-      q: new FormControl(null)
-    });
   }
   onLogout() {
     this.authService.logout().subscribe((response: any) => {
@@ -31,7 +28,4 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  onSearch() {
-
-  }
 }
