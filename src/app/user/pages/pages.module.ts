@@ -9,7 +9,7 @@ import {PageComponent} from './page/page.component';
 import {PagesComponent} from './pages.component';
 import {PageItemComponent} from './page-item/page-item.component';
 import {PageService} from './page/page.service';
-import {SharedModule} from '../../header/shared.module';
+import {SharedModule} from '../../shared/shared.module';
 import {PostsModule} from '../posts/posts.module';
 
 @NgModule({

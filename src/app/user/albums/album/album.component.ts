@@ -16,17 +16,14 @@ export class AlbumComponent implements OnInit {
               private profileService: ProfileService) { }
 
   ngOnInit() {
-    let album_id;
     this.profileService.profileLoaded.subscribe((profile: User) => {
       this.profile = profile;
-      this.album = this.profileService.getAlbum(album_id);
-    });
-    this.route.params.subscribe((params: Params) => {
-      album_id = +params.id;
-      this.album = this.profileService.getAlbum(params.id);
-      console.log(this.album);
+      this.album = this.profileService.getAlbum(+this.route.snapshot.params.id);
     });
     this.profile = this.profileService.profile;
+    this.route.params.subscribe((params: Params) => {
+      this.album = this.profileService.getAlbum(+params.id);
+    });
   }
 
 }
