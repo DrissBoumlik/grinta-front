@@ -75,4 +75,15 @@ export class PostService {
         )
       );
   }
+
+  updateComment(content: string, commentId: number): Observable<any> {
+    return this.http.put(environment.baseApiUrl + '/comments/' + commentId,
+      {content, comment_id: commentId}, {headers: PostService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
+  }
 }

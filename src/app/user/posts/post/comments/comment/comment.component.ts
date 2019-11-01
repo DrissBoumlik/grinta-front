@@ -22,6 +22,11 @@ export class CommentComponent implements OnInit {
     content: new FormControl(null, Validators.required),
   });
 
+  editMode = false;
+  editCommentForm = this.fb.group({
+    content: new FormControl(null),
+  });
+
   constructor(private authService: AuthService,
               private postService: PostService,
               private commentService: CommentService,
@@ -89,4 +94,24 @@ export class CommentComponent implements OnInit {
     }, 500);
   }
 
+  onUpdateComment() {
+    this.postService.updateComment(this.editCommentForm.value.content, this.comment.id).subscribe((response: any) => {
+      // if ((this.profileService.profile && this.authService.user.id === this.profileService.profile.id) || this.pageService.page) {
+      //   console.log(this.postsService.user.posts);
+      // }
+      // this.postsService.addPost(response.post);
+      this.comment.content = this.editCommentForm.value.content;
+      this.editMode = false;
+    });
+  }
+  onEditComment() {
+    this.editMode = true;
+    this.editCommentForm.patchValue({
+      content: this.comment.content
+    });
+  }
+
+  onCancel() {
+    this.editMode = false;
+  }
 }

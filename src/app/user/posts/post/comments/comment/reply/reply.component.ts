@@ -4,6 +4,7 @@ import { PostService } from '../../../post.service';
 import { AuthService } from '../../../../../../Auth/auth.service';
 import { Comment } from "../comment.model";
 import { Component, OnInit, Input } from '@angular/core';
+import {FormBuilder, FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-reply',
@@ -16,9 +17,15 @@ export class ReplyComponent implements OnInit {
   replyLiked = false;
   ownReply = false;
 
+  editMode = false;
+  editReplyForm = this.fb.group({
+    content: new FormControl(null),
+  });
+
   constructor(private authService: AuthService,
               private postService: PostService,
-              private commentService: CommentService) { }
+              private commentService: CommentService,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
     this.replyLiked = this.reply.likers.some((liker: User) => liker.id === this.authService.user.id);
@@ -54,4 +61,24 @@ export class ReplyComponent implements OnInit {
     });
   }
 
+  onUpdateReply() {
+    this.postService.updateComment(this.editReplyForm.value.content, this.reply.id).subscribe((response: any) => {
+      // if ((this.profileService.profile && this.authService.user.id === this.profileService.profile.id) || this.pageService.page) {
+      //   console.log(this.postsService.user.posts);
+      // }
+      // this.postsService.addPost(response.post);
+      this.reply.content = this.editReplyForm.value.content;
+      this.editMode = false;
+    });
+  }
+  onEditReply() {
+    this.editMode = true;
+    this.editReplyForm.patchValue({
+      content: this.reply.content
+    });
+  }
+
+  onCancel() {
+    this.editMode = false;
+  }
 }
