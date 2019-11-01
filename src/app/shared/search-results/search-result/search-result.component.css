@@ -1,0 +1,18 @@
+
+.result-image {
+  padding: 0;
+  display: inline-block;
+  margin-right: 10px;
+}
+.result-image img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid #ededed;
+}
+
+.result-header {
+  display: inline-block;
+  /*height: 100px;*/
+  /*padding-top: 40px;*/
+}

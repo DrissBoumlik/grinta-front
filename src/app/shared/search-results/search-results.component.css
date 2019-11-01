@@ -1,0 +1,20 @@
+
+.navbar-form {
+  box-shadow: none;
+  padding: 0;
+}
+
+.navbar-form .input-group {
+  display: block;
+}
+.input-text {
+  display: table-cell;
+  width: 100%;
+}
+
+.navbar-form .input-group-btn {
+  width: 10%;
+}
+.navbar-form .input-group .search-input {
+  width: 100%;
+}

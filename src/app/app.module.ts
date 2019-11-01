@@ -10,7 +10,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Auth/login/login.component';
 import { UserComponent } from './user/user.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './shared/header/header.component';
 import { FriendComponent } from './user/friends/friend/friend.component';
 import { FriendsComponent } from './user/friends/friends.component';
 import { AlbumComponent } from './user/albums/album/album.component';
@@ -33,7 +33,7 @@ import { RegisterComponent } from './Auth/register/register.component';
 import {PostsModule} from './user/posts/posts.module';
 import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {PagesModule} from './user/pages/pages.module';
-import {SharedModule} from './header/shared.module';
+import {SharedModule} from './shared/shared.module';
 import {ToolsService} from './shared/tools.service';
 import {PagesService} from './user/pages/pages.service';
 
@@ -66,7 +66,7 @@ export function provideConfig() {
     UserAlbumsComponent,
     UserLikesComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
