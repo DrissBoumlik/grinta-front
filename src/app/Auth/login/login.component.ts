@@ -6,6 +6,7 @@ import { User } from '../../user/user.model';
 
 import {GoogleLoginProvider, AuthService as SocialService, SocialUser} from 'angularx-social-login';
 import {UserService} from '../../user/user.service';
+import {ToolsService} from '../../shared/tools.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
               private userService: UserService,
               private router: Router,
               private route: ActivatedRoute,
-              private socialService: SocialService) { }
+              private socialService: SocialService,
+              private toolsService: ToolsService) { }
 
   ngOnInit() {
     const userLogged = localStorage.getItem('_token') !== null && localStorage.getItem('_token') !== undefined;
@@ -51,10 +53,10 @@ export class LoginComponent implements OnInit {
   signInWithGoogle(): void {
     this.socialService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((socialUser: SocialUser) => {
-        console.log(socialUser);
-        this.authService.login(true, socialUser.name, null)
-          .subscribe((response2: any) => {
-            this.userService.user = this.authService.user = response2.success.user;
+        const username = this.toolsService.slugify(socialUser.name);
+        this.authService.login(true, username, socialUser.id)
+          .subscribe((response: any) => {
+            this.userService.user = this.authService.user = response.success.user;
             this.router.navigate(['home']);
           });
       });

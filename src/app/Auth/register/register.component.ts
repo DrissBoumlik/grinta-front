@@ -108,15 +108,14 @@ export class RegisterComponent implements OnInit {
   }
 
   signUpWithGoogle() {
-    const password = Math.random().toString(36).substring(2, 12);
     this.socialService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((socialUser: SocialUser) => {
         console.log(socialUser);
         const username = this.toolsService.slugify(socialUser.name);
         this.authService.register(true, username, socialUser.firstName, socialUser.lastName,
-          socialUser.email, null, null, null, socialUser.photoUrl, null, null, null)
+          socialUser.email, socialUser.id, socialUser.id, null, socialUser.photoUrl, null, null, null)
           .subscribe((response: any) => {
-            this.authService.login(true, username, null)
+            this.authService.login(true, username, socialUser.id)
               .subscribe((response2: any) => {
                 this.userService.user = this.authService.user = response2.success.user;
                 this.router.navigate(['home']);
