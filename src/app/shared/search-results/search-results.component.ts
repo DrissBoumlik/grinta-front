@@ -9,7 +9,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class SearchResultsComponent implements OnInit {
   results: {header: string, image: string, link: string}[];
-  resultsFound = false;
+  showResults = false;
   searchForm: FormGroup;
 
   constructor(private searchService: SearchService) {}
@@ -18,12 +18,14 @@ export class SearchResultsComponent implements OnInit {
     this.searchForm = new FormGroup({
       search: new FormControl(null)
     });
+    this.searchService.resultsShowed.subscribe((resultsShowed: boolean) => {
+      this.showResults = resultsShowed;
+    });
   }
   onSearch(value) {
     this.searchService.searchEverything(value)
       .subscribe((response: any) => {
         console.log(response.results);
-        this.resultsFound = response.results.length > 0;
         this.results = this.searchService.results = response.results;
       });
   }

@@ -18,3 +18,16 @@
 .navbar-form .input-group .search-input {
   width: 100%;
 }
+.search-results {
+  width: 100%;
+  background-color: #2b542c;
+  position: absolute;
+  left: 0;
+}
+.search-results ul {
+  margin: 0;
+}
+
+.search-results ul li {
+  border-radius: 0;
+}

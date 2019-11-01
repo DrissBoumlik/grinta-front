@@ -8,7 +8,7 @@
     </div>
   </div>
 </form>
-<div class="search-results" *ngIf="resultsFound" style="height: 300px; width: 100%; background-color: #2b542c; position: absolute; left: 0;">
+<div class="search-results" *ngIf="showResults">
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let result of results">
       <app-search-result [result]="result"></app-search-result>
