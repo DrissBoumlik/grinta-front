@@ -36,6 +36,9 @@ export class PostsService {
         tap(
           (data: any) => {
             console.log(data.posts);
+            if (page === 1) {
+              this.user.posts = [];
+            }
             this.user.posts.push(...data.posts);
           },
           error => console.log(error),

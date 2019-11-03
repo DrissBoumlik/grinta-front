@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { UserService } from '../user.service';
-import { AuthService } from '../../Auth/auth.service';
+import {UserService} from '../user.service';
+import {AuthService} from '../../Auth/auth.service';
 import {Router} from '@angular/router';
 
 import {User} from '../user.model';
-import { NgxSpinnerService } from 'ngx-spinner';
+import {NgxSpinnerService} from 'ngx-spinner';
 import {PostsService} from './posts.service';
 import {ProfileService} from '../profile/profile.service';
 import {Page} from '../pages/page/page.model';
@@ -21,7 +21,7 @@ export class PostsComponent implements OnInit {
   @Input() page: Page;
   @Input() user: User;
   authUser: User;
-  queryPage = 1;
+  queryPage: number;
   scroll = true;
   gotAllPosts = false;
 
@@ -31,9 +31,11 @@ export class PostsComponent implements OnInit {
               private postsService: PostsService,
               private pageService: PageService,
               private router: Router,
-              private spinner: NgxSpinnerService) { }
+              private spinner: NgxSpinnerService) {
+  }
 
   ngOnInit() {
+    this.queryPage = 1;
     this.authService.isLogged(this.router);
     this.user = this.authUser = this.authService.user;
     this.user.posts = [];
@@ -41,10 +43,10 @@ export class PostsComponent implements OnInit {
     // console.log(this.queryPage);
     // this.user.posts = this.postsService.user.posts = this.user.posts ? this.user.posts : [];
     this.profileService.profileLoaded.subscribe((profile: User) => {
-        this.user = profile;
-        this.user.posts = [];
-        this.getPosts('profile loaded');
-      });
+      this.user = profile;
+      this.user.posts = [];
+      this.getPosts('profile loaded');
+    });
     this.postsService.postsUpdated.subscribe((posts) => {
       this.user.posts = posts;
     });
@@ -73,7 +75,7 @@ export class PostsComponent implements OnInit {
         if (!response.posts.length) {
           this.gotAllPosts = true;
         }
-    });
+      });
   }
 
   onLoadMorePosts() {
