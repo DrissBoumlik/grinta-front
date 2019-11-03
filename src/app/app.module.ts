@@ -36,6 +36,7 @@ import {PagesModule} from './user/pages/pages.module';
 import {SharedModule} from './shared/shared.module';
 import {ToolsService} from './shared/tools.service';
 import {PagesService} from './user/pages/pages.service';
+import {FriendsModule} from './user/friends/friends.module';
 
 const config = new AuthServiceConfig([
   {
@@ -53,8 +54,6 @@ export function provideConfig() {
     AppComponent,
     LoginComponent,
     UserComponent,
-    FriendComponent,
-    FriendsComponent,
     AlbumComponent,
     MediaComponent,
     AlbumsComponent,
@@ -79,10 +78,24 @@ export function provideConfig() {
     SharedModule,
     PostsModule,
     PagesModule,
+    FriendsModule,
     SocialLoginModule
   ],
-  exports: [BrowserModule, ReactiveFormsModule, HeaderComponent],
-  providers: [UserService, ProfileService, AuthService, ErrorService, ToolsService, PagesService, {provide: AuthServiceConfig, useFactory: provideConfig}],
+  exports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    HeaderComponent
+  ],
+  providers: [
+    UserService,
+    ProfileService,
+    AuthService,
+    ErrorService,
+    ToolsService,
+    PagesService,
+    {provide: AuthServiceConfig,
+      useFactory: provideConfig}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

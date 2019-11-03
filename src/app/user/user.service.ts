@@ -38,18 +38,6 @@ export class UserService {
       );
   }
 
-
-  getFriends() {
-    UserService.getHeaders();
-    return this.http.get(environment.baseApiUrl + '/friends', {headers: UserService.headers})
-      .pipe(
-        tap(
-          data => console.log(data),
-          error => console.log(error.status),
-        )
-      );
-  }
-
   followUser(followedId: number) {
     UserService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/followers', {followedId}, {headers: UserService.headers})
