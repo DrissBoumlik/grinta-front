@@ -20,7 +20,15 @@ export class PostService {
     });
   }
 
+  static getHeaders() {
+    PostService.headers = new HttpHeaders({
+      Accept: 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('_token')
+    });
+  }
+
   createComment(user_id: number, post_id: number, content: string, parent_id: number = null): Observable<any> {
+    PostService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/comments',
       {user_id, post_id, content, parent_id},
       {headers: PostService.headers})
@@ -43,6 +51,7 @@ export class PostService {
   }
 
   likeComment(comment: Comment) {
+    PostService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/like-comment',
       {comment}, {headers: PostService.headers})
       .pipe(
@@ -54,6 +63,7 @@ export class PostService {
   }
 
   unlikeComment(comment: Comment) {
+    PostService.getHeaders();
     return this.http.delete(environment.baseApiUrl + '/unlike-comment/' + comment.id,
       {headers: PostService.headers})
       .pipe(
@@ -66,6 +76,7 @@ export class PostService {
 
 
   deleteComment(comment: Comment) {
+    PostService.getHeaders();
     return this.http.delete(environment.baseApiUrl + '/comments/' + comment.id,
       {headers: PostService.headers})
       .pipe(
@@ -77,6 +88,7 @@ export class PostService {
   }
 
   updateComment(content: string, commentId: number): Observable<any> {
+    PostService.getHeaders();
     return this.http.put(environment.baseApiUrl + '/comments/' + commentId,
       {content, comment_id: commentId}, {headers: PostService.headers})
       .pipe(

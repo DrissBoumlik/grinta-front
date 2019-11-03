@@ -28,8 +28,7 @@ export class PostsService {
   }
 
   getPosts(page = 1, profileId = null, pageId = null) {
-    let id;
-    id = profileId ? profileId + '/user/' : (pageId ? pageId + '/page/' : '');
+    const id = profileId ? profileId + '/user/' : (pageId ? pageId + '/page/' : '');
     PostsService.getHeaders();
     return this.http.get(environment.baseApiUrl + '/posts/' + id + '?page=' + page, {headers: PostsService.headers})
       .pipe(
