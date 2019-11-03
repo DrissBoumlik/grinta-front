@@ -50,9 +50,9 @@ export class UserService {
       );
   }
 
-  followUser(followed) {
+  followUser(followedId: number) {
     UserService.getHeaders();
-    return this.http.post(environment.baseApiUrl + '/followers', {followed}, {headers: UserService.headers})
+    return this.http.post(environment.baseApiUrl + '/followers', {followedId}, {headers: UserService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -61,9 +61,30 @@ export class UserService {
       );
   }
 
-  AddFriend(friendId: number) {
+  unFollowUser(followedId: number) {
     UserService.getHeaders();
-    return this.http.post(environment.baseApiUrl + '/friends', {friend: friendId}, {headers: UserService.headers})
+    return this.http.delete(environment.baseApiUrl + '/followers/' + followedId, {headers: UserService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error),
+        )
+      );
+  }
+
+  addFriend(friendId: number) {
+    UserService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/friends', {friendId}, {headers: UserService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error),
+        )
+      );
+  }
+  removeFriend(friendId: number) {
+    UserService.getHeaders();
+    return this.http.delete(environment.baseApiUrl + '/friends/' + friendId, {headers: UserService.headers})
       .pipe(
         tap(
           data => console.log(data),

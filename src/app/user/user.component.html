@@ -18,8 +18,8 @@
           </div>
         </div>
         <div class="profile-action" *ngIf="!myProfile">
-          <button class="btn btn-action btn-add" (click)="onAddFriend()">{{ isFriend ? 'Ajouté' : 'Ajouter' }}</button>
-          <button class="btn btn-action btn-follow" (click)="onFollowFriend()">{{ isFollowed ? 'Suivi' : 'Suivre' }}</button>
+          <button class="btn btn-action btn-add" (click)="isFriend ? onRemoveFriend() : onAddFriend()">{{ isFriend ? 'Ajouté' : 'Ajouter' }}</button>
+          <button class="btn btn-action btn-follow" (click)="isFollowed ? onUnfollowFriend() : onFollowFriend()">{{ isFollowed ? 'Suivi' : 'Suivre' }}</button>
         </div>
       </div>
       <div class="row align-center profile-menu">
