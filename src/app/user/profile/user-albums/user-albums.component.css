@@ -5,7 +5,9 @@
 .header {
   margin-bottom: 20px;
 }
-
+.album-block {
+  margin-bottom: 30px;
+}
 .album-cover {
   overflow: hidden;
   height: 200px;
