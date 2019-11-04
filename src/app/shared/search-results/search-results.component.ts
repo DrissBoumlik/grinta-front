@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {SearchService} from '../search.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-search-results',
@@ -10,9 +10,22 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class SearchResultsComponent implements OnInit {
   results: {header: string, image: string, link: string}[];
   showResults = false;
-  searchForm: FormGroup;
+  @ViewChild('resultsList', {static: false}) resultsList: ElementRef;
+  searchForm = new FormGroup({
+    search: new FormControl(null, Validators.required),
+  });
 
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService,
+              private renderer: Renderer2) {
+    this.renderer.listen('window', 'click', (e: Event) => {
+      if (this.resultsList && e.target !== this.resultsList.nativeElement) {
+        this.showResults = false;
+        console.log('clicked');
+      } else {
+        this.onSearch(this.searchForm.value.search);
+      }
+    });
+  }
 
   ngOnInit() {
     this.searchForm = new FormGroup({
