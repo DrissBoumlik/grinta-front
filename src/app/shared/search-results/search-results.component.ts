@@ -21,7 +21,7 @@ export class SearchResultsComponent implements OnInit {
       if (this.resultsList && e.target !== this.resultsList.nativeElement) {
         this.showResults = false;
         console.log('clicked');
-      } else if (e.target === this.resultsList.nativeElement) {
+      } else if (this.resultsList && e.target === this.resultsList.nativeElement) {
         this.onSearch(this.searchForm.value.search);
       }
     });
