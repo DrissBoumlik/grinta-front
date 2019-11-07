@@ -31,3 +31,7 @@
 .search-results ul li {
   border-radius: 0;
 }
+
+.no-result {
+  color: #505050;
+}

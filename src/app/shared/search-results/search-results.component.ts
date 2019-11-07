@@ -10,19 +10,19 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class SearchResultsComponent implements OnInit {
   sendRequest = null;
   results: { header: string, image: string, link: string }[];
-  showResults = false;
-  @ViewChild('resultsList', {static: false}) resultsList: ElementRef;
+  showResults = true;
+  @ViewChild('searchInput', {static: false}) searchInput: ElementRef;
   searchForm = new FormGroup({
     search: new FormControl(null, Validators.required),
   });
   constructor(private searchService: SearchService,
               private renderer: Renderer2) {
     this.renderer.listen('window', 'click', (e: Event) => {
-      if (this.resultsList && e.target !== this.resultsList.nativeElement) {
+      if (this.searchInput && e.target !== this.searchInput.nativeElement) {
         this.showResults = false;
-        console.log('clicked');
-      } else if (this.resultsList && e.target === this.resultsList.nativeElement) {
+      } else if (this.searchInput && e.target === this.searchInput.nativeElement) {
         this.onSearch(this.searchForm.value.search);
+        this.showResults = true;
       }
     });
   }
@@ -35,12 +35,11 @@ export class SearchResultsComponent implements OnInit {
       this.showResults = resultsShowed;
     });
   }
-  onSearch(value) {
+  onSearch(value: string) {
     clearTimeout(this.sendRequest);
     this.sendRequest = setTimeout(() => {
       this.searchService.searchEverything(value)
         .subscribe((response: any) => {
-          console.log(response.results);
           this.results = this.searchService.results = response.results;
         });
     }, 500);

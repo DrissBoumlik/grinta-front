@@ -29,7 +29,7 @@ export class SearchService {
           (data: any) => {
             console.log(data);
             this.resultsLoaded.next(data.results);
-            this.resultsShowed.next(data.results.length > 0);
+            // this.resultsShowed.next(data.results.length > 0);
           },
           error => console.log(error)
         )
