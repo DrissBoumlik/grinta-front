@@ -17,9 +17,13 @@ export class FriendsComponent implements OnInit {
 
   ngOnInit() {
     this.friendsService.getFriends().subscribe((response: any) => {
-      this.friends = response.friends;
+      this.friends = this.friendsService.friends = response.friends;
       this.noFriends = this.friends.length <= 0;
     });
     // this.friendsService.getChat();
+  }
+
+  onSearch(value: string) {
+    this.friends = this.friendsService.searchFriends(value.toLowerCase());
   }
 }

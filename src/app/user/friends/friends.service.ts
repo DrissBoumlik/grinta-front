@@ -1,9 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {tap} from 'rxjs/operators';
-import {Post} from '../posts/post/post.model';
 import {User} from '../user.model';
 
 // import {r} from 'rethinkdb-ts';
@@ -12,7 +10,6 @@ import {User} from '../user.model';
 export class FriendsService {
   static headers = undefined;
   friends: User[] = [];
-  friendsUpdated = new Subject<User[]>();
 
   constructor(private http: HttpClient) {}
 
@@ -36,9 +33,9 @@ export class FriendsService {
       );
   }
 
-  // async getChat() {
-    // const connection = await r.connect( {db: 'test', host: 'essorline.com', port: 28015});
-    // const cursor = r.table('flutter').orderBy(r.desc('date')).run(connection);
-    // console.log(cursor);
-  // }
+  searchFriends(value: string) {
+    return this.friends.filter((friend: User) => {
+      return friend.firstname.toLowerCase().includes(value) || friend.lastname.toLowerCase().includes(value);
+    });
+  }
 }
