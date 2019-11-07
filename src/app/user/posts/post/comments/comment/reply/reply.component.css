@@ -11,6 +11,15 @@
 .btn-action-comment {
   background-color: transparent;
   padding: 0;
+  text-decoration: underline;
+}
+.btn-update {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+}
+.btn-update.btn-primary {
+  color: #428bca;
 }
 
 .user-name {
