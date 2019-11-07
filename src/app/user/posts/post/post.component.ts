@@ -1,9 +1,9 @@
-import { AuthService } from '../../../Auth/auth.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { Post } from './post.model';
-import { UserService } from '../../user.service';
-import { PostService } from './post.service';
-import { User } from '../../user.model';
+import {AuthService} from '../../../Auth/auth.service';
+import {Component, OnInit, Input} from '@angular/core';
+import {Post} from './post.model';
+import {UserService} from '../../user.service';
+import {PostService} from './post.service';
+import {User} from '../../user.model';
 import {PostsService} from '../posts.service';
 import {ProfileService} from '../../profile/profile.service';
 import {PageService} from '../../pages/page/page.service';
@@ -66,10 +66,10 @@ export class PostComponent implements OnInit {
     const owner_id = this.post.post_owner_id === null ? this.post.user_id : this.post.post_owner_id;
     const pageId = this.pageService.page ? this.pageService.page.id : null;
     this.postsService.sharePost(this.post.content, this.post.image, owner_id, pageId).subscribe((response: any) => {
-          if ((this.profileService.profile && this.authService.user.id === this.profileService.profile.id) || this.pageService.page) {
-            console.log(this.postsService.user.posts);
-            this.postsService.addPost(response.post);
-          }
+      if ((this.profileService.profile && this.authService.user.id !== this.profileService.profile.id)) {
+        return;
+      }
+      this.postsService.addPost(response.post);
     });
   }
 
@@ -79,7 +79,7 @@ export class PostComponent implements OnInit {
 
   onDeletePost() {
     if (this.user.id !== this.post.user_id) {
-      console.log("You don't own this post");
+      console.log('You don\'t own this post');
       return;
     }
     this.postsService.deletePost(this.post.id).subscribe((response: any) => {
