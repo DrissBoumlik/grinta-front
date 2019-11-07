@@ -46,7 +46,6 @@ export class PostsService {
   }
 
   addPost(post: Post) {
-    console.log(this.user.posts);
     this.user.posts.unshift(post);
     this.postsUpdated.next(this.user.posts);
   }

@@ -35,16 +35,11 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.queryPage = 1;
     this.authService.isLogged(this.router);
-    this.user = this.authUser = this.authService.user;
-    this.user.posts = [];
-    // this.queryPage = this.user.posts ? Math.ceil((this.user.posts.length / 10)) + 1 : 1;
-    // console.log(this.queryPage);
-    // this.user.posts = this.postsService.user.posts = this.user.posts ? this.user.posts : [];
+    this.authUser = this.authService.user;
+    this.initLoad(this.authUser);
     this.profileService.profileLoaded.subscribe((profile: User) => {
-      this.user = profile;
-      this.user.posts = [];
+      this.initLoad(profile);
       this.getPosts('profile loaded');
     });
     this.postsService.postsUpdated.subscribe((posts) => {
@@ -52,8 +47,7 @@ export class PostsComponent implements OnInit {
     });
     this.pageService.pageLoaded.subscribe((page: Page) => {
       this.page = page;
-      this.user = page.user;
-      this.user.posts = [];
+      this.initLoad(page.user);
       this.getPosts('page loaded');
     });
     if (!this.isProfile && !this.isPage) {
@@ -62,6 +56,12 @@ export class PostsComponent implements OnInit {
     if (this.profileService.alreadyLoaded) {
       this.getPosts('profile already loaded');
     }
+  }
+
+  initLoad(user: User) {
+    this.user = user;
+    this.user.posts = [];
+    this.queryPage = 1;
   }
 
   getPosts(message) {
