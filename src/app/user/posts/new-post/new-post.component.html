@@ -24,7 +24,7 @@
                 <div class="input-group">
                     <span class="input-group-btn">
                       <span class="btn btn-basic btn-file">
-                        <label for="image">Ajouter image/video</label>
+                        <label for="image"><i class="fas fa-photo-video"></i></label>
                         <input accept="image/*,video/*"
                         type="file" id="image" class="hidden"
                         (change)="onFileChange($event.srcElement.files)">
@@ -33,7 +33,7 @@
                   </div>
             </div>
             <div class="pull-right">
-              <button type="submit" class="btn btn-success" (click)="onCreatePost()">Partager</button>
+              <button type="submit" class="btn btn-success" (click)="onCreatePost()"><i class="fas fa-share"></i></button>
             </div>
           </div>
         </div>

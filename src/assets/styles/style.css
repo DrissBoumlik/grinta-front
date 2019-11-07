@@ -129,7 +129,7 @@ hr {
 }
 
 .liked, .liked:hover, .liked:focus {
-  color: #81D400;
+  color: #81D400!important;
   text-decoration: underline;
   font-weight: bolder;
   background-color: transparent;
