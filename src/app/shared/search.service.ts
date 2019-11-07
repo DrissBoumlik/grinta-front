@@ -20,7 +20,8 @@ export class SearchService {
     });
   }
 
-  searchEverything(term: any) {
+  searchEverything(term: any = null) {
+    term = [null, undefined].includes(term) ? '' : term;
     SearchService.getHeaders();
     return this.http.get(environment.baseApiUrl + '/search/' + term, {headers: SearchService.headers})
       .pipe(
