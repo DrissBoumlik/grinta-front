@@ -23,19 +23,22 @@ export class UserAlbumsComponent implements OnInit {
   ngOnInit() {
     this.profileService.profileLoaded.subscribe((profile: User) => {
       this.profile = profile;
+      this.assignCovers();
+    });
+    this.profile = this.profileService.profile;
+    this.assignCovers();
+  }
+
+  assignCovers() {
+    if (this.profile) {
       this.profile.albums.forEach((album) => {
-        let _album = new Album(album.id, album.user_id,
+        const _album = new Album(album.id, album.user_id,
           album.name, album.description, album.user,
           album.medias, album.created_at, null);
         _album.getThumnail();
         album.thumbnail = _album.thumbnail;
       });
-      // const album = new Album(this.profile.albums[0].id, this.profile.albums[0].user_id,
-      //   this.profile.albums[0].name, this.profile.albums[0].description, this.profile.albums[0].user,
-      //   this.profile.albums[0].medias, this.profile.albums[0].created_at);
-      // this.cover = album.getThumnail();
-    });
-    this.profile = this.profileService.profile;
+    }
   }
 
 }
