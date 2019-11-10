@@ -31,3 +31,10 @@
   height: 100px;
   padding-top: 40px;
 }
+
+@media (max-width: 768px) {
+  .liked-page-block {
+    margin-left: 0!important;
+    width: 100%;
+  }
+}

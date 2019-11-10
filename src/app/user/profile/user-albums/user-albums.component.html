@@ -1,13 +1,13 @@
 <div class="albums-wrapper clearfix border-grey" *ngIf="profile?.albums?.length">
   <div class="col-md-12">
-    <div class="header">
+    <div class="header container-fluid">
       <h3 class="capitalize">
         <i class="fas fa-images"></i>
         Albums</h3>
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-6 album-block" *ngFor="let album of profile?.albums">
+        <div class="col-md-6 col-sm-6 col-xs-12 album-block" *ngFor="let album of profile?.albums">
           <a routerLink="{{ album.id }}">
             <div class="album-cover" [ngStyle]="{backgroundImage: 'url('+album.thumbnail+')'}">
               <div class="album-data">

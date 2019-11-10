@@ -93,6 +93,10 @@
 }
 @media (max-width: 500px) {
   .comment-user-content {
-    /* width: 80%; */
+    max-width: calc(100% - 60px);
+  }
+  .user-picture {
+    width: 30px;
+    height: 30px;
   }
 }
