@@ -1,5 +1,5 @@
 <div class="_pages-wrapper" *ngIf="!noPages">
-  <div class="pages pages-wrapper clearfix border-grey">
+  <div class="pages pages-wrapper clearfix border-grey" *ngIf="profile?.pages?.length">
     <div class="col-md-12">
       <div class="header">
         <h3 class="capitalize">
@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <div class="pages pages-wrapper clearfix border-grey">
+  <div class="pages pages-wrapper clearfix border-grey" *ngIf="profile?.managed_pages?.length">
     <div class="col-md-12">
       <div class="header">
         <h3 class="capitalize">
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <div class="pages pages-wrapper clearfix border-grey">
+  <div class="pages pages-wrapper clearfix border-grey" *ngIf="profile?.page_invitations?.length">
     <div class="col-md-12">
       <div class="header">
         <h3 class="capitalize">
