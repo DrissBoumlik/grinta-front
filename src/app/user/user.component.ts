@@ -14,7 +14,7 @@ export class UserComponent implements OnInit {
   profile: User;
   isFollowed = false;
   isFriend = false;
-  myProfile: boolean;
+  ownProfile: boolean;
 
   constructor(private userService: UserService,
               private profileService: ProfileService,
@@ -30,9 +30,9 @@ export class UserComponent implements OnInit {
       const username = params.username;
       this.profileService.getProfile(username).subscribe((response: any) => {
         this.profile = response.user;
-        this.myProfile = true;
+        this.ownProfile = true;
         if (this.profile.id !== this.authService.user.id) {
-          this.myProfile = false;
+          this.ownProfile = false;
           // Make request to seed if already follower
           this.isFriend = this.profile.friends.some((friend: User) => friend.id === this.authService.user.id);
           this.isFollowed = this.profile.followers.some((follower: User) => follower.id === this.authService.user.id);
@@ -68,5 +68,9 @@ export class UserComponent implements OnInit {
       .subscribe((response: any) => {
         this.isFriend = false;
       });
+  }
+
+  onEditProfile() {
+
   }
 }

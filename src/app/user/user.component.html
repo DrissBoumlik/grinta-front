@@ -1,7 +1,15 @@
 <app-header></app-header>
 <div class="user-profile container-fluid">
   <div class="container">
-    <div class="user-wrapper">
+    <div class="user-wrapper relative">
+
+      <div class="user-edition dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+        <ul class="dropdown-menu pointer">
+          <li><a *ngIf="ownProfile" (click)="onEditProfile()">Edit</a></li>
+        </ul>
+      </div>
+
       <div class="user-cover" [ngStyle]="{backgroundImage: 'url('+profile?.cover+')'}">
         <!--      <img src="{{ profile?.cover }}" alt="">-->
       </div>
@@ -17,7 +25,7 @@
             </div>
           </div>
         </div>
-        <div class="profile-action" *ngIf="!myProfile">
+        <div class="profile-action" *ngIf="!ownProfile">
           <button class="btn btn-action btn-add" (click)="isFriend ? onRemoveFriend() : onAddFriend()">{{ isFriend ? 'Ajouté' : 'Ajouter' }}</button>
           <button class="btn btn-action btn-follow" (click)="isFollowed ? onUnfollowFriend() : onFollowFriend()">{{ isFollowed ? 'Suivi' : 'Suivre' }}</button>
         </div>
