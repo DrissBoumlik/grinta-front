@@ -2,6 +2,8 @@
 .navbar-form {
   box-shadow: none;
   padding: 0;
+  border: none;
+  margin-bottom: 0;
 }
 
 .navbar-form .input-group {
@@ -23,6 +25,7 @@
   background-color: #2b542c;
   position: absolute;
   left: 0;
+  z-index: 999;
 }
 .search-results ul {
   margin: 0;
