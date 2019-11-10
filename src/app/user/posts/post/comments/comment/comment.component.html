@@ -23,9 +23,9 @@
           </div>
 
           <div class="comment-interaction">
-            <button class="btn btn-action-comment btn-like-comment capitalize" (click)='onLikeComment()' [ngClass]="{'liked': commentLiked}">j'aime</button>
-            <span class="mg-sides">·</span>
             <span>{{ comment.created_at | date : 'mediumDate'}}</span>
+            <span class="mg-sides">·</span>
+            <button class="btn btn-action-comment btn-like-comment capitalize" (click)='onLikeComment()' [ngClass]="{'liked': commentLiked}">j'aime</button>
             <span class="mg-sides">.</span>
             <button class="btn btn-action-comment btn-answer-comment capitalize" (click)="onWillReply()">répondre</button>
           </div>
