@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {tap} from 'rxjs/operators';
 
 @Injectable()
 export class ToolsService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   slugify(value) {
     const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;';
@@ -18,5 +20,15 @@ export class ToolsService {
       .replace(/\-\-+/g, '-') // Replace multiple - with single -
       .replace(/^-+/, '') // Trim - from start of text
       .replace(/-+$/, ''); // Trim - from end of text
+  }
+
+  getCities() {
+    return this.http.get('./assets/data/france-cities.json')
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error),
+        )
+      );
   }
 }

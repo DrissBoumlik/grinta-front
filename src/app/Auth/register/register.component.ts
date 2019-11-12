@@ -9,6 +9,7 @@ import {isArray} from 'util';
 import {Sport} from '../../user/sports/sport.model';
 import {GoogleLoginProvider, AuthService as SocialService, SocialUser} from 'angularx-social-login';
 import {ToolsService} from '../../shared/tools.service';
+import {SportService} from '../../shared/sport.service';
 
 @Component({
   selector: 'app-register',
@@ -39,6 +40,7 @@ export class RegisterComponent implements OnInit {
               private router: Router,
               private http: HttpClient,
               private socialService: SocialService,
+              private sportService: SportService,
               private toolsService: ToolsService) { }
 
   ngOnInit() {
@@ -47,11 +49,11 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['home']);
     }
 
-    this.userService.getSports().subscribe((response: any) => {
+    this.sportService.getSports().subscribe((response: any) => {
       this.sports = response.sports;
     });
 
-    this.http.get('./assets/data/france-cities.json').subscribe((response: any) => {
+    this.toolsService.getCities().subscribe((response: any) => {
       this.cities = response;
     });
 
