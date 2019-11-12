@@ -34,6 +34,23 @@ hr {
 
 /******************** Classes *****************/
 
+.grintaaa-bg, .grintaaa-bg:hover {
+  background-color: #81D400;
+}
+
+.grintaaa-clr, .grintaaa-clr:hover {
+  color: #81D400;
+}
+
+.grintaaa-brd {
+  border: 1px solid #81D400;
+}
+
+.grintaaa-brd-left {
+  border: 1px solid #81D400;
+  border-left: none;
+}
+
 .clearfix:before {
   display: table;
   content: " ";
