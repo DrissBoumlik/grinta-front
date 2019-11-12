@@ -11,8 +11,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './Auth/login/login.component';
 import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { FriendComponent } from './user/friends/friend/friend.component';
-import { FriendsComponent } from './user/friends/friends.component';
 import { AlbumComponent } from './user/albums/album/album.component';
 import { MediaComponent } from './user/albums/album/medias/media/media.component';
 import { AlbumsComponent } from './user/albums/albums.component';
@@ -37,6 +35,7 @@ import {SharedModule} from './shared/shared.module';
 import {ToolsService} from './shared/tools.service';
 import {PagesService} from './user/pages/pages.service';
 import {FriendsModule} from './user/friends/friends.module';
+import {EditUserComponent} from './user/profile/edit-user/edit-user.component';
 
 const config = new AuthServiceConfig([
   {
@@ -66,6 +65,7 @@ export function provideConfig() {
     UserLikesComponent,
     HomeComponent,
     RegisterComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

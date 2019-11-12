@@ -13,6 +13,7 @@ import {HomeComponent} from './user/home/home.component';
 import {RegisterComponent} from './Auth/register/register.component';
 import {PageComponent} from './user/pages/page/page.component';
 import {AlbumComponent} from './user/albums/album/album.component';
+import {EditUserComponent} from './user/profile/edit-user/edit-user.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: ':username', component: UserComponent, children: [
       { path: '', component: UserPostsComponent },
+      { path: 'edit', component: EditUserComponent },
       { path: 'posts', component: UserPostsComponent },
       { path: 'albums', children: [
           { path: '', component: UserAlbumsComponent },
