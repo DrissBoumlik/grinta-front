@@ -3,6 +3,7 @@ import { Album } from './albums/album/album.model';
 import {Page} from './pages/page/page.model';
 import {Event} from './events/event.model';
 import {Post} from './posts/post/post.model';
+import {Sport} from './sports/sport.model';
 
 export class User {
   constructor(
@@ -11,7 +12,8 @@ export class User {
     public username: string,
     public firstname: string,
     public lastname: string,
-    public sex: string,
+    public gender: string,
+    public city: string,
     public picture: string,
     public cover: string,
     public friends: User[],
@@ -25,6 +27,7 @@ export class User {
     public posts: Post[],
     public liked_pages: Page[],
     public medias: Media[],
-    public albums: Album[]
+    public albums: Album[],
+    public sports: Sport[]
   ) {}
 }

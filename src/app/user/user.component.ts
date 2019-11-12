@@ -40,6 +40,10 @@ export class UserComponent implements OnInit {
         localStorage.setItem('_profile', JSON.stringify(this.profile));
       });
     });
+    this.profileService.profileUpdated.subscribe((profile: User) => {
+      this.profile = profile;
+      console.log(profile);
+    });
   }
 
   onFollowFriend() {
@@ -71,6 +75,6 @@ export class UserComponent implements OnInit {
   }
 
   onEditProfile() {
-
+    this.router.navigate(['edit'], {relativeTo: this.route});
   }
 }

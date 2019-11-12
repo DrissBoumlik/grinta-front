@@ -12,6 +12,7 @@ export class ProfileService {
   profile: User;
   posts: Post;
   profileLoaded = new Subject<User>();
+  profileUpdated = new Subject<User>();
   alreadyLoaded = false;
 
   constructor(private http: HttpClient) {
@@ -39,6 +40,19 @@ export class ProfileService {
             this.alreadyLoaded = true;
             this.profileLoaded.next(this.profile);
           },
+          error => console.log(error.status),
+        )
+      );
+  }
+
+  updateProfile(username, firstname, lastname, email, password, password_confirmation, gender, picture, cover, sport, city) {
+    ProfileService.getHeaders();
+    return this.http.put(environment.baseApiUrl + '/user-profile/' + username,
+      {username, firstname, lastname, email, password, password_confirmation, gender, picture, cover, sport, city},
+      {headers: ProfileService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
           error => console.log(error.status),
         )
       );
