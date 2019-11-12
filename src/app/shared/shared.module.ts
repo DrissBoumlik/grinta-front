@@ -6,6 +6,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {SearchResultsComponent} from './search-results/search-results.component';
 import {SearchService} from './search.service';
 import { SearchResultComponent } from './search-results/search-result/search-result.component';
+import {SportService} from './sport.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { SearchResultComponent } from './search-results/search-result/search-res
     HeaderComponent,
     SearchResultsComponent
   ],
-  providers: [SearchService]
+  providers: [SearchService, SportService]
 })
 export class SharedModule {
 

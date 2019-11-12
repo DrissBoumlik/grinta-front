@@ -27,17 +27,6 @@ export class UserService {
     });
   }
 
-  getSports() {
-    UserService.getHeaders();
-    return this.http.get(environment.baseApiUrl + '/sports', {headers: UserService.headers})
-      .pipe(
-        tap(
-          data => console.log(data),
-          error => console.log(error)
-        )
-      );
-  }
-
   followUser(followedId: number) {
     UserService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/followers', {followedId}, {headers: UserService.headers})

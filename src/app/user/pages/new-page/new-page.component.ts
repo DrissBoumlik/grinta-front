@@ -6,6 +6,7 @@ import {Page} from '../page/page.model';
 import {Sport} from '../../sports/sport.model';
 import {PagesService} from '../pages.service';
 import {ActivatedRoute, Params} from '@angular/router';
+import {SportService} from '../../../shared/sport.service';
 
 @Component({
   selector: 'app-new-page',
@@ -31,12 +32,13 @@ export class NewPageComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private pagesService: PagesService,
               private userService: UserService,
+              private sportService: SportService,
               private route: ActivatedRoute) {
     this.user = this.userService.user;
   }
 
   ngOnInit() {
-    this.userService.getSports().subscribe((response: any) => {
+    this.sportService.getSports().subscribe((response: any) => {
       this.sports = response.sports;
     });
     this.route.params.subscribe((params: Params) => {
