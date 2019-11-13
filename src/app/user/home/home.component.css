@@ -1,0 +1,22 @@
+
+@media (max-width: 992px) {
+  .friends-wrapper {
+    transition: transform .3s ease;
+    position: fixed;
+    top: 100px;
+    left: 100%;
+    width: 70%;
+    transform: translateX(-100%);
+    z-index: 999;
+  }
+  .friends-wrapper.shifted {
+    /*left: 100%;*/
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .friends-wrapper {
+    width: 100%;
+  }
+}

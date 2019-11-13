@@ -1,5 +1,5 @@
 import { UserService } from './../user.service';
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Renderer2, ViewChild, ElementRef} from '@angular/core';
 import { User } from '../user.model';
 import {FriendsService} from './friends.service';
 
@@ -11,9 +11,11 @@ import {FriendsService} from './friends.service';
 export class FriendsComponent implements OnInit {
   friends: User[];
   noFriends = false;
+  @ViewChild('chatBox', {static: false}) chatBox: ElementRef;
 
   constructor(private userService: UserService,
-              private friendsService: FriendsService) { }
+              private friendsService: FriendsService,
+              private renderer: Renderer2) { }
 
   ngOnInit() {
     this.friendsService.getFriends().subscribe((response: any) => {
@@ -21,9 +23,18 @@ export class FriendsComponent implements OnInit {
       this.noFriends = this.friends.length <= 0;
     });
     // this.friendsService.getChat();
+    this.renderer.listen('window', 'click', (e: Event) => {
+      if (!this.chatBox.nativeElement.contains(e.target)) {
+        jQuery('.friends-wrapper').addClass('shifted');
+      }
+    });
   }
 
   onSearch(value: string) {
     this.friends = this.friendsService.searchFriends(value.toLowerCase());
+  }
+
+  showChatBox() {
+    jQuery('.friends-wrapper').toggleClass('shifted');
   }
 }
