@@ -12,9 +12,9 @@
 }
 
 .register-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /*display: flex;*/
+  /*align-items: center;*/
+  /*justify-content: center;*/
 }
 
 .logo {
@@ -47,4 +47,23 @@ label {
 a {
   color: #eee!important;
   text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .register {
+    height: auto;
+    padding: 100px 0;
+  }
+  .container {
+    position: relative;
+    transform: none;
+    left: unset;
+    width: 100%;
+  }
+  .logo {
+    text-align: center;
+  }
+  form {
+    border-left: none;
+  }
 }

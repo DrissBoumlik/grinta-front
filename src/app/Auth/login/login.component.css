@@ -188,13 +188,13 @@ fieldset{
 @media (max-width: 600px) {
   .login-wrapper {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
   .logo {
-    margin-bottom: 20px;
+    margin-bottom: 50px;
   }
   .login {
-    border-right: none!important;
+    border: none!important;
   }
 
 }
