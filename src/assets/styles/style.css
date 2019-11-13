@@ -51,6 +51,10 @@ hr {
   border-left: none;
 }
 
+.ov-hidden {
+  overflow: hidden;
+}
+
 .clearfix:before {
   display: table;
   content: " ";
