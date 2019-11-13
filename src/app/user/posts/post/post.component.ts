@@ -21,6 +21,7 @@ export class PostComponent implements OnInit {
   ownPost = false;
   postLiked = false;
   editMode = false;
+  commentsCount = 0;
 
   editPostForm = this.fb.group({
     content: new FormControl(null),
@@ -37,6 +38,10 @@ export class PostComponent implements OnInit {
   ngOnInit() {
     this.user = this.authService.user;
     this.ownPost = this.user.id === this.post.user_id;
+    this.post.comments.map((comment) => {
+      this.commentsCount += comment.replies.length + 1;
+    });
+    console.log(this.commentsCount);
     this.postLiked = this.post.likers.some((liker: User) => liker.id === this.user.id);
     this.postService.postCommentsUpdated.subscribe((comments) => {
       this.post.comments = comments;
@@ -97,6 +102,7 @@ export class PostComponent implements OnInit {
       this.editMode = false;
     });
   }
+
   onEditPost() {
     this.editMode = true;
     this.editPostForm.patchValue({

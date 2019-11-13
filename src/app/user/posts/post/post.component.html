@@ -48,7 +48,11 @@
         </div>
       </form>
     </div>
-    <div class="interactions">
+    <div class="interactions-statistics clearfix col-md-12">
+      <div class="likes-count pull-left"><i class="far fa-thumbs-up"></i> {{ post.likers.length }}</div>
+      <div class="comments-count pull-right"><i class="far fa-comment-alt"></i> {{ commentsCount }}</div>
+    </div>
+    <div class="interactions col-md-12">
       <button type="submit" class="btn btn-success btn-action capitalize" (click)='onLikePost()' [ngClass]="{'liked': postLiked}">j'aime</button>
       <span>·</span>
       <button type="submit" class="btn btn-primary btn-action capitalize" (click)='onSharePost()'>partager</button>

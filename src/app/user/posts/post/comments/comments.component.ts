@@ -45,8 +45,7 @@ export class CommentsComponent implements OnInit {
         this.postService.addComment(response.comment);
       });
       this.CommentForm.reset();
-    }
-    else {
+    } else {
       jQuery('#comment-' + this.post.id).addClass('ng-invalid ng-touched').removeClass('ng-untouched');
     }
   }

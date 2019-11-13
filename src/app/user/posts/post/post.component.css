@@ -65,11 +65,21 @@
 .post-content {
   padding: 0 10px!important;
 }
-.interactions {
-  margin-left: 10px;
+.post .interactions {
+  /*margin-left: 10px;*/
+  padding-left: 15px;
+  padding-right: 15px;
 }
-.interactions .btn:hover {
+.post .interactions .btn:hover {
   text-decoration: underline;
+}
+
+.post .interactions-statistics {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.likes-count, .comments-count {
+  padding: 6px 12px;
 }
 /* .btn-like {
   margin-left: 10px;
