@@ -52,6 +52,7 @@
       <div class="likes-count pull-left"><i class="far fa-thumbs-up"></i> {{ post.likers.length }}</div>
       <div class="comments-count pull-right"><i class="far fa-comment-alt"></i> {{ commentsCount }}</div>
     </div>
+    <hr class="center-line"/>
     <div class="interactions col-md-12">
       <button type="submit" class="btn btn-success btn-action capitalize" (click)='onLikePost()' [ngClass]="{'liked': postLiked}">j'aime</button>
       <span>·</span>
@@ -59,7 +60,7 @@
       <span>·</span>
       <button type="submit" class="btn btn-info btn-action capitalize" (click)="onFocusInput()">commenter</button>
     </div>
-    <hr>
+    <hr class="center-line"/>
     <app-comments
     [post]="post">
     </app-comments>
