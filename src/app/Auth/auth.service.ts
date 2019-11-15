@@ -35,8 +35,9 @@ export class AuthService {
   }
 
     login(isSocial, username: string, password: string) {
+    console.log(username, password);
     return this.http.post(environment.baseApiUrl + '/login',
-      JSON.stringify({isSocial, username, email: username, password}),
+      {isSocial, username, email: username, password},
       {headers: AuthService.headers})
       .pipe(
         tap(

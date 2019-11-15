@@ -25,7 +25,12 @@ export class FriendsComponent implements OnInit {
     // this.friendsService.getChat();
     this.renderer.listen('window', 'click', (e: Event) => {
       if (!this.chatBox.nativeElement.contains(e.target)) {
-        jQuery('.friends-wrapper').addClass('shifted');
+        jQuery('.friends-wrapper')
+          .addClass('shifted')
+          .find('.chat-icon')
+          .removeClass('hidden');
+        jQuery('.modal-bg')
+          .addClass('hidden');
       }
     });
   }
@@ -35,6 +40,11 @@ export class FriendsComponent implements OnInit {
   }
 
   showChatBox() {
-    jQuery('.friends-wrapper').toggleClass('shifted');
+    jQuery('.friends-wrapper')
+      .removeClass('shifted')
+      .find('.chat-icon')
+      .addClass('hidden');
+    jQuery('.modal-bg')
+      .removeClass('hidden');
   }
 }
