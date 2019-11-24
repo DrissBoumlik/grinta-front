@@ -43,7 +43,6 @@ export class EditUserComponent implements OnInit {
       this.cities = response;
     });
     this.profileService.profileLoaded.subscribe((profile: User) => {
-      console.log(this.profileService.profile);
       this.profile = profile;
       this.initForm();
     });
@@ -65,7 +64,6 @@ export class EditUserComponent implements OnInit {
   }
 
   selectedSport(sport: Sport) {
-    console.log(this.profile.sports.some(selectedSport => selectedSport.id === sport.id));
     return this.profile.sports.some(selectedSport => selectedSport.id === sport.id);
   }
 
@@ -103,9 +101,7 @@ export class EditUserComponent implements OnInit {
       this.editUserForm.value.cover, this.editUserForm.value.sport,
       this.editUserForm.value.city)
       .subscribe((response: any) => {
-        console.log(response.user);
         this.profileService.getProfile(response.user.username).subscribe((data: any) => {
-          console.log(data.user);
           this.profileService.profileUpdated.next(data.user);
         });
       });
