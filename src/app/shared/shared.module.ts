@@ -7,12 +7,16 @@ import {SearchResultsComponent} from './search-results/search-results.component'
 import {SearchService} from './search.service';
 import { SearchResultComponent } from './search-results/search-result/search-result.component';
 import {SportService} from './sport.service';
+import { FeedbackComponent } from './feedback/feedback.component';
+import {ToolsService} from './tools.service';
+import {FeedbackService} from './feedback/feedback.service';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     SearchResultsComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    FeedbackComponent
   ],
   imports: [
     RouterModule,
@@ -21,9 +25,10 @@ import {SportService} from './sport.service';
   ],
   exports: [
     HeaderComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    FeedbackComponent
   ],
-  providers: [SearchService, SportService]
+  providers: [SearchService, SportService, ToolsService, FeedbackService]
 })
 export class SharedModule {
 

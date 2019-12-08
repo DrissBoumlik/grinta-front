@@ -1,9 +1,10 @@
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, Input, HostListener, ViewChild } from '@angular/core';
-import { UserService } from '../../user.service';
-import { User } from '../../user.model';
+import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
+import {Component, OnInit, Input, HostListener, ViewChild} from '@angular/core';
+import {UserService} from '../../user.service';
+import {User} from '../../user.model';
 import {PostsService} from '../posts.service';
 import {PageService} from '../../pages/page/page.service';
+import {FeedbackService} from '../../../shared/feedback/feedback.service';
 
 @Component({
   selector: 'app-new-post',
@@ -22,10 +23,13 @@ export class NewPostComponent implements OnInit {
   constructor(private userService: UserService,
               private postsService: PostsService,
               private pageService: PageService,
-              private fb: FormBuilder) {}
+              private feedbackService: FeedbackService,
+              private fb: FormBuilder) {
+  }
 
   ngOnInit() {
   }
+
   onFileChange(files: FileList) {
     this.imageToUpload = files.item(0);
     const reader = new FileReader();
@@ -44,7 +48,9 @@ export class NewPostComponent implements OnInit {
     const image = this.sharePostForm.get('image').value;
     const pageId = this.pageService.page ? this.pageService.page.id : null;
     this.postsService.createPost(content, image, pageId).subscribe((response: any) => {
-          this.postsService.addPost(response.post);
+      console.log('success');
+      this.feedbackService.feedbackReceived.next({feedback: true, message: response.message});
+      this.postsService.addPost(response.post);
     });
     this.sharePostForm.reset();
   }

@@ -7,6 +7,10 @@ export class ToolsService {
 
   constructor(private http: HttpClient) { }
 
+  capitalize(str: string) {
+    return str.charAt(0).toUpperCase() + str.substring(1);
+  }
+
   slugify(value) {
     const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;';
     const b = 'aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnooooooooprrsssssttuuuuuuuuuwxyyzzz------';
