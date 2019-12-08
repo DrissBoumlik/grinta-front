@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {User} from '../../user.model';
 import {UserService} from '../../user.service';
@@ -7,6 +7,7 @@ import {Sport} from '../../sports/sport.model';
 import {PagesService} from '../pages.service';
 import {ActivatedRoute, Params} from '@angular/router';
 import {SportService} from '../../../shared/sport.service';
+import {ProfileService} from '../../profile/profile.service';
 
 @Component({
   selector: 'app-new-page',
@@ -32,6 +33,7 @@ export class NewPageComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private pagesService: PagesService,
               private userService: UserService,
+              private profileService: ProfileService,
               private sportService: SportService,
               private route: ActivatedRoute) {
     this.user = this.userService.user;
@@ -42,18 +44,22 @@ export class NewPageComponent implements OnInit {
       this.sports = response.sports;
     });
     this.route.params.subscribe((params: Params) => {
-      console.log(params.pagename);
-      const page = this.pagesService.getPageByPagename(params.pagename);
-      this.CreatePageForm.patchValue({
-        name: page.name,
-        pagename: page.pagename,
-        image: page.image,
-        cover: page.cover,
-        type: page.type,
-        description: page.description,
-        sport: page.sport_id,
-      });
-      this.editMode = true;
+      this.editMode = params.pagename !== undefined;
+      if (this.editMode) {
+        let page = this.pagesService.getPageByPagename(params.pagename)
+          .subscribe((response: any) => {
+            page = response.page;
+            this.CreatePageForm.patchValue({
+              name: page.name,
+              pagename: page.pagename,
+              image: page.image,
+              cover: page.cover,
+              type: page.type,
+              description: page.description,
+              sport: page.sport_id,
+            });
+          });
+      }
     });
   }
 

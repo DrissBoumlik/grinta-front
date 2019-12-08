@@ -6,7 +6,13 @@
         Albums</h3>
     </div>
     <div class="container-fluid">
-      <div class="row">
+      <div class="row albums-container">
+        <div class="col-md-6 col-sm-6 col-xs-12 album-block">
+          <div class="album-cover">
+            <input type="file" id="create-album" class="hidden" multiple>
+            <label for="create-album" class="create-album block pointer"></label>
+          </div>
+        </div>
         <div class="col-md-6 col-sm-6 col-xs-12 album-block" *ngFor="let album of profile?.albums">
           <a routerLink="{{ album.id }}">
             <div class="album-cover" [ngStyle]="{backgroundImage: 'url('+album.thumbnail+')'}">
@@ -21,9 +27,6 @@
     </div>
   </div>
 </div>
-
-
-
 
 
 <!--<div class="albums" *ngIf="profile?.albums?.length">-->

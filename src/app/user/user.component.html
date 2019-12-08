@@ -3,10 +3,10 @@
   <div class="container">
     <div class="user-wrapper relative">
 
-      <div class="user-edition dropdown">
+      <div class="user-edition dropdown" *ngIf="ownProfile">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
         <ul class="dropdown-menu pointer">
-          <li><a *ngIf="ownProfile" (click)="onEditProfile()">Edit</a></li>
+          <li><a (click)="onEditProfile()">Edit</a></li>
         </ul>
       </div>
 
@@ -20,14 +20,18 @@
               <div class="user-info round user-img">
                 <img src="{{ profile?.picture }}" alt="" class="user-picture round">
               </div>
-              <div class="user-info user-name">{{ profile?.firstname }} {{ profile?.lastname }}</div>
-              <div class="user-info user-email hidden">{{ profile?.email }}</div>
+              <div class="user-info user-name align-left">
+                <div>{{ profile?.firstname }} {{ profile?.lastname }}</div>
+                <div>@{{ profile?.username }}</div>
+              </div>
             </div>
           </div>
         </div>
         <div class="profile-action" *ngIf="!ownProfile">
-          <button class="btn btn-action btn-add" (click)="isFriend ? onRemoveFriend() : onAddFriend()">{{ isFriend ? 'Ajouté' : 'Ajouter' }}</button>
-          <button class="btn btn-action btn-follow" (click)="isFollowed ? onUnfollowFriend() : onFollowFriend()">{{ isFollowed ? 'Suivi' : 'Suivre' }}</button>
+          <button class="btn btn-action btn-add"
+                  (click)="isFriend ? onRemoveFriend() : onAddFriend()">{{ isFriend ? 'Ajouté' : 'Ajouter' }}</button>
+          <button class="btn btn-action btn-follow"
+                  (click)="isFollowed ? onUnfollowFriend() : onFollowFriend()">{{ isFollowed ? 'Suivi' : 'Suivre' }}</button>
         </div>
       </div>
       <div class="row align-center profile-menu">
@@ -48,7 +52,8 @@
         </div>
         <div class="col-md-3 col-sm-3 col-xs-3 profile-menu-item">
           <div class="dropdown pd-10">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" routerLinkActive="active">Plus <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" routerLinkActive="active">Plus <b
+              class="caret"></b></a>
             <ul class="dropdown-menu pointer w-100">
               <li><a routerLink="/{{ profile?.username }}/pages">Pages</a></li>
               <li><a routerLink="/{{ profile?.username }}/events">Events</a></li>

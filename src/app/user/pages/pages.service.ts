@@ -4,6 +4,7 @@ import {tap} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {Page} from './page/page.model';
 import {Subject} from 'rxjs';
+import {PageService} from './page/page.service';
 
 @Injectable()
 export class PagesService {
@@ -13,7 +14,8 @@ export class PagesService {
   pageInvitations: Page[];
   pagesUpdated = new Subject();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+              private pageService: PageService) {}
 
   static getHeaders() {
     PagesService.headers = new HttpHeaders({
@@ -23,7 +25,13 @@ export class PagesService {
   }
 
   getPageByPagename(pagename: string) {
-    const page = this.pages.find((_page) => _page.pagename === pagename);
+    let page;
+    try {
+      page = this.pages.find((_page) => _page.pagename === pagename);
+    } catch (e) {
+      console.log(e);
+      return this.pageService.getPage(pagename);
+    }
     return page;
   }
 

@@ -21,7 +21,6 @@ import { EventComponent } from './user/events/event/event.component';
 
 import {AuthService} from './Auth/auth.service';
 import { UserService } from './user/user.service';
-import { ErrorService } from './shared/error.service';
 import { UserPostsComponent } from './user/profile/user-posts/user-posts.component';
 import { UserAlbumsComponent } from './user/profile/user-albums/user-albums.component';
 import { UserLikesComponent } from './user/profile/user-likes/user-likes.component';
@@ -32,7 +31,6 @@ import {PostsModule} from './user/posts/posts.module';
 import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {PagesModule} from './user/pages/pages.module';
 import {SharedModule} from './shared/shared.module';
-import {ToolsService} from './shared/tools.service';
 import {PagesService} from './user/pages/pages.service';
 import {FriendsModule} from './user/friends/friends.module';
 import {EditUserComponent} from './user/profile/edit-user/edit-user.component';
@@ -90,8 +88,6 @@ export function provideConfig() {
     UserService,
     ProfileService,
     AuthService,
-    ErrorService,
-    ToolsService,
     PagesService,
     {provide: AuthServiceConfig,
       useFactory: provideConfig}
