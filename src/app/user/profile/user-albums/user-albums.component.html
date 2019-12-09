@@ -9,8 +9,9 @@
       <div class="row albums-container">
         <div class="col-md-6 col-sm-6 col-xs-12 album-block">
           <div class="album-cover">
+            <div class="cover" style="background-image: url('https://images2.imgbox.com/15/99/wbGuNEf5_o.png');"></div>
             <input type="file" id="create-album" class="hidden" multiple>
-            <label for="create-album" class="create-album block pointer"></label>
+            <label for="create-album" class="create-album block pointer align-center"><i class="fas fa-plus"></i> Create Album</label>
           </div>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12 album-block" *ngFor="let album of profile?.albums">

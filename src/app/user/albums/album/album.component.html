@@ -1,11 +1,13 @@
-<div class="album-wrapper border-grey" *ngIf="album?.medias?.length">
+<div class="album-wrapper container-fluid border-grey" *ngIf="album?.medias?.length">
   <div class="row">
-    <div class="albums-header align-center">
-      <h3>{{ album.name }}</h3>
+    <div class="col-md-12">
+      <div class="album-header">
+        <h3>{{ album.name }}</h3>
+      </div>
     </div>
   </div>
   <div class="row album-row">
-    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" *ngFor="let media of album?.medias">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6 no-col-padding" *ngFor="let media of album?.medias">
       <app-media [media]="media"></app-media>
     </div>
   </div>

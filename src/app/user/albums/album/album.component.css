@@ -1,7 +1,15 @@
 .album-wrapper {
-  padding: 10px 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .album-row {
   display: flex;
   flex-flow: row wrap;
+}
+.album-header {
+  margin-bottom: 50px;
+}
+.no-col-padding {
+  padding-left: 0;
+  padding-right: 0;
 }
