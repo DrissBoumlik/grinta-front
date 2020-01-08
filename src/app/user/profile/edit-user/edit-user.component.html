@@ -115,7 +115,7 @@
             </div>
           </div>
 
-          <div class="form-group align-left col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-4" *ngFor="let sport of sports">
+          <div class="form-group align-left col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-4 hidden" *ngFor="let sport of sports">
             <input type="checkbox" name="fancy-checkbox-success" id="{{ sport.id }}" autocomplete="off" value="{{ sport.id }}" [checked]="selectedSport(sport) ? true : false"/>
             <div class="btn-group">
               <label for="{{ sport.id }}" class="btn btn-success grintaaa-bg">
