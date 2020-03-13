@@ -123,4 +123,12 @@ export class PostsService {
         )
       );
   }
+
+  getPost(id: number) {
+    if (this.user && this.user.posts) {
+      return this.user.posts.find(post => {
+        return post.id === id;
+      });
+    }
+  }
 }

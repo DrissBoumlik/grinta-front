@@ -10,13 +10,15 @@ import {SportService} from './sport.service';
 import { FeedbackComponent } from './feedback/feedback.component';
 import {ToolsService} from './tools.service';
 import {FeedbackService} from './feedback/feedback.service';
+import { TemplateComponent } from './template/template.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     SearchResultsComponent,
     SearchResultComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    TemplateComponent
   ],
   imports: [
     RouterModule,
@@ -26,7 +28,8 @@ import {FeedbackService} from './feedback/feedback.service';
   exports: [
     HeaderComponent,
     SearchResultsComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    TemplateComponent
   ],
   providers: [SearchService, SportService, ToolsService, FeedbackService]
 })

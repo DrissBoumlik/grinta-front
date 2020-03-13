@@ -8,6 +8,7 @@ import {PostsService} from '../posts.service';
 import {ProfileService} from '../../profile/profile.service';
 import {PageService} from '../../pages/page/page.service';
 import {FormBuilder, FormControl} from '@angular/forms';
+import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -33,17 +34,30 @@ export class PostComponent implements OnInit {
               private postsService: PostsService,
               private pageService: PageService,
               private authService: AuthService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.user = this.authService.user;
-    this.ownPost = this.user.id === this.post.user_id;
-    this.post.comments.map((comment) => {
-      this.commentsCount += comment.replies.length + 1;
-    });
-    this.postLiked = this.post.likers.some((liker: User) => liker.id === this.user.id);
+    if (this.post) {
+      this.ownPost = this.user.id === this.post.user_id;
+
+      this.post.comments.map((comment) => {
+        this.commentsCount += comment.replies.length + 1;
+      });
+
+      this.postLiked = this.post.likers.some((liker: User) => liker.id === this.user.id);
+    }
+
     this.postService.postCommentsUpdated.subscribe((comments) => {
       this.post.comments = comments;
+    });
+    this.route.params.subscribe((params: Params) => {
+      if (Object.entries(params).length === 0 && params.constructor === Object) {
+        return;
+      }
+      this.post = this.postsService.getPost(+params.id);
     });
   }
 
