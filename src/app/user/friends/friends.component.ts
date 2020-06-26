@@ -22,29 +22,13 @@ export class FriendsComponent implements OnInit {
       this.friends = this.friendsService.friends = response.friends;
       this.noFriends = this.friends.length <= 0;
     });
-    // this.friendsService.getChat();
-    this.renderer.listen('window', 'click', (e: Event) => {
-      if (!this.chatBox.nativeElement.contains(e.target)) {
-        jQuery('.friends-wrapper')
-          .addClass('shifted')
-          .find('.chat-icon')
-          .removeClass('hidden');
-        jQuery('.modal-bg')
-          .addClass('hidden');
-      }
-    });
   }
 
   onSearch(value: string) {
     this.friends = this.friendsService.searchFriends(value.toLowerCase());
   }
 
-  showChatBox() {
-    jQuery('.friends-wrapper')
-      .removeClass('shifted')
-      .find('.chat-icon')
-      .addClass('hidden');
-    jQuery('.modal-bg')
-      .removeClass('hidden');
+  arrayNTimes(length: number) {
+    return Array(length);
   }
 }

@@ -1,37 +1,19 @@
+.right-sidebar-mini {
+  width: 300px;
+}
 
-.friends-list {
-  height: 300px;
-  overflow-y: auto;
+.right-sidebar {
+  transform: translateX(0px);
+}
+.right-sidebar-panel {
+  height: 90vh;
+  overflow-x: hidden;
 }
 
 .search-friend {
-  padding-top: 15px;
-}
-.search-friend .search {
-  /* background-color: #eee; */
-  /* border: none;
-  box-shadow: none; */
-}
-
-.friends {
   background-color: #fff;
-  padding: 15px 15px;
-  border-radius: 5px;
-}
-
-.chat-header h3 {
-  margin-top: 0;
-  margin-bottom: 30px;
-}
-
-@media (max-width: 992px) {
-  .chat-icon {
-    left: -35px;
-    position: absolute;
-    font-size: 2rem;
-    background-color: #e3e3e3;
-    padding: 10px 20px 10px 10px;
-    top: 0;
-    cursor: pointer;
-  }
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  z-index: 999;
 }

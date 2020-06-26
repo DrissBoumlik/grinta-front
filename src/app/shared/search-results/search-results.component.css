@@ -1,25 +1,25 @@
 
-.navbar-form {
-  box-shadow: none;
-  padding: 0;
-  border: none;
-  margin-bottom: 0;
-}
+/*.navbar-form {*/
+/*  box-shadow: none;*/
+/*  padding: 0;*/
+/*  border: none;*/
+/*  margin-bottom: 0;*/
+/*}*/
 
-.navbar-form .input-group {
-  display: block;
-}
-.input-text {
-  display: table-cell;
-  width: 100%;
-}
+/*.navbar-form .input-group {*/
+/*  display: block;*/
+/*}*/
+/*.input-text {*/
+/*  display: table-cell;*/
+/*  width: 100%;*/
+/*}*/
 
-.navbar-form .input-group-btn {
-  width: 10%;
-}
-.navbar-form .input-group .search-input {
-  width: 100%;
-}
+/*.navbar-form .input-group-btn {*/
+/*  width: 10%;*/
+/*}*/
+/*.navbar-form .input-group .search-input {*/
+/*  width: 100%;*/
+/*}*/
 .search-results {
   width: 100%;
   background-color: #2b542c;

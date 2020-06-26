@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import { User } from '../../user/user.model';
+import {User} from '../../user/user.model';
 
 import {GoogleLoginProvider, AuthService as SocialService, SocialUser} from 'angularx-social-login';
 import {UserService} from '../../user/user.service';
@@ -23,17 +23,20 @@ export class LoginComponent implements OnInit {
     username: new FormControl('a@a.a', Validators.required),
     password: new FormControl('123123123', Validators.required)
   });
+
   constructor(private authService: AuthService,
               private userService: UserService,
               private router: Router,
               private route: ActivatedRoute,
               private socialService: SocialService,
-              private toolsService: ToolsService) { }
+              private toolsService: ToolsService) {
+  }
 
   ngOnInit() {
     const userLogged = localStorage.getItem('_token') !== null && localStorage.getItem('_token') !== undefined;
     if (userLogged) {
-      this.router.navigate(['home']);
+      // this.router.navigate(['home']);
+      window.location.reload();
     }
 
     this.socialService.authState.subscribe((user) => {
@@ -46,9 +49,10 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.authService.login(false, this.loginForm.value.username, this.loginForm.value.password)
       .subscribe((response: any) => {
-      this.user = this.authService.user = response.success.user;
-      this.router.navigate(['home']);
-    });
+        this.user = this.authService.user = response.success.user;
+        // this.router.navigate(['home']);
+        window.location.href = '/home';
+      });
   }
   signInWithGoogle(): void {
     this.socialService.signIn(GoogleLoginProvider.PROVIDER_ID)

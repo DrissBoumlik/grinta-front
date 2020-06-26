@@ -1,11 +1,12 @@
 <div class="friend-wrapper">
   <div class="friend">
-    <div class="row">
-      <div class="pd-sides pull-left">
-        <img src="{{ friend.picture }}" alt="" class="user-picture round">
+    <div class="media align-items-center mb-4">
+      <div class="iq-profile-avatar status-online">
+        <img class="rounded-circle avatar-50" src="{{ friend.picture }}" alt="">
       </div>
-      <div class="pd-sides pull-left">
-        <div class="friend-name">{{ friend.firstname }} {{ friend.lastname }}</div>
+      <div class="media-body ml-3">
+        <h6 class="mb-0"><a href="#">{{ friend.firstname }} {{ friend.lastname }}</a></h6>
+        <p class="mb-0 d-none">Admin</p>
       </div>
     </div>
   </div>
