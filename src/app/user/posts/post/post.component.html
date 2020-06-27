@@ -1,68 +1,202 @@
 <div class="post-wrapper">
   <div class="post">
-    <div class="post-edition dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
-      <ul class="dropdown-menu pointer">
-        <li><a *ngIf="ownPost" (click)="onEditPost()">Edit</a></li>
-        <li><a>Hide</a></li>
-        <li><a *ngIf="ownPost" (click)="onDeletePost()">Delete</a></li>
-      </ul>
-    </div>
-    <div class="post-header">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="post-header-img pd-sides pull-left">
-              <img class="user-picture round w-h-50" src="{{ post?.user.picture }}" alt="">
-          </div>
-          <div class="post-header-headline pd-sides pull-left">
-            <div class="post-header-txt">
-              <h3>
-                <span class="user-name capitalize"><a routerLink="/{{ post?.user.username }}">{{ post?.user.firstname }} {{ post?.user.lastname }}</a></span>
-                <span *ngIf='post?.owner'> shared
-                  <span *ngIf='post?.user_id !== post?.post_owner_id'><a class="clr-blue" routerLink="/{{ post?.owner.username }}">{{ post?.owner.firstname }}</a>'s</span>
-                  <span *ngIf='post?.user_id === post?.post_owner_id'>his</span> post
-                </span>
-              </h3>
+    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+      <div class="iq-card-body">
+        <div class="user-post-data">
+          <div class="d-flex flex-wrap">
+            <div class="media-support-user-img mr-3">
+              <img class="rounded-circle img-fluid" src="{{ post?.user.picture }}" alt="">
             </div>
-            <div class="post-date">
-              <span>{{ post?.created_at | date : 'mediumDate'}}</span>
+            <div class="media-support-info mt-2">
+              <h5 class="mb-0 d-inline-block"><a routerLink="/{{ post?.user.username }}"
+                                                 class="mr-2">{{ post?.user.firstname }} {{ post?.user.lastname }}</a>
+              </h5>
+              <p class="mb-0 d-inline-block">Added New Image in a Post</p>
+              <p class="mb-0 text-primary">{{ post?.created_at | date : 'mediumDate'}}</p>
+            </div>
+            <div class="iq-card-post-toolbar">
+              <div class="dropdown">
+            <span class="dropdown-toggle" id="postdata-5" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false" role="button">
+              <i class="ri-more-fill"></i>
+            </span>
+                <div class="dropdown-menu m-0 p-0" aria-labelledby="postdata-5">
+                  <a class="dropdown-item p-3" href="#">
+                    <div class="d-flex align-items-top">
+                      <div class="icon font-size-20"><i class="ri-save-line"></i></div>
+                      <div class="data ml-2">
+                        <h6>Save Post</h6>
+                        <p class="mb-0">Add this to your saved items</p>
+                      </div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item p-3" href="#">
+                    <div class="d-flex align-items-top">
+                      <div class="icon font-size-20"><i class="ri-close-circle-line"></i></div>
+                      <div class="data ml-2">
+                        <h6>Hide Post</h6>
+                        <p class="mb-0">See fewer posts like this.</p>
+                      </div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item p-3" href="#">
+                    <div class="d-flex align-items-top">
+                      <div class="icon font-size-20"><i class="ri-user-unfollow-line"></i></div>
+                      <div class="data ml-2">
+                        <h6>Unfollow User</h6>
+                        <p class="mb-0">Stop seeing posts but stay friends.</p>
+                      </div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item p-3" href="#">
+                    <div class="d-flex align-items-top">
+                      <div class="icon font-size-20"><i class="ri-notification-line"></i></div>
+                      <div class="data ml-2">
+                        <h6>Notifications</h6>
+                        <p class="mb-0">Turn on notifications for this post</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="post-body" *ngIf="!editMode">
-      <div class="post-content">
-        <p>{{ post?.content }}</p>
-      </div>
-      <div class="post-img">
-        <img src="{{ post?.image }}" alt="">
-      </div>
-    </div>
-    <div class="post-edit" *ngIf="editMode">
-      <form [formGroup]="editPostForm">
-        <textarea formControlName="content" id="" cols="30" rows="10" class="form-control new-content"></textarea>
-        <div class="pull-right">
-          <button type="submit" class="btn btn-update btn-cancel btn-default" (click)="onCancel()">Annuler</button>
-          <button type="submit" class="btn btn-update btn-share btn-primary" (click)="onUpdatePost()">Partager</button>
+        <div class="mt-3">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat
+            non
+            nisi. Phasellus faucibus mollis pharetra. Proin blandit ac massa sed rhoncus</p>
         </div>
-      </form>
+        <div class="user-post">
+          <a href="#"><img src="{{ post?.image }}" alt="post-image"
+                           class="img-fluid rounded w-100"></a>
+        </div>
+        <div class="comment-area mt-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="like-block position-relative d-flex align-items-center">
+              <div class="d-flex align-items-center">
+                <div class="like-data">
+                  <div class="dropdown">
+                    <span class="dropdown-toggle" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false" role="button">
+                      <img src="/assets/plugins/socialV/images/icon/01.png" class="img-fluid"
+                           alt="">
+                    </span>
+                    <div class="dropdown-menu">
+                      <a class="ml-2 mr-2" href="#" data-toggle="tooltip" data-placement="top" title=""
+                         data-original-title="Like"><img src="/assets/plugins/socialV/images/icon/01.png"
+                                                         class="img-fluid" alt=""></a>
+                      <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title=""
+                         data-original-title="Love"><img src="/assets/plugins/socialV/images/icon/02.png"
+                                                         class="img-fluid" alt=""></a>
+                      <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title=""
+                         data-original-title="Happy"><img src="/assets/plugins/socialV/images/icon/03.png"
+                                                          class="img-fluid" alt=""></a>
+                      <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title=""
+                         data-original-title="HaHa"><img src="/assets/plugins/socialV/images/icon/04.png"
+                                                         class="img-fluid" alt=""></a>
+                      <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title=""
+                         data-original-title="Think"><img src="/assets/plugins/socialV/images/icon/05.png"
+                                                          class="img-fluid" alt=""></a>
+                      <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title=""
+                         data-original-title="Sade"><img src="/assets/plugins/socialV/images/icon/06.png"
+                                                         class="img-fluid" alt=""></a>
+                      <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title=""
+                         data-original-title="Lovely"><img src="/assets/plugins/socialV/images/icon/07.png"
+                                                           class="img-fluid" alt=""></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="total-like-block ml-2 mr-3">
+                  <div class="dropdown">
+                    <span class="dropdown-toggle" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false" role="button">
+                      {{ post?.likers.length }} Likes
+                    </span>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">Max Emum</a>
+                      <a class="dropdown-item" href="#">Bill Yerds</a>
+                      <a class="dropdown-item" href="#">Hap E. Birthday</a>
+                      <a class="dropdown-item" href="#">Tara Misu</a>
+                      <a class="dropdown-item" href="#">Midge Itz</a>
+                      <a class="dropdown-item" href="#">Sal Vidge</a>
+                      <a class="dropdown-item" href="#">Other</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="total-comment-block">
+                <div class="dropdown">
+                   <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                         aria-expanded="false" role="button">
+                   {{ commentsCount }} Comment
+                   </span>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Max Emum</a>
+                    <a class="dropdown-item" href="#">Bill Yerds</a>
+                    <a class="dropdown-item" href="#">Hap E. Birthday</a>
+                    <a class="dropdown-item" href="#">Tara Misu</a>
+                    <a class="dropdown-item" href="#">Midge Itz</a>
+                    <a class="dropdown-item" href="#">Sal Vidge</a>
+                    <a class="dropdown-item" href="#">Other</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="share-block d-flex align-items-center feather-icon mr-3">
+              <a href="#"><i class="ri-share-line"></i>
+                <span class="ml-1">99 Share</span></a>
+            </div>
+          </div>
+          <hr>
+          <ul class="post-comments p-0 m-0">
+            <li class="mb-2">
+              <div class="d-flex flex-wrap">
+                <div class="user-img">
+                  <img src="/assets/plugins/socialV/images/user/02.jpg" alt="userimg"
+                       class="avatar-35 rounded-circle img-fluid">
+                </div>
+                <div class="comment-data-block ml-3">
+                  <h6>Monty Carlo</h6>
+                  <p class="mb-0">Lorem ipsum dolor sit amet</p>
+                  <div class="d-flex flex-wrap align-items-center comment-activity">
+                    <a href="#">like</a>
+                    <a href="#">reply</a>
+                    <a href="#">translate</a>
+                    <span> 5 min </span>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="d-flex flex-wrap">
+                <div class="user-img">
+                  <img src="/assets/plugins/socialV/images/user/03.jpg" alt="userimg"
+                       class="avatar-35 rounded-circle img-fluid">
+                </div>
+                <div class="comment-data-block ml-3">
+                  <h6>Paul Molive</h6>
+                  <p class="mb-0">Lorem ipsum dolor sit amet</p>
+                  <div class="d-flex flex-wrap align-items-center comment-activity">
+                    <a href="#">like</a>
+                    <a href="#">reply</a>
+                    <a href="#">translate</a>
+                    <span> 5 min </span>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <!--      <form class="comment-text d-flex align-items-center mt-3" action="javascript:void(0);">-->
+          <!--        <input type="text" class="form-control rounded">-->
+          <!--        <div class="comment-attagement d-flex">-->
+          <!--          <a href="#"><i class="ri-link mr-3"></i></a>-->
+          <!--          <a href="#"><i class="ri-user-smile-line mr-3"></i></a>-->
+          <!--          <a href="#"><i class="ri-camera-line mr-3"></i></a>-->
+          <!--        </div>-->
+          <!--      </form>-->
+        </div>
+      </div>
     </div>
-    <div class="interactions-statistics clearfix col-md-12">
-      <div class="likes-count pull-left"><i class="far fa-thumbs-up"></i> {{ post?.likers.length }}</div>
-      <div class="comments-count pull-right"><i class="far fa-comment-alt"></i> {{ commentsCount }}</div>
-    </div>
-    <hr class="center-line"/>
-    <div class="interactions col-md-12">
-      <button type="submit" class="btn btn-success btn-action capitalize" (click)='onLikePost()' [ngClass]="{'liked': postLiked}">j'aime</button>
-      <span>·</span>
-      <button type="submit" class="btn btn-primary btn-action capitalize" (click)='onSharePost()'>partager</button>
-      <span>·</span>
-      <button type="submit" class="btn btn-info btn-action capitalize" (click)="onFocusInput()">commenter</button>
-    </div>
-    <hr class="center-line"/>
-    <app-comments
-    [post]="post">
-    </app-comments>
   </div>
 </div>
