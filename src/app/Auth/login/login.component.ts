@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     const userLogged = localStorage.getItem('_token') !== null && localStorage.getItem('_token') !== undefined;
     if (userLogged) {
-      // this.router.navigate(['home']);
-      window.location.reload();
+      this.router.navigate(['home']);
+      // window.location.reload();
     }
 
     this.socialService.authState.subscribe((user) => {

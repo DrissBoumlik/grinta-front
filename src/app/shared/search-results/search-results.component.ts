@@ -17,14 +17,14 @@ export class SearchResultsComponent implements OnInit {
   });
   constructor(private searchService: SearchService,
               private renderer: Renderer2) {
-    // this.renderer.listen('window', 'click', (e: Event) => {
-    //   if (this.searchInput && e.target !== this.searchInput.nativeElement) {
-    //     this.showResults = false;
-    //   } else if (this.searchInput && e.target === this.searchInput.nativeElement) {
-    //     this.onSearch(this.searchForm.value.search);
-    //     this.showResults = true;
-    //   }
-    // });
+    this.renderer.listen('window', 'click', (e: Event) => {
+      if (this.searchInput && e.target !== this.searchInput.nativeElement) {
+        this.showResults = false;
+      } else if (this.searchInput && e.target === this.searchInput.nativeElement) {
+        this.onSearch(this.searchForm.value.search);
+        this.showResults = true;
+      }
+    });
   }
 
   ngOnInit() {

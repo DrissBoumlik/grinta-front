@@ -6297,8 +6297,6 @@ jQuery("#home-chart-04").length && am4core.ready(function() {
 });
 
 $(function () {
-  console.clear();
-  console.log('heyy');
   var animationData = {
       v: "5.5.2",
       fr: 60,
