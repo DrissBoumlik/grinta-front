@@ -233,9 +233,9 @@ hr {
 
 .btn-send-comment {
   position: absolute;
-  top: 2px;
+  top: -1px;
   right: 3px;
-  padding: 4px 10px;
+  padding: 8px 10px;
 }
 .modal-bg {
   opacity: .7;

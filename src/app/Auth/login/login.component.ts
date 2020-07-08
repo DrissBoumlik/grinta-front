@@ -50,8 +50,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(false, this.loginForm.value.username, this.loginForm.value.password)
       .subscribe((response: any) => {
         this.user = this.authService.user = response.success.user;
-        // this.router.navigate(['home']);
-        window.location.href = '/home';
+        this.router.navigate(['home']);
+        // window.location.href = '/home';
       });
   }
   signInWithGoogle(): void {

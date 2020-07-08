@@ -63,13 +63,10 @@
           </div>
         </div>
         <div class="mt-3">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat
-            non
-            nisi. Phasellus faucibus mollis pharetra. Proin blandit ac massa sed rhoncus</p>
+          <p>{{ post?.content }}</p>
         </div>
         <div class="user-post">
-          <a href="#"><img src="{{ post?.image }}" alt="post-image"
-                           class="img-fluid rounded w-100"></a>
+          <a href="#"><img src="{{ post?.image }}" alt="post-image" class="img-fluid rounded w-100"></a>
         </div>
         <div class="comment-area mt-3">
           <div class="d-flex justify-content-between align-items-center">
@@ -113,14 +110,10 @@
                           aria-haspopup="true" aria-expanded="false" role="button">
                       {{ post?.likers.length }} Likes
                     </span>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#">Max Emum</a>
-                      <a class="dropdown-item" href="#">Bill Yerds</a>
-                      <a class="dropdown-item" href="#">Hap E. Birthday</a>
-                      <a class="dropdown-item" href="#">Tara Misu</a>
-                      <a class="dropdown-item" href="#">Midge Itz</a>
-                      <a class="dropdown-item" href="#">Sal Vidge</a>
-                      <a class="dropdown-item" href="#">Other</a>
+                    <div class="dropdown-menu" *ngIf="post?.likers.length">
+                      <a class="dropdown-item" href="#" *ngFor="let liker of post.likers">
+                        {{ liker.firstname + ' ' + liker.lastname }}
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -131,62 +124,61 @@
                          aria-expanded="false" role="button">
                    {{ commentsCount }} Comment
                    </span>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Max Emum</a>
-                    <a class="dropdown-item" href="#">Bill Yerds</a>
-                    <a class="dropdown-item" href="#">Hap E. Birthday</a>
-                    <a class="dropdown-item" href="#">Tara Misu</a>
-                    <a class="dropdown-item" href="#">Midge Itz</a>
-                    <a class="dropdown-item" href="#">Sal Vidge</a>
-                    <a class="dropdown-item" href="#">Other</a>
+                  <div class="dropdown-menu" *ngIf="commentsCount">
+                    <a class="dropdown-item" href="#" *ngFor="let comment of post.comments">
+                      {{ comment.user.firstname + ' ' + comment.user.lastname }}
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="share-block d-flex align-items-center feather-icon mr-3">
-              <a href="#"><i class="ri-share-line"></i>
-                <span class="ml-1">99 Share</span></a>
-            </div>
+<!--            <div class="share-block d-flex align-items-center feather-icon mr-3">-->
+<!--              <a href="#"><i class="ri-share-line"></i>-->
+<!--                <span class="ml-1">99 Share</span></a>-->
+<!--            </div>-->
           </div>
           <hr>
-          <ul class="post-comments p-0 m-0">
-            <li class="mb-2">
-              <div class="d-flex flex-wrap">
-                <div class="user-img">
-                  <img src="/assets/plugins/socialV/images/user/02.jpg" alt="userimg"
-                       class="avatar-35 rounded-circle img-fluid">
-                </div>
-                <div class="comment-data-block ml-3">
-                  <h6>Monty Carlo</h6>
-                  <p class="mb-0">Lorem ipsum dolor sit amet</p>
-                  <div class="d-flex flex-wrap align-items-center comment-activity">
-                    <a href="#">like</a>
-                    <a href="#">reply</a>
-                    <a href="#">translate</a>
-                    <span> 5 min </span>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="d-flex flex-wrap">
-                <div class="user-img">
-                  <img src="/assets/plugins/socialV/images/user/03.jpg" alt="userimg"
-                       class="avatar-35 rounded-circle img-fluid">
-                </div>
-                <div class="comment-data-block ml-3">
-                  <h6>Paul Molive</h6>
-                  <p class="mb-0">Lorem ipsum dolor sit amet</p>
-                  <div class="d-flex flex-wrap align-items-center comment-activity">
-                    <a href="#">like</a>
-                    <a href="#">reply</a>
-                    <a href="#">translate</a>
-                    <span> 5 min </span>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
+<!--          <ul class="post-comments p-0 m-0">-->
+<!--            <li class="mb-2">-->
+<!--              <div class="d-flex flex-wrap">-->
+<!--                <div class="user-img">-->
+<!--                  <img src="/assets/plugins/socialV/images/user/02.jpg" alt="userimg"-->
+<!--                       class="avatar-35 rounded-circle img-fluid">-->
+<!--                </div>-->
+<!--                <div class="comment-data-block ml-3">-->
+<!--                  <h6>Monty Carlo</h6>-->
+<!--                  <p class="mb-0">Lorem ipsum dolor sit amet</p>-->
+<!--                  <div class="d-flex flex-wrap align-items-center comment-activity">-->
+<!--                    <a href="#">like</a>-->
+<!--                    <a href="#">reply</a>-->
+<!--                    <a href="#">translate</a>-->
+<!--                    <span> 5 min </span>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <div class="d-flex flex-wrap">-->
+<!--                <div class="user-img">-->
+<!--                  <img src="/assets/plugins/socialV/images/user/03.jpg" alt="userimg"-->
+<!--                       class="avatar-35 rounded-circle img-fluid">-->
+<!--                </div>-->
+<!--                <div class="comment-data-block ml-3">-->
+<!--                  <h6>Paul Molive</h6>-->
+<!--                  <p class="mb-0">Lorem ipsum dolor sit amet</p>-->
+<!--                  <div class="d-flex flex-wrap align-items-center comment-activity">-->
+<!--                    <a href="#">like</a>-->
+<!--                    <a href="#">reply</a>-->
+<!--                    <a href="#">translate</a>-->
+<!--                    <span> 5 min </span>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </li>-->
+<!--          </ul>-->
+          <app-comments
+            [post]="post">
+          </app-comments>
           <!--      <form class="comment-text d-flex align-items-center mt-3" action="javascript:void(0);">-->
           <!--        <input type="text" class="form-control rounded">-->
           <!--        <div class="comment-attagement d-flex">-->
