@@ -53,12 +53,12 @@ export class PostComponent implements OnInit {
     this.postService.postCommentsUpdated.subscribe((comments) => {
       this.post.comments = comments;
     });
-    this.route.params.subscribe((params: Params) => {
-      if (Object.entries(params).length === 0 && params.constructor === Object) {
-        return;
-      }
-      this.post = this.postsService.getPost(+params.id);
-    });
+    // this.route.params.subscribe((params: Params) => {
+    //   if (Object.entries(params).length === 0 && params.constructor === Object) {
+    //     return;
+    //   }
+    //   this.post = this.postsService.getPost(+params.id);
+    // });
   }
 
   onLikePost() {
