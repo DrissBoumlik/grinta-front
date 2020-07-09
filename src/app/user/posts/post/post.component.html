@@ -65,8 +65,8 @@
         <div class="mt-3">
           <p>{{ post?.content }}</p>
         </div>
-        <div class="user-post">
-          <a href="#"><img src="{{ post?.image }}" alt="post-image" class="img-fluid rounded w-100"></a>
+        <div class="user-post" *ngIf="post?.image">
+          <a><img src="{{ post?.image }}" alt="post-image" class="img-fluid rounded w-100"></a>
         </div>
         <div class="comment-area mt-3">
           <div class="d-flex justify-content-between align-items-center">
@@ -106,7 +106,7 @@
                 </div>
                 <div class="total-like-block ml-2 mr-3">
                   <div class="dropdown">
-                    <span class="dropdown-toggle" data-toggle="dropdown"
+                    <span class="dropdown-toggle" data-toggle="dropdown" (click)='onLikePost()' [ngClass]="{'liked': postLiked}"
                           aria-haspopup="true" aria-expanded="false" role="button">
                       {{ post?.likers.length }} Likes
                     </span>
@@ -122,10 +122,10 @@
                 <div class="dropdown">
                    <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                          aria-expanded="false" role="button">
-                   {{ commentsCount }} Comment
+                   {{ commentsCount }} Comments
                    </span>
                   <div class="dropdown-menu" *ngIf="commentsCount">
-                    <a class="dropdown-item" href="#" *ngFor="let comment of post.comments">
+                    <a class="dropdown-item" *ngFor="let comment of post.comments">
                       {{ comment.user.firstname + ' ' + comment.user.lastname }}
                     </a>
                   </div>

@@ -43,7 +43,7 @@
 
 
     <div class="row">
-      <div class="replies">
+      <div class="replies col-12">
         <app-reply class="reply" *ngFor="let reply of comment.replies"
         [reply]="reply">
         </app-reply>
@@ -56,14 +56,14 @@
 <!--              <button class="btn btn-info btn-send-comment" type="submit" (click)="onCreateReply()"><i class="fas fa-paper-plane"></i></button>-->
 <!--            </form>-->
             <form [formGroup]="ReplyForm" class="comment-text d-flex align-items-center mt-3">
-              <img src="{{ user.picture }}" alt="" class="avatar-35 pd-sides-5 round">
+              <img src="{{ user.picture }}" alt="" class="avatar-35 mx-1 round">
               <input formControlName="content" type="text" class="form-control rounded" id="reply-{{ comment.id }}"
                      placeholder="Ecrire un commentaire..." />
               <div class="comment-attagement d-flex">
-                <button class="btn btn-info btn-send-comment" type="submit" (click)="onCreateReply()"><i class="fas fa-paper-plane"></i></button>
-                <a href="#"><i class="ri-link mr-3"></i></a>
-                <a href="#"><i class="ri-user-smile-line mr-3"></i></a>
-                <a href="#"><i class="ri-camera-line mr-3"></i></a>
+                <a><i class="ri-link mr-3"></i></a>
+                <a><i class="ri-user-smile-line mr-3"></i></a>
+                <a><i class="ri-camera-line mr-3"></i></a>
+                <button class="btn btn-success btn-send-comment mr-1" type="submit" (click)="onCreateReply()"><i class="fas fa-paper-plane"></i></button>
               </div>
             </form>
           </div>

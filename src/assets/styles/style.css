@@ -232,9 +232,9 @@ hr {
 }
 
 .btn-send-comment {
-  position: absolute;
-  top: -1px;
-  right: 3px;
+  /*position: absolute;*/
+  /*top: -1px;*/
+  /*right: 3px;*/
   padding: 8px 10px;
 }
 .modal-bg {

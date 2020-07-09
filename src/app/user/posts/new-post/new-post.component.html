@@ -51,14 +51,14 @@
                 </li>
               </ul>
             </div>
-            <div class="modal fade" id="post-modal" tabindex="-1" role="dialog" aria-labelledby="post-modalLabel"
+            <div class="modal fade p-0" id="post-modal" tabindex="-1" role="dialog" aria-labelledby="post-modalLabel"
                  aria-hidden="true" style="display: none;">
-              <form class="post-text ml-3 w-100" [formGroup]="sharePostForm" enctype="multipart/form-data">
+              <form class="post-text w-100" [formGroup]="sharePostForm" enctype="multipart/form-data">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="post-modalLabel">Create Post</h5>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="ri-close-fill"></i>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="ri-close-fill m-0"></i>
                       </button>
                     </div>
                     <div class="modal-body">
@@ -134,7 +134,7 @@
                         <div class="d-flex align-items-center justify-content-between">
                           <div class="d-flex align-items-center">
                             <div class="user-img mr-3">
-                              <img src="/assets/plugins/socialV/images/user/1.jpg" alt="userimg"
+                              <img src="{{ user?.picture }}" alt="userimg"
                                    class="avatar-60 rounded-circle img-fluid">
                             </div>
                             <h6>Your Story</h6>

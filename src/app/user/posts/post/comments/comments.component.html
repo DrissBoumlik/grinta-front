@@ -9,11 +9,11 @@
       <form [formGroup]="CommentForm" class="comment-text d-flex align-items-center mt-3">
         <input formControlName="content" type="text" class="form-control rounded" id="comment-{{ post.id }}"
                placeholder="Ecrire un commentaire..." />
-        <div class="comment-attagement d-flex">
-          <button class="btn btn-success btn-send-comment" type="submit" (click)="onCreateComment()"><i class="fas fa-paper-plane"></i></button>
+        <div class="comment-attagement d-flex mr-1">
           <a><i class="ri-link mr-3"></i></a>
           <a><i class="ri-user-smile-line mr-3"></i></a>
           <a><i class="ri-camera-line mr-3"></i></a>
+          <button class="btn btn-success btn-send-comment" type="submit" (click)="onCreateComment()"><i class="fas fa-paper-plane"></i></button>
         </div>
       </form>
     </div>
