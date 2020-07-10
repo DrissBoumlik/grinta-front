@@ -52,6 +52,10 @@ export class PostComponent implements OnInit {
 
     this.postService.postCommentsUpdated.subscribe((comments) => {
       this.post.comments = comments;
+      this.commentsCount = 0;
+      this.post.comments.map((comment) => {
+        this.commentsCount += comment.replies.length + 1;
+      });
     });
     // this.route.params.subscribe((params: Params) => {
     //   if (Object.entries(params).length === 0 && params.constructor === Object) {

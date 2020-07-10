@@ -1,11 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from './../../../../environments/environment';
-import { Observable, Subject } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from './../../../../environments/environment';
+import {Observable, Subject} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {tap} from 'rxjs/operators';
 
-import { Post } from './post.model';
-import { Comment } from './comments/comment/comment.model';
+import {Post} from './post.model';
+import {Comment} from './comments/comment/comment.model';
 import {AuthService} from '../../../Auth/auth.service';
 
 @Injectable()
@@ -27,7 +27,10 @@ export class PostService {
       {headers: AuthService.headers})
       .pipe(
         tap(
-          data => console.log(data),
+          (data: any) => {
+            this.addComment(data.comment);
+            console.log(data);
+          },
           error => console.log(error.status),
         )
       );
@@ -74,7 +77,10 @@ export class PostService {
       {headers: AuthService.headers})
       .pipe(
         tap(
-          data => console.log(data),
+          (data: any) => {
+            console.log(data);
+            this.removeComment(data.comment);
+          },
           error => console.log(error.status),
         )
       );

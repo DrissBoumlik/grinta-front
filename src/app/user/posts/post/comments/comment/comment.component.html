@@ -2,14 +2,14 @@
   <div class="comment-container">
     <div class="row">
       <div class="comment-user-picture pd-sides-5 pull-left">
-        <img src="{{ comment.user.picture }}" alt="" class="user-picture round w-h-50">
+        <img src="{{ comment?.user?.picture }}" alt="" class="user-picture round w-h-50">
       </div>
       <div class="comment-user-content pd-sides-5 pull-left">
         <div class="comment bg-gray">
           <div class="comment-content" *ngIf="!editMode">
-            <span class="user-name"><a routerLink="/{{ comment.user.username }}">{{ comment.user.firstname }} {{ comment.user.lastname }}</a></span>
+            <span class="user-name"><a routerLink="/{{ comment?.user?.username }}">{{ comment?.user?.firstname }} {{ comment?.user?.lastname }}</a></span>
             <i class="fas fa-caret-right mg-sides"></i>
-            <span>{{ comment.content }}</span>
+            <span>{{ comment?.content }}</span>
           </div>
 
           <div class="comment-edit" *ngIf="editMode">
@@ -23,7 +23,7 @@
           </div>
 
           <div class="comment-interaction">
-            <span>{{ comment.created_at | date : 'mediumDate'}}</span>
+            <span>{{ comment?.created_at | date : 'mediumDate'}}</span>
             <span class="mg-sides">·</span>
             <button class="btn btn-action-comment btn-like-comment capitalize" (click)='onLikeComment()' [ngClass]="{'liked': commentLiked}">j'aime</button>
             <span class="mg-sides">.</span>
@@ -44,7 +44,7 @@
 
     <div class="row">
       <div class="replies col-12">
-        <app-reply class="reply" *ngFor="let reply of comment.replies"
+        <app-reply class="reply" *ngFor="let reply of comment?.replies"
         [reply]="reply">
         </app-reply>
         <div class="row" *ngIf="willReply">
@@ -56,8 +56,8 @@
 <!--              <button class="btn btn-info btn-send-comment" type="submit" (click)="onCreateReply()"><i class="fas fa-paper-plane"></i></button>-->
 <!--            </form>-->
             <form [formGroup]="ReplyForm" class="comment-text d-flex align-items-center mt-3">
-              <img src="{{ user.picture }}" alt="" class="avatar-35 mx-1 round">
-              <input formControlName="content" type="text" class="form-control rounded" id="reply-{{ comment.id }}"
+              <img src="{{ user?.picture }}" alt="" class="avatar-35 mx-1 round">
+              <input formControlName="content" type="text" class="form-control rounded" id="reply-{{ comment?.id }}"
                      placeholder="Ecrire un commentaire..." />
               <div class="comment-attagement d-flex">
                 <a><i class="ri-link mr-3"></i></a>

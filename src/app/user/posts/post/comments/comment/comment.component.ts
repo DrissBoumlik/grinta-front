@@ -83,7 +83,7 @@ export class CommentComponent implements OnInit {
       return;
     }
     this.postService.deleteComment(this.comment).subscribe((response: any) => {
-      this.postService.removeComment(this.comment);
+      // this.postService.removeComment(this.comment);
     });
   }
 

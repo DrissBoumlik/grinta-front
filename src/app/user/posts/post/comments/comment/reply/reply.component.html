@@ -2,14 +2,14 @@
   <div class="reply-container">
     <div class="row">
       <div class="reply-user-picture pd-sides-5 pull-left">
-        <img src="{{ reply.user.picture }}" alt="" class="user-picture round w-h-50">
+        <img src="{{ reply?.user?.picture }}" alt="" class="user-picture round w-h-50">
       </div>
       <div class="reply-user-content pd-sides-5 pull-left">
         <div class="reply bg-gray">
           <div class="reply-content" *ngIf="!editMode">
-            <span class="user-name"><a routerLink="/{{ reply.user.username }}">{{ reply.user.firstname }} {{ reply.user.lastname }}</a></span>
+            <span class="user-name"><a routerLink="/{{ reply?.user?.username }}">{{ reply?.user?.firstname }} {{ reply?.user?.lastname }}</a></span>
             <i class="fas fa-caret-right mg-sides"></i>
-            <span>{{ reply.content }}</span>
+            <span>{{ reply?.content }}</span>
           </div>
 
           <div class="reply-edit" *ngIf="editMode">
@@ -25,7 +25,7 @@
           <div class="reply-interaction">
             <button class="btn btn-action-comment btn-action-reply btn-like-reply capitalize" (click)='onLikeReply()' [ngClass]="{'liked': replyLiked}">j'aime</button>
             <span class="mg-sides">·</span>
-            <span>{{ reply.created_at | date : 'mediumDate'}}</span>
+            <span>{{ reply?.created_at | date : 'mediumDate'}}</span>
             <!-- <span class="mg-sides">.</span>
             <button class="btn btn-action-comment btn-action-reply btn-answer-reply capitalize">répondre</button> -->
           </div>

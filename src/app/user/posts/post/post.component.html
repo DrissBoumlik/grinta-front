@@ -5,11 +5,11 @@
         <div class="user-post-data">
           <div class="d-flex flex-wrap">
             <div class="media-support-user-img mr-3">
-              <img class="rounded-circle img-fluid" src="{{ post?.user.picture }}" alt="">
+              <img class="rounded-circle img-fluid" src="{{ post?.user?.picture }}" alt="">
             </div>
             <div class="media-support-info mt-2">
-              <h5 class="mb-0 d-inline-block"><a routerLink="/{{ post?.user.username }}"
-                                                 class="mr-2">{{ post?.user.firstname }} {{ post?.user.lastname }}</a>
+              <h5 class="mb-0 d-inline-block"><a routerLink="/{{ post?.user?.username }}"
+                                                 class="mr-2">{{ post?.user?.firstname }} {{ post?.user?.lastname }}</a>
               </h5>
               <p class="mb-0 d-inline-block">Added New Image in a Post</p>
               <p class="mb-0 text-primary">{{ post?.created_at | date : 'mediumDate'}}</p>
@@ -108,11 +108,11 @@
                   <div class="dropdown">
                     <span class="dropdown-toggle" data-toggle="dropdown" (click)='onLikePost()' [ngClass]="{'liked': postLiked}"
                           aria-haspopup="true" aria-expanded="false" role="button">
-                      {{ post?.likers.length }} Likes
+                      {{ post?.likers?.length }} Likes
                     </span>
                     <div class="dropdown-menu" *ngIf="post?.likers.length">
-                      <a class="dropdown-item" href="#" *ngFor="let liker of post.likers">
-                        {{ liker.firstname + ' ' + liker.lastname }}
+                      <a class="dropdown-item" href="#" *ngFor="let liker of post?.likers">
+                        {{ liker?.firstname + ' ' + liker?.lastname }}
                       </a>
                     </div>
                   </div>
@@ -125,8 +125,8 @@
                    {{ commentsCount }} Comments
                    </span>
                   <div class="dropdown-menu" *ngIf="commentsCount">
-                    <a class="dropdown-item" *ngFor="let comment of post.comments">
-                      {{ comment.user.firstname + ' ' + comment.user.lastname }}
+                    <a class="dropdown-item" *ngFor="let comment of post?.comments">
+                      {{ comment?.user?.firstname + ' ' + comment?.user?.lastname }}
                     </a>
                   </div>
                 </div>
