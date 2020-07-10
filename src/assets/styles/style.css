@@ -235,6 +235,8 @@ hr {
   /*position: absolute;*/
   /*top: -1px;*/
   /*right: 3px;*/
+  background-color: #81D400;
+  border-color: #81D400;
   padding: 8px 10px;
 }
 .modal-bg {

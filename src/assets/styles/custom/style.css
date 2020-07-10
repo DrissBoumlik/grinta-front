@@ -1,3 +1,23 @@
 .iq-top-navbar {
   /*background-color: #81D400!important;*/
 }
+
+a, .navbar-list li > a {
+  color: #81D400;
+}
+
+div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg path {
+  stroke: #81D400;
+}
+
+.right-sidebar-toggle.bg-primary {
+  background-color: #81D400 !important;
+}
+
+.iq-bg-primary {
+  color: #81D400 !important;
+}
+
+.text-primary {
+  color: #81D400 !important;;
+}
