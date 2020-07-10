@@ -22,9 +22,10 @@ export class AuthService {
     });
   }
 
-  register(isSocial, username, firstname, lastname, email, password, password_confirmation, gender, picture, cover, sport, city) {
+  register(isSocial, username, firstname, lastname, email, password, passwordConfirmation, gender, picture, cover, sport, city) {
     return this.http.post(environment.baseApiUrl + '/register',
-      {isSocial, username, firstname, lastname, email, password, password_confirmation, gender, picture, cover, sport, city},
+      {isSocial, username, firstname, lastname, email, password,
+        password_confirmation: passwordConfirmation, gender, picture, cover, sport, city},
       {headers: AuthService.headers})
       .pipe(
         tap(

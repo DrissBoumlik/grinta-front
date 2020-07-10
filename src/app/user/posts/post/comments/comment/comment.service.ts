@@ -13,7 +13,7 @@ export class CommentService {
   }
 
   removeReply(reply: Comment) {
-    this.comment.replies = this.comment.replies.filter((_reply) => _reply.id !== reply.id);
+    this.comment.replies = this.comment.replies.filter((replyItem) => replyItem.id !== reply.id);
     this.repliesUpdated.next(this.comment);
   }
 }
