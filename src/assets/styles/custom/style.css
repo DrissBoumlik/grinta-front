@@ -21,3 +21,26 @@ div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg pa
 .text-primary {
   color: #81D400 !important;;
 }
+
+/*.right-sidebar-mini {*/
+/*  width: 300px;*/
+/*  transform: translateX(calc(-80% + -2em));*/
+/*}*/
+
+/*.right-sidebar {*/
+/*  transform: translateX(calc(-180% + -2em));*/
+/*  !*transform: translateX(0px);*!*/
+
+/*}*/
+/*.right-sidebar-panel {*/
+/*  height: 90vh;*/
+/*  overflow-x: hidden;*/
+/*}*/
+
+.search-friend {
+  background-color: #fff;
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  z-index: 999;
+}
