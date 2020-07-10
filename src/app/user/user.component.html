@@ -3,7 +3,7 @@
   <app-feedback></app-feedback>
   <div class="user-profile container-fluid">
     <div class="container">
-      <div class="user-wrapper relative">
+      <div class="user-wrapper relative" *ngIf="profile">
 
         <div class="user-edition dropdown" *ngIf="ownProfile">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
