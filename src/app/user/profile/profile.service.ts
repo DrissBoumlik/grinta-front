@@ -5,10 +5,10 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Subject} from 'rxjs';
 import {Post} from '../posts/post/post.model';
 import {Injectable} from '@angular/core';
+import {AuthService} from '../../Auth/auth.service';
 
 @Injectable()
 export class ProfileService {
-  static headers = undefined;
   profile: User;
   posts: Post;
   profileLoaded = new Subject<User>();
@@ -16,23 +16,16 @@ export class ProfileService {
   alreadyLoaded = false;
 
   constructor(private http: HttpClient) {
-    ProfileService.headers = new HttpHeaders({
-      Accept: 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem('_token')
-    });
-  }
-
-  static getHeaders() {
-    ProfileService.headers = new HttpHeaders({
+    AuthService.headers = new HttpHeaders({
       Accept: 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem('_token')
     });
   }
 
   getProfile(username: string = null) {
-    ProfileService.getHeaders();
+    AuthService.getHeaders();
     const url = environment.baseApiUrl + '/user-profile/' + (username === null ? '' : username);
-    return this.http.get(url, {headers: ProfileService.headers})
+    return this.http.get(url, {headers: AuthService.headers})
       .pipe(
         tap(
           (data: any) => {
@@ -45,11 +38,12 @@ export class ProfileService {
       );
   }
 
-  updateProfile(username, firstname, lastname, email, password, password_confirmation, gender, picture, cover, sport, city) {
-    ProfileService.getHeaders();
+  updateProfile(username, firstname, lastname, email, password, passwordConfirmation, gender, picture, cover, sport, city) {
+    AuthService.getHeaders();
     return this.http.put(environment.baseApiUrl + '/user-profile/' + username,
-      {username, firstname, lastname, email, password, password_confirmation, gender, picture, cover, sport, city},
-      {headers: ProfileService.headers})
+      {username, firstname, lastname, email, password,
+        password_confirmation: passwordConfirmation, gender, picture, cover, sport, city},
+      {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),

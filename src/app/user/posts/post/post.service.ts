@@ -6,32 +6,25 @@ import { tap } from 'rxjs/operators';
 
 import { Post } from './post.model';
 import { Comment } from './comments/comment/comment.model';
+import {AuthService} from '../../../Auth/auth.service';
 
 @Injectable()
 export class PostService {
-  static headers = undefined;
   post: Post;
   postCommentsUpdated = new Subject<Comment[]>();
 
   constructor(private http: HttpClient) {
-    PostService.headers = new HttpHeaders({
-      Accept: 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem('_token')
-    });
-  }
-
-  static getHeaders() {
-    PostService.headers = new HttpHeaders({
+    AuthService.headers = new HttpHeaders({
       Accept: 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem('_token')
     });
   }
 
   createComment(user_id: number, post_id: number, content: string, parent_id: number = null): Observable<any> {
-    PostService.getHeaders();
+    AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/comments',
       {user_id, post_id, content, parent_id},
-      {headers: PostService.headers})
+      {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -51,9 +44,9 @@ export class PostService {
   }
 
   likeComment(comment: Comment) {
-    PostService.getHeaders();
+    AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/like-comment',
-      {comment}, {headers: PostService.headers})
+      {comment}, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -63,9 +56,9 @@ export class PostService {
   }
 
   unlikeComment(comment: Comment) {
-    PostService.getHeaders();
+    AuthService.getHeaders();
     return this.http.delete(environment.baseApiUrl + '/unlike-comment/' + comment.id,
-      {headers: PostService.headers})
+      {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -76,9 +69,9 @@ export class PostService {
 
 
   deleteComment(comment: Comment) {
-    PostService.getHeaders();
+    AuthService.getHeaders();
     return this.http.delete(environment.baseApiUrl + '/comments/' + comment.id,
-      {headers: PostService.headers})
+      {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -88,9 +81,9 @@ export class PostService {
   }
 
   updateComment(content: string, commentId: number): Observable<any> {
-    PostService.getHeaders();
+    AuthService.getHeaders();
     return this.http.put(environment.baseApiUrl + '/comments/' + commentId,
-      {content, comment_id: commentId}, {headers: PostService.headers})
+      {content, comment_id: commentId}, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),

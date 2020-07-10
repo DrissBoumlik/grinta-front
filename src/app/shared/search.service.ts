@@ -3,27 +3,20 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {tap} from 'rxjs/operators';
 import {Subject} from 'rxjs';
+import {AuthService} from '../Auth/auth.service';
 
 @Injectable()
 export class SearchService {
-  static headers = undefined;
   results: {header: string, image: string, link: string}[];
   resultsLoaded = new Subject<{header: string, image: string, link: string}>();
   resultsShowed = new Subject<boolean>();
 
   constructor(private http: HttpClient) {}
 
-  static getHeaders() {
-    SearchService.headers = new HttpHeaders({
-      Accept: 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem('_token')
-    });
-  }
-
   searchEverything(term: any = null) {
     term = [null, undefined].includes(term) ? '' : term;
-    SearchService.getHeaders();
-    return this.http.get(environment.baseApiUrl + '/search/' + term, {headers: SearchService.headers})
+    AuthService.getHeaders();
+    return this.http.get(environment.baseApiUrl + '/search/' + term, {headers: AuthService.headers})
       .pipe(
         tap(
           (data: any) => {

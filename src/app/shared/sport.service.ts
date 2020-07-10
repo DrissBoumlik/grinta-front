@@ -3,25 +3,18 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {tap} from 'rxjs/operators';
 import {Sport} from '../user/sports/sport.model';
+import {AuthService} from '../Auth/auth.service';
 
 @Injectable()
 export class SportService {
-  static headers = undefined;
   sports: Sport[] = [];
 
   constructor(private http: HttpClient) {
   }
 
-  static getHeaders() {
-    SportService.headers = new HttpHeaders({
-      Accept: 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem('_token')
-    });
-  }
-
   getSports() {
-    SportService.getHeaders();
-    return this.http.get(environment.baseApiUrl + '/sports', {headers: SportService.headers})
+    AuthService.getHeaders();
+    return this.http.get(environment.baseApiUrl + '/sports', {headers: AuthService.headers})
       .pipe(
         tap(
           (data: any) => {

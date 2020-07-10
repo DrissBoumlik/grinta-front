@@ -9,7 +9,6 @@ import {AuthService} from '../Auth/auth.service';
 
 @Injectable()
 export class UserService {
-  static headers = undefined;
   user: User;
   friends: User[] = [];
   // posts: Post[] = [];
@@ -20,16 +19,9 @@ export class UserService {
     this.user = this.authService.user;
   }
 
-  static getHeaders() {
-    UserService.headers = new HttpHeaders({
-      Accept: 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem('_token')
-    });
-  }
-
   followUser(followedId: number) {
-    UserService.getHeaders();
-    return this.http.post(environment.baseApiUrl + '/followers', {followedId}, {headers: UserService.headers})
+    AuthService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/followers', {followedId}, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -39,8 +31,8 @@ export class UserService {
   }
 
   unFollowUser(followedId: number) {
-    UserService.getHeaders();
-    return this.http.delete(environment.baseApiUrl + '/followers/' + followedId, {headers: UserService.headers})
+    AuthService.getHeaders();
+    return this.http.delete(environment.baseApiUrl + '/followers/' + followedId, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -50,8 +42,8 @@ export class UserService {
   }
 
   addFriend(friendId: number) {
-    UserService.getHeaders();
-    return this.http.post(environment.baseApiUrl + '/friends', {friendId}, {headers: UserService.headers})
+    AuthService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/friends', {friendId}, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -60,8 +52,8 @@ export class UserService {
       );
   }
   removeFriend(friendId: number) {
-    UserService.getHeaders();
-    return this.http.delete(environment.baseApiUrl + '/friends/' + friendId, {headers: UserService.headers})
+    AuthService.getHeaders();
+    return this.http.delete(environment.baseApiUrl + '/friends/' + friendId, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -71,10 +63,10 @@ export class UserService {
   }
 
   updatePage(name, pagename, image, cover, type, description, sport) {
-    UserService.getHeaders();
+    AuthService.getHeaders();
     return this.http.put(environment.baseApiUrl + '/pages',
       {name, pagename, image, cover, type, description, sport},
-      {headers: UserService.headers})
+      {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -84,10 +76,10 @@ export class UserService {
   }
 
   createPage(name, pagename, image, cover, type, description, sport) {
-    UserService.getHeaders();
+    AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/pages',
       {name, pagename, image, cover, type, description, sport},
-      {headers: UserService.headers})
+      {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -96,11 +88,11 @@ export class UserService {
       );
   }
 
-  createEvent(name, date, limit_signup, address, location, image, cover, type, description) {
-    UserService.getHeaders();
+  createEvent(name, date, limitSignup, address, location, image, cover, type, description) {
+    AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/events',
-      {name,  date, limit_signup, address, location, image, cover, type, description},
-      {headers: UserService.headers})
+      {name,  date, limit_signup: limitSignup, address, location, image, cover, type, description},
+      {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),

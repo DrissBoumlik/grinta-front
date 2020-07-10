@@ -10,7 +10,6 @@ import {Post} from '../../posts/post/post.model';
 
 @Injectable()
 export class PageService {
-  static headers = undefined;
   user: User;
   page: Page;
   pageLoaded = new Subject<Page>();
@@ -20,16 +19,9 @@ export class PageService {
     this.user = this.authService.user;
   }
 
-  static getHeaders() {
-    PageService.headers = new HttpHeaders({
-      Accept: 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem('_token')
-    });
-  }
-
   getPage(pagename) {
-    PageService.getHeaders();
-    return this.http.get(environment.baseApiUrl + '/pages/' + pagename, {headers: PageService.headers})
+    AuthService.getHeaders();
+    return this.http.get(environment.baseApiUrl + '/pages/' + pagename, {headers: AuthService.headers})
       .pipe(
           tap(
             (data: any) => {

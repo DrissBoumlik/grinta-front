@@ -7,30 +7,24 @@ import {AuthService} from '../../Auth/auth.service';
 import {ProfileService} from '../profile/profile.service';
 import {Post} from './post/post.model';
 import {User} from '../user.model';
+import {HandlerService} from '../../shared/handler.service';
 
 @Injectable()
 export class PostsService {
-  static headers = undefined;
   user: User;
   postsUpdated = new Subject<Post[]>();
 
   constructor(private http: HttpClient,
               private profileService: ProfileService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private handlerService: HandlerService) {
     this.user = this.authService.user;
-  }
-
-  static getHeaders() {
-    PostsService.headers = new HttpHeaders({
-      Accept: 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem('_token')
-    });
   }
 
   getPosts(page = 1, profileId = null, pageId = null) {
     const id = profileId ? profileId + '/user/' : (pageId ? pageId + '/page/' : '');
-    PostsService.getHeaders();
-    return this.http.get(environment.baseApiUrl + '/posts/' + id + '?page=' + page, {headers: PostsService.headers})
+    AuthService.getHeaders();
+    return this.http.get(environment.baseApiUrl + '/posts/' + id + '?page=' + page, {headers: AuthService.headers})
       .pipe(
         tap(
           (data: any) => {
@@ -40,7 +34,10 @@ export class PostsService {
             }
             this.user.posts.push(...data.posts);
           },
-          error => console.log(error),
+          error => {
+            console.log(error);
+            this.handlerService.handleRequest(error.status);
+          },
         )
       );
   }
@@ -51,14 +48,14 @@ export class PostsService {
   }
 
   removePost(post: Post) {
-    this.user.posts = this.user.posts.filter((_post) => _post.id !== post.id);
+    this.user.posts = this.user.posts.filter((postItem) => postItem.id !== post.id);
     this.postsUpdated.next(this.user.posts);
   }
 
 
   likePost(post: Post) {
-    PostsService.getHeaders();
-    return this.http.post(environment.baseApiUrl + '/like-post', {post}, {headers: PostsService.headers})
+    AuthService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/like-post', {post}, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -68,8 +65,8 @@ export class PostsService {
   }
 
   unlikePost(post: Post) {
-    PostsService.getHeaders();
-    return this.http.delete(environment.baseApiUrl + '/unlike-post/' + post.id, {headers: PostsService.headers})
+    AuthService.getHeaders();
+    return this.http.delete(environment.baseApiUrl + '/unlike-post/' + post.id, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -80,8 +77,8 @@ export class PostsService {
 
   createPost(content: string, image: File, pageId: number = null): Observable<any> {
     console.log(this.user.posts);
-    PostsService.getHeaders();
-    return this.http.post(environment.baseApiUrl + '/posts', {content, image, page_id: pageId}, {headers: PostsService.headers})
+    AuthService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/posts', {content, image, page_id: pageId}, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -91,9 +88,9 @@ export class PostsService {
   }
 
   sharePost(content: string = null, image: string = null, postOwnerId: number = null, pageId: number = null): Observable<any> {
-    PostsService.getHeaders();
+    AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/posts',
-      {content, image, postOwnerId, page_id: pageId}, {headers: PostsService.headers})
+      {content, image, postOwnerId, page_id: pageId}, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -102,9 +99,9 @@ export class PostsService {
       );
   }
   updatePost(content: string, postId: number): Observable<any> {
-    PostsService.getHeaders();
+    AuthService.getHeaders();
     return this.http.put(environment.baseApiUrl + '/posts/' + postId,
-      {content, post_id: postId}, {headers: PostsService.headers})
+      {content, post_id: postId}, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -113,9 +110,9 @@ export class PostsService {
       );
   }
 
-  deletePost(post_id: number) {
-    PostsService.getHeaders();
-    return this.http.delete(environment.baseApiUrl + '/posts/' + post_id, {headers: PostsService.headers})
+  deletePost(postId: number) {
+    AuthService.getHeaders();
+    return this.http.delete(environment.baseApiUrl + '/posts/' + postId, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
