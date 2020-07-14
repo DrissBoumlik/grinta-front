@@ -20,10 +20,10 @@ export class PostService {
     });
   }
 
-  createComment(user_id: number, post_id: number, content: string, parent_id: number = null): Observable<any> {
+  createComment(userId: number, postId: number, content: string, parentId: number = null): Observable<any> {
     AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/comments',
-      {user_id, post_id, content, parent_id},
+      {user_id: userId, post_id: postId, content, parent_id: parentId},
       {headers: AuthService.headers})
       .pipe(
         tap(
@@ -39,7 +39,7 @@ export class PostService {
   }
 
   removeComment(comment: Comment) {
-    this.post.comments = this.post.comments.filter((_comment) => _comment.id !== comment.id);
+    this.post.comments = this.post.comments.filter((commentItem) => commentItem.id !== comment.id);
     this.postCommentsUpdated.next(this.post.comments);
   }
 
