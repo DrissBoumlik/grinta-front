@@ -35,6 +35,7 @@ import {PagesService} from './user/pages/pages.service';
 import {FriendsModule} from './user/friends/friends.module';
 import {EditUserComponent} from './user/profile/edit-user/edit-user.component';
 import { UserOptionsComponent } from './user/user-options/user-options.component';
+import { UserUpdatesComponent } from './user/user-updates/user-updates.component';
 
 const config = new AuthServiceConfig([
   {
@@ -66,6 +67,7 @@ export function provideConfig() {
     RegisterComponent,
     EditUserComponent,
     UserOptionsComponent,
+    UserUpdatesComponent,
   ],
   imports: [
     BrowserModule,
