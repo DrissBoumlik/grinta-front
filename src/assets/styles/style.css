@@ -115,7 +115,7 @@ hr {
 }
 
 .no-border-shadow, .no-border-shadow:focus {
-  border: none;
+  border-color: #81D400 !important;
   box-shadow: none;
 }
 .img-fit {

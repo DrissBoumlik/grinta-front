@@ -32,10 +32,10 @@ div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg pa
 /*  !*transform: translateX(0px);*!*/
 
 /*}*/
-/*.right-sidebar-panel {*/
-/*  height: 90vh;*/
-/*  overflow-x: hidden;*/
-/*}*/
+.right-sidebar-panel {
+  height: 90vh;
+  overflow-x: hidden;
+}
 
 .search-friend {
   background-color: #fff;
