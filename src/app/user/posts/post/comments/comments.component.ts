@@ -42,7 +42,7 @@ export class CommentsComponent implements OnInit {
       this.postService.createComment(user_id, post_id, content)
       .subscribe((response: any) => {
         // this.comments.unshift(response.comment)
-        // this.postService.addComment(response.comment);
+        this.postService.addComment(response.comment);
       });
       this.CommentForm.reset();
     } else {

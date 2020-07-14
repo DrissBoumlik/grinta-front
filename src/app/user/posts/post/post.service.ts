@@ -27,10 +27,7 @@ export class PostService {
       {headers: AuthService.headers})
       .pipe(
         tap(
-          (data: any) => {
-            this.addComment(data.comment);
-            console.log(data);
-          },
+          data => console.log(data),
           error => console.log(error.status),
         )
       );

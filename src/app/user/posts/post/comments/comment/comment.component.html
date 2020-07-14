@@ -14,7 +14,7 @@
 
           <div class="comment-edit" *ngIf="editMode">
             <form [formGroup]="editCommentForm">
-              <textarea formControlName="content" cols="60" rows="4" class="form-control new-content"></textarea>
+              <input formControlName="content" cols="60" rows="4" class="form-control new-content" />
               <div class="pull-right">
                 <button type="submit" class="btn btn-update btn-default" (click)="onCancel()">Annuler</button>
                 <button type="submit" class="btn btn-update btn-primary" (click)="onUpdateComment()">Valider</button>
