@@ -249,3 +249,11 @@ hr {
   right: 0;
   z-index: 901;
 }
+
+.bgclr-grintaaa {
+  background-color: #81D400 !important;
+  border-color: #81D400 !important;
+}
+.clr-grintaaa {
+  color: #81D400 !important;
+}
