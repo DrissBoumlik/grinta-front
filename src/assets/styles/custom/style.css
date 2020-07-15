@@ -44,3 +44,7 @@ div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg pa
   width: 100%;
   z-index: 999;
 }
+.iq-sidebar-menu .iq-menu li.active>a,
+.iq-sidebar-menu .iq-menu li a:hover {
+  color: #81D400;
+}
