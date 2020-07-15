@@ -2,7 +2,7 @@
   <div class="comment-container">
     <div class="row">
       <div class="comment-user-picture pd-sides-5 pull-left">
-        <img src="{{ comment?.user?.picture }}" alt="" class="user-picture round w-h-50">
+        <img src="{{ comment?.user?.picture }}" alt="" class="user-picture round w-h-30">
       </div>
       <div class="comment-user-content pd-sides-5 pull-left">
         <div class="comment bg-gray">
@@ -10,25 +10,33 @@
             <span class="user-name"><a routerLink="/{{ comment?.user?.username }}">{{ comment?.user?.firstname }} {{ comment?.user?.lastname }}</a></span>
             <i class="fas fa-caret-right mg-sides"></i>
             <span>{{ comment?.content }}</span>
+            <div class="comment-interaction">
+              <span>{{ comment?.created_at | date : 'mediumDate'}}</span>
+              <span class="mg-sides">·</span>
+              <button class="btn btn-action-comment btn-like-comment capitalize" (click)='onLikeComment()' [ngClass]="{'liked': commentLiked}">j'aime</button>
+              <span class="mg-sides">.</span>
+              <button class="btn btn-action-comment btn-answer-comment capitalize" (click)="onWillReply()">répondre</button>
+            </div>
           </div>
 
           <div class="comment-edit" *ngIf="editMode">
-            <form [formGroup]="editCommentForm">
-              <input formControlName="content" cols="60" rows="4" class="form-control new-content" />
-              <div class="pull-right">
-                <button type="submit" class="btn btn-update btn-default" (click)="onCancel()">Annuler</button>
-                <button type="submit" class="btn btn-update btn-primary" (click)="onUpdateComment()">Valider</button>
+            <form [formGroup]="editCommentForm" class="comment-text d-flex align-items-center">
+<!--              <input formControlName="content" cols="60" rows="4" class="form-control new-content" />-->
+<!--              <div class="pull-right">-->
+<!--                <button type="submit" class="btn btn-update btn-default" (click)="onCancel()">Annuler</button>-->
+<!--                <button type="submit" class="btn btn-update btn-primary" (click)="onUpdateComment()">Valider</button>-->
+<!--              </div>-->
+              <input formControlName="content" type="text" class="form-control rounded new-content" placeholder="Ecrire un commentaire..."/>
+              <div class="comment-attagement d-flex">
+<!--                <a><i class="ri-link mr-3"></i></a>-->
+<!--                <a><i class="ri-user-smile-line mr-3"></i></a>-->
+<!--                <a><i class="ri-camera-line mr-3"></i></a>-->
+                <button class="btn btn-secondary mr-1" type="submit" (click)="onCancel()"><i class="fas fa-window-close"></i></button>
+                <button class="btn btn-success btn-send-comment mr-1" type="submit" (click)="onUpdateComment()"><i class="fas fa-pen-square"></i></button>
               </div>
             </form>
           </div>
 
-          <div class="comment-interaction">
-            <span>{{ comment?.created_at | date : 'mediumDate'}}</span>
-            <span class="mg-sides">·</span>
-            <button class="btn btn-action-comment btn-like-comment capitalize" (click)='onLikeComment()' [ngClass]="{'liked': commentLiked}">j'aime</button>
-            <span class="mg-sides">.</span>
-            <button class="btn btn-action-comment btn-answer-comment capitalize" (click)="onWillReply()">répondre</button>
-          </div>
         </div>
       </div>
       <div class="comment-edition dropdown">
