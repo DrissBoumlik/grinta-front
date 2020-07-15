@@ -127,6 +127,11 @@ hr {
   height: 50px;
 }
 
+.w-h-30 {
+  width: 30px;
+  height: 30px;
+}
+
 .mg-sides {
   margin-right: 10px;
   margin-left: 10px;
