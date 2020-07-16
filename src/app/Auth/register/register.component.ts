@@ -10,6 +10,7 @@ import {Sport} from '../../user/sports/sport.model';
 import {GoogleLoginProvider, AuthService as SocialService, SocialUser} from 'angularx-social-login';
 import {ToolsService} from '../../shared/tools.service';
 import {SportService} from '../../shared/sport.service';
+import {FeedbackService} from '../../shared/feedback/feedback.service';
 
 @Component({
   selector: 'app-register',
@@ -41,7 +42,8 @@ export class RegisterComponent implements OnInit {
               private http: HttpClient,
               private socialService: SocialService,
               private sportService: SportService,
-              private toolsService: ToolsService) { }
+              private toolsService: ToolsService,
+              private feedbackService: FeedbackService) { }
 
   ngOnInit() {
     const userLogged = localStorage.getItem('_token') !== null && localStorage.getItem('_token') !== undefined;
@@ -49,9 +51,9 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['home']);
     }
 
-    this.sportService.getSports().subscribe((response: any) => {
-      this.sports = response.sports;
-    });
+    // this.sportService.getSports().subscribe((response: any) => {
+    //   this.sports = response.sports;
+    // });
 
     this.toolsService.getCities().subscribe((response: any) => {
       this.cities = response;
@@ -61,6 +63,49 @@ export class RegisterComponent implements OnInit {
       this.socialUser = user;
       this.loggedIn = (user != null);
       console.log(user);
+    });
+
+    /*---------------------------------------------------------------------
+      Owl Carousel
+      -----------------------------------------------------------------------*/
+    jQuery('.owl-carousel').each(function() {
+      let jQuerycarousel = jQuery(this);
+      jQuerycarousel.owlCarousel({
+        items: jQuerycarousel.data("items"),
+        loop: jQuerycarousel.data("loop"),
+        margin: jQuerycarousel.data("margin"),
+        nav: jQuerycarousel.data("nav"),
+        dots: jQuerycarousel.data("dots"),
+        autoplay: jQuerycarousel.data("autoplay"),
+        autoplayTimeout: jQuerycarousel.data("autoplay-timeout"),
+        navText: ["<i class='fa fa-angle-left fa-2x'></i>", "<i class='fa fa-angle-right fa-2x'></i>"],
+        responsiveClass: true,
+        responsive: {
+          // breakpoint from 0 up
+          0: {
+            items: jQuerycarousel.data("items-mobile-sm"),
+            nav: false,
+            dots: true
+          },
+          // breakpoint from 480 up
+          480: {
+            items: jQuerycarousel.data("items-mobile"),
+            nav: false,
+            dots: true
+          },
+          // breakpoint from 786 up
+          786: {
+            items: jQuerycarousel.data("items-tab")
+          },
+          // breakpoint from 1023 up
+          1023: {
+            items: jQuerycarousel.data("items-laptop")
+          },
+          1199: {
+            items: jQuerycarousel.data("items")
+          }
+        }
+      });
     });
   }
 
@@ -106,6 +151,7 @@ export class RegisterComponent implements OnInit {
           });
       }, (response: any) => {
         console.log(response);
+        this.feedbackService.feedbackReceived.next({feedback: false, message: response.message});
       });
   }
 

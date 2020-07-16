@@ -1,176 +1,107 @@
-<div class="register">
-  <div class="container">
-    <div class="container-fluid">
-      <div class="row register-wrapper">
-        <div class="col-md-3 col-sm-3 col-xs-12">
-          <div class="logo">
-            <img src="/assets/images/logo.png" alt="">
+<div class="main">
+  <div class="register-wrapper">
+
+    <!-- loader Start -->
+    <div id="loading d-none">
+      <div id="loading-center">
+      </div>
+    </div>
+    <!-- loader END -->
+    <!-- Sign in Start -->
+    <section class="sign-in-page">
+      <div id="container-inside">
+        <div id="circle-small"></div>
+        <div id="circle-medium"></div>
+        <div id="circle-large"></div>
+        <div id="circle-xlarge"></div>
+        <div id="circle-xxlarge"></div>
+      </div>
+      <div class="container p-0">
+        <div class="row no-gutters">
+          <div class="col-md-6 text-center pt-5">
+            <div class="sign-in-detail text-white">
+              <a class="sign-in-logo mb-5" href="#"><img src="/assets/plugins/socialV/images/logo-full.png" class="img-fluid" alt="logo"></a>
+              <div class="owl-carousel" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true"
+                   data-items="1" data-items-laptop="1" data-items-tab="1" data-items-mobile="1"
+                   data-items-mobile-sm="1" data-margin="0">
+                <div class="item">
+                  <img src="/assets/plugins/socialV/images/login/1.png" class="img-fluid mb-4" alt="logo">
+                  <h4 class="mb-1 text-white">Manage your orders</h4>
+                  <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+                </div>
+                <div class="item">
+                  <img src="/assets/plugins/socialV/images/login/1.png" class="img-fluid mb-4" alt="logo">
+                  <h4 class="mb-1 text-white">Manage your orders</h4>
+                  <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+                </div>
+                <div class="item">
+                  <img src="/assets/plugins/socialV/images/login/1.png" class="img-fluid mb-4" alt="logo">
+                  <h4 class="mb-1 text-white">Manage your orders</h4>
+                  <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="col-md-9 col-sm-9 col-xs-12">
-          <form class="_well form-horizontal" [formGroup]="registerForm" (ngSubmit)="onRegister()" enctype="multipart/form-data">
-            <fieldset>
-
-              <!-- Text input-->
-              <div class="form-group">
-                <label class="col-md-4 col-sm-4 col-xs-12 control-label">User Name</label>
-                <div class="col-md-6 col-sm-6 col-xs-12 inputGroupContainer">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input  formControlName="username" placeholder="User Name" class="form-control"  type="text">
+          <div class="col-md-6 bg-white pt-5">
+            <div class="sign-in-from">
+              <h1 class="mb-0">Sign Up</h1>
+              <p>Enter your email address and password to access admin panel.</p>
+              <form class="mt-4" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+                <div class="form-group">
+<!--                  <label for="username">User Name</label>-->
+                  <input formControlName="username" type="text" class="form-control mb-0" id="username" placeholder="User Name">
+                </div>
+                <div class="form-group">
+<!--                  <label for="firstname">First Name</label>-->
+                  <input formControlName="firstname" type="text" class="form-control mb-0" id="firstname" placeholder="First Name">
+                </div>
+                <div class="form-group">
+<!--                  <label for="lastname">Last Name</label>-->
+                  <input formControlName="lastname" type="text" class="form-control mb-0" id="lastname" placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                  <!--                  <label for="lastname">Sexe</label>-->
+                  <select formControlName="gender" type="text" class="form-control mb-0" id="gender">
+                    <option value="" disabled>Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+                <div class="form-group">
+<!--                  <label for="email">Email address</label>-->
+                  <input formControlName="email" type="email" class="form-control mb-0" id="email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+<!--                  <label for="password">Password</label>-->
+                  <input formControlName="password" type="password" class="form-control mb-0" id="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+<!--                  <label for="password_confirmation">Password confirmation</label>-->
+                  <input formControlName="password_confirmation" type="password" class="form-control mb-0" id="password_confirmation" placeholder="Password confirmation">
+                </div>
+                <div class="d-inline-block w-100">
+                  <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
+                    <input type="checkbox" class="custom-control-input" id="terms">
+                    <label class="custom-control-label" for="terms">I accept <a href="/terms-conditions">Terms and Conditions</a></label>
                   </div>
+                  <button type="submit" class="btn btn-primary bgclr-grintaaa float-right">Sign Up</button>
                 </div>
-              </div>
-
-              <!-- Text input-->
-              <div class="form-group">
-                <label class="col-md-4 col-sm-4 col-xs-12 control-label" >First Name</label>
-                <div class="col-md-6 col-sm-6 col-xs-12 inputGroupContainer">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input formControlName="firstname" placeholder="First name" class="form-control"  type="text">
-                  </div>
+                <div class="sign-info">
+                  <span class="dark-color d-inline-block line-height-2">Already Have Account ? <a
+                    routerLink="/login">Log In</a></span>
+                  <ul class="iq-social-media">
+                    <li><a href="#"><i class="ri-facebook-box-line"></i></a></li>
+                    <li><a href="#"><i class="ri-twitter-line"></i></a></li>
+                    <li><a href="#"><i class="ri-instagram-line"></i></a></li>
+                  </ul>
                 </div>
-              </div>
-
-              <!-- Text input-->
-              <div class="form-group">
-                <label class="col-md-4 col-sm-4 col-xs-12 control-label" >Last Name</label>
-                <div class="col-md-6 col-sm-6 col-xs-12 inputGroupContainer">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input formControlName="lastname" placeholder="Last name" class="form-control"  type="text">
-                  </div>
-                </div>
-              </div>
-
-              <!-- Select Basic -->
-              <div class="form-group hidden driss">
-                <label class="col-md-4 col-sm-4 col-xs-12 control-label">Sexe</label>
-                <div class="col-md-6 col-sm-6 col-xs-12 selectContainer">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <select formControlName="gender" class="form-control selectpicker" >
-                      <option value=" " disabled></option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Select Basic -->
-              <div class="form-group hidden driss">
-                <label class="col-md-4 col-sm-4 col-xs-12 control-label">City</label>
-                <div class="col-md-6 col-sm-6 col-xs-12 selectContainer">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                    <select formControlName="city" class="form-control selectpicker" >
-                      <option value=" " disabled></option>
-                      <option *ngFor="let city of cities" value="{{ city.name }}">{{ city.name }}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Text input-->
-              <div class="form-group">
-                <label class="col-md-4 col-sm-4 col-xs-12 control-label">Email</label>
-                <div class="col-md-6 col-sm-6 col-xs-12 inputGroupContainer">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                    <input formControlName="email" placeholder="Email" class="form-control"  type="email">
-                  </div>
-                </div>
-              </div>
-
-              <!-- Text input-->
-              <div class="form-group">
-                <label class="col-md-4 col-sm-4 col-xs-12 control-label">Password</label>
-                <div class="col-md-6 col-sm-6 col-xs-12 inputGroupContainer">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
-                    <input formControlName="password" placeholder="Password" class="form-control"  type="password">
-                  </div>
-                </div>
-              </div>
-
-              <!-- Text input-->
-              <div class="form-group">
-                <label class="col-md-4 col-sm-4 col-xs-12 control-label">Confirmation</label>
-                <div class="col-md-6 col-sm-6 col-xs-12 inputGroupContainer">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
-                    <input formControlName="password_confirmation" placeholder="Password Confirmation" class="form-control"  type="password">
-                  </div>
-                </div>
-              </div>
-
-              <!-- Select Basic -->
-              <div class="form-group hidden driss">
-                <label class="col-md-4 col-sm-4 col-xs-12 control-label">Sport</label>
-                <div class="col-md-6 col-sm-6 col-xs-12 selectContainer">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                    <select formControlName="sport" class="form-control selectpicker">
-                      <option value=" " disabled></option>
-                      <option *ngFor="let sport of sports" value="{{ sport.id }}">{{ sport.name }}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Text input-->
-              <div class="form-group hidden driss">
-                <label class="col-md-4 col-sm-4 col-xs-12 control-label">Picture</label>
-                <div class="col-md-6 col-sm-6 col-xs-12 inputGroupContainer">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
-                    <input accept="image/*"
-                           type="file" id="picture" class="form-control"
-                           (change)="onFilePictureChange($event.srcElement.files)">
-                  </div>
-                </div>
-              </div>
-
-
-              <!-- Text input-->
-
-              <div class="form-group hidden driss">
-                <label class="col-md-4 col-sm-4 col-xs-12 control-label">Cover</label>
-                <div class="col-md-6 col-sm-6 col-xs-12 inputGroupContainer">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
-                    <input accept="image/*"
-                           type="file" id="cover" class="form-control"
-                           (change)="onFileCoverChange($event.srcElement.files)">
-                  </div>
-                </div>
-              </div>
-
-              <!-- Success message -->
-              <div class="alert alert-success hidden" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
-
-              <!-- Button -->
-              <div class="form-group btn-send-wrapper">
-                <label class="col-md-4 control-label"></label>
-                <div class="col-md-4">
-                  <button type="submit" class="btn btn-warning">Send <span class="glyphicon glyphicon-send"></span></button>
-                </div>
-              </div>
-
-            </fieldset>
-          </form>
-          <div class="sign-in">
-            <span><a (click)="signUpWithGoogle()" style="cursor:pointer;">Google SignUp</a></span>
-          </div>
-          <div class="sign-in">
-            <span>
-              Already a member ? <a routerLink="/login">Sign In</a>
-            </span>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div><!-- /.container-fluid -->
+    </section>
+    <!-- Sign in END -->
   </div>
+  <app-feedback></app-feedback>
 </div>
