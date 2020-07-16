@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       Owl Carousel
       -----------------------------------------------------------------------*/
     jQuery('.owl-carousel').each(function() {
-      let jQuerycarousel = jQuery(this);
+      let jQuerycarousel = (jQuery(this) as any);
       jQuerycarousel.owlCarousel({
         items: jQuerycarousel.data("items"),
         loop: jQuerycarousel.data("loop"),
