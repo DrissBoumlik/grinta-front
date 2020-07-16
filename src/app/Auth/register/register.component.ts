@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../user/user.service';
 import {AuthService} from '../auth.service';
@@ -71,38 +71,38 @@ export class RegisterComponent implements OnInit {
     jQuery('.owl-carousel').each(function() {
       let jQuerycarousel = (jQuery(this) as any);
       jQuerycarousel.owlCarousel({
-        items: jQuerycarousel.data("items"),
-        loop: jQuerycarousel.data("loop"),
-        margin: jQuerycarousel.data("margin"),
-        nav: jQuerycarousel.data("nav"),
-        dots: jQuerycarousel.data("dots"),
-        autoplay: jQuerycarousel.data("autoplay"),
-        autoplayTimeout: jQuerycarousel.data("autoplay-timeout"),
-        navText: ["<i class='fa fa-angle-left fa-2x'></i>", "<i class='fa fa-angle-right fa-2x'></i>"],
+        items: jQuerycarousel.data('items'),
+        loop: jQuerycarousel.data('loop'),
+        margin: jQuerycarousel.data('margin'),
+        nav: jQuerycarousel.data('nav'),
+        dots: jQuerycarousel.data('dots'),
+        autoplay: jQuerycarousel.data('autoplay'),
+        autoplayTimeout: jQuerycarousel.data('autoplay-timeout'),
+        navText: ['<i class=\'fa fa-angle-left fa-2x\'></i>', '<i class=\'fa fa-angle-right fa-2x\'></i>'],
         responsiveClass: true,
         responsive: {
           // breakpoint from 0 up
           0: {
-            items: jQuerycarousel.data("items-mobile-sm"),
+            items: jQuerycarousel.data('items-mobile-sm'),
             nav: false,
             dots: true
           },
           // breakpoint from 480 up
           480: {
-            items: jQuerycarousel.data("items-mobile"),
+            items: jQuerycarousel.data('items-mobile'),
             nav: false,
             dots: true
           },
           // breakpoint from 786 up
           786: {
-            items: jQuerycarousel.data("items-tab")
+            items: jQuerycarousel.data('items-tab')
           },
           // breakpoint from 1023 up
           1023: {
-            items: jQuerycarousel.data("items-laptop")
+            items: jQuerycarousel.data('items-laptop')
           },
           1199: {
-            items: jQuerycarousel.data("items")
+            items: jQuerycarousel.data('items')
           }
         }
       });
@@ -139,7 +139,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(false, this.registerForm.value.username, this.registerForm.value.firstname,
       this.registerForm.value.lastname, this.registerForm.value.email,
       this.registerForm.value.password, this.registerForm.value.password_confirmation,
-      this.registerForm.value.gender,this.registerForm.value.picture,
+      this.registerForm.value.gender, this.registerForm.value.picture,
       this.registerForm.value.cover, this.registerForm.value.sport,
       this.registerForm.value.city)
       .subscribe((response: any) => {
@@ -150,8 +150,12 @@ export class RegisterComponent implements OnInit {
             this.router.navigate(['home']);
           });
       }, (response: any) => {
-        console.log(response);
-        this.feedbackService.feedbackReceived.next({feedback: false, message: response.message});
+        const error = response.error.error;
+        const messages = [];
+        Object.entries(error).forEach((item: any) => {
+          messages.push(item[1].flat()[0]);
+        });
+        this.feedbackService.feedbackReceived.next({feedback: false, message: messages});
       });
   }
 
