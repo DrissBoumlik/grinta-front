@@ -25,12 +25,20 @@ export class FeedbackComponent implements OnInit {
 
   showFeedback(feedback: boolean, message: string) {
     console.log('feedback');
-
-    // Swal.fire('Hello world!');
-    // @ts-ignore
-    Swal.fire({
-      title: message,
-      icon: feedback ? 'success' : 'error'
-    });
+    if (Array.isArray(message)) {
+      let html = '<ul class="align-left">';
+      message.forEach((msg) => {
+        html += '<li>' + msg + '</li>';
+      });
+      Swal.fire({
+        html,
+        icon: feedback ? 'success' : 'error'
+      });
+    } else {
+      Swal.fire({
+        title: message,
+        icon: feedback ? 'success' : 'error'
+      });
+    }
   }
 }
