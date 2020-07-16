@@ -1,11 +1,11 @@
 <div class="friend-wrapper">
   <div class="friend">
     <div class="media align-items-center mb-4">
-      <div class="iq-profile-avatar status-online">
+      <div class="iq-profile-avatar" [ngClass]='{ "status-online": friend?.isOnline}'>
         <img class="rounded-circle avatar-50" src="{{ friend.picture }}" alt="">
       </div>
       <div class="media-body ml-3">
-        <h6 class="mb-0"><a href="#">{{ friend.firstname }} {{ friend.lastname }}</a></h6>
+        <h6 class="mb-0"><a routerLink="/{{ friend?.username }}">{{ friend?.fullName }}</a></h6>
         <p class="mb-0 d-none">Admin</p>
       </div>
     </div>

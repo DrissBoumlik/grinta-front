@@ -9,7 +9,7 @@
             </div>
             <div class="media-support-info mt-2">
               <h5 class="mb-0 d-inline-block"><a routerLink="/{{ post?.user?.username }}"
-                                                 class="mr-2">{{ post?.user?.firstname }} {{ post?.user?.lastname }}</a>
+                                                 class="mr-2">{{ post?.user?.fullName }}</a>
               </h5>
               <p class="mb-0 d-inline-block">Added New Image in a Post</p>
               <p class="mb-0 text-primary">{{ post?.created_at | date : 'mediumDate'}}</p>
@@ -111,8 +111,8 @@
                       {{ post?.likers?.length }} Likes
                     </span>
                     <div class="dropdown-menu" *ngIf="post?.likers.length">
-                      <a class="dropdown-item" href="#" *ngFor="let liker of post?.likers">
-                        {{ liker?.firstname + ' ' + liker?.lastname }}
+                      <a class="dropdown-item" href="/{{ liker?.username }}" *ngFor="let liker of post?.likers">
+                        {{ liker?.fullName }}
                       </a>
                     </div>
                   </div>
@@ -126,7 +126,7 @@
                    </span>
                   <div class="dropdown-menu" *ngIf="commentsCount">
                     <a class="dropdown-item" *ngFor="let comment of post?.comments">
-                      {{ comment?.user?.firstname + ' ' + comment?.user?.lastname }}
+                      {{ comment?.user?.fullName }}
                     </a>
                   </div>
                 </div>

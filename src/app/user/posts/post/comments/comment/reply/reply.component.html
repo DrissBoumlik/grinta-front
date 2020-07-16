@@ -7,7 +7,7 @@
       <div class="reply-user-content pd-sides-5 pull-left">
         <div class="reply bg-gray">
           <div class="reply-content" *ngIf="!editMode">
-            <span class="user-name"><a routerLink="/{{ reply?.user?.username }}">{{ reply?.user?.firstname }} {{ reply?.user?.lastname }}</a></span>
+            <span class="user-name"><a routerLink="/{{ reply?.user?.username }}">{{ reply?.user?.fullName }}</a></span>
             <i class="fas fa-caret-right mg-sides"></i>
             <span>{{ reply?.content }}</span>
           </div>

@@ -7,7 +7,7 @@
       <div class="comment-user-content pd-sides-5 pull-left">
         <div class="comment bg-gray">
           <div class="comment-content" *ngIf="!editMode">
-            <span class="user-name"><a routerLink="/{{ comment?.user?.username }}">{{ comment?.user?.firstname }} {{ comment?.user?.lastname }}</a></span>
+            <span class="user-name"><a routerLink="/{{ comment?.user?.username }}">{{ comment?.user?.fullName }}</a></span>
             <i class="fas fa-caret-right mg-sides"></i>
             <span>{{ comment?.content }}</span>
             <div class="comment-interaction">
