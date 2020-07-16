@@ -1,3 +1,8 @@
+.sign-in-page {
+  /*background-color: #81D400 !important;*/
+  background-image: linear-gradient(135deg, #81D400 0%, #5a9400 100%) !important;
+}
+
 .iq-top-navbar {
   /*background-color: #81D400!important;*/
 }
