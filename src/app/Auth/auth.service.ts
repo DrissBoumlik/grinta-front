@@ -16,9 +16,10 @@ export class AuthService {
   }
 
   static getHeaders() {
+    const token = localStorage.getItem('_token');
     AuthService.headers = new HttpHeaders({
       Accept: 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem('_token')
+      Authorization: 'Bearer ' + token
     });
   }
 
@@ -52,9 +53,9 @@ export class AuthService {
   }
 
   logout() {
+    AuthService.getHeaders();
     localStorage.removeItem('_token');
     localStorage.removeItem('_user');
-    AuthService.getHeaders();
     return this.http.get(environment.baseApiUrl + '/logout', {headers: AuthService.headers})
     .pipe(
       tap(
