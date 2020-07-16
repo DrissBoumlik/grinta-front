@@ -19,19 +19,18 @@ export class FeedbackComponent implements OnInit {
   ngOnInit() {
     this.feedbackService.feedbackReceived.subscribe(({feedback, message}: any) => {
       this.success = feedback;
-      this.showFeedback(feedback ? 'success' : 'error', message);
+      this.showFeedback(feedback, message);
     });
   }
 
-  showFeedback(feedback: string, message: string) {
+  showFeedback(feedback: boolean, message: string) {
     console.log('feedback');
 
     // Swal.fire('Hello world!');
     // @ts-ignore
-    Swal.fire(
-      '',
-      message,
-      feedback ? 'success' : 'error'
-    );
+    Swal.fire({
+      title: message,
+      icon: feedback ? 'success' : 'error'
+    });
   }
 }
