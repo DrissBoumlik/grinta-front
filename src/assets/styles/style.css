@@ -262,3 +262,10 @@ hr {
 .clr-grintaaa {
   color: #81D400 !important;
 }
+.bgclr-white {
+  background-color: #fff !important;
+  border-color: #fff !important;
+}
+.clr-white {
+  color: #fff !important;
+}

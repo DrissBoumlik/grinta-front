@@ -35,13 +35,60 @@
             </a>
           </li>
           <li>
-            <a href="index.html" class="iq-waves-effect d-flex align-items-center">
-              <i class="ri-home-line"></i>
+<!--            <a routerLink="/home" class="iq-waves-effect d-flex align-items-center">-->
+<!--              <i class="ri-home-line"></i>-->
+<!--            </a>-->
+            <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
+<!--              <i class="fas fa-plus-square"></i>-->
+              <i class="far fa-plus-square"></i>
+<!--              <i class="fas fa-plus"></i>-->
             </a>
+            <div class="iq-sub-dropdown iq-user-dropdown">
+              <div class="iq-card shadow-none m-0">
+                <div class="iq-card-body p-0 ">
+                  <div class="bg-primary bgclr-grintaaa p-3 line-height">
+                    <h5 class="mb-0 text-white line-height">Create</h5>
+                  </div>
+                  <a routerLink="/create/page" class="iq-sub-card iq-bg-primary-hover">
+                    <div class="media align-items-center">
+                      <div class="rounded iq-card-icon iq-bg-primary">
+                        <i class="ri-pages-line"></i>
+                      </div>
+                      <div class="media-body ml-3">
+                        <h6 class="mb-0 text-capitalize">page</h6>
+                        <p class="mb-0 font-size-12">Connectez-vous et partagez avec des clients ou des fans</p>
+                      </div>
+                    </div>
+                  </a>
+                  <a routerLink="/create/event" class="iq-sub-card iq-bg-warning-hover">
+                    <div class="media align-items-center">
+                      <div class="rounded iq-card-icon iq-bg-warning">
+                        <i class="ri-calendar-event-line"></i>
+                      </div>
+                      <div class="media-body ml-3">
+                        <h6 class="mb-0 text-capitalize">événement</h6>
+                        <p class="mb-0 font-size-12">Rassemblez les gens avec un événement public ou privé</p>
+                      </div>
+                    </div>
+                  </a>
+                 <a routerLink="/create/group" class="iq-sub-card iq-bg-warning-hover">
+                    <div class="media align-items-center">
+                      <div class="rounded iq-card-icon iq-bg-warning">
+                        <i class="ri-group-2-line"></i>
+                      </div>
+                      <div class="media-body ml-3">
+                        <h6 class="mb-0 text-capitalize">groupe</h6>
+                        <p class="mb-0 font-size-12">Trouvez des personnes ayant des intérêts communs</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
           </li>
           <li class="nav-item">
             <a class="search-toggle iq-waves-effect" href="#"><i class="ri-group-line"></i></a>
-            <div class="iq-sub-dropdown iq-sub-dropdown-large">
+            <div class="iq-sub-dropdown iq-sub-dropdown-large ========================= d-none">
               <div class="iq-card shadow-none m-0">
                 <div class="iq-card-body p-0 ">
                   <div class="bg-primary p-3">
@@ -131,7 +178,7 @@
               </div>
               <span class="bg-danger dots"></span>
             </a>
-            <div class="iq-sub-dropdown">
+            <div class="iq-sub-dropdown ========================== d-none">
               <div class="iq-card shadow-none m-0">
                 <div class="iq-card-body p-0 ">
                   <div class="bg-primary p-3">
@@ -198,7 +245,7 @@
               </div>
               <span class="bg-primary count-mail"></span>
             </a>
-            <div class="iq-sub-dropdown">
+            <div class="iq-sub-dropdown ========================= d-none">
               <div class="iq-card shadow-none m-0">
                 <div class="iq-card-body p-0 ">
                   <div class="bg-primary p-3">
@@ -274,7 +321,7 @@
             <div class="iq-sub-dropdown iq-user-dropdown">
               <div class="iq-card shadow-none m-0">
                 <div class="iq-card-body p-0 ">
-                  <div class="bg-primary p-3 line-height">
+                  <div class="bg-primary bgclr-grintaaa p-3 line-height">
                     <h5 class="mb-0 text-white line-height">Hello {{ user?.fullName }}</h5>
                     <span class="text-white font-size-12">Available</span>
                   </div>
@@ -323,7 +370,7 @@
                     </div>
                   </a>
                   <div class="d-inline-block w-100 text-center p-3">
-                    <a class="bg-primary iq-sign-btn pointer" (click)="onLogout()" role="button">Sign out<i
+                    <a class="bg-primary bgclr-grintaaa clr-white iq-sign-btn pointer" (click)="onLogout()" role="button">Sign out<i
                       class="ri-login-box-line ml-2"></i></a>
                   </div>
                 </div>
