@@ -1,118 +1,160 @@
-<app-header></app-header>
-<div class="container">
-  <form class="well form-horizontal" [formGroup]="CreatePageForm" enctype="multipart/form-data">
-    <fieldset>
+<div class="wrapper">
 
-      <!-- Form Name -->
-      <legend>{{ editMode ? 'Update' : 'Create' }} Page!</legend>
+  <app-header></app-header>
 
-      <!-- Text input-->
-
-      <div class="form-group">
-        <label class="col-md-4 control-label">Page Name</label>
-        <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
-            <input  formControlName="name" placeholder="Page Name" class="form-control"  type="text">
+  <div id="content-page" class="content-page">
+    <div class="container">
+          <div class="iq-card">
+            <div class="iq-card-header d-flex justify-content-between">
+              <div class="iq-header-title">
+                <h4 class="card-title">{{ editMode ? 'Update' : 'Create' }} Page</h4>
+              </div>
+            </div>
+            <div class="iq-card-body">
+              <form [formGroup]="CreatePageForm" (ngSubmit)="onCreatePage()" id="form-wizard1" class="text-center mt-4">
+                <ul id="top-tab-list" class="p-0">
+                  <li class="active" id="account">
+                    <a href="javascript:void();">
+                      <i class="ri-lock-unlock-line"></i><span>Information</span>
+                    </a>
+                  </li>
+                  <li id="personal">
+                    <a href="javascript:void();">
+                      <i class="ri-user-fill"></i><span>Details</span>
+                    </a>
+                  </li>
+                  <li id="payment">
+                    <a href="javascript:void();">
+                      <i class="ri-camera-fill"></i><span>Image / Cover</span>
+                    </a>
+                  </li>
+                  <li id="confirm">
+                    <a href="javascript:void();">
+                      <i class="ri-check-fill"></i><span>Finish</span>
+                    </a>
+                  </li>
+                </ul>
+                <!-- fieldsets -->
+                <fieldset>
+                  <div class="form-card text-left">
+                    <div class="row">
+                      <div class="col-7">
+                        <h3 class="mb-4">Information:</h3>
+                      </div>
+                      <div class="col-5">
+                        <h2 class="steps">Step 1 - 4</h2>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Page name: *</label>
+                          <input type="text" class="form-control" name="name" formControlName="name" placeholder="Page Name" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Page Username: *</label>
+                          <input type="text" class="form-control" name="pagename" formControlName="pagename" placeholder="Page Username" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Description: </label>
+                          <textarea type="text" class="form-control" name="description" formControlName="description" placeholder="Project Description"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Type: *</label>
+                          <div class="custom-control custom-radio custom-radio-color">
+                            <input type="radio" id="public" name="type" class="custom-control-input bg-success" formControlName="type">
+                            <label class="custom-control-label" for="public"> Public </label>
+                          </div>
+                          <div class="custom-control custom-radio custom-radio-color">
+                            <input type="radio" id="private" name="type" class="custom-control-input bg-danger" formControlName="type">
+                            <label class="custom-control-label" for="private"> Private </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" >Next</button>
+                </fieldset>
+                <fieldset>
+                  <div class="form-card text-left">
+                    <div class="row">
+                      <div class="col-7">
+                        <h3 class="mb-4">Details:</h3>
+                      </div>
+                      <div class="col-5">
+                        <h2 class="steps">Step 2 - 4</h2>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Sport: *</label>
+                          <select class="form-control" formControlName="sport">
+                            <option selected="" disabled="">Select Sport</option>
+                            <option *ngFor="let sport of sports" value="{{ sport.id }}">{{ sport.name }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" >Next</button>
+                  <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Previous</button>
+                </fieldset>
+                <fieldset>
+                  <div class="form-card text-left">
+                    <div class="row">
+                      <div class="col-7">
+                        <h3 class="mb-4">Image / Cover:</h3>
+                      </div>
+                      <div class="col-5">
+                        <h2 class="steps">Step 3 - 4</h2>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Upload Image:</label>
+                      <input type="file" class="form-control" name="image" accept="image/*" (change)="onFileImageChange($event.srcElement.files)">
+                    </div>
+                    <div class="form-group">
+                      <label>Upload Cover :</label>
+                      <input type="file" class="form-control" name="cover" accept="image/*" (change)="onFileCoverChange($event.srcElement.files)">
+                    </div>
+                  </div>
+                  <button type="submit" name="next" class="btn btn-primary next action-button float-right" value="Submit" >Submit</button>
+                  <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Previous</button>
+                </fieldset>
+                <fieldset>
+                  <div class="form-card">
+                    <div class="row">
+                      <div class="col-7">
+                        <h3 class="mb-4 text-left">Finish:</h3>
+                      </div>
+                      <div class="col-5">
+                        <h2 class="steps">Step 4 - 4</h2>
+                      </div>
+                    </div>
+                    <br><br>
+                    <h2 class="text-success text-center"><strong>SUCCESS !</strong></h2>
+                    <br>
+                    <div class="row justify-content-center">
+                      <div class="col-3"> <img src="/assets/plugins/socialV/images/page-img/img-success.png" class="fit-image" alt="fit-image"> </div>
+                    </div>
+                    <br><br>
+                    <div class="row justify-content-center">
+                      <div class="col-7 text-center">
+                        <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Text input-->
-
-      <div class="form-group">
-        <label class="col-md-4 control-label" >Page Username</label>
-        <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
-            <input formControlName="pagename" placeholder="Page Username" class="form-control"  type="text">
-          </div>
-        </div>
-      </div>
-
-      <!-- Text input-->
-
-      <div class="form-group">
-        <label class="col-md-4 control-label" >Sports</label>
-        <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-            <select formControlName="sport" class="form-control selectpicker" >
-              <option value=" " disabled></option>
-              <option *ngFor="let sport of sports" value="{{ sport.id }}">{{ sport.name }}</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- Text input-->
-      <div class="form-group">
-        <label class="col-md-4 control-label">Image</label>
-        <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
-            <input accept="image/*"
-             type="file" id="image" class="form-control"
-             (change)="onFileImageChange($event.srcElement.files)">
-          </div>
-        </div>
-      </div>
-
-
-      <!-- Text input-->
-
-      <div class="form-group">
-        <label class="col-md-4 control-label">Cover</label>
-        <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
-            <input accept="image/*"
-                   type="file" id="cover" class="form-control"
-                   (change)="onFileCoverChange($event.srcElement.files)">
-          </div>
-        </div>
-      </div>
-
-      <!-- Select Basic -->
-
-      <div class="form-group">
-        <label class="col-md-4 control-label">Type</label>
-        <div class="col-md-4 selectContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-            <select formControlName="type" class="form-control selectpicker" >
-              <option value=" " disabled></option>
-              <option value="public">Public</option>
-              <option value="private">Private</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- Text area -->
-
-      <div class="form-group">
-        <label class="col-md-4 control-label">Page Description</label>
-        <div class="col-md-4 inputGroupContainer">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-            <textarea class="form-control" formControlName="description" placeholder="Project Description"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <!-- Success message -->
-      <div class="alert alert-success hidden" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
-
-      <!-- Button -->
-      <div class="form-group">
-        <label class="col-md-4 control-label"></label>
-        <div class="col-md-4">
-          <button type="submit" class="btn btn-warning" (click)="onCreatePage()">Send <span class="glyphicon glyphicon-send" *ngIf="!editMode"></span></button>
-          <button type="submit" class="btn btn-warning" (click)="onUpdatePage()">Update <span class="glyphicon glyphicon-send" *ngIf="editMode"></span></button>
-        </div>
-      </div>
-
-    </fieldset>
-  </form>
-</div><!-- /.container -->
+    </div><!-- /.container -->
+  </div>
+</div>

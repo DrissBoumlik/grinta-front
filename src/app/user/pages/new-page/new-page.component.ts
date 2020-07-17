@@ -21,12 +21,12 @@ export class NewPageComponent implements OnInit {
   editMode = false;
 
   CreatePageForm = this.fb.group({
-    name: new FormControl('pageoss'),
-    pagename: new FormControl('pageoss_user'),
+    name: new FormControl('This is a tennis page'),
+    pagename: new FormControl('tennis_page'),
     image: new FormControl(null),
     cover: new FormControl(null),
-    type: new FormControl('public'),
-    description: new FormControl('kokokokokosss'),
+    type: new FormControl('private'),
+    description: new FormControl('This is a page description'),
     sport: new FormControl(1, Validators.required)
   });
 
@@ -60,6 +60,68 @@ export class NewPageComponent implements OnInit {
             });
           });
       }
+    });
+
+    this.initForm();
+  }
+
+  initForm() {
+    let e;
+    let t;
+    let a;
+    let n;
+    let o = 1;
+    const r = $('fieldset').length;
+
+    function i(e) {
+      let t = parseFloat(String(100 / r)) * e;
+      t = t.toFixed(), $('.progress-bar').css('width', t + '%');
+    }
+
+    i(o), $('.next').click(function() {
+      e = $(this).parent();
+      t = $(this).parent().next();
+      const topTabListItem = $('#top-tab-list li');
+      const fieldset = $('fieldset');
+      topTabListItem.eq(fieldset.index(t)).addClass('active');
+      topTabListItem.eq(fieldset.index(e)).addClass('done');
+      t.show();
+      e.animate({
+        opacity: 0
+      }, {
+        step: (a) => {
+          n = 1 - a, e.css({
+            display: 'none',
+            position: 'relative'
+          }), t.css({
+            opacity: n
+          });
+        },
+        duration: 500
+      }), i(++o);
+    }), $('.previous').click(function() {
+      e = $(this).parent();
+      a = $(this).parent().prev();
+      const topTabListItem = $('#top-tab-list li');
+      const fieldset = $('fieldset');
+      topTabListItem.eq(fieldset.index(e)).removeClass('active');
+      topTabListItem.eq(fieldset.index(a)).removeClass('done');
+      a.show();
+      e.animate({
+        opacity: 0
+      }, {
+        step: (t) => {
+          n = 1 - t, e.css({
+            display: 'none',
+            position: 'relative'
+          }), a.css({
+            opacity: n
+          });
+        },
+        duration: 500
+      }), i(--o);
+    }), $('.submit').click(() => {
+      return !1;
     });
   }
 
@@ -100,6 +162,9 @@ export class NewPageComponent implements OnInit {
     this.userService.createPage(this.CreatePageForm.value.name, this.CreatePageForm.value.pagename,
       this.CreatePageForm.value.image, this.CreatePageForm.value.cover,
       this.CreatePageForm.value.type, this.CreatePageForm.value.description, this.CreatePageForm.value.sport)
-      .subscribe((response: any) => console.log(response));
+      .subscribe(
+        (response: any) => console.log(response),
+        (error: any) => console.log(error)
+      );
   }
 }
