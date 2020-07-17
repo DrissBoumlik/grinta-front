@@ -59,6 +59,16 @@ div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg pa
   background-color: #81D400;
 }
 
+.h-300 {
+  height: 300px;
+}
+
+.page-title {
+  font-size: 1.5rem;
+}
+.profile-header .user-detail {
+  z-index: 999;
+}
 
 @media (max-width: 992px) {
   .iq-top-navbar .navbar-toggler {
