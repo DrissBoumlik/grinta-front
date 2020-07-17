@@ -1,10 +1,10 @@
-import { CommentService } from './comment.service';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/Auth/auth.service';
-import { Comment } from './comment.model';
-import { Component, OnInit, Input } from '@angular/core';
-import { PostService } from '../../post.service';
-import { User } from 'src/app/user/user.model';
+import {CommentService} from './comment.service';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {AuthService} from 'src/app/Auth/auth.service';
+import {Comment} from './comment.model';
+import {Component, OnInit, Input} from '@angular/core';
+import {PostService} from '../../post.service';
+import {User} from 'src/app/user/user.model';
 
 @Component({
   selector: 'app-comment',
@@ -30,7 +30,8 @@ export class CommentComponent implements OnInit {
   constructor(private authService: AuthService,
               private postService: PostService,
               private commentService: CommentService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder) {
+  }
 
   ngOnInit() {
     this.user = this.authService.user;
@@ -45,18 +46,23 @@ export class CommentComponent implements OnInit {
   onLikeComment() {
     this.commentLiked = this.comment.likers.some((liker: User) => liker.id === this.authService.user.id);
     if (this.commentLiked) {
-      console.log('You unlike this comment');
-      this.postService.unlikeComment(this.comment).subscribe((response: any) => {
-        if (response.code === 200) {
-          this.comment.likers.shift();
-        }
-      });
+      this.postService.unlikeComment(this.comment).subscribe(
+        (response: any) => {
+          if (response.code === 200) {
+            this.comment.likers.shift();
+          }
+        }, (error: any) => {
+          console.log(error);
+        });
     } else {
-      this.postService.likeComment(this.comment).subscribe((response: any) => {
-        if (response.code === 200) {
-          this.comment.likers.unshift(this.authService.user);
-        }
-      });
+      this.postService.likeComment(this.comment).subscribe(
+        (response: any) => {
+          if (response.code === 200) {
+            this.comment.likers.unshift(this.authService.user);
+          }
+        }, (error: any) => {
+          console.log(error);
+        });
     }
     this.commentLiked = !this.commentLiked;
   }
@@ -68,9 +74,9 @@ export class CommentComponent implements OnInit {
       let parent_id = this.comment.id;
       let content = this.ReplyForm.get('content').value;
       this.postService.createComment(user_id, post_id, content, parent_id)
-      .subscribe((response: any) => {
-        this.commentService.addReply(response.comment);
-      });
+        .subscribe((response: any) => {
+          this.commentService.addReply(response.comment);
+        });
       this.ReplyForm.reset();
     } else {
       // jQuery('#comment-' + this.post.id).addClass('ng-invalid ng-touched').removeClass('ng-untouched');
@@ -79,7 +85,7 @@ export class CommentComponent implements OnInit {
 
   onDeleteComment() {
     if (this.user.id !== this.comment.user_id) {
-      console.log("You don't own this comment");
+      console.log('You don\'t own this comment');
       return;
     }
     this.postService.deleteComment(this.comment).subscribe((response: any) => {
@@ -104,6 +110,7 @@ export class CommentComponent implements OnInit {
       this.editMode = false;
     });
   }
+
   onEditComment() {
     this.editMode = true;
     this.editCommentForm.patchValue({
