@@ -58,3 +58,10 @@ div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg pa
 #sidebar-scrollbar::-webkit-scrollbar-thumb {
   background-color: #81D400;
 }
+
+
+@media (max-width: 992px) {
+  .iq-top-navbar .navbar-toggler {
+    color: #81D400 !important;
+  }
+}
