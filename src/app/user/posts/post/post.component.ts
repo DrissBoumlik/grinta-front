@@ -69,17 +69,24 @@ export class PostComponent implements OnInit {
     this.postLiked = this.post.likers.some((liker: User) => liker.id === this.user.id);
     if (this.postLiked) {
       console.log('You unlike this post');
-      this.postsService.unlikePost(this.post).subscribe((response: any) => {
-        if (response.code === 200) {
-          this.post.likers.shift();
-        }
-      });
+      this.postsService.unlikePost(this.post).subscribe(
+        (response: any) => {
+          if (response.code === 200) {
+            this.post.likers.shift();
+          }
+        }, (error: any) => {
+          console.log(error);
+        });
     } else {
-      this.postsService.likePost(this.post).subscribe((response: any) => {
-        if (response.code === 200) {
-          this.post.likers.unshift(this.user);
-        }
-      });
+      console.log('You like this post');
+      this.postsService.likePost(this.post).subscribe(
+        (response: any) => {
+          if (response.code === 200) {
+            this.post.likers.unshift(this.user);
+          }
+        }, (error: any) => {
+          console.log(error);
+        });
     }
     this.postLiked = !this.postLiked;
   }
