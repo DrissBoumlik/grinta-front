@@ -29,13 +29,16 @@ import {ProfileService} from './user/profile/profile.service';
 import { RegisterComponent } from './Auth/register/register.component';
 import {PostsModule} from './user/posts/posts.module';
 import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
-import {PagesModule} from './user/pages/pages.module';
 import {SharedModule} from './shared/shared.module';
 import {PagesService} from './user/pages/pages.service';
 import {FriendsModule} from './user/friends/friends.module';
 import {EditUserComponent} from './user/profile/edit-user/edit-user.component';
 import { UserOptionsComponent } from './user/user-options/user-options.component';
 import { UserUpdatesComponent } from './user/user-updates/user-updates.component';
+import {NewPageComponent} from './user/pages/new-page/new-page.component';
+import {PageComponent} from './user/pages/page/page.component';
+import {PagesComponent} from './user/pages/pages.component';
+import {PageItemComponent} from './user/pages/page-item/page-item.component';
 
 const config = new AuthServiceConfig([
   {
@@ -68,6 +71,10 @@ export function provideConfig() {
     EditUserComponent,
     UserOptionsComponent,
     UserUpdatesComponent,
+    NewPageComponent,
+    PageComponent,
+    PagesComponent,
+    PageItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +86,6 @@ export function provideConfig() {
     NgxSpinnerModule,
     SharedModule,
     PostsModule,
-    PagesModule,
     FriendsModule,
     SocialLoginModule
   ],
