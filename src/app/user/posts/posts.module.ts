@@ -11,6 +11,7 @@ import {CommentsComponent} from './post/comments/comments.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {PostsService} from './posts.service';
+import {PageService} from '../pages/page/page.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import {PostsService} from './posts.service';
     NewPostComponent,
   ],
   imports: [RouterModule, CommonModule, ReactiveFormsModule, NgxSpinnerModule, InfiniteScrollModule],
-  providers: [PostsService]
+  providers: [PostsService, PageService]
 })
 export class PostsModule {
 
