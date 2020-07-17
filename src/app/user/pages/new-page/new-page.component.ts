@@ -74,11 +74,13 @@ export class NewPageComponent implements OnInit {
     const r = $('fieldset').length;
 
     function i(e) {
-      let t = parseFloat(String(100 / r)) * e;
-      t = t.toFixed(), $('.progress-bar').css('width', t + '%');
+      let t: any = parseFloat(String(100 / r)) * e;
+      t = t.toFixed();
+      $('.progress-bar').css('width', t + '%');
     }
 
-    i(o), $('.next').click(function() {
+    i(o);
+    $('.next').click(function() {
       e = $(this).parent();
       t = $(this).parent().next();
       const topTabListItem = $('#top-tab-list li');
@@ -90,16 +92,20 @@ export class NewPageComponent implements OnInit {
         opacity: 0
       }, {
         step: (a) => {
-          n = 1 - a, e.css({
+          n = 1 - a;
+          e.css({
             display: 'none',
             position: 'relative'
-          }), t.css({
+          });
+          t.css({
             opacity: n
           });
         },
         duration: 500
-      }), i(++o);
-    }), $('.previous').click(function() {
+      });
+      i(++o);
+    });
+    $('.previous').click(function() {
       e = $(this).parent();
       a = $(this).parent().prev();
       const topTabListItem = $('#top-tab-list li');
@@ -114,13 +120,16 @@ export class NewPageComponent implements OnInit {
           n = 1 - t, e.css({
             display: 'none',
             position: 'relative'
-          }), a.css({
+          });
+          a.css({
             opacity: n
           });
         },
         duration: 500
-      }), i(--o);
-    }), $('.submit').click(() => {
+      });
+      i(--o);
+    });
+    $('.submit').click(() => {
       return !1;
     });
   }
