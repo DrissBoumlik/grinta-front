@@ -55,7 +55,7 @@ export class PostsService {
 
   likePost(post: Post) {
     AuthService.getHeaders();
-    return this.http.post(environment.baseApiUrl + '/like-post', {post}, {headers: AuthService.headers})
+    return this.http.post(environment.baseApiUrl + '/like-post', {post_id: post.id}, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -98,6 +98,7 @@ export class PostsService {
         )
       );
   }
+
   updatePost(content: string, postId: number): Observable<any> {
     AuthService.getHeaders();
     return this.http.put(environment.baseApiUrl + '/posts/' + postId,
