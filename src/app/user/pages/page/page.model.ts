@@ -1,4 +1,8 @@
 import {User} from '../../user.model';
+import {Post} from '../../posts/post/post.model';
+import {Media} from '../../albums/album/medias/media/media.model';
+import {Album} from '../../albums/album/album.model';
+import {Sport} from '../../sports/sport.model';
 
 export class Page {
   constructor(
@@ -11,6 +15,10 @@ export class Page {
     public image: string,
     public cover: string,
     public type: string,
-    public user: User
+    public user: User,
+    public posts: Post[],
+    public medias: Media[],
+    public albums: Album[],
+    public sport: Sport
   ) {}
 }
