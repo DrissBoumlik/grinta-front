@@ -71,9 +71,9 @@
                       </div>
                     </div>
                   </a>
-                 <a routerLink="/create/group" class="iq-sub-card iq-bg-warning-hover">
+                 <a routerLink="/create/group" class="iq-sub-card iq-bg-danger-hover">
                     <div class="media align-items-center">
-                      <div class="rounded iq-card-icon iq-bg-warning">
+                      <div class="rounded iq-card-icon iq-bg-danger">
                         <i class="ri-group-2-line"></i>
                       </div>
                       <div class="media-body ml-3">
@@ -325,18 +325,18 @@
                     <h5 class="mb-0 text-white line-height">Hello {{ user?.fullName }}</h5>
                     <span class="text-white font-size-12">Available</span>
                   </div>
-                  <a href="profile.html" class="iq-sub-card iq-bg-primary-hover">
+                  <a routerLink="/{{ user?.username }}" class="iq-sub-card iq-bg-primary-hover">
                     <div class="media align-items-center">
                       <div class="rounded iq-card-icon iq-bg-primary">
                         <i class="ri-file-user-line"></i>
                       </div>
                       <div class="media-body ml-3">
-                        <h6 class="mb-0 ">My Profile</h6>
-                        <p class="mb-0 font-size-12">View personal profile details.</p>
+                        <h6 class="mb-0 ">Profile</h6>
+                        <p class="mb-0 font-size-12">Afficher les détails du profil personnel</p>
                       </div>
                     </div>
                   </a>
-                  <a href="profile-edit.html" class="iq-sub-card iq-bg-warning-hover">
+                  <a href="profile-edit.html" class="iq-sub-card iq-bg-warning-hover ================= d-none">
                     <div class="media align-items-center">
                       <div class="rounded iq-card-icon iq-bg-warning">
                         <i class="ri-profile-line"></i>
@@ -347,7 +347,7 @@
                       </div>
                     </div>
                   </a>
-                  <a href="account-setting.html" class="iq-sub-card iq-bg-info-hover">
+                  <a href="account-setting.html" class="iq-sub-card iq-bg-info-hover ================= d-none">
                     <div class="media align-items-center">
                       <div class="rounded iq-card-icon iq-bg-info">
                         <i class="ri-account-box-line"></i>
@@ -358,7 +358,7 @@
                       </div>
                     </div>
                   </a>
-                  <a href="privacy-setting.html" class="iq-sub-card iq-bg-danger-hover">
+                  <a href="privacy-setting.html" class="iq-sub-card iq-bg-danger-hover ================= d-none">
                     <div class="media align-items-center">
                       <div class="rounded iq-card-icon iq-bg-danger">
                         <i class="ri-lock-line"></i>
