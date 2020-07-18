@@ -50,6 +50,14 @@ export class PostComponent implements OnInit {
       this.postLiked = this.post.likers.some((liker: User) => liker.id === this.user.id);
     }
 
+    this.postsService.postLoaded.subscribe((post: Post) => {
+      this.post = post;
+      this.postLiked = this.post.likers.some((liker: User) => liker.id === this.user.id);
+      this.post.comments.map((comment) => {
+        this.commentsCount += comment.replies.length + 1;
+      });
+    });
+
     this.postService.postCommentsUpdated.subscribe((comments) => {
       this.post.comments = comments;
       this.commentsCount = 0;
@@ -61,7 +69,9 @@ export class PostComponent implements OnInit {
     //   if (Object.entries(params).length === 0 && params.constructor === Object) {
     //     return;
     //   }
-    //   this.post = this.postsService.getPost(+params.id);
+    //   if (params.id) {
+    //     this.post = this.postsService.getPost(+params.id);
+    //   }
     // });
   }
 

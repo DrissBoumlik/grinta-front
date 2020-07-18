@@ -40,14 +40,19 @@
 }
 
 .reply-edition {
-  position: absolute;
-  display: inline-block;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  z-index: 1;
+  /*position: absolute;*/
+  /*display: inline-block;*/
+  /*top: 50%;*/
+  /*right: 0;*/
+  /*transform: translateY(-50%);*/
+  /*z-index: 1;*/
+  align-self: center;
 }
 .reply-edition .dropdown-menu {
-  right: 0;
-  left: unset;
+  /*right: 0;*/
+  /*left: unset;*/
+  padding: .5rem;
+}
+.reply-edition .dropdown-menu li > a:hover {
+  color: #81D400;
 }

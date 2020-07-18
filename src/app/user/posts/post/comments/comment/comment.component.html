@@ -42,9 +42,9 @@
       <div class="comment-edition dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
         <ul class="dropdown-menu pointer">
-          <li *ngIf="ownComment"><a (click)="onEditComment()">Edit</a></li>
-          <li><a>Hide</a></li>
-          <li *ngIf="ownComment"><a (click)="onDeleteComment()">Delete</a></li>
+          <li *ngIf="ownComment"><a class="d-block" (click)="onEditComment()">Edit</a></li>
+          <li><a class="d-block">Hide</a></li>
+          <li *ngIf="ownComment"><a class="d-block" (click)="onDeleteComment()">Delete</a></li>
         </ul>
       </div>
     </div>
@@ -52,9 +52,10 @@
 
     <div class="row">
       <div class="replies col-12">
-        <app-reply class="reply" *ngFor="let reply of comment?.replies"
-        [reply]="reply">
-        </app-reply>
+        <div class="comment-item" *ngFor="let reply of comment?.replies">
+          <app-reply class="reply" [reply]="reply" *ngIf="reply.isVisible">
+          </app-reply>
+        </div>
         <div class="row" *ngIf="willReply">
           <div class="col-md-12 col-xs-12">
 <!--            <form [formGroup]="ReplyForm" class="relative comment-reply-form">-->

@@ -13,6 +13,7 @@ import {HandlerService} from '../../shared/handler.service';
 export class PostsService {
   user: User;
   postsUpdated = new Subject<Post[]>();
+  postLoaded = new Subject<Post>();
 
   constructor(private http: HttpClient,
               private profileService: ProfileService,
@@ -22,7 +23,10 @@ export class PostsService {
   }
 
   getPosts(page = 1, id = null, type = null) {
-    const urlParams = id + '/' + type + '/';
+    let urlParams = '';
+    if (id && type) {
+      urlParams = id + '/' + type + '/';
+    }
     AuthService.getHeaders();
     return this.http.get(environment.baseApiUrl + '/posts/' + urlParams + '?page=' + page, {headers: AuthService.headers})
       .pipe(
@@ -122,11 +126,28 @@ export class PostsService {
       );
   }
 
-  getPost(id: number) {
+  findPost(id: number) {
     if (this.user && this.user.posts) {
       return this.user.posts.find(post => {
         return post.id === id;
       });
     }
+  }
+
+  getPost(id: number) {
+    AuthService.getHeaders();
+    return this.http.get(environment.baseApiUrl + '/posts/' + id, {headers: AuthService.headers})
+      .pipe(
+        tap(
+          (data: any) => {
+            console.log(data.post);
+            this.postLoaded.next(data.post);
+          },
+          error => {
+            console.log(error);
+            this.handlerService.handleRequest(error.status);
+          },
+        )
+      );
   }
 }

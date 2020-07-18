@@ -13,12 +13,7 @@ export class PostService {
   post: Post;
   postCommentsUpdated = new Subject<Comment[]>();
 
-  constructor(private http: HttpClient) {
-    AuthService.headers = new HttpHeaders({
-      Accept: 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem('_token')
-    });
-  }
+  constructor(private http: HttpClient) {}
 
   createComment(userId: number, postId: number, content: string, parentId: number = null): Observable<any> {
     AuthService.getHeaders();

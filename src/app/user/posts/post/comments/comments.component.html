@@ -19,8 +19,9 @@
     </div>
   </div>
   <div class="post-comments">
-    <app-comment *ngFor="let comment of post.comments; let i = index"
-        [comment]="comment">
-    </app-comment>
+    <div class="comment-item" *ngFor="let comment of post.comments; let i = index">
+      <app-comment [comment]="comment" *ngIf="comment.isVisible">
+      </app-comment>
+    </div>
   </div>
 </div>

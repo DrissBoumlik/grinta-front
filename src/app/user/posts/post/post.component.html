@@ -1,7 +1,7 @@
 <div class="post-wrapper">
   <div class="post">
     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-      <div class="iq-card-body">
+      <div class="iq-card-body" *ngIf="post">
         <div class="user-post-data">
           <div class="d-flex flex-wrap">
             <div class="media-support-user-img mr-3">
@@ -10,8 +10,12 @@
             <div class="media-support-info mt-2">
               <h5 class="mb-0 d-inline-block"><a routerLink="/{{ post?.user?.username }}"
                                                  class="mr-2">{{ post?.user?.fullName }}</a>
+                <span *ngIf='post?.owner'> shared
+                  <span *ngIf='post?.user_id !== post?.post_owner_id'><a class="clr-blue" routerLink="/{{ post?.owner.username }}">{{ post?.owner.firstname }}</a>'s</span>
+                  <span *ngIf='post?.user_id === post?.post_owner_id'>his</span> post
+                </span>
               </h5>
-              <p class="mb-0 d-inline-block">Added New Image in a Post</p>
+<!--              <p class="mb-0 d-inline-block">Added New Image in a Post</p>-->
               <p class="mb-0 text-primary">{{ post?.created_at | date : 'mediumDate'}}</p>
             </div>
             <div class="iq-card-post-toolbar">

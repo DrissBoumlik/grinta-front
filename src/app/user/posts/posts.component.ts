@@ -89,7 +89,16 @@ export class PostsComponent implements OnInit {
       this.scroll = false;
       this.spinner.show();
       console.log('on scroll');
-      this.getPosts();
+      if (!this.isProfile && !this.isPage) {
+        console.log('not profile - not page');
+        this.getPosts();
+      } else if (this.isPage) {
+        const pageId = this.isPage ? this.page.id : null;
+        this.getPosts(pageId, 'page');
+      } else if (this.isProfile) {
+        const profileId = this.isProfile ? this.user.id : null;
+        this.getPosts(profileId, 'user');
+      }
       this.scroll = true;
     }
   }

@@ -34,9 +34,9 @@
       <div class="reply-edition dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
         <ul class="dropdown-menu pointer">
-          <li *ngIf="ownReply"><a (click)="onEditReply()">Edit</a></li>
-          <li><a>Hide</a></li>
-          <li *ngIf="ownReply"><a (click)="onDeleteReply()">Delete</a></li>
+          <li *ngIf="ownReply"><a class="d-block" (click)="onEditReply()">Edit</a></li>
+          <li><a class="d-block">Hide</a></li>
+          <li *ngIf="ownReply"><a class="d-block" (click)="onDeleteReply()">Delete</a></li>
         </ul>
       </div>
     </div>

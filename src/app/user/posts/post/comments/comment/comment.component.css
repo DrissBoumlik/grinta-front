@@ -43,16 +43,22 @@
 }
 
 .comment-edition {
-  position: absolute;
-  display: inline-block;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  z-index: 1;
+  /*display: inline-block;*/
+  /*position: absolute;*/
+  /*top: 50%;*/
+  /*right: 0;*/
+  /*transform: translateY(-50%);*/
+  /*z-index: 1;*/
+  align-self: center;
+
 }
 .comment-edition .dropdown-menu {
-  right: 0;
-  left: unset;
+  /*right: 0;*/
+  /*left: unset;*/
+  padding: .5rem;
+}
+.comment-edition .dropdown-menu li > a:hover {
+  color: #81D400;
 }
 
 .replies {
