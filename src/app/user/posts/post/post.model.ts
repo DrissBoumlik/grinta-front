@@ -11,7 +11,8 @@ export class Post {
     public owner: User,
     public likers: User[],
     public comments: Comment[],
-    public created_at: string) {}
+    public created_at: string,
+    public updated_at: string) {}
 
     addComment(comment: Comment) {
       this.comments.unshift(comment);

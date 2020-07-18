@@ -11,7 +11,7 @@ import {PostsService} from '../../posts/posts.service';
   styleUrls: ['./user-posts.component.css']
 })
 export class UserPostsComponent implements OnInit {
-  profile: User;
+  user: User;
   justLoaded = false;
 
   constructor(private userService: UserService,
@@ -20,9 +20,16 @@ export class UserPostsComponent implements OnInit {
               private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    this.profileService.profileLoaded.subscribe((profile: User) => {
-      this.profile = profile;
+    // if (this.profileService.profile) {
+    //   this.profile = this.profileService.profile;
+    //   this.justLoaded = true;
+    //   this.postsService.getPosts(1, this.profile.id, 'user');
+    // }
+
+    this.profileService.profileLoaded.subscribe((user: User) => {
+      this.user = user;
       this.justLoaded = true;
+      // this.postsService.getPosts(1, this.profile.id, 'user');
     });
   }
 }

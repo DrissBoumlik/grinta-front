@@ -24,6 +24,59 @@ export class PostsComponent implements OnInit {
   queryPage: number;
   scroll = true;
   gotAllPosts = false;
+  postsLoaded = false;
+
+  ngOnInit() {
+    this.authService.isLogged(this.router);
+    this.authUser = this.authService.user;
+    this.user = JSON.parse(localStorage.getItem('profile'));
+    this.page = JSON.parse(localStorage.getItem('page'));
+    if (this.user) {
+      this.initLoad(this.user);
+      localStorage.removeItem('profile');
+    } else if (this.page) {
+      this.initLoad(this.page.user);
+    } else {
+      this.initLoad(this.authUser);
+    }
+
+    this.postsService.postsUpdated.subscribe((posts) => {
+      this.user.posts = posts;
+    });
+
+    // this.postsService.postsLoaded.subscribe((posts) => {
+    //   this.user.posts = posts;
+    // });
+    this.profileService.profileLoaded.subscribe((user: User) => {
+      localStorage.setItem('profile', JSON.stringify(user));
+      this.initLoad(user);
+      console.log('++user');
+      this.getPosts(this.user.id, 'user');
+    });
+    this.pageService.pageLoaded.subscribe((page: Page) => {
+      localStorage.setItem('page', JSON.stringify(page));
+      this.page = page;
+      this.initLoad(page.user);
+      console.log('++page');
+      this.getPosts(this.page.id, 'page');
+    });
+    if (!this.isProfile && !this.isPage) {
+      console.log('not profile - not page');
+      this.getPosts();
+    } else if (this.isPage) {
+      console.log('__page');
+      const pageId = this.isPage ? this.page.id : null;
+      this.getPosts(pageId, 'page');
+    } else if (this.isProfile) {
+      console.log('__profile');
+      const profileId = this.isProfile ? this.user.id : null;
+      this.getPosts(profileId, 'user');
+    } else if (this.profileService.alreadyLoaded) {
+      console.log('profile already loaded');
+      const profileId = this.isProfile ? this.user.id : null;
+      this.getPosts(profileId, 'user');
+    }
+  }
 
   constructor(private authService: AuthService,
               private userService: UserService,
@@ -32,36 +85,6 @@ export class PostsComponent implements OnInit {
               private pageService: PageService,
               private router: Router,
               private spinner: NgxSpinnerService) {
-  }
-
-  ngOnInit() {
-    this.authService.isLogged(this.router);
-    this.authUser = this.authService.user;
-    this.initLoad(this.authUser);
-
-    this.postsService.postsUpdated.subscribe((posts) => {
-      this.user.posts = posts;
-    });
-    this.pageService.pageLoaded.subscribe((page: Page) => {
-      this.page = page;
-      this.initLoad(page.user);
-      this.getPosts('page loaded');
-    });
-    if (!this.isProfile && !this.isPage) {
-      console.log('not profile - not page');
-      this.getPosts();
-    } else if (this.isPage) {
-      const pageId = this.isPage ? this.page.id : null;
-      this.getPosts(pageId, 'page');
-    } else if (this.isProfile) {
-      const profileId = this.isProfile ? this.user.id : null;
-      this.getPosts(profileId, 'user');
-    }
-
-    if (this.profileService.alreadyLoaded) {
-      console.log('profile already loaded');
-      this.getPosts();
-    }
   }
 
   initLoad(user: User) {
@@ -74,7 +97,8 @@ export class PostsComponent implements OnInit {
     this.postsService.getPosts(this.queryPage++, id, type)
       .subscribe(
         (response: any) => {
-          this.user.posts = this.postsService.user.posts;
+          this.postsLoaded = true;
+          this.user.posts = this.postsService.posts;
           this.spinner.hide();
           if (!response.posts.length) {
             this.gotAllPosts = true;

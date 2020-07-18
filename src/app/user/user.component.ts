@@ -1,8 +1,8 @@
-import { AuthService } from '../Auth/auth.service';
+import {AuthService} from '../Auth/auth.service';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import { UserService } from './user.service';
-import { Component, OnInit } from '@angular/core';
-import { User } from './user.model';
+import {UserService} from './user.service';
+import {Component, OnInit} from '@angular/core';
+import {User} from './user.model';
 import {ProfileService} from './profile/profile.service';
 
 @Component({
@@ -28,17 +28,20 @@ export class UserComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       window.scroll(0, 0);
       const username = params.username;
-      this.profileService.getProfile(username).subscribe((response: any) => {
-        this.profile = response.user;
-        this.ownProfile = true;
-        if (this.profile.id !== this.authService.user.id) {
-          this.ownProfile = false;
-          // Make request to seed if already follower
-          this.isFriend = this.profile.friends.some((friend: User) => friend.id === this.authService.user.id);
-          this.isFollowed = this.profile.followers.some((follower: User) => follower.id === this.authService.user.id);
-        }
-        localStorage.setItem('_profile', JSON.stringify(this.profile));
-      });
+      this.profileService.getProfile(username).subscribe(
+        (response: any) => {
+          this.profile = response.user;
+          this.ownProfile = true;
+          if (this.profile.id !== this.authService.user.id) {
+            this.ownProfile = false;
+            // Make request to seed if already follower
+            this.isFriend = this.profile.friends.some((friend: User) => friend.id === this.authService.user.id);
+            this.isFollowed = this.profile.followers.some((follower: User) => follower.id === this.authService.user.id);
+          }
+          localStorage.setItem('my_profile', JSON.stringify(this.profile));
+        },
+        (error: any) => console.log(error)
+      );
     });
     this.profileService.profileUpdated.subscribe((profile: User) => {
       this.profile = profile;

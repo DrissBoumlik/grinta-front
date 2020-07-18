@@ -12,6 +12,8 @@ import {HandlerService} from '../../shared/handler.service';
 @Injectable()
 export class PostsService {
   user: User;
+  posts: Post[];
+  postsLoaded = new Subject<Post[]>();
   postsUpdated = new Subject<Post[]>();
   postLoaded = new Subject<Post>();
 
@@ -34,9 +36,10 @@ export class PostsService {
           (data: any) => {
             console.log(data.posts);
             if (page === 1) {
-              this.user.posts = [];
+              this.posts = [];
             }
-            this.user.posts.push(...data.posts);
+            this.posts.push(...data.posts);
+            this.postsLoaded.next(this.posts);
           },
           error => {
             console.log(error);
@@ -47,13 +50,13 @@ export class PostsService {
   }
 
   addPost(post: Post) {
-    this.user.posts.unshift(post);
-    this.postsUpdated.next(this.user.posts);
+    this.posts.unshift(post);
+    this.postsUpdated.next(this.posts);
   }
 
   removePost(post: Post) {
-    this.user.posts = this.user.posts.filter((postItem) => postItem.id !== post.id);
-    this.postsUpdated.next(this.user.posts);
+    this.posts = this.posts.filter((postItem) => postItem.id !== post.id);
+    this.postsUpdated.next(this.posts);
   }
 
 
@@ -80,7 +83,7 @@ export class PostsService {
   }
 
   createPost(content: string, image: File, pageId: number = null): Observable<any> {
-    console.log(this.user.posts);
+    console.log(this.posts);
     AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/posts', {content, image, page_id: pageId}, {headers: AuthService.headers})
       .pipe(
@@ -127,8 +130,8 @@ export class PostsService {
   }
 
   findPost(id: number) {
-    if (this.user && this.user.posts) {
-      return this.user.posts.find(post => {
+    if (this.user && this.posts) {
+      return this.posts.find(post => {
         return post.id === id;
       });
     }

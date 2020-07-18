@@ -129,7 +129,7 @@ export class PostComponent implements OnInit {
   onUpdatePost() {
     this.postsService.updatePost(this.editPostForm.value.content, this.post.id).subscribe((response: any) => {
       if ((this.profileService.profile && this.authService.user.id === this.profileService.profile.id) || this.pageService.page) {
-        console.log(this.postsService.user.posts);
+        console.log(this.postsService.posts);
       }
       // this.postsService.addPost(response.post);
       this.post.content = this.editPostForm.value.content;
