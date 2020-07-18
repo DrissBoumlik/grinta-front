@@ -15,12 +15,7 @@ export class ProfileService {
   profileUpdated = new Subject<User>();
   alreadyLoaded = false;
 
-  constructor(private http: HttpClient) {
-    AuthService.headers = new HttpHeaders({
-      Accept: 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem('_token')
-    });
-  }
+  constructor(private http: HttpClient) {}
 
   getProfile(username: string = null) {
     AuthService.getHeaders();
