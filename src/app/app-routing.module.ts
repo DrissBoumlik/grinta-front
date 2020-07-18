@@ -15,8 +15,9 @@ import {PageComponent} from './user/pages/page/page.component';
 import {AlbumComponent} from './user/albums/album/album.component';
 import {EditUserComponent} from './user/profile/edit-user/edit-user.component';
 import {PostComponent} from './user/posts/post/post.component';
-import {TemplateComponent} from './shared/template/template.component';
+import {TemplateComponent} from './user/template/template.component';
 import {PostsComponent} from './user/posts/posts.component';
+import {PostWrapperComponent} from './user/post-wrapper/post-wrapper.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,7 @@ const routes: Routes = [
   {
     path: 'posts', component: TemplateComponent, children: [
       {path: '', component: PostsComponent},
-      {path: ':id', component: PostComponent}
+      {path: ':id', component: PostWrapperComponent}
     ]
   },
   {
