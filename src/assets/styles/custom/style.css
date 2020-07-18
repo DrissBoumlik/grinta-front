@@ -10,6 +10,9 @@
 a, .navbar-list li > a {
   color: #81D400;
 }
+ul.header-nav li a {
+  color: #81D400;
+}
 
 div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg path {
   stroke: #81D400;
@@ -17,6 +20,11 @@ div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg pa
 
 .right-sidebar-toggle.bg-primary {
   background-color: #81D400 !important;
+}
+
+.media-support-user-img img {
+  height: 40px;
+  width: 40px;
 }
 
 .iq-bg-primary {
@@ -67,7 +75,18 @@ div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg pa
   font-size: 1.5rem;
 }
 .profile-header .user-detail {
-  z-index: 999;
+  z-index: 1000;
+}
+ul.header-nav {
+  z-index: 1010;
+}
+
+.nav-pills.profile-feed-items li a.active {
+  background-color: #81D400;
+}
+
+.nav-pills .nav-link:hover {
+  color: #81D400;
 }
 
 @media (max-width: 992px) {
