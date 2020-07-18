@@ -38,10 +38,7 @@ export class PostsComponent implements OnInit {
     this.authService.isLogged(this.router);
     this.authUser = this.authService.user;
     this.initLoad(this.authUser);
-    this.profileService.profileLoaded.subscribe((profile: User) => {
-      this.initLoad(profile);
-      this.getPosts('profile loaded');
-    });
+
     this.postsService.postsUpdated.subscribe((posts) => {
       this.user.posts = posts;
     });
@@ -51,10 +48,19 @@ export class PostsComponent implements OnInit {
       this.getPosts('page loaded');
     });
     if (!this.isProfile && !this.isPage) {
-      this.getPosts('not profile');
+      console.log('not profile - not page');
+      this.getPosts();
+    } else if (this.isPage) {
+      const pageId = this.isPage ? this.page.id : null;
+      this.getPosts(pageId, 'page');
+    } else if (this.isProfile) {
+      const profileId = this.isProfile ? this.user.id : null;
+      this.getPosts(profileId, 'user');
     }
+
     if (this.profileService.alreadyLoaded) {
-      this.getPosts('profile already loaded');
+      console.log('profile already loaded');
+      this.getPosts();
     }
   }
 
@@ -64,25 +70,26 @@ export class PostsComponent implements OnInit {
     this.queryPage = 1;
   }
 
-  getPosts(message) {
-    console.log(message);
-    const profileId = this.isProfile ? this.user.id : null;
-    const pageId = this.isPage ? this.page.id : null;
-    this.postsService.getPosts(this.queryPage++, profileId, pageId)
-      .subscribe((response: any) => {
-        this.user.posts = this.postsService.user.posts;
-        this.spinner.hide();
-        if (!response.posts.length) {
-          this.gotAllPosts = true;
-        }
-      });
+  getPosts(id = null, type = null) {
+    this.postsService.getPosts(this.queryPage++, id, type)
+      .subscribe(
+        (response: any) => {
+          this.user.posts = this.postsService.user.posts;
+          this.spinner.hide();
+          if (!response.posts.length) {
+            this.gotAllPosts = true;
+          }
+        },
+        (error: any) => console.log(error)
+      );
   }
 
   onLoadMorePosts() {
     if (this.scroll && !this.gotAllPosts) {
       this.scroll = false;
       this.spinner.show();
-      this.getPosts('on scroll');
+      console.log('on scroll');
+      this.getPosts();
       this.scroll = true;
     }
   }

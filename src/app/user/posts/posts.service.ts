@@ -21,10 +21,10 @@ export class PostsService {
     this.user = this.authService.user;
   }
 
-  getPosts(page = 1, profileId = null, pageId = null) {
-    const id = profileId ? profileId + '/user/' : (pageId ? pageId + '/page/' : '');
+  getPosts(page = 1, id = null, type = null) {
+    const urlParams = id + '/' + type + '/';
     AuthService.getHeaders();
-    return this.http.get(environment.baseApiUrl + '/posts/' + id + '?page=' + page, {headers: AuthService.headers})
+    return this.http.get(environment.baseApiUrl + '/posts/' + urlParams + '?page=' + page, {headers: AuthService.headers})
       .pipe(
         tap(
           (data: any) => {
