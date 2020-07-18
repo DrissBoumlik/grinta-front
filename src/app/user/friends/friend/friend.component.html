@@ -1,7 +1,7 @@
 <div class="friend-wrapper">
   <div class="friend">
     <div class="media align-items-center mb-4">
-      <div class="iq-profile-avatar" [ngClass]='{ "status-online": friend?.isOnline}'>
+      <div class="iq-profile-avatar {{ friend?.isOnline ? 'status-online' : 'status-away' }}" >
         <img class="rounded-circle avatar-50" src="{{ friend.picture }}" alt="">
       </div>
       <div class="media-body ml-3">
