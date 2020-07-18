@@ -13,7 +13,9 @@ a, .navbar-list li > a {
 ul.header-nav li a {
   color: #81D400;
 }
-
+.iq-search-bar {
+  position: relative;
+}
 div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg path {
   stroke: #81D400;
 }
