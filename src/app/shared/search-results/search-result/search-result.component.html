@@ -1,10 +1,15 @@
 <div class="result-wrapper">
   <a class="pointer" (click)="goTo()">
-    <div class="result-image">
-      <img src="{{ result.image }}" alt="">
-    </div>
-    <div class="result-header">
-      <span>{{ result.header }}</span>
+    <div class="result-container" style="display: flex; justify-content: space-between;">
+      <!--      <div class="result-image">-->
+      <!--        <img src="{{ result?.image }}" alt="">-->
+      <!--      </div>-->
+      <div class="result-header">
+        <span>{{ result?.header }}</span>
+      </div>
+      <div class="result-type">
+        <span [innerHTML]="this.iconType"></span>
+      </div>
     </div>
   </a>
 </div>

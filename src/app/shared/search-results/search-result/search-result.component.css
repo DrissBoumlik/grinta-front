@@ -13,6 +13,12 @@
 
 .result-header {
   display: inline-block;
+  font-size: 1rem;
+  line-height: 2rem;
   /*height: 100px;*/
   /*padding-top: 40px;*/
+}
+
+.result-type {
+  font-size: 2rem;
 }

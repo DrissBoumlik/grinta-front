@@ -15,6 +15,7 @@ export class SearchResultsComponent implements OnInit {
   searchForm = new FormGroup({
     search: new FormControl(null, Validators.required),
   });
+
   constructor(private searchService: SearchService,
               private renderer: Renderer2) {
     this.renderer.listen('window', 'click', (e: Event) => {
@@ -35,13 +36,17 @@ export class SearchResultsComponent implements OnInit {
     //   this.showResults = resultsShowed;
     // });
   }
+
   onSearch(value: string) {
     clearTimeout(this.sendRequest);
     this.sendRequest = setTimeout(() => {
       this.searchService.searchEverything(value)
-        .subscribe((response: any) => {
-          this.results = this.searchService.results = response.results;
-        });
+        .subscribe(
+          (response: any) => {
+            this.results = this.searchService.results = response.results;
+          },
+          (error: any) => console.log(error)
+        );
     }, 500);
   }
 

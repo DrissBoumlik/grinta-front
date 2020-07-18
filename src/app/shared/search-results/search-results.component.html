@@ -14,7 +14,7 @@
 </form>
 <div class="search-results" *ngIf="showResults">
   <ul class="list-group">
-    <li class="list-group-item no-result" *ngIf="results?.length === 0">No results</li>
+    <li class="list-group-item no-result" *ngIf="!results?.length">No results</li>
     <li class="list-group-item" *ngFor="let result of results">
       <app-search-result [result]="result"></app-search-result>
     </li>
