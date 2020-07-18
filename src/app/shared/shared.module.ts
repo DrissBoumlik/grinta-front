@@ -10,7 +10,6 @@ import {SportService} from './sport.service';
 import { FeedbackComponent } from './feedback/feedback.component';
 import {ToolsService} from './tools.service';
 import {FeedbackService} from './feedback/feedback.service';
-import { TemplateComponent } from './template/template.component';
 import {HandlerService} from './handler.service';
 
 @NgModule({
@@ -19,7 +18,6 @@ import {HandlerService} from './handler.service';
     SearchResultsComponent,
     SearchResultComponent,
     FeedbackComponent,
-    TemplateComponent
   ],
   imports: [
     RouterModule,
@@ -30,7 +28,6 @@ import {HandlerService} from './handler.service';
     HeaderComponent,
     SearchResultsComponent,
     FeedbackComponent,
-    TemplateComponent
   ],
   providers: [SearchService, SportService, ToolsService, FeedbackService, HandlerService]
 })
