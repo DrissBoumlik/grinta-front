@@ -8217,46 +8217,48 @@ $(function () {
         n[t] = e.eq(a).text()
       }), a.push(n)
     }), $EXPORT.text(JSON.stringify(a))
-  }), $(document).ready(function() {
-    var e, t, a, n, o = 1,
-      r = $("fieldset").length;
-
-    function i(e) {
-      var t = parseFloat(100 / r) * e;
-      t = t.toFixed(), $(".progress-bar").css("width", t + "%")
-    }
-    i(o), $(".next").click(function() {
-      e = $(this).parent(), t = $(this).parent().next(), $("#top-tab-list li").eq($("fieldset").index(t)).addClass("active"), $("#top-tab-list li").eq($("fieldset").index(e)).addClass("done"), t.show(), e.animate({
-        opacity: 0
-      }, {
-        step: function(a) {
-          n = 1 - a, e.css({
-            display: "none",
-            position: "relative"
-          }), t.css({
-            opacity: n
-          })
-        },
-        duration: 500
-      }), i(++o)
-    }), $(".previous").click(function() {
-      e = $(this).parent(), a = $(this).parent().prev(), $("#top-tab-list li").eq($("fieldset").index(e)).removeClass("active"), $("#top-tab-list li").eq($("fieldset").index(a)).removeClass("done"), a.show(), e.animate({
-        opacity: 0
-      }, {
-        step: function(t) {
-          n = 1 - t, e.css({
-            display: "none",
-            position: "relative"
-          }), a.css({
-            opacity: n
-          })
-        },
-        duration: 500
-      }), i(--o)
-    }), $(".submit").click(function() {
-      return !1
-    })
-  }), $(document).ready(function() {
+  }),
+  //   $(document).ready(function() {
+  //   var e, t, a, n, o = 1,
+  //     r = $("fieldset").length;
+  //
+  //   function i(e) {
+  //     var t = parseFloat(100 / r) * e;
+  //     t = t.toFixed(), $(".progress-bar").css("width", t + "%")
+  //   }
+  //   i(o), $(".next").click(function() {
+  //     e = $(this).parent(), t = $(this).parent().next(), $("#top-tab-list li").eq($("fieldset").index(t)).addClass("active"), $("#top-tab-list li").eq($("fieldset").index(e)).addClass("done"), t.show(), e.animate({
+  //       opacity: 0
+  //     }, {
+  //       step: function(a) {
+  //         n = 1 - a, e.css({
+  //           display: "none",
+  //           position: "relative"
+  //         }), t.css({
+  //           opacity: n
+  //         })
+  //       },
+  //       duration: 500
+  //     }), i(++o)
+  //   }), $(".previous").click(function() {
+  //     e = $(this).parent(), a = $(this).parent().prev(), $("#top-tab-list li").eq($("fieldset").index(e)).removeClass("active"), $("#top-tab-list li").eq($("fieldset").index(a)).removeClass("done"), a.show(), e.animate({
+  //       opacity: 0
+  //     }, {
+  //       step: function(t) {
+  //         n = 1 - t, e.css({
+  //           display: "none",
+  //           position: "relative"
+  //         }), a.css({
+  //           opacity: n
+  //         })
+  //       },
+  //       duration: 500
+  //     }), i(--o)
+  //   }), $(".submit").click(function() {
+  //     return !1
+  //   })
+  // }),
+    $(document).ready(function() {
     var e = $("div.setup-panel div a"),
       t = $(".setup-content"),
       a = $(".nextBtn");

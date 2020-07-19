@@ -18,6 +18,12 @@ export class NewPageComponent implements OnInit {
   sports: Sport[] = [];
   imageToUpload: any = File;
   editMode = false;
+  steps = {
+    infos: {active: true, done: false},
+    details: {active: false, done: false},
+    media: {active: false, done: false},
+    finish: {active: false, done: false},
+  };
 
   CreatePageForm = this.fb.group({
     name: new FormControl('This is a tennis page'),
@@ -61,7 +67,7 @@ export class NewPageComponent implements OnInit {
       }
     });
 
-    this.initForm();
+    // this.initForm();
   }
 
   initForm() {
@@ -104,7 +110,7 @@ export class NewPageComponent implements OnInit {
       });
       i(++o);
     });
-    $('.previous').click(function() {
+    $('.previous').click(function () {
       e = $(this).parent();
       a = $(this).parent().prev();
       const topTabListItem = $('#top-tab-list li');
@@ -174,5 +180,61 @@ export class NewPageComponent implements OnInit {
         (response: any) => console.log(response),
         (error: any) => console.log(error)
       );
+  }
+
+  goToInfos() {
+    this.steps = {
+      infos: {active: true, done: false},
+      details: {active: false, done: false},
+      media: {active: false, done: false},
+      finish: {active: false, done: false},
+    };
+    console.log(this.steps);
+  }
+
+  goToDetails() {
+    // validation
+    if (!this.steps.infos.done) {
+      // return;
+    }
+    // branching
+    this.steps = {
+      infos: {active: false, done: true},
+      details: {active: true, done: false},
+      media: {active: false, done: false},
+      finish: {active: false, done: false},
+    };
+    console.log(this.steps);
+  }
+
+  goToMedia() {
+    // validation
+    if (!this.steps.details.done) {
+      // return;
+    }
+    // branching
+    this.steps = {
+      infos: {active: false, done: true},
+      details: {active: false, done: true},
+      media: {active: true, done: false},
+      finish: {active: false, done: false},
+    };
+    console.log(this.steps);
+  }
+
+  goToFinish() {
+    // validation
+    if (!this.steps.media.done) {
+      // return;
+    }
+    // branching
+    this.steps = {
+      infos: {active: false, done: true},
+      details: {active: false, done: true},
+      media: {active: false, done: true},
+      finish: {active: true, done: false},
+    };
+    console.log(this.steps);
+
   }
 }

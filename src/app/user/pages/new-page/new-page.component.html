@@ -13,29 +13,29 @@
             <div class="iq-card-body">
               <form [formGroup]="CreatePageForm" (ngSubmit)="onCreatePage()" id="form-wizard1" class="text-center mt-4">
                 <ul id="top-tab-list" class="p-0">
-                  <li class="active" id="account">
-                    <a href="javascript:void();">
+                  <li [ngClass]="{'active': steps.infos.active , 'done': steps.infos.done}" id="infos">
+                    <a (click)="goToInfos()" class="pointer">
                       <i class="ri-lock-unlock-line"></i><span>Information</span>
                     </a>
                   </li>
-                  <li id="personal">
-                    <a href="javascript:void();">
+                  <li [ngClass]="{'active': steps.details.active, 'done': steps.details.done}" id="details">
+                    <a (click)="goToDetails()" class="pointer">
                       <i class="ri-user-fill"></i><span>Details</span>
                     </a>
                   </li>
-                  <li id="payment">
-                    <a href="javascript:void();">
+                  <li [ngClass]="{'active': steps.media.active, 'done': steps.media.done}" id="media">
+                    <a (click)="goToMedia()" class="pointer">
                       <i class="ri-camera-fill"></i><span>Image / Cover</span>
                     </a>
                   </li>
-                  <li id="confirm">
-                    <a href="javascript:void();">
+                  <li [ngClass]="{'active': steps.finish.active, 'done': steps.finish.done}" id="confirm">
+                    <a (click)="goToFinish()" class="pointer">
                       <i class="ri-check-fill"></i><span>Finish</span>
                     </a>
                   </li>
                 </ul>
                 <!-- fieldsets -->
-                <fieldset>
+                <fieldset *ngIf="steps.infos.active">
                   <div class="form-card text-left">
                     <div class="row">
                       <div class="col-7">
@@ -79,9 +79,9 @@
                       </div>
                     </div>
                   </div>
-                  <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" >Next</button>
+                  <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" (click)="goToDetails()">Next</button>
                 </fieldset>
-                <fieldset>
+                <fieldset *ngIf="steps.details.active">
                   <div class="form-card text-left">
                     <div class="row">
                       <div class="col-7">
@@ -103,10 +103,10 @@
                       </div>
                     </div>
                   </div>
-                  <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" >Next</button>
-                  <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Previous</button>
+                  <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" (click)="goToMedia()">Next</button>
+                  <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" (click)="goToInfos()">Previous</button>
                 </fieldset>
-                <fieldset>
+                <fieldset *ngIf="steps.media.active">
                   <div class="form-card text-left">
                     <div class="row">
                       <div class="col-7">
@@ -125,10 +125,10 @@
                       <input type="file" class="form-control" name="cover" accept="image/*" (change)="onFileCoverChange($event.srcElement.files)">
                     </div>
                   </div>
-                  <button type="submit" name="next" class="btn btn-primary next action-button float-right" value="Submit" >Submit</button>
-                  <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" >Previous</button>
+                  <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Submit" (click)="goToFinish()">Submit</button>
+                  <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" (click)="goToDetails()">Previous</button>
                 </fieldset>
-                <fieldset>
+                <fieldset *ngIf="steps.finish.active">
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
@@ -139,7 +139,7 @@
                       </div>
                     </div>
                     <br><br>
-                    <h2 class="text-success text-center"><strong>SUCCESS !</strong></h2>
+                    <h2 class="text-success text-center clr-grintaaa"><strong>SUCCESS !</strong></h2>
                     <br>
                     <div class="row justify-content-center">
                       <div class="col-3"> <img src="/assets/plugins/socialV/images/page-img/img-success.png" class="fit-image" alt="fit-image"> </div>
@@ -147,7 +147,7 @@
                     <br><br>
                     <div class="row justify-content-center">
                       <div class="col-7 text-center">
-                        <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                        <h5 class="purple-text text-center">Page créée avec succès</h5>
                       </div>
                     </div>
                   </div>
