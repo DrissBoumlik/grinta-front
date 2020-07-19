@@ -8,7 +8,7 @@ import {PostsService} from '../posts.service';
 import {ProfileService} from '../../profile/profile.service';
 import {PageService} from '../../pages/page/page.service';
 import {FormBuilder, FormControl} from '@angular/forms';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-post',

@@ -1,7 +1,7 @@
 import {User} from '../user.model';
 import {environment} from '../../../environments/environment';
 import {tap} from 'rxjs/operators';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Subject} from 'rxjs';
 import {Post} from '../posts/post/post.model';
 import {Injectable} from '@angular/core';

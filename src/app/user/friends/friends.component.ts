@@ -1,5 +1,5 @@
 import { UserService } from './../user.service';
-import {Component, OnInit, Input, Renderer2, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { User } from '../user.model';
 import {FriendsService} from './friends.service';
 
@@ -14,8 +14,7 @@ export class FriendsComponent implements OnInit {
   @ViewChild('chatBox', {static: false}) chatBox: ElementRef;
 
   constructor(private userService: UserService,
-              private friendsService: FriendsService,
-              private renderer: Renderer2) { }
+              private friendsService: FriendsService) { }
 
   ngOnInit() {
     this.friendsService.getFriends().subscribe((response: any) => {

@@ -1,10 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from './user.model';
-import { Post } from './posts/post/post.model';
 import {AuthService} from '../Auth/auth.service';
 
 @Injectable()

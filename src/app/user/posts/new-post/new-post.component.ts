@@ -1,5 +1,5 @@
-import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
-import {Component, OnInit, Input, HostListener, ViewChild} from '@angular/core';
+import {FormBuilder, FormControl} from '@angular/forms';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../../user.service';
 import {User} from '../../user.model';
 import {PostsService} from '../posts.service';

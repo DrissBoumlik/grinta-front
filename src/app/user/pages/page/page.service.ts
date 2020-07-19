@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../../../Auth/auth.service';
 import {User} from '../../user.model';
 import {Page} from './page.model';
@@ -6,7 +6,6 @@ import {environment} from '../../../../environments/environment';
 import {tap} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
-import {Post} from '../../posts/post/post.model';
 
 @Injectable()
 export class PageService {

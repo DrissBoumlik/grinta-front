@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {User} from '../../user.model';
 import {UserService} from '../../user.service';
-import {Page} from '../page/page.model';
 import {Sport} from '../../sports/sport.model';
 import {PagesService} from '../pages.service';
 import {ActivatedRoute, Params} from '@angular/router';

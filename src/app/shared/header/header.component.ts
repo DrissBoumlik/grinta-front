@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../Auth/auth.service';
-import {Router} from '@angular/router';
-import { User } from '../../user/user.model';
-import {SearchService} from '../search.service';
+import {User} from '../../user/user.model';
 
 @Component({
   selector: 'app-header',
@@ -13,8 +10,7 @@ import {SearchService} from '../search.service';
 export class HeaderComponent implements OnInit {
   user: User;
 
-  constructor(private authService: AuthService,
-              private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     const token = localStorage.getItem('_token');
