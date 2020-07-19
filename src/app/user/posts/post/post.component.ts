@@ -43,8 +43,13 @@ export class PostComponent implements OnInit {
     if (this.post) {
       this.ownPost = this.user.id === this.post.user_id;
 
-      this.post.comments.map((comment) => {
-        this.commentsCount += comment.replies.length + 1;
+      this.post.comments.forEach((comment) => {
+        this.commentsCount += comment.isVisible === 1 ? 1 : 0;
+        // this.commentsCount += comment.replies.length + 1;
+        const visibleReplies = comment.replies.filter((reply) => {
+          return reply.isVisible;
+        });
+        this.commentsCount += visibleReplies.length;
       });
 
       this.postLiked = this.post.likers.some((liker: User) => liker.id === this.user.id);
