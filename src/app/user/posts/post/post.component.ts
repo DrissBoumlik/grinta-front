@@ -43,14 +43,7 @@ export class PostComponent implements OnInit {
     if (this.post) {
       this.ownPost = this.user.id === this.post.user_id;
 
-      this.post.comments.forEach((comment) => {
-        this.commentsCount += comment.isVisible === 1 ? 1 : 0;
-        // this.commentsCount += comment.replies.length + 1;
-        const visibleReplies = comment.replies.filter((reply) => {
-          return reply.isVisible;
-        });
-        this.commentsCount += visibleReplies.length;
-      });
+      this.ubpateCommentsCount();
 
       this.postLiked = this.post.likers.some((liker: User) => liker.id === this.user.id);
     }
@@ -65,10 +58,7 @@ export class PostComponent implements OnInit {
 
     this.postService.postCommentsUpdated.subscribe((comments) => {
       this.post.comments = comments;
-      this.commentsCount = 0;
-      this.post.comments.map((comment) => {
-        this.commentsCount += comment.replies.length + 1;
-      });
+      this.ubpateCommentsCount();
     });
     // this.route.params.subscribe((params: Params) => {
     //   if (Object.entries(params).length === 0 && params.constructor === Object) {
@@ -78,6 +68,20 @@ export class PostComponent implements OnInit {
     //     this.post = this.postsService.getPost(+params.id);
     //   }
     // });
+  }
+
+  ubpateCommentsCount() {
+    this.commentsCount = 0;
+    this.post.comments.forEach((comment) => {
+      if (comment.is_visible) {
+        this.commentsCount += 1;
+        // this.commentsCount += comment.replies.length + 1;
+        const visibleReplies = comment.replies.filter((reply) => {
+          return reply.is_visible;
+        });
+        this.commentsCount += visibleReplies.length;
+      }
+    });
   }
 
   onLikePost() {
