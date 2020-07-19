@@ -17,7 +17,7 @@ hr {
 /*  width: 1.2rem;*/
 /*}*/
 /*::-webkit-scrollbar-thumb {*/
-/*  background-color: #81D400;*/
+/*  background-color: var(--grintaaa);*/
 /*  -webkit-box-shadow: inset 0 0 5px grey;*/
 /*  box-shadow: inset 0 0 5px grey;*/
 /*}*/
@@ -25,12 +25,12 @@ hr {
 /*  background-color: #fafafa;*/
 /*}*/
 /*::selection {*/
-/*  background-color: #81D400;*/
+/*  background-color: var(--grintaaa);*/
 /*  color: #fafafa;*/
 /*}*/
 
 a {
-  color: #81D400;
+  color: var(--grintaaa);
 }
 a:hover {
   color: #5e9a00;
@@ -39,20 +39,29 @@ a:hover {
 
 /******************** Classes *****************/
 
-.grintaaa-bg, .grintaaa-bg:hover {
-  background-color: #81D400;
+.bgclr-grintaaa, .bgclr-grintaaa-hover:hover {
+  background-color: var(--grintaaa) !important;
+  border-color: var(--grintaaa) !important;
+}
+.clr-grintaaa, .clr-grintaaa-hover:hover {
+  color: var(--grintaaa) !important;
 }
 
-.grintaaa-clr, .grintaaa-clr:hover {
-  color: #81D400;
+.bgclr-white {
+  background-color: #fff !important;
+  border-color: #fff !important;
 }
+.clr-white {
+  color: #fff !important;
+}
+
 
 .grintaaa-brd {
-  border: 1px solid #81D400;
+  border: 1px solid var(--grintaaa);
 }
 
 .grintaaa-brd-left {
-  border: 1px solid #81D400;
+  border: 1px solid var(--grintaaa);
   border-left: none;
 }
 
@@ -120,7 +129,7 @@ a:hover {
 }
 
 .no-border-shadow, .no-border-shadow:focus {
-  border-color: #81D400 !important;
+  border-color: var(--grintaaa) !important;
   box-shadow: none;
 }
 .img-fit {
@@ -165,7 +174,7 @@ a:hover {
 }
 
 .liked, .liked:hover, .liked:focus {
-  color: #81D400!important;
+  color: var(--grintaaa)!important;
   text-decoration: underline;
   font-weight: bolder;
   background-color: transparent;
@@ -245,8 +254,8 @@ a:hover {
   /*position: absolute;*/
   /*top: -1px;*/
   /*right: 3px;*/
-  background-color: #81D400;
-  border-color: #81D400;
+  background-color: var(--grintaaa);
+  border-color: var(--grintaaa);
   padding: 8px 10px;
 }
 .modal-bg {
@@ -258,21 +267,6 @@ a:hover {
   bottom: 0;
   right: 0;
   z-index: 901;
-}
-
-.bgclr-grintaaa {
-  background-color: #81D400 !important;
-  border-color: #81D400 !important;
-}
-.clr-grintaaa {
-  color: #81D400 !important;
-}
-.bgclr-white {
-  background-color: #fff !important;
-  border-color: #fff !important;
-}
-.clr-white {
-  color: #fff !important;
 }
 
 .center-img .centered-img {

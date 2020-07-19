@@ -1,27 +1,27 @@
 .sign-in-page {
-  /*background-color: #81D400 !important;*/
-  background-image: linear-gradient(135deg, #81D400 0%, #5a9400 100%) !important;
+  /*background-color: var(--grintaaa) !important;*/
+  background-image: linear-gradient(135deg, var(--grintaaa) 0%, #5a9400 100%) !important;
 }
 
 .iq-top-navbar {
-  /*background-color: #81D400!important;*/
+  /*background-color: var(--grintaaa)!important;*/
 }
 
 a, .navbar-list li > a {
-  color: #81D400;
+  color: var(--grintaaa);
 }
 ul.header-nav li a {
-  color: #81D400;
+  color: var(--grintaaa);
 }
 .iq-search-bar {
   position: relative;
 }
 div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg path {
-  stroke: #81D400;
+  stroke: var(--grintaaa);
 }
 
 .right-sidebar-toggle.bg-primary {
-  background-color: #81D400 !important;
+  background-color: var(--grintaaa) !important;
 }
 
 .media-support-user-img img {
@@ -30,11 +30,11 @@ div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg pa
 }
 
 .iq-bg-primary {
-  color: #81D400 !important;
+  color: var(--grintaaa) !important;
 }
 
 .text-primary {
-  color: #81D400 !important;;
+  color: var(--grintaaa) !important;;
 }
 
 /*.right-sidebar-mini {*/
@@ -62,11 +62,11 @@ div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg pa
 
 .iq-sidebar-menu .iq-menu li.active > a,
 .iq-sidebar-menu .iq-menu li a:hover {
-  color: #81D400;
+  color: var(--grintaaa);
 }
 
 #sidebar-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #81D400;
+  background-color: var(--grintaaa);
 }
 
 .h-300 {
@@ -84,15 +84,19 @@ ul.header-nav {
 }
 
 .nav-pills.profile-feed-items li a.active {
-  background-color: #81D400;
+  background-color: var(--grintaaa);
 }
 
 .nav-pills .nav-link:hover {
-  color: #81D400;
+  color: var(--grintaaa);
+}
+
+.like-block span:hover {
+  color: var(--grintaaa);
 }
 
 @media (max-width: 992px) {
   .iq-top-navbar .navbar-toggler {
-    color: #81D400 !important;
+    color: var(--grintaaa) !important;
   }
 }

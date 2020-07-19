@@ -26,7 +26,7 @@
 }
 
 .user-name {
-  color: #81D400;
+  color: var(--grintaaa);
 }
 .comment {
   background-color: #F2F3F5;
@@ -58,7 +58,7 @@
   padding: .5rem;
 }
 .comment-edition .dropdown-menu li > a:hover {
-  color: #81D400;
+  color: var(--grintaaa);
 }
 
 .replies {
