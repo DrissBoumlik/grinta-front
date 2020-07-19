@@ -69,11 +69,11 @@ export class CommentComponent implements OnInit {
 
   onCreateReply() {
     if (this.ReplyForm.valid) {
-      let user_id = this.user.id;
-      let post_id = this.comment.post_id;
-      let parent_id = this.comment.id;
-      let content = this.ReplyForm.get('content').value;
-      this.postService.createComment(user_id, post_id, content, parent_id)
+      const userId = this.user.id;
+      const postId = this.comment.post_id;
+      const parentId = this.comment.id;
+      const content = this.ReplyForm.get('content').value;
+      this.postService.createComment(userId, postId, content, parentId)
         .subscribe((response: any) => {
           this.commentService.addReply(response.comment);
         });

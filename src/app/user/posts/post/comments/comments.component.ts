@@ -32,10 +32,10 @@ export class CommentsComponent implements OnInit {
 
   onCreateComment() {
     if (this.CommentForm.valid) {
-      let user_id = this.user.id;
-      let post_id = this.post.id;
-      let content = this.CommentForm.get('content').value;
-      this.postService.createComment(user_id, post_id, content)
+      const userId = this.user.id;
+      const postId = this.post.id;
+      const content = this.CommentForm.get('content').value;
+      this.postService.createComment(userId, postId, content)
       .subscribe((response: any) => {
         // this.comments.unshift(response.comment)
         this.postService.addComment(response.comment);

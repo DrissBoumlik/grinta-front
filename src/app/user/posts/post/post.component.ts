@@ -111,9 +111,9 @@ export class PostComponent implements OnInit {
   }
 
   onSharePost() {
-    const owner_id = this.post.post_owner_id === null ? this.post.user_id : this.post.post_owner_id;
+    const ownerId = this.post.post_owner_id === null ? this.post.user_id : this.post.post_owner_id;
     const pageId = this.pageService.page ? this.pageService.page.id : null;
-    this.postsService.sharePost(this.post.content, this.post.image, owner_id, pageId).subscribe((response: any) => {
+    this.postsService.sharePost(this.post.content, this.post.image, ownerId, pageId).subscribe((response: any) => {
       if ((this.profileService.profile && this.authService.user.id !== this.profileService.profile.id)) {
         return;
       }
