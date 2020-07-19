@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {SearchService} from '../search.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -10,7 +10,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class SearchResultsComponent implements OnInit {
   sendRequest = null;
   results: { header: string, image: string, link: string }[];
-  showResults = true;
+  showResults = false;
   @ViewChild('searchInput', {static: false}) searchInput: ElementRef;
   searchForm = new FormGroup({
     search: new FormControl(null, Validators.required),
