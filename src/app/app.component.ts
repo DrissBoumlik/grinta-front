@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from './Auth/auth.service';
+import {Component} from '@angular/core';
+import * as jquery from 'jquery';
 
 @Component({
   selector: 'app-root',
