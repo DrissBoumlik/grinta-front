@@ -1,1 +1,81 @@
-<div *ngIf="success"></div>
+<div class="alerts-wrapper" style="position: absolute; bottom: 0; right: 15px;">
+  <div *ngIf="flag=='info'">
+    <div *ngFor="let text of texts; let i = index">
+      <div class="alert text-white bg-primary" role="alert">
+        <div class="iq-alert-icon">
+          <i class="ri-information-line"></i>
+        </div>
+        <div class="iq-alert-text" [innerHTML]="text"></div>
+        <button type="button" class="close ml-4" (click)="onCloseAlert(i)">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!--  <div *ngIf="success" class="alert text-white bg-secondary" role="alert">-->
+  <!--    <div class="iq-alert-icon">-->
+  <!--      <i class="ri-information-line"></i>-->
+  <!--    </div>-->
+  <!--    <div class="iq-alert-text">A simple <b>secondary</b> alert—check it out!</div>-->
+  <!--    <button type="button" class="close ml-4">-->
+  <!--      <i class="ri-close-line"></i>-->
+  <!--    </button>-->
+  <!--  </div>-->
+  <div *ngIf="flag=='success'">
+    <div *ngFor="let text of texts; let i = index">
+      <div class="alert text-white bg-success bgclr-grintaaa" role="alert">
+        <div class="iq-alert-icon">
+          <i class="ri-information-line"></i>
+        </div>
+        <div class="iq-alert-text" [innerHTML]="text"></div>
+        <button type="button" class="close ml-4" (click)="onCloseAlert(i)">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="flag=='error'">
+    <div *ngFor="let text of texts; let i = index">
+      <div class="alert text-white bg-danger" role="alert">
+        <div class="iq-alert-icon">
+          <i class="ri-alert-line"></i>
+        </div>
+        <div class="iq-alert-text" [innerHTML]="text"></div>
+        <button type="button" class="close ml-4" (click)="onCloseAlert(i)">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="flag=='warning'">
+    <div *ngFor="let text of texts; let i = index">
+      <div class="alert text-white bg-warning" role="alert">
+        <div class="iq-alert-icon">
+          <i class="ri-alert-line"></i>
+        </div>
+        <div class="iq-alert-text" [innerHTML]="text"></div>
+        <button type="button" class="close ml-4" (click)="onCloseAlert(i)">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!--  <div *ngIf="info" class="alert text-white bg-info" role="alert">-->
+  <!--    <div class="iq-alert-icon">-->
+  <!--      <i class="ri-information-line"></i>-->
+  <!--    </div>-->
+  <!--    <div class="iq-alert-text">A simple <b>info</b> alert—check it out!</div>-->
+  <!--    <button type="button" class="close ml-4">-->
+  <!--      <i class="ri-close-line"></i>-->
+  <!--    </button>-->
+  <!--  </div>-->
+  <!--  <div *ngIf="success" class="alert bg-light" role="alert">-->
+  <!--    <div class="iq-alert-icon">-->
+  <!--      <i class="ri-alert-line"></i>-->
+  <!--    </div>-->
+  <!--    <div class="iq-alert-text">A simple <b>light</b> alert—check it out!</div>-->
+  <!--    <button type="button" class="close text-muted">-->
+  <!--      <i class="ri-close-line"></i>-->
+  <!--    </button>-->
+  <!--  </div>-->
+</div>

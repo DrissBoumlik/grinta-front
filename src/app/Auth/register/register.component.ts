@@ -153,7 +153,7 @@ export class RegisterComponent implements OnInit {
         Object.entries(error).forEach((item: any) => {
           messages.push(item[1].flat()[0]);
         });
-        this.feedbackService.feedbackReceived.next({feedback: false, message: messages});
+        this.feedbackService.feedbackReceived.next({feedback: 'error', message: messages});
       });
   }
 

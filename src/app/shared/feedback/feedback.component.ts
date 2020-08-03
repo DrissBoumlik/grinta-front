@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FeedbackService} from './feedback.service';
 import {ToolsService} from '../tools.service';
-import Swal from 'sweetalert2';
+import {isObject} from 'util';
 
 
 @Component({
@@ -10,7 +10,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./feedback.component.css']
 })
 export class FeedbackComponent implements OnInit {
-  success: boolean;
+  flag: string;
+  texts = [];
 
   constructor(private feedbackService: FeedbackService,
               private toolsService: ToolsService) {
@@ -18,27 +19,55 @@ export class FeedbackComponent implements OnInit {
 
   ngOnInit() {
     this.feedbackService.feedbackReceived.subscribe(({feedback, message}: any) => {
-      this.success = feedback;
+      // this.flag = feedback;
       this.showFeedback(feedback, message);
     });
   }
 
-  showFeedback(feedback: boolean, message: string) {
+  showFeedback(feedback: string, message: any) {
     console.log('feedback');
+    // let text = null;
+    this.flag = null;
+    this.texts = [];
     if (Array.isArray(message)) {
-      let html = '<ul class="align-left">';
+      // let html = '<ul class="align-left m-0 p-0">';
       message.forEach((msg) => {
-        html += '<li>' + msg + '</li>';
+        // html += '<li>' + msg + '</li>';
+        this.texts.push(msg);
       });
-      Swal.fire({
-        html,
-        icon: feedback ? 'success' : 'error'
+      // Swal.fire({
+      //   html,
+      //   icon: (SweetAlertIcon) feedback
+      // });
+      // text = html;
+    } else if (isObject(message)) {
+      message = Object.values(message);
+      // let html = '<ul class="align-left">';
+      message.forEach((msg) => {
+        // html += '<li>' + msg[0] + '</li>';
+        this.texts.push(msg[0]);
       });
+      // text = html;
     } else {
-      Swal.fire({
-        title: message,
-        icon: feedback ? 'success' : 'error'
-      });
+      // Swal.fire({
+      //   title: message,
+      //   icon: (SweetAlertIcon) feedback
+      // });
+      // text = message;
+      this.texts.push(message);
+    }
+
+    // this.text = text;
+    this.flag = feedback;
+    console.log(this.flag, this.texts);
+  }
+
+  onCloseAlert(textIndex) {
+    this.texts = this.texts.filter((text, index) => {
+        return index !== textIndex;
+    });
+    if (!this.texts.length) {
+      this.flag = null;
     }
   }
 }

@@ -49,7 +49,7 @@ export class NewPostComponent implements OnInit {
     const pageId = this.pageService.page ? this.pageService.page.id : null;
     this.postsService.createPost(content, image, pageId).subscribe((response: any) => {
       console.log('success');
-      this.feedbackService.feedbackReceived.next({feedback: true, message: response.message});
+      this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
       this.postsService.addPost(response.post);
     });
     this.sharePostForm.reset();
