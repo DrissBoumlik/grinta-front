@@ -7,6 +7,7 @@ import {PagesService} from '../pages.service';
 import {ActivatedRoute, Params} from '@angular/router';
 import {SportService} from '../../../shared/sport.service';
 import {ProfileService} from '../../profile/profile.service';
+import {FeedbackService} from '../../../shared/feedback/feedback.service';
 
 @Component({
   selector: 'app-new-page',
@@ -26,11 +27,11 @@ export class NewPageComponent implements OnInit {
   };
 
   CreatePageForm = this.fb.group({
-    name: new FormControl('This is a tennis page'),
-    pagename: new FormControl('tennis_page'),
+    name: new FormControl('This is a tennis page', Validators.required),
+    pagename: new FormControl('tennis_page', Validators.required),
     image: new FormControl(null),
     cover: new FormControl(null),
-    type: new FormControl('private'),
+    type: new FormControl('private', Validators.required),
     description: new FormControl('This is a page description'),
     sport: new FormControl(1, Validators.required)
   });
@@ -40,7 +41,8 @@ export class NewPageComponent implements OnInit {
               private userService: UserService,
               private profileService: ProfileService,
               private sportService: SportService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private feedbackService: FeedbackService) {
     this.user = this.userService.user;
   }
 
@@ -173,12 +175,27 @@ export class NewPageComponent implements OnInit {
   }
 
   onCreatePage() {
+    // console.log('submitted');
+    // return;
     this.userService.createPage(this.CreatePageForm.value.name, this.CreatePageForm.value.pagename,
       this.CreatePageForm.value.image, this.CreatePageForm.value.cover,
       this.CreatePageForm.value.type, this.CreatePageForm.value.description, this.CreatePageForm.value.sport)
       .subscribe(
-        (response: any) => console.log(response),
-        (error: any) => console.log(error)
+        (response: any) => {
+          console.log(response);
+          this.steps = {
+            infos: {active: false, done: true},
+            details: {active: false, done: true},
+            media: {active: false, done: true},
+            finish: {active: true, done: true},
+          };
+          this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
+        },
+        (error: any) => {
+          console.log(error);
+          const message = error.error.errors ? error.error.errors : error.error.message;
+          this.feedbackService.feedbackReceived.next({feedback: 'error', message});
+        }
       );
   }
 
@@ -189,14 +206,11 @@ export class NewPageComponent implements OnInit {
       media: {active: false, done: false},
       finish: {active: false, done: false},
     };
-    console.log(this.steps);
+    console.log(this.steps.infos);
   }
 
   goToDetails() {
     // validation
-    if (!this.steps.infos.done) {
-      // return;
-    }
     // branching
     this.steps = {
       infos: {active: false, done: true},
@@ -204,14 +218,11 @@ export class NewPageComponent implements OnInit {
       media: {active: false, done: false},
       finish: {active: false, done: false},
     };
-    console.log(this.steps);
+    console.log(this.steps.details);
   }
 
   goToMedia() {
     // validation
-    if (!this.steps.details.done) {
-      // return;
-    }
     // branching
     this.steps = {
       infos: {active: false, done: true},
@@ -219,22 +230,20 @@ export class NewPageComponent implements OnInit {
       media: {active: true, done: false},
       finish: {active: false, done: false},
     };
-    console.log(this.steps);
+    console.log(this.steps.media);
   }
 
   goToFinish() {
     // validation
-    if (!this.steps.media.done) {
-      // return;
-    }
     // branching
-    this.steps = {
-      infos: {active: false, done: true},
-      details: {active: false, done: true},
-      media: {active: false, done: true},
-      finish: {active: true, done: false},
-    };
-    console.log(this.steps);
+    // this.steps = {
+    //   infos: {active: false, done: true},
+    //   details: {active: false, done: true},
+    //   media: {active: false, done: true},
+    //   finish: {active: true, done: false},
+    // };
+    // console.log(this.steps.finish);
+    this.onCreatePage();
 
   }
 }
