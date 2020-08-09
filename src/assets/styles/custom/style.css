@@ -108,6 +108,11 @@ ul.header-nav {
   /*background-color: var(--iq-primary);*/
 }
 
+.iq-profile-avatar:before {
+  height: 12px;
+  width: 12px;
+}
+
 @media (max-width: 992px) {
   .iq-top-navbar .navbar-toggler {
     color: var(--grintaaa) !important;
