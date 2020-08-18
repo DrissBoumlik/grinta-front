@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../user.model';
 import {FormBuilder, FormControl} from '@angular/forms';
 import {UserService} from '../../user.service';
+import {FeedbackService} from '../../../shared/feedback/feedback.service';
 
 @Component({
   selector: 'app-new-event',
@@ -11,6 +12,12 @@ import {UserService} from '../../user.service';
 export class NewEventComponent implements OnInit {
   user: User;
   imageToUpload: any = File;
+  steps = {
+    infos: {active: true, done: false},
+    details: {active: false, done: false},
+    media: {active: false, done: false},
+    finish: {active: false, done: false},
+  };
 
   CreateEventForm = this.fb.group({
     name: new FormControl('eventoosss'),
@@ -25,6 +32,7 @@ export class NewEventComponent implements OnInit {
   });
 
   constructor(private fb: FormBuilder,
+              private feedbackService: FeedbackService,
               private userService: UserService) {
     this.user = this.userService.user;
   }
@@ -64,7 +72,65 @@ export class NewEventComponent implements OnInit {
       this.CreateEventForm.value.address, this.CreateEventForm.value.location,
       this.CreateEventForm.value.image, this.CreateEventForm.value.cover,
       this.CreateEventForm.value.type, this.CreateEventForm.value.description)
-      .subscribe((response: any) => console.log(response));
+      .subscribe((response: any) => {
+        console.log(response);
+        this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
+      },
+        (error: any) => {
+          console.log(error);
+          const message = error.error.errors ? error.error.errors : error.error.message;
+          this.feedbackService.feedbackReceived.next({feedback: 'error', message});
+        }
+      );
+  }
+
+
+  goToInfos() {
+    this.steps = {
+      infos: {active: true, done: false},
+      details: {active: false, done: false},
+      media: {active: false, done: false},
+      finish: {active: false, done: false},
+    };
+    console.log(this.steps.infos);
+  }
+
+  goToDetails() {
+    // validation
+    // branching
+    this.steps = {
+      infos: {active: false, done: true},
+      details: {active: true, done: false},
+      media: {active: false, done: false},
+      finish: {active: false, done: false},
+    };
+    console.log(this.steps.details);
+  }
+
+  goToMedia() {
+    // validation
+    // branching
+    this.steps = {
+      infos: {active: false, done: true},
+      details: {active: false, done: true},
+      media: {active: true, done: false},
+      finish: {active: false, done: false},
+    };
+    console.log(this.steps.media);
+  }
+
+  goToFinish() {
+    // validation
+    // branching
+    // this.steps = {
+    //   infos: {active: false, done: true},
+    //   details: {active: false, done: true},
+    //   media: {active: false, done: true},
+    //   finish: {active: true, done: false},
+    // };
+    // console.log(this.steps.finish);
+    this.onCreateEvent();
+
   }
 
 }
