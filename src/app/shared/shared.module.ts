@@ -11,6 +11,8 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import {ToolsService} from './tools.service';
 import {FeedbackService} from './feedback/feedback.service';
 import {HandlerService} from './handler.service';
+import { MapComponent } from './map/map.component';
+import {GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -18,16 +20,19 @@ import {HandlerService} from './handler.service';
     SearchResultsComponent,
     SearchResultComponent,
     FeedbackComponent,
+    MapComponent,
   ],
   imports: [
     RouterModule,
     CommonModule,
     ReactiveFormsModule,
+    GoogleMapsModule
   ],
   exports: [
     HeaderComponent,
     SearchResultsComponent,
     FeedbackComponent,
+    MapComponent,
   ],
   providers: [SearchService, SportService, ToolsService, FeedbackService, HandlerService]
 })
