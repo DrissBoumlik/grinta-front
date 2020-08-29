@@ -26,8 +26,4 @@ export class FriendsComponent implements OnInit {
   onSearch(value: string) {
     this.friends = this.friendsService.searchFriends(value.toLowerCase());
   }
-
-  arrayNTimes(length: number) {
-    return Array(length);
-  }
 }
