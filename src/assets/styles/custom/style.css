@@ -113,6 +113,15 @@ ul.header-nav {
   width: 12px;
 }
 
+.chat-message {
+  background-color: var(--grintaaa);
+  box-shadow: 0 2px 4px 0 var(--grintaaa);
+}
+
+.scroller::-webkit-scrollbar-thumb {
+  background-color: var(--grintaaa);
+}
+
 @media (max-width: 992px) {
   .iq-top-navbar .navbar-toggler {
     color: var(--grintaaa) !important;

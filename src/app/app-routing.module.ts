@@ -18,6 +18,7 @@ import {PostComponent} from './user/posts/post/post.component';
 import {TemplateComponent} from './user/template/template.component';
 import {PostsComponent} from './user/posts/posts.component';
 import {PostWrapperComponent} from './user/post-wrapper/post-wrapper.component';
+import {ChatComponent} from './user/friends/chat/chat.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,10 @@ const routes: Routes = [
     path: 'pages', children: [
       {path: ':pagename', component: PageComponent},
       {path: ':pagename/edit', component: NewPageComponent}
+    ]
+  },
+  {path: 'messenger', component: TemplateComponent, children: [
+      {path: ':username', component: ChatComponent},
     ]
   },
   // { path: ':username', component: UserComponent},
