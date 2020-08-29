@@ -9,11 +9,16 @@ import {PostsModule} from '../posts/posts.module';
 import {FriendsService} from './friends.service';
 import {FriendComponent} from './friend/friend.component';
 import {FriendsComponent} from './friends.component';
+import {ChatComponent} from './chat/chat.component';
+import {ChatBoxComponent} from './chat/chat-box/chat-box.component';
+import {ChatService} from './chat.service';
 
 @NgModule({
   declarations: [
     FriendComponent,
     FriendsComponent,
+    ChatComponent,
+    ChatBoxComponent,
   ],
   exports: [
     FriendComponent,
@@ -28,7 +33,7 @@ import {FriendsComponent} from './friends.component';
     SharedModule,
     PostsModule
   ],
-  providers: [FriendsService]
+  providers: [FriendsService, ChatService]
 })
 export class FriendsModule {
 
