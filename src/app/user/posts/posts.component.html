@@ -1,27 +1,30 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12 p-0">
-      <app-new-post [user]="authUser"></app-new-post>
+<div class="col-md-8">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-12 p-0">
+        <app-new-post [user]="authUser"></app-new-post>
+      </div>
     </div>
-  </div>
-  <div class="row posts">
-    <div class="col-12 p-0">
-      <app-post *ngFor="let post of user?.posts; let i = index"
-                [post]="post"></app-post>
+    <div class="row posts">
+      <div class="col-12 p-0">
+        <app-post *ngFor="let post of user?.posts; let i = index"
+                  [post]="post"></app-post>
+      </div>
     </div>
-  </div>
-  <!-- <ngx-spinner></ngx-spinner> -->
-  <ngx-spinner
-    bdColor="rgba(51,51,51,0.8)"
-    size="medium"
-    color="#fff"
-    type="pacman">
-    <p style="font-size: 20px; color: white">Loading...</p>
-  </ngx-spinner>
-  <div class="row load-more align-center" *ngIf="!gotAllPosts">
-    <div class="col-md-12">
-      <a class="btn btn-load-more capitalize"
-         (click)="onLoadMorePosts()">load more</a>
+    <!-- <ngx-spinner></ngx-spinner> -->
+    <ngx-spinner
+      bdColor="rgba(51,51,51,0.8)"
+      size="medium"
+      color="#fff"
+      type="pacman">
+      <p style="font-size: 20px; color: white">Loading...</p>
+    </ngx-spinner>
+    <div class="row load-more align-center" *ngIf="!gotAllPosts">
+      <div class="col-md-12">
+        <a class="btn btn-load-more capitalize"
+           (click)="onLoadMorePosts()">load more</a>
+      </div>
     </div>
   </div>
 </div>
