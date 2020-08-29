@@ -1,6 +1,15 @@
-<div>
-  <google-map
-    [height]="300"
-    (mapClick)="click($event)"
-  ></google-map>
+<div class="map-wrapper">
+  <div style="height: 500px">
+    <ngui-map
+      zoom="13"
+      center="48.8681061, 2.3537"
+      (mapReady$)="onMapReady($event)"
+      (mapClick)="onMapClick($event)"
+      (idle)="onIdle($event)"
+      mapTypeId="roadmap">
+      <marker *ngFor="let pos of positions"
+              [position]="pos"
+              (initialized$)="onMarkerInit($event)"></marker>
+    </ngui-map>
+  </div>
 </div>

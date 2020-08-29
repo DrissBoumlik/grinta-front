@@ -12,7 +12,7 @@ import {ToolsService} from './tools.service';
 import {FeedbackService} from './feedback/feedback.service';
 import {HandlerService} from './handler.service';
 import { MapComponent } from './map/map.component';
-import {GoogleMapsModule } from '@angular/google-maps';
+import {NguiMapModule} from '@ngui/map';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import {GoogleMapsModule } from '@angular/google-maps';
     RouterModule,
     CommonModule,
     ReactiveFormsModule,
-    GoogleMapsModule
+    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBERjm6nvJubSHoBkkmwBDAyfb1mCL55nM'})
   ],
   exports: [
     HeaderComponent,
