@@ -42,6 +42,7 @@ import {PageItemComponent} from './user/pages/page-item/page-item.component';
 import {PostWrapperComponent} from './user/post-wrapper/post-wrapper.component';
 import {TemplateComponent} from './user/template/template.component';
 import {HandlerHttpInterceptor} from './handler/handler-http-interceptor';
+import {DatePipe} from '@angular/common';
 
 const config = new AuthServiceConfig([
   {
@@ -105,6 +106,7 @@ export function provideConfig() {
     ProfileService,
     AuthService,
     PagesService,
+    DatePipe,
     {provide: AuthServiceConfig, useFactory: provideConfig},
     {provide: HTTP_INTERCEPTORS, useClass: HandlerHttpInterceptor, multi: true}
   ],
