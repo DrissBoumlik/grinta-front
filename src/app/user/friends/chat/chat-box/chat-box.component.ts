@@ -18,6 +18,8 @@ export class ChatBoxComponent implements OnInit {
   @Input() user: User;
   authUser: User;
   chats: any[] = [];
+  fbDB = firebase.database();
+  chatId = null;
   constructor(private chatService: ChatService,
               private authService: AuthService,
               private fb: FormBuilder,
@@ -29,14 +31,20 @@ export class ChatBoxComponent implements OnInit {
   });
 
   ngOnInit() {
-
     this.authUser = this.authService.user;
     this.route.params.subscribe((params: Params) => {
       const username = params.username;
       this.chatService.getUser(username).subscribe(
         (response: any) => {
           this.user = response.user;
-          firebase.database().ref('chats/').on('value', resp => {
+
+          if (this.authUser.username < this.user.username) {
+            this.chatId = (this.authUser.username + '_' + this.user.username).replace(/\.|\#|\$|\[|\]/g, '_');
+          } else {
+            this.chatId = (this.user.username + '_' + this.authUser.username).replace(/\.|\#|\$|\[|\]/g, '_');
+          }
+
+          this.fbDB.ref(this.chatId).on('value', resp => {
             console.log(resp);
             this.chats = [];
             this.chats = this.snapshotToArray(resp);
@@ -72,7 +80,7 @@ export class ChatBoxComponent implements OnInit {
       from: this.authUser.username,
       to: this.user.username,
     };
-    const newMessage = firebase.database().ref('chats/').push();
+    const newMessage = this.fbDB.ref(this.chatId).push();
     newMessage.set(chat);
     this.sendMessageForm = this.fb.group({
       message : [null, Validators.required]
