@@ -118,6 +118,10 @@ ul.header-nav {
   box-shadow: 0 2px 4px 0 var(--grintaaa);
 }
 
+.form-control:focus {
+  border-color: var(--grintaaa);
+}
+
 .scroller::-webkit-scrollbar-thumb {
   background-color: var(--grintaaa);
 }
