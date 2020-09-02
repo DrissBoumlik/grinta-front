@@ -13,6 +13,7 @@ import {FeedbackService} from './feedback/feedback.service';
 import {HandlerService} from './handler.service';
 import { MapComponent } from './map/map.component';
 import {NguiMapModule} from '@ngui/map';
+import {AgmCoreModule} from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,13 @@ import {NguiMapModule} from '@ngui/map';
     RouterModule,
     CommonModule,
     ReactiveFormsModule,
-    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBERjm6nvJubSHoBkkmwBDAyfb1mCL55nM'})
+    // NguiMapModule.forRoot({
+    //   apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBERjm6nvJubSHoBkkmwBDAyfb1mCL55nM'
+    // }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBERjm6nvJubSHoBkkmwBDAyfb1mCL55nM',
+      libraries: ['places']
+    })
   ],
   exports: [
     HeaderComponent,
