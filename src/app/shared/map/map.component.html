@@ -1,15 +1,36 @@
 <div class="map-wrapper">
+  <div class="form-group">
+    <label>Enter address</label>
+    <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+  </div>
+
   <div style="height: 500px">
-    <ngui-map
-      zoom="13"
-      center="48.8681061, 2.3537"
-      (mapReady$)="onMapReady($event)"
-      (mapClick)="onMapClick($event)"
-      (idle)="onIdle($event)"
-      mapTypeId="roadmap">
-      <marker *ngFor="let pos of positions"
-              [position]="pos"
-              (initialized$)="onMarkerInit($event)"></marker>
-    </ngui-map>
+<!--    <ngui-map-->
+<!--      zoom="13"-->
+<!--      center="48.8681061, 2.3537"-->
+<!--      (mapReady$)="onMapReady($event)"-->
+<!--      (mapClick)="onMapClick($event)"-->
+<!--      (idle)="onIdle($event)"-->
+<!--      mapTypeId="roadmap">-->
+<!--      <marker *ngFor="let pos of positions"-->
+<!--              [position]="pos"-->
+<!--              (initialized$)="onMarkerInit($event)"></marker>-->
+<!--    </ngui-map>-->
+
+    <h5>Address: {{address}}</h5>
+    <div>Latitude: {{latitude}}</div>
+    <div>Longitude: {{longitude}}</div>
+
+    <agm-map style="height: 500px"
+      [latitude]="latitude"
+      [longitude]="longitude"
+      [zoom]="zoom">
+      <agm-marker
+        [latitude]="latitude"
+        [longitude]="longitude"
+        [markerDraggable]="true"
+        (dragEnd)="markerDragEnd($event)"></agm-marker>
+    </agm-map>
+
   </div>
 </div>

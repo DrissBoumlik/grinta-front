@@ -71,9 +71,6 @@
                       <textarea type="text" class="form-control" name="description" formControlName="description" placeholder="Project Description" required></textarea>
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <app-map></app-map>
-                  </div>
                 </div>
               </div>
               <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" (click)="goToDetails()">Details =></button>
@@ -92,13 +89,19 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Event date: *</label>
-                      <input type="date" class="form-control" name="date" formControlName="date" placeholder="Event Date" required />
+                      <input type="datetime-local" class="form-control" name="date" formControlName="date" placeholder="Event Date" required />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Event Echéance: *</label>
-                      <input type="date" class="form-control" formControlName="limit_signup" placeholder="Event écheance" required />
+                      <input type="datetime-local" class="form-control" formControlName="limit_signup" placeholder="Event écheance" required />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Location: *</label>
+                      <input type="text" class="form-control" formControlName="location" placeholder="Location" required />
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -108,10 +111,7 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Location: *</label>
-                      <input type="text" class="form-control" formControlName="location" placeholder="Location" required />
-                    </div>
+                    <app-map></app-map>
                   </div>
                 </div>
               </div>
