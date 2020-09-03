@@ -12,8 +12,7 @@ import {ToolsService} from './tools.service';
 import {FeedbackService} from './feedback/feedback.service';
 import {HandlerService} from './handler.service';
 import { MapComponent } from './map/map.component';
-import {NguiMapModule} from '@ngui/map';
-import {AgmCoreModule} from '@agm/core';
+import {EventService} from './event.service';
 
 @NgModule({
   declarations: [
@@ -27,13 +26,6 @@ import {AgmCoreModule} from '@agm/core';
     RouterModule,
     CommonModule,
     ReactiveFormsModule,
-    // NguiMapModule.forRoot({
-    //   apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBERjm6nvJubSHoBkkmwBDAyfb1mCL55nM'
-    // }),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBERjm6nvJubSHoBkkmwBDAyfb1mCL55nM',
-      libraries: ['places']
-    })
   ],
   exports: [
     HeaderComponent,
@@ -41,7 +33,7 @@ import {AgmCoreModule} from '@agm/core';
     FeedbackComponent,
     MapComponent,
   ],
-  providers: [SearchService, SportService, ToolsService, FeedbackService, HandlerService]
+  providers: [SearchService, SportService, ToolsService, FeedbackService, HandlerService, EventService]
 })
 export class SharedModule {
 
