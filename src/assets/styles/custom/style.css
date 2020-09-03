@@ -126,6 +126,13 @@ ul.header-nav {
   background-color: var(--grintaaa);
 }
 
+.map-icon-marker {
+  border-radius: 50%;
+  width: 40px!important;
+  height: auto!important;
+  border: 2px solid white;
+}
+
 @media (max-width: 992px) {
   .iq-top-navbar .navbar-toggler {
     color: var(--grintaaa) !important;
