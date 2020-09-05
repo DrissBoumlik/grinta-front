@@ -1,3 +1,5 @@
+import {User} from '../user.model';
+
 export class Event {
   constructor(
     public id: number,
@@ -11,5 +13,6 @@ export class Event {
     public image: string,
     public cover: string,
     public type: string,
+    public user: User,
   ) {}
 }
