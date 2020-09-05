@@ -19,4 +19,15 @@ export class EventService {
         )
       );
   }
+
+  getNearEvents(kilometers, latitude, longitude) {
+    AuthService.getHeaders();
+    return this.http.get(environment.baseApiUrl + `/events/${kilometers}/location/${latitude}/${longitude}`, {headers: AuthService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
+  }
 }
