@@ -13,7 +13,6 @@ import {FeedbackService} from './feedback/feedback.service';
 import {HandlerService} from './handler.service';
 import { MapComponent } from './map/map.component';
 import {EventService} from './event.service';
-import { ExcerptPipe } from './excerpt.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,6 @@ import { ExcerptPipe } from './excerpt.pipe';
     SearchResultComponent,
     FeedbackComponent,
     MapComponent,
-    ExcerptPipe,
   ],
   imports: [
     RouterModule,
