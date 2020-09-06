@@ -1,3 +1,7 @@
+.btn i {
+  margin: 0;
+}
+
 .sign-in-page {
   /*background-color: var(--grintaaa) !important;*/
   background-image: linear-gradient(135deg, var(--grintaaa) 0%, #5a9400 100%) !important;
@@ -10,12 +14,15 @@
 a, .navbar-list li > a {
   color: var(--grintaaa);
 }
+
 ul.header-nav li a {
   color: var(--grintaaa);
 }
+
 .iq-search-bar {
   position: relative;
 }
+
 div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg path {
   stroke: var(--grintaaa);
 }
@@ -76,9 +83,11 @@ div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg pa
 .page-title {
   font-size: 1.5rem;
 }
+
 .profile-header .user-detail {
   z-index: 1000;
 }
+
 ul.header-nav {
   z-index: 1010;
 }
@@ -99,6 +108,7 @@ ul.header-nav {
   background-color: var(--grintaaa);
   color: #fff;
 }
+
 #top-tab-list li.done i {
   background-color: #fff;
   color: var(--grintaaa);
@@ -126,11 +136,40 @@ ul.header-nav {
   background-color: var(--grintaaa);
 }
 
+.map-container {
+  height: 500px;
+}
+
+.map-frame {
+  border: 2px solid #000;
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+}
+
+.map-wrapper .dropdown-search {
+  width: 100%;
+  z-index: 1050;
+  top: 40px!important;
+  left: unset!important;
+  transform: unset!important;
+}
+
 .map-icon-marker {
   border-radius: 50%;
-  width: 40px!important;
-  height: auto!important;
+  /*width: 40px!important;*/
+  height: auto !important;
   border: 2px solid white;
+}
+
+.search-result-link {
+  white-space: normal;
+}
+
+.dropdown-menu .dropdown-item:focus, .dropdown-menu .dropdown-item:hover {
+  color: var(--grintaaa)!important;
 }
 
 @media (max-width: 992px) {
