@@ -143,7 +143,7 @@ export class PostComponent implements OnInit {
         console.log(this.postsService.posts);
       }
       // this.postsService.addPost(response.post);
-      this.post.content = this.editPostForm.value.content;
+      this.post.body = this.editPostForm.value.content;
       this.editMode = false;
     });
   }
@@ -151,7 +151,7 @@ export class PostComponent implements OnInit {
   onEditPost() {
     this.editMode = true;
     this.editPostForm.patchValue({
-      content: this.post.content
+      content: this.post.body
     });
   }
 
