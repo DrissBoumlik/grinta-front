@@ -106,7 +106,7 @@ export class CommentComponent implements OnInit {
       //   console.log(this.postsService.user.posts);
       // }
       // this.postsService.addPost(response.post);
-      this.comment.content = this.editCommentForm.value.content;
+      this.comment.body = this.editCommentForm.value.content;
       this.editMode = false;
     });
   }
@@ -114,7 +114,7 @@ export class CommentComponent implements OnInit {
   onEditComment() {
     this.editMode = true;
     this.editCommentForm.patchValue({
-      content: this.comment.content
+      content: this.comment.body
     });
   }
 
