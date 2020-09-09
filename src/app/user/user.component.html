@@ -20,8 +20,8 @@
                       <img src="{{ profile?.cover }}" alt="profile-bg" class="rounded img-fluid w-100 centered-img">
                     </div>
                     <ul class="header-nav d-flex flex-wrap justify-end p-0 m-0">
-                      <li><a href="javascript:void();"><i class="ri-pencil-line"></i></a></li>
-                      <li><a href="javascript:void();"><i class="ri-settings-4-line"></i></a></li>
+                      <li><a routerLink="/{{ profile?.username }}/edit"><i class="ri-pencil-line"></i></a></li>
+                      <li><a routerLink="/messenger/{{ profile?.username }}"><i class="ri-message-line"></i></a></li>
                     </ul>
                   </div>
                   <div class="user-detail text-center">

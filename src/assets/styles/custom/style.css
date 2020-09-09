@@ -44,10 +44,11 @@ div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg pa
   color: var(--grintaaa) !important;;
 }
 
-/*.right-sidebar-mini {*/
-/*  width: 300px;*/
-/*  transform: translateX(calc(-80% + -2em));*/
-/*}*/
+.right-sidebar-mini {
+  /*width: 300px;*/
+  /*transform: translateX(calc(-80% + -2em));*/
+  z-index: 1100;
+}
 
 /*.right-sidebar {*/
 /*  transform: translateX(calc(-180% + -2em));*/
