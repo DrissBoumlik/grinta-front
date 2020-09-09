@@ -173,6 +173,10 @@ ul.header-nav {
   color: var(--grintaaa)!important;
 }
 
+form.comment-text input {
+  padding-right: 4rem;
+}
+
 @media (max-width: 992px) {
   .iq-top-navbar .navbar-toggler {
     color: var(--grintaaa) !important;
