@@ -121,7 +121,7 @@ export class MapComponent implements OnInit, AfterViewInit {
                 className: 'map-icon-marker'
               })
             }).on('click', (e) => {
-              this.router.navigate(['/messenger/' + event.user.username]);
+              this.router.navigate(['/' + event.user.username]);
             });
             this.markers.push(marker);
             marker.addTo(this.map);
