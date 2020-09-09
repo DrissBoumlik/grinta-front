@@ -26,6 +26,9 @@ import {PageService} from '../pages/page/page.service';
     PostComponent,
     PostsComponent,
     NewPostComponent,
+    CommentsComponent,
+    CommentComponent,
+    ReplyComponent,
   ],
   imports: [RouterModule, CommonModule, ReactiveFormsModule, NgxSpinnerModule, InfiniteScrollModule],
   providers: [PostsService, PageService]
