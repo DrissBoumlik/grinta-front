@@ -15,9 +15,6 @@ import {AlbumComponent} from './user/albums/album/album.component';
 import {MediaComponent} from './user/albums/album/medias/media/media.component';
 import {AlbumsComponent} from './user/albums/albums.component';
 import {MediasComponent} from './user/albums/album/medias/medias.component';
-import {EventsComponent} from './user/events/events.component';
-import {NewEventComponent} from './user/events/new-event/new-event.component';
-import {EventComponent} from './user/events/event/event.component';
 
 import {AuthService} from './Auth/auth.service';
 import {UserService} from './user/user.service';
@@ -43,6 +40,7 @@ import {PostWrapperComponent} from './user/post-wrapper/post-wrapper.component';
 import {TemplateComponent} from './user/template/template.component';
 import {HandlerHttpInterceptor} from './handler/handler-http-interceptor';
 import {DatePipe} from '@angular/common';
+import {EventsModule} from './user/events/events.module';
 
 const config = new AuthServiceConfig([
   {
@@ -64,9 +62,6 @@ export function provideConfig() {
     MediaComponent,
     AlbumsComponent,
     MediasComponent,
-    EventsComponent,
-    NewEventComponent,
-    EventComponent,
     UserPostsComponent,
     UserAlbumsComponent,
     UserLikesComponent,
@@ -93,6 +88,7 @@ export function provideConfig() {
     SharedModule,
     PostsModule,
     FriendsModule,
+    EventsModule,
     SocialLoginModule
   ],
   exports: [
