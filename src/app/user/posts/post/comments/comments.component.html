@@ -10,9 +10,9 @@
         <input formControlName="content" type="text" class="form-control rounded" id="comment-{{ post.id }}"
                placeholder="Ecrire un commentaire..." />
         <div class="comment-attagement d-flex mr-1">
-          <a><i class="ri-link mr-3"></i></a>
-          <a><i class="ri-user-smile-line mr-3"></i></a>
-          <a><i class="ri-camera-line mr-3"></i></a>
+          <a class="d-none"><i class="ri-link mr-3"></i></a>
+          <a class="d-none"><i class="ri-user-smile-line mr-3"></i></a>
+          <a class="d-none"><i class="ri-camera-line mr-3"></i></a>
           <button class="btn btn-success btn-send-comment" type="submit" (click)="onCreateComment()"><i class="fas fa-paper-plane"></i></button>
         </div>
       </form>
@@ -20,7 +20,7 @@
   </div>
   <div class="post-comments">
     <div class="comment-item" *ngFor="let comment of post.comments; let i = index">
-      <app-comment [comment]="comment" *ngIf="comment.is_visible === 1">
+      <app-comment [comment]="comment" *ngIf="comment.is_visible">
       </app-comment>
     </div>
   </div>

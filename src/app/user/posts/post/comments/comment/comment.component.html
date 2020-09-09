@@ -69,9 +69,9 @@
               <input formControlName="content" type="text" class="form-control rounded" id="reply-{{ comment?.id }}"
                      placeholder="Ecrire un commentaire..." />
               <div class="comment-attagement d-flex">
-                <a><i class="ri-link mr-3"></i></a>
-                <a><i class="ri-user-smile-line mr-3"></i></a>
-                <a><i class="ri-camera-line mr-3"></i></a>
+                <a class="d-none"><i class="ri-link mr-3"></i></a>
+                <a class="d-none"><i class="ri-user-smile-line mr-3"></i></a>
+                <a class="d-none"><i class="ri-camera-line mr-3"></i></a>
                 <button class="btn btn-success btn-send-comment mr-1" type="submit" (click)="onCreateReply()"><i class="fas fa-paper-plane"></i></button>
               </div>
             </form>
