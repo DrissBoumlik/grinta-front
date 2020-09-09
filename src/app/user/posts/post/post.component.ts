@@ -51,9 +51,11 @@ export class PostComponent implements OnInit {
     this.postsService.postLoaded.subscribe((post: Post) => {
       this.post = post;
       this.postLiked = this.post.likers.some((liker: User) => liker.id === this.user.id);
-      this.post.comments.map((comment) => {
-        this.commentsCount += comment.replies.length + 1;
-      });
+      this.commentsCount = 0;
+      this.ubpateCommentsCount();
+      // this.post.comments.map((comment) => {
+      //   this.commentsCount += comment.replies.length + 1;
+      // });
     });
 
     this.postService.postCommentsUpdated.subscribe((comments) => {
