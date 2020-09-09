@@ -15,7 +15,7 @@ export class CommentsComponent implements OnInit {
   user: User;
 
   CommentForm = this.fb.group({
-    content: new FormControl(null, Validators.required),
+    body: new FormControl(null, Validators.required),
   });
 
   constructor(private fb: FormBuilder,
@@ -34,8 +34,8 @@ export class CommentsComponent implements OnInit {
     if (this.CommentForm.valid) {
       const userId = this.user.id;
       const postId = this.post.id;
-      const content = this.CommentForm.get('content').value;
-      this.postService.createComment(userId, postId, content)
+      const body = this.CommentForm.get('body').value;
+      this.postService.createComment({user_id: userId, post_id: postId, body, parent_id: null})
       .subscribe((response: any) => {
         // this.comments.unshift(response.comment)
         this.postService.addComment(response.comment);

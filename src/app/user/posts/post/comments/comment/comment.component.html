@@ -66,7 +66,7 @@
 <!--            </form>-->
             <form [formGroup]="ReplyForm" class="comment-text d-flex align-items-center mt-3">
               <img src="{{ user?.picture }}" alt="" class="avatar-35 mx-1 round">
-              <input formControlName="content" type="text" class="form-control rounded" id="reply-{{ comment?.id }}"
+              <input formControlName="body" type="text" class="form-control rounded" id="reply-{{ comment?.id }}"
                      placeholder="Ecrire un commentaire..." />
               <div class="comment-attagement d-flex">
                 <a class="d-none"><i class="ri-link mr-3"></i></a>

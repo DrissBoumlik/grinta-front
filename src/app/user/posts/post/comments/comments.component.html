@@ -7,7 +7,7 @@
 <!--        <button class="btn btn-info btn-send-comment" type="submit" (click)="onCreateComment()"><i class="fas fa-paper-plane"></i></button>-->
 <!--      </form>-->
       <form [formGroup]="CommentForm" class="comment-text d-flex align-items-center mt-3">
-        <input formControlName="content" type="text" class="form-control rounded" id="comment-{{ post.id }}"
+        <input formControlName="body" type="text" class="form-control rounded" id="comment-{{ post.id }}"
                placeholder="Ecrire un commentaire..." />
         <div class="comment-attagement d-flex mr-1">
           <a class="d-none"><i class="ri-link mr-3"></i></a>

@@ -15,10 +15,10 @@ export class PostService {
 
   constructor(private http: HttpClient) {}
 
-  createComment(userId: number, postId: number, content: string, parentId: number = null): Observable<any> {
+  createComment(body: any): Observable<any> {
     AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/comments',
-      {user_id: userId, post_id: postId, content, parent_id: parentId},
+      body,
       {headers: AuthService.headers})
       .pipe(
         tap(

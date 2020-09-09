@@ -82,10 +82,11 @@ export class PostsService {
       );
   }
 
-  createPost(content: string, image: File, pageId: number = null): Observable<any> {
+  createPost(body: any): Observable<any> {
     console.log(this.posts);
     AuthService.getHeaders();
-    return this.http.post(environment.baseApiUrl + '/posts', {content, image, page_id: pageId}, {headers: AuthService.headers})
+    return this.http.post(environment.baseApiUrl + '/posts',
+      body, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),

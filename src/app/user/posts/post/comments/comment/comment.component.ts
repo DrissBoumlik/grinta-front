@@ -72,8 +72,8 @@ export class CommentComponent implements OnInit {
       const userId = this.user.id;
       const postId = this.comment.post_id;
       const parentId = this.comment.id;
-      const content = this.ReplyForm.get('content').value;
-      this.postService.createComment(userId, postId, content, parentId)
+      const body = this.ReplyForm.get('body').value;
+      this.postService.createComment({user_id: userId, post_id: postId, body, parent_id: null})
         .subscribe((response: any) => {
           this.commentService.addReply(response.comment);
         });

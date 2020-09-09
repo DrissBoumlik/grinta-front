@@ -16,7 +16,7 @@ export class NewPostComponent implements OnInit {
   imageToUpload: any = File;
 
   sharePostForm = this.fb.group({
-    content: new FormControl(null),
+    body: new FormControl(null),
     image: new FormControl(null)
   });
 
@@ -44,10 +44,10 @@ export class NewPostComponent implements OnInit {
   }
 
   onCreatePost() {
-    const content = this.sharePostForm.get('content').value;
+    const body = this.sharePostForm.get('body').value;
     const image = this.sharePostForm.get('image').value;
     const pageId = this.pageService.page ? this.pageService.page.id : null;
-    this.postsService.createPost(content, image, pageId).subscribe((response: any) => {
+    this.postsService.createPost({body, image, page_id: pageId}).subscribe((response: any) => {
       console.log('success');
       this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
       this.postsService.addPost(response.post);
