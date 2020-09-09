@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../Auth/auth.service';
 import {User} from '../../user/user.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,8 @@ import {User} from '../../user/user.model';
 export class HeaderComponent implements OnInit {
   user: User;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
     const token = localStorage.getItem('_token');
@@ -23,8 +25,7 @@ export class HeaderComponent implements OnInit {
   }
   onLogout() {
     this.authService.logout().subscribe((response: any) => {
-      // this.router.navigate(['/']);
-      // window.location.href = '/';
+      this.router.navigate(['/']);
     });
   }
 
