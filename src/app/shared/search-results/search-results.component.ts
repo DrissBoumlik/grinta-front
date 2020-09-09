@@ -39,15 +39,17 @@ export class SearchResultsComponent implements OnInit {
 
   onSearch(value: string) {
     clearTimeout(this.sendRequest);
-    this.sendRequest = setTimeout(() => {
-      this.searchService.searchEverything(value)
-        .subscribe(
-          (response: any) => {
-            this.results = this.searchService.results = response.results;
-          },
-          (error: any) => console.log(error)
-        );
-    }, 500);
+    if (value && value.length > 3) {
+      this.sendRequest = setTimeout(() => {
+        this.searchService.searchEverything(value)
+          .subscribe(
+            (response: any) => {
+              this.results = this.searchService.results = response.results;
+            },
+            (error: any) => console.log(error)
+          );
+      }, 500);
+    }
   }
 
 }
