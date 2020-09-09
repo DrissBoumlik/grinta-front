@@ -1,8 +1,8 @@
-import { CommentService } from './../comment.service';
-import { User } from './../../../../../user.model';
+import { CommentService } from '../comment.service';
+import { User } from '../../../../../user.model';
 import { PostService } from '../../../post.service';
 import { AuthService } from '../../../../../../Auth/auth.service';
-import { Comment } from "../comment.model";
+import { Comment } from '../comment.model';
 import { Component, OnInit, Input } from '@angular/core';
 import {FormBuilder, FormControl} from '@angular/forms';
 
@@ -53,7 +53,7 @@ export class ReplyComponent implements OnInit {
   }
   onDeleteReply() {
     if (this.user.id !== this.reply.user_id) {
-      console.log("You don't own this comment");
+      console.log('You don\'t own this comment');
       return;
     }
     this.postService.deleteComment(this.reply).subscribe((response: any) => {
@@ -62,7 +62,7 @@ export class ReplyComponent implements OnInit {
   }
 
   onUpdateReply() {
-    this.postService.updateComment(this.editReplyForm.value.content, this.reply.id).subscribe((response: any) => {
+    this.postService.updateComment({content: this.editReplyForm.value.content}, this.reply.id).subscribe((response: any) => {
       // if ((this.profileService.profile && this.authService.user.id === this.profileService.profile.id) || this.pageService.page) {
       //   console.log(this.postsService.user.posts);
       // }
@@ -75,6 +75,12 @@ export class ReplyComponent implements OnInit {
     this.editMode = true;
     this.editReplyForm.patchValue({
       content: this.reply.content
+    });
+  }
+
+  onHideReply() {
+    this.postService.updateComment({is_visible: 0}, this.reply.id).subscribe((response: any) => {
+      this.reply.is_visible = 0;
     });
   }
 

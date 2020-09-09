@@ -1,10 +1,10 @@
 <div class="reply-wrapper">
   <div class="reply-container">
     <div class="row">
-      <div class="reply-user-picture pd-sides-5 pull-left">
+      <div class="reply-user-picture pd-sides-5">
         <img src="{{ reply?.user?.picture }}" alt="" class="user-picture round w-h-30">
       </div>
-      <div class="reply-user-content pd-sides-5 pull-left">
+      <div class="reply-user-content pd-sides-5">
         <div class="reply bg-gray">
           <div class="reply-content" *ngIf="!editMode">
             <span class="user-name"><a routerLink="/{{ reply?.user?.username }}">{{ reply?.user?.fullName }}</a></span>
@@ -13,11 +13,19 @@
           </div>
 
           <div class="reply-edit" *ngIf="editMode">
-            <form [formGroup]="editReplyForm">
-              <textarea formControlName="content" cols="60" rows="4" class="form-control new-content"></textarea>
-              <div class="pull-right">
-                <button type="submit" class="btn btn-update btn-default" (click)="onCancel()">Annuler</button>
-                <button type="submit" class="btn btn-update btn-primary" (click)="onUpdateReply()">Valider</button>
+            <form [formGroup]="editReplyForm" class="comment-text d-flex align-items-center">
+              <input formControlName="content" type="text" class="form-control rounded new-content" placeholder="Ecrire un commentaire..."/>
+<!--              <textarea formControlName="content" cols="60" rows="4" class="form-control new-content"></textarea>-->
+<!--              <div class="">-->
+<!--                <button type="submit" class="btn btn-update btn-default" (click)="onCancel()">Annuler</button>-->
+<!--                <button type="submit" class="btn btn-update btn-primary" (click)="onUpdateReply()">Valider</button>-->
+<!--              </div>-->
+              <div class="comment-attagement d-flex">
+                <!--                <a><i class="ri-link mr-3"></i></a>-->
+                <!--                <a><i class="ri-user-smile-line mr-3"></i></a>-->
+                <!--                <a><i class="ri-camera-line mr-3"></i></a>-->
+                <button class="btn px-1 py-0" type="submit" (click)="onCancel()"><i class="ri-close-line"></i></button>
+                <button class="btn px-1 py-0 mr-1" type="submit" (click)="onUpdateReply()"><i class="ri-edit-line"></i></button>
               </div>
             </form>
           </div>
@@ -31,11 +39,11 @@
           </div>
         </div>
       </div>
-      <div class="reply-edition dropdown">
+      <div class="reply-edition dropdown" *ngIf="ownReply">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
         <ul class="dropdown-menu pointer">
           <li *ngIf="ownReply"><a class="d-block" (click)="onEditReply()">Edit</a></li>
-          <li><a class="d-block">Hide</a></li>
+          <li *ngIf="ownReply"><a class="d-block" (click)="onHideReply()">Hide</a></li>
           <li *ngIf="ownReply"><a class="d-block" (click)="onDeleteReply()">Delete</a></li>
         </ul>
       </div>

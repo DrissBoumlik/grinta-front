@@ -101,7 +101,7 @@ export class CommentComponent implements OnInit {
   }
 
   onUpdateComment() {
-    this.postService.updateComment(this.editCommentForm.value.content, this.comment.id).subscribe((response: any) => {
+    this.postService.updateComment({content: this.editCommentForm.value.content}, this.comment.id).subscribe((response: any) => {
       // if ((this.profileService.profile && this.authService.user.id === this.profileService.profile.id) || this.pageService.page) {
       //   console.log(this.postsService.user.posts);
       // }
@@ -115,6 +115,13 @@ export class CommentComponent implements OnInit {
     this.editMode = true;
     this.editCommentForm.patchValue({
       content: this.comment.content
+    });
+  }
+
+
+  onHideComment() {
+    this.postService.updateComment({is_visible: 0}, this.comment.id).subscribe((response: any) => {
+      this.comment.is_visible = 0;
     });
   }
 

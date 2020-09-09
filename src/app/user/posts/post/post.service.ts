@@ -78,10 +78,10 @@ export class PostService {
       );
   }
 
-  updateComment(content: string, commentId: number): Observable<any> {
+  updateComment(body: any, commentId: number): Observable<any> {
     AuthService.getHeaders();
     return this.http.put(environment.baseApiUrl + '/comments/' + commentId,
-      {content, comment_id: commentId}, {headers: AuthService.headers})
+      body, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),

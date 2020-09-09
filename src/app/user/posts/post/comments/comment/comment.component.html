@@ -1,10 +1,10 @@
 <div class="comment-wrapper">
   <div class="comment-container">
     <div class="row">
-      <div class="comment-user-picture pd-sides-5 pull-left">
-        <img src="{{ comment?.user?.picture }}" alt="" class="user-picture round w-h-30">
+      <div class="comment-user-picture pd-sides-5">
+        <a routerLink="/{{ comment.user.username }}"><img src="{{ comment?.user?.picture }}" alt="" class="user-picture round w-h-30"></a>
       </div>
-      <div class="comment-user-content pd-sides-5 pull-left">
+      <div class="comment-user-content pd-sides-5">
         <div class="comment bg-gray">
           <div class="comment-content" *ngIf="!editMode">
             <span class="user-name"><a routerLink="/{{ comment?.user?.username }}">{{ comment?.user?.fullName }}</a></span>
@@ -22,7 +22,7 @@
           <div class="comment-edit" *ngIf="editMode">
             <form [formGroup]="editCommentForm" class="comment-text d-flex align-items-center">
 <!--              <input formControlName="content" cols="60" rows="4" class="form-control new-content" />-->
-<!--              <div class="pull-right">-->
+<!--              <div class="">-->
 <!--                <button type="submit" class="btn btn-update btn-default" (click)="onCancel()">Annuler</button>-->
 <!--                <button type="submit" class="btn btn-update btn-primary" (click)="onUpdateComment()">Valider</button>-->
 <!--              </div>-->
@@ -31,19 +31,19 @@
 <!--                <a><i class="ri-link mr-3"></i></a>-->
 <!--                <a><i class="ri-user-smile-line mr-3"></i></a>-->
 <!--                <a><i class="ri-camera-line mr-3"></i></a>-->
-                <button class="btn btn-secondary mr-1" type="submit" (click)="onCancel()"><i class="fas fa-window-close"></i></button>
-                <button class="btn btn-success btn-send-comment mr-1" type="submit" (click)="onUpdateComment()"><i class="fas fa-pen-square"></i></button>
+                <button class="btn px-1 py-0" type="submit" (click)="onCancel()"><i class="ri-close-line"></i></button>
+                <button class="btn px-1 py-0 mr-1" type="submit" (click)="onUpdateComment()"><i class="ri-edit-line"></i></button>
               </div>
             </form>
           </div>
 
         </div>
       </div>
-      <div class="comment-edition dropdown">
+      <div class="comment-edition dropdown" *ngIf="ownComment">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
         <ul class="dropdown-menu pointer">
           <li *ngIf="ownComment"><a class="d-block" (click)="onEditComment()">Edit</a></li>
-          <li><a class="d-block">Hide</a></li>
+          <li *ngIf="ownComment"><a class="d-block" (click)="onHideComment()">Hide</a></li>
           <li *ngIf="ownComment"><a class="d-block" (click)="onDeleteComment()">Delete</a></li>
         </ul>
       </div>
