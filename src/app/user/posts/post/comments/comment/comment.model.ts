@@ -5,7 +5,7 @@ export class Comment {
     public id: number,
     public user_id: number,
     public post_id: number,
-    public content: string,
+    public body: string,
     public is_visible: number,
     public replies: Comment[],
     public user: User,

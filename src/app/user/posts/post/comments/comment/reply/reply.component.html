@@ -9,12 +9,12 @@
           <div class="reply-content" *ngIf="!editMode">
             <span class="user-name"><a routerLink="/{{ reply?.user?.username }}">{{ reply?.user?.fullName }}</a></span>
             <i class="fas fa-caret-right mg-sides"></i>
-            <span>{{ reply?.content }}</span>
+            <span>{{ reply?.body }}</span>
           </div>
 
           <div class="reply-edit" *ngIf="editMode">
             <form [formGroup]="editReplyForm" class="comment-text d-flex align-items-center">
-              <input formControlName="content" type="text" class="form-control rounded new-content" placeholder="Ecrire un commentaire..."/>
+              <input formControlName="body" type="text" class="form-control rounded new-content" placeholder="Ecrire un commentaire..."/>
 <!--              <textarea formControlName="content" cols="60" rows="4" class="form-control new-content"></textarea>-->
 <!--              <div class="">-->
 <!--                <button type="submit" class="btn btn-update btn-default" (click)="onCancel()">Annuler</button>-->

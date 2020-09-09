@@ -62,19 +62,19 @@ export class ReplyComponent implements OnInit {
   }
 
   onUpdateReply() {
-    this.postService.updateComment({content: this.editReplyForm.value.content}, this.reply.id).subscribe((response: any) => {
+    this.postService.updateComment({body: this.editReplyForm.value.body}, this.reply.id).subscribe((response: any) => {
       // if ((this.profileService.profile && this.authService.user.id === this.profileService.profile.id) || this.pageService.page) {
       //   console.log(this.postsService.user.posts);
       // }
       // this.postsService.addPost(response.post);
-      this.reply.content = this.editReplyForm.value.content;
+      this.reply.body = this.editReplyForm.value.body;
       this.editMode = false;
     });
   }
   onEditReply() {
     this.editMode = true;
     this.editReplyForm.patchValue({
-      content: this.reply.content
+      content: this.reply.body
     });
   }
 

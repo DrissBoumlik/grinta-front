@@ -7,7 +7,7 @@ export class Post {
     public user_id: number,
     public post_owner_id: number,
     public page_id: number,
-    public content: string,
+    public body: string,
     public image: string,
     public user: User,
     public owner: User,

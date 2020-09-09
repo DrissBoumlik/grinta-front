@@ -9,7 +9,7 @@
           <div class="comment-content" *ngIf="!editMode">
             <span class="user-name"><a routerLink="/{{ comment?.user?.username }}">{{ comment?.user?.fullName }}</a></span>
             <i class="fas fa-caret-right mg-sides"></i>
-            <span>{{ comment?.content }}</span>
+            <span>{{ comment?.body }}</span>
             <div class="comment-interaction">
               <span>{{ comment?.created_at | date : 'mediumDate'}}</span>
               <span class="mg-sides">·</span>
@@ -26,7 +26,7 @@
 <!--                <button type="submit" class="btn btn-update btn-default" (click)="onCancel()">Annuler</button>-->
 <!--                <button type="submit" class="btn btn-update btn-primary" (click)="onUpdateComment()">Valider</button>-->
 <!--              </div>-->
-              <input formControlName="content" type="text" class="form-control rounded new-content" placeholder="Ecrire un commentaire..."/>
+              <input formControlName="body" type="text" class="form-control rounded new-content" placeholder="Ecrire un commentaire..."/>
               <div class="comment-attagement d-flex">
 <!--                <a><i class="ri-link mr-3"></i></a>-->
 <!--                <a><i class="ri-user-smile-line mr-3"></i></a>-->
