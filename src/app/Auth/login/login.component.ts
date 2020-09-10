@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
     username: new FormControl('a@a.a', Validators.required),
-    password: new FormControl('123123123', Validators.required)
+    password: new FormControl('123123123', Validators.required),
+    remember_me: new FormControl()
   });
 
   constructor(private authService: AuthService,
@@ -49,40 +50,40 @@ export class LoginComponent implements OnInit {
       Owl Carousel
       -----------------------------------------------------------------------*/
     jQuery('.owl-carousel').each(function() {
-      let jQuerycarousel = (jQuery(this) as any);
+      const jQuerycarousel = (jQuery(this) as any);
       jQuerycarousel.owlCarousel({
-        items: jQuerycarousel.data("items"),
-        loop: jQuerycarousel.data("loop"),
-        margin: jQuerycarousel.data("margin"),
-        nav: jQuerycarousel.data("nav"),
-        dots: jQuerycarousel.data("dots"),
-        autoplay: jQuerycarousel.data("autoplay"),
-        autoplayTimeout: jQuerycarousel.data("autoplay-timeout"),
-        navText: ["<i class='fa fa-angle-left fa-2x'></i>", "<i class='fa fa-angle-right fa-2x'></i>"],
+        items: jQuerycarousel.data('items'),
+        loop: jQuerycarousel.data('loop'),
+        margin: jQuerycarousel.data('margin'),
+        nav: jQuerycarousel.data('nav'),
+        dots: jQuerycarousel.data('dots'),
+        autoplay: jQuerycarousel.data('autoplay'),
+        autoplayTimeout: jQuerycarousel.data('autoplay-timeout'),
+        navText: ['<i class=\'fa fa-angle-left fa-2x\'></i>', '<i class=\'fa fa-angle-right fa-2x\'></i>'],
         responsiveClass: true,
         responsive: {
           // breakpoint from 0 up
           0: {
-            items: jQuerycarousel.data("items-mobile-sm"),
+            items: jQuerycarousel.data('items-mobile-sm'),
             nav: false,
             dots: true
           },
           // breakpoint from 480 up
           480: {
-            items: jQuerycarousel.data("items-mobile"),
+            items: jQuerycarousel.data('items-mobile'),
             nav: false,
             dots: true
           },
           // breakpoint from 786 up
           786: {
-            items: jQuerycarousel.data("items-tab")
+            items: jQuerycarousel.data('items-tab')
           },
           // breakpoint from 1023 up
           1023: {
-            items: jQuerycarousel.data("items-laptop")
+            items: jQuerycarousel.data('items-laptop')
           },
           1199: {
-            items: jQuerycarousel.data("items")
+            items: jQuerycarousel.data('items')
           }
         }
       });
@@ -90,7 +91,14 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.authService.login(false, this.loginForm.value.username, this.loginForm.value.password)
+    const data =  {
+      isSocial: false,
+      username: this.loginForm.value.username,
+      email: this.loginForm.value.username,
+      password: this.loginForm.value.password,
+      remember_me: this.loginForm.value.remember_me
+    };
+    this.authService.login(data)
       .subscribe((response: any) => {
         this.user = this.authService.user = response.success.user;
         this.router.navigate(['home']);
@@ -101,7 +109,12 @@ export class LoginComponent implements OnInit {
     this.socialService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((socialUser: SocialUser) => {
         const username = this.toolsService.slugify(socialUser.name);
-        this.authService.login(true, username, socialUser.id)
+        const data =  {
+          isSocial: true,
+          username,
+          email: socialUser.id
+        };
+        this.authService.login(data)
           .subscribe((response: any) => {
             this.userService.user = this.authService.user = response.success.user;
             this.router.navigate(['home']);

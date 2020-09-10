@@ -134,15 +134,29 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister() {
-    this.authService.register(false, this.registerForm.value.username, this.registerForm.value.firstname,
-      this.registerForm.value.lastname, this.registerForm.value.email,
-      this.registerForm.value.password, this.registerForm.value.password_confirmation,
-      this.registerForm.value.gender, this.registerForm.value.picture,
-      this.registerForm.value.cover, this.registerForm.value.sport,
-      this.registerForm.value.city)
+    const registerData = {
+      isSocial: false,
+      username: this.registerForm.value.username,
+      firstname: this.registerForm.value.firstname,
+      lastname: this.registerForm.value.lastname,
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password,
+      password_confirmation: this.registerForm.value.password_confirmation,
+      gender: this.registerForm.value.gender,
+      picture: this.registerForm.value.picture,
+      cover: this.registerForm.value.cover,
+      sport: this.registerForm.value.sport,
+      city: this.registerForm.value.city
+    };
+    this.authService.register(registerData)
       .subscribe((response: any) => {
         console.log(response);
-        this.authService.login(false, this.registerForm.value.username, this.registerForm.value.password)
+        const data = {
+          isSocial: false,
+          username: this.registerForm.value.username,
+          password: this.registerForm.value.password
+        };
+        this.authService.login(data)
           .subscribe((response2: any) => {
             this.userService.user = this.authService.user = response2.success.user;
             this.router.navigate(['home']);
@@ -162,10 +176,27 @@ export class RegisterComponent implements OnInit {
       .then((socialUser: SocialUser) => {
         console.log(socialUser);
         const username = this.toolsService.slugify(socialUser.name);
-        this.authService.register(true, username, socialUser.firstName, socialUser.lastName,
-          socialUser.email, socialUser.id, socialUser.id, null, socialUser.photoUrl, null, null, null)
+        const registerData = {
+          isSocial: true, username,
+          firstname: socialUser.firstName,
+          lastname: socialUser.lastName,
+          email: socialUser.email,
+          password: socialUser.id,
+          password_confirmation: socialUser.id,
+          gender: null,
+          picture: socialUser.photoUrl,
+          cover: null,
+          sport: null,
+          city: null
+        };
+        this.authService.register(registerData)
           .subscribe((response: any) => {
-            this.authService.login(true, username, socialUser.id)
+            const data =  {
+              isSocial: true,
+              username,
+              password: socialUser.id
+            };
+            this.authService.login(data)
               .subscribe((response2: any) => {
                 this.userService.user = this.authService.user = response2.success.user;
                 this.router.navigate(['home']);

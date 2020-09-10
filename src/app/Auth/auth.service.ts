@@ -24,12 +24,9 @@ export class AuthService {
     });
   }
 
-  register(isSocial, username, firstname, lastname, email, password, passwordConfirmation, gender, picture, cover, sport, city) {
+  register(body: any) {
     return this.http.post(environment.baseApiUrl + '/register',
-      {
-        isSocial, username, firstname, lastname, email, password,
-        password_confirmation: passwordConfirmation, gender, picture, cover, sport, city
-      },
+      body,
       {headers: AuthService.headers})
       .pipe(
         tap(
@@ -39,10 +36,9 @@ export class AuthService {
       );
   }
 
-  login(isSocial, username: string, password: string) {
-    console.log(username, password);
+  login(body: any) {
     return this.http.post(environment.baseApiUrl + '/login',
-      {isSocial, username, email: username, password},
+      body,
       {headers: AuthService.headers})
       .pipe(
         tap(
