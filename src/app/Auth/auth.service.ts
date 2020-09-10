@@ -13,11 +13,11 @@ export class AuthService {
 
   constructor(private http: HttpClient,
               private router: Router) {
-    this.user = JSON.parse(localStorage.getItem('_user')) as User;
+    this.user = JSON.parse(localStorage.getItem('authUser')) as User;
   }
 
   static getHeaders() {
-    const token = localStorage.getItem('_token');
+    const token = localStorage.getItem('token');
     AuthService.headers = new HttpHeaders({
       Accept: 'application/json',
       Authorization: 'Bearer ' + token
@@ -44,33 +44,40 @@ export class AuthService {
         tap(
           (response: any) => {
             this.user = response.success.user;
-            localStorage.setItem('_token', response.success.token);
-            localStorage.setItem('_user', JSON.stringify(response.success.user));
+            localStorage.setItem('token', response.success.token);
+            localStorage.setItem('authUser', JSON.stringify(response.success.user));
           },
           error => console.log(error.status),
         )
       );
   }
 
-  logout() {
-    AuthService.getHeaders();
-    localStorage.removeItem('_token');
-    localStorage.removeItem('_user');
-    return this.http.get(environment.baseApiUrl + '/logout', {headers: AuthService.headers})
-      .pipe(
-        tap(
-          data => {
-            console.log(data);
-            this.router.navigate(['/']);
-          },
-          error => console.log(error.status),
-        )
-      );
+  logout(params = {serverSide: true}) {
+    if (params.serverSide) {
+      AuthService.getHeaders();
+      return this.http.get(environment.baseApiUrl + '/logout', {headers: AuthService.headers})
+        .pipe(
+          tap(
+            (data: any) => {
+              console.log(data);
+              this.user = data.success.user;
+              localStorage.removeItem('token');
+              localStorage.removeItem('authUser');
+              this.router.navigate(['/']);
+            },
+            error => console.log(error.status),
+          )
+        );
+    } else {
+      localStorage.removeItem('token');
+      localStorage.removeItem('authUser');
+    }
+
   }
 
   isLogged(router: Router) {
 
-    const userLogged = localStorage.getItem('_token') !== null && localStorage.getItem('_token') !== undefined;
+    const userLogged = localStorage.getItem('token') !== null && localStorage.getItem('token') !== undefined;
     if (!userLogged) {
       router.navigate(['/']);
     }
