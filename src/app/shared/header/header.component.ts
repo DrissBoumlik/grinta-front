@@ -15,13 +15,14 @@ export class HeaderComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    const token = localStorage.getItem('_token');
-    const logged = (this.authService.user !== null && this.authService.user !== undefined) && (token !== undefined && token !== null);
-    if (logged) {
-      this.user = this.authService.user;
-    } else {
-      this.onLogout();
-    }
+    this.user = this.authService.user;
+    // const token = localStorage.getItem('token');
+    // const logged = (this.authService.user !== null && this.authService.user !== undefined) && (token !== undefined && token !== null);
+    // if (logged) {
+    //   this.user = this.authService.user;
+    // } else {
+    //   this.onLogout();
+    // }
   }
   onLogout() {
     this.authService.logout().subscribe((response: any) => {
