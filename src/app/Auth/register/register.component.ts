@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
               private feedbackService: FeedbackService) { }
 
   ngOnInit() {
-    const userLogged = localStorage.getItem('_token') !== null && localStorage.getItem('_token') !== undefined;
+    const userLogged = localStorage.getItem('token') !== null && localStorage.getItem('token') !== undefined;
     if (userLogged) {
       this.router.navigate(['home']);
     }

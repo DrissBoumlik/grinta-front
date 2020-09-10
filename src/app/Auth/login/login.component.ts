@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    const userLogged = localStorage.getItem('_token') !== null && localStorage.getItem('_token') !== undefined;
+    const userLogged = localStorage.getItem('token') !== null && localStorage.getItem('token') !== undefined;
     if (userLogged) {
       this.router.navigate(['home']);
       // window.location.reload();
@@ -100,7 +100,7 @@ export class LoginComponent implements OnInit {
     };
     this.authService.login(data)
       .subscribe((response: any) => {
-        this.user = this.authService.user = response.success.user;
+        this.user = response.success.user;
         this.router.navigate(['home']);
         // window.location.href = '/home';
       });

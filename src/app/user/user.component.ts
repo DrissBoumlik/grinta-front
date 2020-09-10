@@ -38,7 +38,7 @@ export class UserComponent implements OnInit {
             this.isFriend = this.profile.friends.some((friend: User) => friend.id === this.authService.user.id);
             this.isFollowed = this.profile.followers.some((follower: User) => follower.id === this.authService.user.id);
           }
-          localStorage.setItem('my_profile', JSON.stringify(this.profile));
+          localStorage.setItem('currentProfile', JSON.stringify(this.profile));
         },
         (error: any) => console.log(error)
       );

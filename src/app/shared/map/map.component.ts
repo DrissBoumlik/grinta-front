@@ -67,7 +67,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     tiles.addTo(this.map);
 
     const location: any = [position.latitude, position.longitude];
-    this.user = JSON.parse(localStorage.getItem('_user'));
+    this.user = JSON.parse(localStorage.getItem('authUser'));
     // const location = event.location.split(',').map((str) => parseFloat(str));
     const marker = L.marker(location, {
       icon: L.icon({
