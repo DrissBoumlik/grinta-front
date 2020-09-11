@@ -19,6 +19,7 @@ import {TemplateComponent} from './user/template/template.component';
 import {PostsComponent} from './user/posts/posts.component';
 import {PostWrapperComponent} from './user/post-wrapper/post-wrapper.component';
 import {ChatComponent} from './user/friends/chat/chat.component';
+import {EventOptionsComponent} from './user/events/event-options/event-options.component';
 
 
 const routes: Routes = [
@@ -52,6 +53,11 @@ const routes: Routes = [
     path: 'pages', children: [
       {path: ':pagename', component: PageComponent},
       {path: ':pagename/edit', component: NewPageComponent}
+    ]
+  },
+  {
+    path: 'events', children: [
+      {path: 'options', component: EventOptionsComponent},
     ]
   },
   {path: 'messenger', component: TemplateComponent, children: [
