@@ -7,6 +7,8 @@ import {EventComponent} from './event/event.component';
 import {SharedModule} from '../../shared/shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { EventOptionsComponent } from './event-options/event-options.component';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -15,12 +17,14 @@ import {HttpClientModule} from '@angular/common/http';
     EventsComponent,
     NewEventComponent,
     EventComponent,
+    EventOptionsComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    RouterModule,
     SharedModule
   ],
   exports: [
