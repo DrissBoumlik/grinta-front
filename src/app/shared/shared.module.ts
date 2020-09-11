@@ -13,6 +13,7 @@ import {FeedbackService} from './feedback/feedback.service';
 import {HandlerService} from './handler.service';
 import { MapComponent } from './map/map.component';
 import {EventService} from './event.service';
+import { EventActionsComponent } from './event-actions/event-actions.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {EventService} from './event.service';
     SearchResultComponent,
     FeedbackComponent,
     MapComponent,
+    EventActionsComponent,
   ],
   imports: [
     RouterModule,
@@ -32,6 +34,7 @@ import {EventService} from './event.service';
     SearchResultsComponent,
     FeedbackComponent,
     MapComponent,
+    EventActionsComponent,
   ],
   providers: [SearchService, SportService, ToolsService, FeedbackService, HandlerService, EventService]
 })
