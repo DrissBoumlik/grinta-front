@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import {AuthService} from '../Auth/auth.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class HandlerService {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   handleRequest(code: number) {
     if (code === 401) {
       this.authService.logout().subscribe((response: any) => {
-        // this.router.navigate(['/']);
-        window.location.href = '/';
+        this.router.navigate(['/']);
       });
     }
   }
