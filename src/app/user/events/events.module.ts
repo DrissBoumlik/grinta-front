@@ -31,6 +31,7 @@ import {RouterModule} from '@angular/router';
     EventsComponent,
     NewEventComponent,
     EventComponent,
+    EventOptionsComponent,
   ],
   providers: [EventService]
 })
