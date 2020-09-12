@@ -19,7 +19,7 @@ export class CommentComponent implements OnInit {
   willReply = false;
   ownComment = false;
   ReplyForm = this.fb.group({
-    content: new FormControl(null, Validators.required),
+    body: new FormControl(null, Validators.required),
   });
 
   editMode = false;
