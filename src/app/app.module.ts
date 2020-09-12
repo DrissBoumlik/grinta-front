@@ -41,6 +41,7 @@ import {TemplateComponent} from './user/template/template.component';
 import {HandlerHttpInterceptor} from './handler/handler-http-interceptor';
 import {DatePipe} from '@angular/common';
 import {EventsModule} from './user/events/events.module';
+import {SearchModule} from './user/search/search.module';
 
 const config = new AuthServiceConfig([
   {
@@ -89,6 +90,7 @@ export function provideConfig() {
     PostsModule,
     FriendsModule,
     EventsModule,
+    SearchModule,
     SocialLoginModule
   ],
   exports: [
