@@ -154,4 +154,21 @@ export class PostsService {
         )
       );
   }
+
+  getPostByUuid(uuid: string) {
+    AuthService.getHeaders();
+    return this.http.get(environment.baseApiUrl + '/posts/uuid/' + uuid, {headers: AuthService.headers})
+      .pipe(
+        tap(
+          (data: any) => {
+            console.log(data.post);
+            this.postLoaded.next(data.post);
+          },
+          error => {
+            console.log(error);
+            this.handlerService.handleRequest(error.status);
+          },
+        )
+      );
+  }
 }

@@ -20,8 +20,8 @@ export class PostWrapperComponent implements OnInit {
       if (Object.entries(params).length === 0 && params.constructor === Object) {
         return;
       }
-      if (params.id) {
-        this.postsService.getPost(+params.id).subscribe(
+      if (params.uuid) {
+        this.postsService.getPostByUuid(params.uuid).subscribe(
           (response: any) => {
             this.post = response.post;
           },
