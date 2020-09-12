@@ -7,6 +7,7 @@ import {Sport} from '../../sports/sport.model';
 export class Page {
   constructor(
     public id: number,
+    public uuid: string,
     public user_id: number,
     public sport_id: number,
     public pagename: string,

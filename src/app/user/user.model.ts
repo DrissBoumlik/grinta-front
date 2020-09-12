@@ -8,6 +8,7 @@ import {Sport} from './sports/sport.model';
 export class User {
   constructor(
     public id: number,
+    public uuid: string,
     public email: string,
     public username: string,
     public firstname: string,

@@ -4,6 +4,7 @@ import {Page} from '../../pages/page/page.model';
 export class Post {
   constructor(
     public id: number,
+    public uuid: string,
     public user_id: number,
     public post_owner_id: number,
     public page_id: number,

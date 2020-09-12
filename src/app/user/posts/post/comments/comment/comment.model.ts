@@ -3,6 +3,7 @@ import { User } from '../../../../user.model';
 export class Comment {
   constructor(
     public id: number,
+    public uuid: string,
     public user_id: number,
     public post_id: number,
     public body: string,
