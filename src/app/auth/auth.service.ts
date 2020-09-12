@@ -60,7 +60,6 @@ export class AuthService {
           tap(
             (data: any) => {
               console.log(data);
-              this.user = data.success.user;
               localStorage.removeItem('token');
               localStorage.removeItem('authUser');
               this.router.navigate(['/']);
@@ -71,6 +70,7 @@ export class AuthService {
     } else {
       localStorage.removeItem('token');
       localStorage.removeItem('authUser');
+      return null;
     }
 
   }

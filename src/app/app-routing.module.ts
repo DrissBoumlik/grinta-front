@@ -2,7 +2,7 @@ import {NewEventComponent} from './user/events/new-event/new-event.component';
 import {NewPageComponent} from './user/pages/new-page/new-page.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {LoginComponent} from './Auth/login/login.component';
+import {LoginComponent} from './auth/login/login.component';
 import {UserComponent} from './user/user.component';
 import {UserPostsComponent} from './user/profile/user-posts/user-posts.component';
 import {UserAlbumsComponent} from './user/profile/user-albums/user-albums.component';
@@ -10,7 +10,7 @@ import {UserLikesComponent} from './user/profile/user-likes/user-likes.component
 import {EventsComponent} from './user/events/events.component';
 import {PagesComponent} from './user/pages/pages.component';
 import {HomeComponent} from './user/home/home.component';
-import {RegisterComponent} from './Auth/register/register.component';
+import {RegisterComponent} from './auth/register/register.component';
 import {PageComponent} from './user/pages/page/page.component';
 import {AlbumComponent} from './user/albums/album/album.component';
 import {EditUserComponent} from './user/profile/edit-user/edit-user.component';

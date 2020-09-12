@@ -3,7 +3,7 @@ import {ActivatedRoute, Params} from '@angular/router';
 import * as firebase from 'firebase';
 import {User} from '../../../user.model';
 import {ChatService} from '../../chat.service';
-import {AuthService} from '../../../../Auth/auth.service';
+import {AuthService} from '../../../../auth/auth.service';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 

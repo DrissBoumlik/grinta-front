@@ -8,7 +8,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {NgxSpinnerModule} from 'ngx-spinner';
 
 import {AppComponent} from './app.component';
-import {LoginComponent} from './Auth/login/login.component';
+import {LoginComponent} from './auth/login/login.component';
 import {UserComponent} from './user/user.component';
 import {HeaderComponent} from './shared/header/header.component';
 import {AlbumComponent} from './user/albums/album/album.component';
@@ -16,14 +16,14 @@ import {MediaComponent} from './user/albums/album/medias/media/media.component';
 import {AlbumsComponent} from './user/albums/albums.component';
 import {MediasComponent} from './user/albums/album/medias/medias.component';
 
-import {AuthService} from './Auth/auth.service';
+import {AuthService} from './auth/auth.service';
 import {UserService} from './user/user.service';
 import {UserPostsComponent} from './user/profile/user-posts/user-posts.component';
 import {UserAlbumsComponent} from './user/profile/user-albums/user-albums.component';
 import {UserLikesComponent} from './user/profile/user-likes/user-likes.component';
 import {HomeComponent} from './user/home/home.component';
 import {ProfileService} from './user/profile/profile.service';
-import {RegisterComponent} from './Auth/register/register.component';
+import {RegisterComponent} from './auth/register/register.component';
 import {PostsModule} from './user/posts/posts.module';
 import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {SharedModule} from './shared/shared.module';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {User} from '../user.model';
 import {Subject} from 'rxjs';
-import {AuthService} from '../../Auth/auth.service';
+import {AuthService} from '../../auth/auth.service';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
