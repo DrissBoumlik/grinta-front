@@ -20,7 +20,8 @@ import {PostsComponent} from './user/posts/posts.component';
 import {PostWrapperComponent} from './user/post-wrapper/post-wrapper.component';
 import {ChatComponent} from './user/friends/chat/chat.component';
 import {EventOptionsComponent} from './user/events/event-options/event-options.component';
-import {SearchEventsComponent} from './user/search/search-events/search-events.component';
+import {SearchEventsComponent} from './search/search-events/search-events.component';
+import {SearchComponent} from './search/search.component';
 
 
 const routes: Routes = [
@@ -57,7 +58,8 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'search', children: [
+    path: 'search', component: SearchComponent, children: [
+      {path: '', component: SearchEventsComponent},
       {path: 'events', component: SearchEventsComponent}
     ]
   },
