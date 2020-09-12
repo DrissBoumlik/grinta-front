@@ -20,6 +20,7 @@ import {PostsComponent} from './user/posts/posts.component';
 import {PostWrapperComponent} from './user/post-wrapper/post-wrapper.component';
 import {ChatComponent} from './user/friends/chat/chat.component';
 import {EventOptionsComponent} from './user/events/event-options/event-options.component';
+import {SearchEventsComponent} from './user/search/search-events/search-events.component';
 
 
 const routes: Routes = [
@@ -30,23 +31,7 @@ const routes: Routes = [
   {
     path: 'posts', component: TemplateComponent, children: [
       {path: '', component: PostsComponent},
-      {path: ':id', component: PostWrapperComponent}
-    ]
-  },
-  {
-    path: ':username', component: UserComponent, children: [
-      {path: '', component: UserPostsComponent},
-      {path: 'edit', component: EditUserComponent},
-      {path: 'posts', component: UserPostsComponent},
-      {
-        path: 'albums', children: [
-          {path: '', component: UserAlbumsComponent},
-          {path: ':id', component: AlbumComponent}
-        ]
-      },
-      {path: 'likes', component: UserLikesComponent},
-      {path: 'pages', component: PagesComponent},
-      {path: 'events', component: EventsComponent},
+      {path: ':uuid', component: PostWrapperComponent}
     ]
   },
   {
@@ -69,6 +54,27 @@ const routes: Routes = [
     path: 'create', children: [
       {path: 'page', component: NewPageComponent},
       {path: 'event', component: NewEventComponent}
+    ]
+  },
+  {
+    path: 'search', children: [
+      {path: 'events', component: SearchEventsComponent}
+    ]
+  },
+  {
+    path: ':username', component: UserComponent, children: [
+      {path: '', component: UserPostsComponent},
+      {path: 'edit', component: EditUserComponent},
+      {path: 'posts', component: UserPostsComponent},
+      {
+        path: 'albums', children: [
+          {path: '', component: UserAlbumsComponent},
+          {path: ':id', component: AlbumComponent}
+        ]
+      },
+      {path: 'likes', component: UserLikesComponent},
+      {path: 'pages', component: PagesComponent},
+      {path: 'events', component: EventsComponent},
     ]
   },
 
