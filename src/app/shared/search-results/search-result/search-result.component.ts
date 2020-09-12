@@ -17,6 +17,8 @@ export class SearchResultComponent implements OnInit {
   ngOnInit() {
     if (this.result.type === 'user') {
       this.iconType = '<div class="user iq-bg-danger"><i class="ri-user-line"></i></div>';
+    } else if (this.result.type === 'post') {
+      this.iconType = '<div class="page iq-bg-dark"><i class="ri-article-line"></i></div>';
     } else if (this.result.type === 'page') {
       this.iconType = '<div class="page iq-bg-primary"><i class="ri-pages-line"></i></div>';
     } else if (this.result.type === 'event') {
