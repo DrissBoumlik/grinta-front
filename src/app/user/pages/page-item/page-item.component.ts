@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Page} from '../page/page.model';
-import {AuthService} from '../../../Auth/auth.service';
+import {AuthService} from '../../../auth/auth.service';
 import {User} from '../../user.model';
 import {PagesService} from '../pages.service';
 import {ProfileService} from '../../profile/profile.service';

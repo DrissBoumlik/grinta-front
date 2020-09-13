@@ -1,7 +1,7 @@
 import { CommentService } from '../comment.service';
 import { User } from '../../../../../user.model';
 import { PostService } from '../../../post.service';
-import { AuthService } from '../../../../../../Auth/auth.service';
+import { AuthService } from '../../../../../../auth/auth.service';
 import { Comment } from '../comment.model';
 import { Component, OnInit, Input } from '@angular/core';
 import {FormBuilder, FormControl} from '@angular/forms';

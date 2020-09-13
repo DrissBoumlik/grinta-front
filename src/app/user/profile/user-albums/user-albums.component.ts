@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../user.model';
 import {UserService} from '../../user.service';
 import {ProfileService} from '../profile.service';
-import {AuthService} from '../../../Auth/auth.service';
+import {AuthService} from '../../../auth/auth.service';
 import {Router} from '@angular/router';
 import {Album} from '../../albums/album/album.model';
 

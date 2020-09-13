@@ -1,5 +1,5 @@
-import {User} from './../../../user.model';
-import {AuthService} from 'src/app/Auth/auth.service';
+import {User} from '../../../user.model';
+import {AuthService} from 'src/app/auth/auth.service';
 import {PostService} from '../post.service';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {Component, Input, OnInit} from '@angular/core';

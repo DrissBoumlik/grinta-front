@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { User } from './user.model';
-import {AuthService} from '../Auth/auth.service';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable()
 export class UserService {

@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {AuthService} from '../../../Auth/auth.service';
+import {AuthService} from '../../../auth/auth.service';
 import {User} from '../../user.model';
 import {Page} from './page.model';
 import {environment} from '../../../../environments/environment';

@@ -1,6 +1,6 @@
 import {CommentService} from './comment.service';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
-import {AuthService} from 'src/app/Auth/auth.service';
+import {AuthService} from 'src/app/auth/auth.service';
 import {Comment} from './comment.model';
 import {Component, OnInit, Input} from '@angular/core';
 import {PostService} from '../../post.service';

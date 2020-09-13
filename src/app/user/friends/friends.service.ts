@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {tap} from 'rxjs/operators';
 import {User} from '../user.model';
-import {AuthService} from '../../Auth/auth.service';
+import {AuthService} from '../../auth/auth.service';
 
 // import {r} from 'rethinkdb-ts';
 

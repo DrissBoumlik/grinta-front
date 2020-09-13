@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {Subject} from 'rxjs';
 import {Post} from '../posts/post/post.model';
 import {Injectable} from '@angular/core';
-import {AuthService} from '../../Auth/auth.service';
+import {AuthService} from '../../auth/auth.service';
 
 @Injectable()
 export class ProfileService {

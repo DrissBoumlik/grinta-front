@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {tap} from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
-import {AuthService} from '../../Auth/auth.service';
+import {AuthService} from '../../auth/auth.service';
 import {ProfileService} from '../profile/profile.service';
 import {Post} from './post/post.model';
 import {User} from '../user.model';

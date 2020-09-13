@@ -1,12 +1,12 @@
 import {HttpClient} from '@angular/common/http';
-import {environment} from './../../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 import {Observable, Subject} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {tap} from 'rxjs/operators';
 
 import {Post} from './post.model';
 import {Comment} from './comments/comment/comment.model';
-import {AuthService} from '../../../Auth/auth.service';
+import {AuthService} from '../../../auth/auth.service';
 
 @Injectable()
 export class PostService {

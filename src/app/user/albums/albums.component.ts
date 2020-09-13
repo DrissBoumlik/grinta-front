@@ -1,5 +1,5 @@
 import { Album } from './album/album.model';
-import { AuthService } from 'src/app/Auth/auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({

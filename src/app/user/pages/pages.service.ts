@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 import {Page} from './page/page.model';
 import {Subject} from 'rxjs';
 import {PageService} from './page/page.service';
-import {AuthService} from '../../Auth/auth.service';
+import {AuthService} from '../../auth/auth.service';
 
 @Injectable()
 export class PagesService {
