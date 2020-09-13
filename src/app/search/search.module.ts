@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared/shared.module';
 import {SearchComponent} from './search.component';
 import {SearchEventsComponent} from './search-events/search-events.component';
@@ -13,7 +14,8 @@ import {SearchEventsComponent} from './search-events/search-events.component';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   exports: [
     SearchComponent,
