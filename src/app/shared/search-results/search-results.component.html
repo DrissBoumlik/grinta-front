@@ -1,5 +1,6 @@
-<form action="#" class="searchbox w-75" [formGroup]="searchForm">
-  <input type="text" class="text search-input" placeholder="Type here to search..." formControlName="search" (input)="onSearch($event.target.value)" #searchInput>
+<form action="#" class="searchbox w-75 w-md-100" [formGroup]="searchForm">
+  <input type="text" class="text search-input" placeholder="Type here to search..." formControlName="search"
+         (input)="onSearch($event.target.value)" #searchInput>
   <a class="search-link" routerLink="/search"><i class="ri-search-line"></i></a>
 </form>
 <div class="search-results" *ngIf="showResults">
