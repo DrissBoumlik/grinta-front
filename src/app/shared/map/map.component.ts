@@ -106,8 +106,8 @@ export class MapComponent implements OnInit, AfterViewInit {
           this.events = response.events;
           const iconSize = new Point(40, 40);
           if (this.events.length > 10) {
-            iconSize.x = 25;
-            iconSize.y = 25;
+            iconSize.x = 35;
+            iconSize.y = 35;
           }
           this.events.forEach((event: any) => {
             const location = event.location.split(',').map((str) => parseFloat(str));
