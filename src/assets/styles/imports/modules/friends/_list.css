@@ -1,6 +1,10 @@
 
-.right-sidebar-mini {
+.friends-list.right-sidebar-mini {
   /*width: 300px;*/
-  transform: translateX(0);
   z-index: 1100;
+  transform: translateX(0);
+}
+
+.friends-list.right-sidebar {
+  transform: translateX(100%);
 }
