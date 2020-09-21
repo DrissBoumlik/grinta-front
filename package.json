@@ -25,11 +25,13 @@
     "@types/leaflet": "^1.5.17",
     "angularx-social-login": "^2.2.1",
     "firebase": "^7.19.1",
+    "laravel-echo": "^1.8.1",
     "leaflet": "^1.6.0",
     "leaflet-geosearch": "^3.0.6",
     "ngx-infinite-scroll": "^8.0.1",
     "ngx-spinner": "^8.0.3",
     "rxjs": "~6.4.0",
+    "socket.io-client": "^2.3.0",
     "sweetalert2": "^9.4.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
