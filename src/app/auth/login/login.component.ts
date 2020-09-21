@@ -19,11 +19,7 @@ export class LoginComponent implements OnInit {
   private socialUser: SocialUser;
   private loggedIn: boolean;
 
-  loginForm = new FormGroup({
-    username: new FormControl('a@a.a', Validators.required),
-    password: new FormControl('123123123', Validators.required),
-    remember_me: new FormControl()
-  });
+  loginForm: FormGroup;
 
   constructor(private authService: AuthService,
               private userService: UserService,
@@ -34,6 +30,14 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    const isEven = Math.floor(Math.random() * 10) % 2;
+    console.clear();
+    console.log(isEven);
+    this.loginForm = new FormGroup({
+      username: new FormControl((isEven ? 'a@a.a' : 'oberbrunner.jacinthe@example.org'), Validators.required),
+      password: new FormControl('123123123', Validators.required),
+      remember_me: new FormControl(true)
+    });
     const userLogged = localStorage.getItem('token') !== null && localStorage.getItem('token') !== undefined;
     if (userLogged) {
       this.router.navigate(['home']);
