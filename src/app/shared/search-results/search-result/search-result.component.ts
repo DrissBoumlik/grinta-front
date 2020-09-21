@@ -18,16 +18,16 @@ export class SearchResultComponent implements OnInit {
   ngOnInit() {
     if (this.result.type === 'user') {
       this.title = 'Utilisateur';
-      this.iconType = '<div class="user iq-bg-danger"><i class="ri-user-line"></i></div>';
+      this.iconType = '<span class="user"><i class="ri-user-line"></i></span>';
     } else if (this.result.type === 'post') {
       this.title = 'Post';
-      this.iconType = '<div class="page iq-bg-dark"><i class="ri-article-line"></i></div>';
+      this.iconType = '<span class="page"><i class="ri-article-line"></i></span>';
     } else if (this.result.type === 'page') {
       this.title = 'Page';
-      this.iconType = '<div class="page iq-bg-primary"><i class="ri-pages-line"></i></div>';
+      this.iconType = '<span class="page"><i class="ri-pages-line"></i></span>';
     } else if (this.result.type === 'event') {
       this.title = 'Evenement';
-      this.iconType = '<div class="event iq-bg-warning"><i class="ri-calendar-event-line"></i></div>';
+      this.iconType = '<span class="event"><i class="ri-calendar-event-line"></i></span>';
     }
   }
 

@@ -26,28 +26,3 @@
 .search-results .no-result {
   color: #505050;
 }
-
-
-.result-wrapper .result-image {
-  padding: 0;
-  display: inline-block;
-  margin-right: 10px;
-}
-.result-wrapper .result-image img {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  border: 2px solid #ededed;
-}
-
-.result-wrapper .result-header {
-  display: inline-block;
-  font-size: 1rem;
-  line-height: 2rem;
-  /*height: 100px;*/
-  /*padding-top: 40px;*/
-}
-
-.result-wrapper .result-type {
-  font-size: 2rem;
-}

@@ -1,5 +1,6 @@
 
 @import "search/_search.css";
+@import "search/_search-result.css";
 @import "search/_search-results.css";
 @import "events/_event-options.css";
 @import "friends/_list.css";

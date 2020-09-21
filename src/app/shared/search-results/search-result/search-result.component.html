@@ -1,5 +1,5 @@
 <div class="result-wrapper">
-  <a class="pointer" (click)="goTo()">
+  <a class="pointer" (click)="goTo()" *ngIf="result">
     <div class="result-container d-flex justify-content-between">
       <!--      <div class="result-image">-->
       <!--        <img src="{{ result?.image }}" alt="">-->
@@ -8,7 +8,11 @@
         <span>{{ result?.header }}</span>
       </div>
       <div class="result-type">
-        <span [innerHTML]="iconType" title="{{ title }}"></span>
+        <div class="result-icon" [innerHTML]="iconType" title="{{ title }}">
+        </div>
+        <div class="result-img">
+          <img src="{{ result?.image }}" class="search-result-img"/>
+        </div>
       </div>
     </div>
   </a>
