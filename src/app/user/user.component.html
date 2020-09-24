@@ -1,6 +1,6 @@
 <div class="wrapper">
 
-  <app-user-options></app-user-options>
+<!--  <app-user-options></app-user-options>-->
 
   <app-header></app-header>
 
@@ -15,68 +15,73 @@
             <div class="iq-card">
               <div class="iq-card-body profile-page p-0">
                 <div class="profile-header">
-                  <div class="cover-container">
-                    <div class="h-300 overflow-hidden center-img">
-                      <img src="{{ profile?.cover }}" alt="profile-bg" class="rounded img-fluid w-100 centered-img">
+                  <div class="cover-profile position-relative">
+                    <div class="cover-container">
+                      <div class="h-200 h-md-300 overflow-hidden center-img">
+                        <img src="{{ profile?.cover }}" alt="profile-bg" class="rounded img-fluid w-100 centered-img">
+                      </div>
+                      <ul class="header-nav d-flex flex-wrap justify-end p-0 m-0">
+                        <li><a routerLink="/{{ profile?.username }}/edit"><i class="ri-pencil-line"></i></a></li>
+                        <li><a routerLink="/messenger/{{ profile?.username }}"><i class="ri-message-line"></i></a></li>
+                      </ul>
                     </div>
-                    <ul class="header-nav d-flex flex-wrap justify-end p-0 m-0">
-                      <li><a routerLink="/{{ profile?.username }}/edit"><i class="ri-pencil-line"></i></a></li>
-                      <li><a routerLink="/messenger/{{ profile?.username }}"><i class="ri-message-line"></i></a></li>
-                    </ul>
+                    <div class="user-detail text-center">
+                      <div class="profile-img">
+                        <img src="{{ profile?.picture }}" alt="profile-img"
+                             class="avatar-130 img-fluid"/>
+                      </div>
+                    </div>
                   </div>
-                  <div class="user-detail text-center">
-                    <div class="profile-img">
-                      <img src="{{ profile?.picture }}" alt="profile-img"
-                           class="avatar-130 img-fluid"/>
-                    </div>
+                  <div class="profile-info p-4 text-center position-relative">
                     <div class="profile-detail">
-                      <h3 class="">{{ profile?.fullName }}</h3>
+                      <h3 class="m-0">{{ profile?.fullName }}</h3>
                       <a routerLink="/{{ profile?.username }}" class="m-0">@{{ profile?.username }}</a>
                     </div>
-                  </div>
-                  <div class="profile-info p-4 d-flex align-items-center justify-content-between position-relative">
-                    <div class="social-links">
-                      <ul
-                        class="social-data-block d-flex align-items-center justify-content-between list-inline p-0 m-0">
-                        <li class="text-center pr-3">
-                          <a href="#"><img src="/assets/plugins/socialV/images/icon/08.png" class="img-fluid rounded"
-                                           alt="facebook"></a>
-                        </li>
-                        <li class="text-center pr-3">
-                          <a href="#"><img src="/assets/plugins/socialV/images/icon/09.png" class="img-fluid rounded"
-                                           alt="Twitter"></a>
-                        </li>
-                        <li class="text-center pr-3">
-                          <a href="#"><img src="/assets/plugins/socialV/images/icon/10.png" class="img-fluid rounded"
-                                           alt="Instagram"></a>
-                        </li>
-                        <li class="text-center pr-3">
-                          <a href="#"><img src="/assets/plugins/socialV/images/icon/12.png" class="img-fluid rounded"
-                                           alt="You tube"></a>
-                        </li>
-                        <li class="text-center pr-3">
-                          <a href="#"><img src="/assets/plugins/socialV/images/icon/13.png" class="img-fluid rounded"
-                                           alt="linkedin"></a>
-                        </li>
-                      </ul>
+                    <div class="profile-about mt-2">
+                      <span>{{ profile?.about }}</span>
                     </div>
-                    <div class="social-info">
-                      <ul
-                        class="social-data-block d-flex align-items-center justify-content-between list-inline p-0 m-0">
-                        <li class="text-center pl-3">
-                          <h6>Posts</h6>
-                          <p class="mb-0">690</p>
-                        </li>
-                        <li class="text-center pl-3">
-                          <h6>Followers</h6>
-                          <p class="mb-0">206</p>
-                        </li>
-                        <li class="text-center pl-3">
-                          <h6>Following</h6>
-                          <p class="mb-0">100</p>
-                        </li>
-                      </ul>
-                    </div>
+<!--                    <div class="social-links">-->
+<!--                      <ul-->
+<!--                        class="social-data-block d-flex align-items-center justify-content-between list-inline p-0 m-0">-->
+<!--                        <li class="text-center pr-3">-->
+<!--                          <a href="#"><img src="/assets/plugins/socialV/images/icon/08.png" class="img-fluid rounded"-->
+<!--                                           alt="facebook"></a>-->
+<!--                        </li>-->
+<!--                        <li class="text-center pr-3">-->
+<!--                          <a href="#"><img src="/assets/plugins/socialV/images/icon/09.png" class="img-fluid rounded"-->
+<!--                                           alt="Twitter"></a>-->
+<!--                        </li>-->
+<!--                        <li class="text-center pr-3">-->
+<!--                          <a href="#"><img src="/assets/plugins/socialV/images/icon/10.png" class="img-fluid rounded"-->
+<!--                                           alt="Instagram"></a>-->
+<!--                        </li>-->
+<!--                        <li class="text-center pr-3">-->
+<!--                          <a href="#"><img src="/assets/plugins/socialV/images/icon/12.png" class="img-fluid rounded"-->
+<!--                                           alt="You tube"></a>-->
+<!--                        </li>-->
+<!--                        <li class="text-center pr-3">-->
+<!--                          <a href="#"><img src="/assets/plugins/socialV/images/icon/13.png" class="img-fluid rounded"-->
+<!--                                           alt="linkedin"></a>-->
+<!--                        </li>-->
+<!--                      </ul>-->
+<!--                    </div>-->
+<!--                    <div class="social-info">-->
+<!--                      <ul-->
+<!--                        class="social-data-block d-flex align-items-center justify-content-between list-inline p-0 m-0">-->
+<!--                        <li class="text-center pl-3">-->
+<!--                          <h6>Posts</h6>-->
+<!--                          <p class="mb-0">690</p>-->
+<!--                        </li>-->
+<!--                        <li class="text-center pl-3">-->
+<!--                          <h6>Followers</h6>-->
+<!--                          <p class="mb-0">206</p>-->
+<!--                        </li>-->
+<!--                        <li class="text-center pl-3">-->
+<!--                          <h6>Following</h6>-->
+<!--                          <p class="mb-0">100</p>-->
+<!--                        </li>-->
+<!--                      </ul>-->
+<!--                    </div>-->
                   </div>
                 </div>
               </div>
