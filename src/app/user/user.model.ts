@@ -13,6 +13,7 @@ export class User {
     public username: string,
     public firstname: string,
     public lastname: string,
+    public about: string,
     public fullName: string,
     public gender: string,
     public city: string,
