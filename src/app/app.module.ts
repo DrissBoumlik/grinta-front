@@ -42,6 +42,7 @@ import {HandlerHttpInterceptor} from './handler/handler-http-interceptor';
 import {DatePipe} from '@angular/common';
 import {EventsModule} from './user/events/events.module';
 import {SearchModule} from './search/search.module';
+import {HelperService} from './helper.service';
 
 const config = new AuthServiceConfig([
   {
@@ -104,6 +105,7 @@ export function provideConfig() {
     ProfileService,
     AuthService,
     PagesService,
+    HelperService,
     DatePipe,
     {provide: AuthServiceConfig, useFactory: provideConfig},
     {provide: HTTP_INTERCEPTORS, useClass: HandlerHttpInterceptor, multi: true}

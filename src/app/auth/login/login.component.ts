@@ -7,6 +7,7 @@ import {User} from '../../user/user.model';
 import {GoogleLoginProvider, AuthService as SocialService, SocialUser} from 'angularx-social-login';
 import {UserService} from '../../user/user.service';
 import {ToolsService} from '../../shared/tools.service';
+import {HelperService} from '../../helper.service';
 
 @Component({
   selector: 'app-login',
@@ -26,18 +27,24 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private socialService: SocialService,
+              private helperService: HelperService,
               private toolsService: ToolsService) {
   }
 
   ngOnInit() {
-    const isEven = Math.floor(Math.random() * 10) % 2;
-    console.clear();
-    console.log(isEven);
     this.loginForm = new FormGroup({
-      username: new FormControl((isEven ? 'a@a.a' : 'oberbrunner.jacinthe@example.org'), Validators.required),
+      username: new FormControl(('a@a.a'), Validators.required),
       password: new FormControl('123123123', Validators.required),
       remember_me: new FormControl(true)
     });
+
+    this.helperService.getRandomUser().subscribe(
+      (response: any) => {
+        const user = response.data[0];
+        this.loginForm.get('username').setValue(user.email);
+      }
+    );
+
     const userLogged = localStorage.getItem('token') !== null && localStorage.getItem('token') !== undefined;
     if (userLogged) {
       this.router.navigate(['home']);
@@ -47,7 +54,6 @@ export class LoginComponent implements OnInit {
     this.socialService.authState.subscribe((user) => {
       this.socialUser = user;
       this.loggedIn = (user != null);
-      console.log(user);
     });
 
     /*---------------------------------------------------------------------
