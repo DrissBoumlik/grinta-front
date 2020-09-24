@@ -5,12 +5,12 @@
 
 .search-results {
   width: 100%;
-  /*background-color: #2b542c;*/
+  background-color: #fff;
   position: absolute;
   left: 0;
   z-index: 999;
   line-height: normal;
-  padding: 0 15px;
+  /*padding: 0 15px;*/
 }
 .search-results ul {
   margin: 0;
