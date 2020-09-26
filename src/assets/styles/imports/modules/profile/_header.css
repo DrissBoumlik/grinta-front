@@ -1,5 +1,7 @@
 
-
+.profile-img img {
+  border: 5px solid #fff;
+}
 
 .profile-header .user-detail {
   z-index: 1000;

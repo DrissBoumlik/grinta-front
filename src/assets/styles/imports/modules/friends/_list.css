@@ -8,3 +8,9 @@
 .friends-list.right-sidebar {
   transform: translateX(100%);
 }
+
+
+.profile-img-list {
+  height: 100px;
+  width: 100px;
+}
