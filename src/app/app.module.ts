@@ -43,6 +43,10 @@ import {DatePipe} from '@angular/common';
 import {EventsModule} from './user/events/events.module';
 import {SearchModule} from './search/search.module';
 import {HelperService} from './helper.service';
+import { UserAboutComponent } from './user/profile/user-about/user-about.component';
+import { UserFriendsComponent } from './user/profile/user-friends/user-friends.component';
+import { UserPhotosComponent } from './user/profile/user-photos/user-photos.component';
+import { UserHomeComponent } from './user/profile/user-home/user-home.component';
 
 const config = new AuthServiceConfig([
   {
@@ -78,6 +82,10 @@ export function provideConfig() {
     PageItemComponent,
     PostWrapperComponent,
     TemplateComponent,
+    UserAboutComponent,
+    UserFriendsComponent,
+    UserPhotosComponent,
+    UserHomeComponent,
   ],
   imports: [
     BrowserModule,
