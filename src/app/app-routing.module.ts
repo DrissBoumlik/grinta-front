@@ -22,6 +22,10 @@ import {ChatComponent} from './user/friends/chat/chat.component';
 import {EventOptionsComponent} from './user/events/event-options/event-options.component';
 import {SearchEventsComponent} from './search/search-events/search-events.component';
 import {SearchComponent} from './search/search.component';
+import {UserAboutComponent} from './user/profile/user-about/user-about.component';
+import {UserPhotosComponent} from './user/profile/user-photos/user-photos.component';
+import {UserFriendsComponent} from './user/profile/user-friends/user-friends.component';
+import {UserHomeComponent} from './user/profile/user-home/user-home.component';
 
 
 const routes: Routes = [
@@ -65,7 +69,7 @@ const routes: Routes = [
   },
   {
     path: ':username', component: UserComponent, children: [
-      {path: '', component: UserPostsComponent},
+      {path: '', component: UserHomeComponent},
       {path: 'edit', component: EditUserComponent},
       {path: 'posts', component: UserPostsComponent},
       {
@@ -77,6 +81,9 @@ const routes: Routes = [
       {path: 'likes', component: UserLikesComponent},
       {path: 'pages', component: PagesComponent},
       {path: 'events', component: EventsComponent},
+      {path: 'about', component: UserAboutComponent},
+      {path: 'photos', component: UserPhotosComponent},
+      {path: 'friends', component: UserFriendsComponent},
     ]
   },
 
