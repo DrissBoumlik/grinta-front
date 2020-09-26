@@ -1,7 +1,7 @@
 import { UserService } from '../user.service';
 import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { User } from '../user.model';
-import {FriendsService} from './friends.service';
+import {RelationService} from './relation.service';
 
 @Component({
   selector: 'app-friends',
@@ -14,16 +14,16 @@ export class FriendsComponent implements OnInit {
   @ViewChild('chatBox', {static: false}) chatBox: ElementRef;
 
   constructor(private userService: UserService,
-              private friendsService: FriendsService) { }
+              private relationService: RelationService) { }
 
   ngOnInit() {
-    this.friendsService.getFriends().subscribe((response: any) => {
-      this.friends = this.friendsService.friends = response.friends;
+    this.relationService.getFriends().subscribe((response: any) => {
+      this.friends = this.relationService.friends = response.friends;
       this.noFriends = this.friends.length <= 0;
     });
   }
 
   onSearch(value: string) {
-    this.friends = this.friendsService.searchFriends(value.toLowerCase());
+    this.friends = this.relationService.searchFriends(value.toLowerCase());
   }
 }

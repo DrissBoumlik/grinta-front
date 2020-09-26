@@ -6,7 +6,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {SharedModule} from '../../shared/shared.module';
 import {PostsModule} from '../posts/posts.module';
-import {FriendsService} from './friends.service';
+import {RelationService} from './relation.service';
 import {FriendComponent} from './friend/friend.component';
 import {FriendsComponent} from './friends.component';
 import {ChatComponent} from './chat/chat.component';
@@ -33,7 +33,7 @@ import {ChatService} from './chat.service';
     SharedModule,
     PostsModule
   ],
-  providers: [FriendsService, ChatService]
+  providers: [RelationService, ChatService]
 })
 export class FriendsModule {
 
