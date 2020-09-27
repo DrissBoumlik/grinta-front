@@ -11,15 +11,6 @@
   /*background-color: var(--grintaaa)!important;*/
 }
 
-a, .navbar-list li > a,
-.navbar-list li > a:not([href]) {
-  color: var(--grintaaa);
-}
-
-ul.header-nav li a {
-  color: var(--grintaaa);
-}
-
 .iq-search-bar {
   position: relative;
 }
