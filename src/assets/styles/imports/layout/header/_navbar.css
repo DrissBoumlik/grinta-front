@@ -1,0 +1,16 @@
+
+a, .navbar-list li > a,
+.navbar-list li > a:not([href]) {
+  color: var(--grintaaa);
+}
+
+ul.header-nav li a {
+  color: var(--grintaaa);
+}
+
+
+@media (max-width: 767px) {
+  .navbar-collapse {
+    margin-top: 0;
+  }
+}
