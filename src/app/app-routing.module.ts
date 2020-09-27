@@ -70,6 +70,7 @@ const routes: Routes = [
   {
     path: ':username', component: UserComponent, children: [
       {path: '', component: UserHomeComponent},
+      {path: 'home', component: UserHomeComponent},
       {path: 'edit', component: EditUserComponent},
       {path: 'posts', component: UserPostsComponent},
       {

@@ -10,17 +10,42 @@ import {AuthService} from '../../auth/auth.service';
 @Injectable()
 export class RelationService {
   friends: User[] = [];
-  followings: User[] = [];
-  addedFriends: User[] = [];
 
   constructor(private http: HttpClient) {}
 
-  getFriends() {
+  getFriends(page = 1) {
     AuthService.getHeaders();
-    return this.http.get(environment.baseApiUrl + '/friends', {headers: AuthService.headers})
+    return this.http.get(environment.baseApiUrl + '/friends' + '?page=' + page, {headers: AuthService.headers})
       .pipe(
         tap(
-          data => console.log(data),
+          (data: any) => {
+            // console.log(data);
+            if (page === 1) {
+              this.friends = [];
+            }
+            // this.friends = data.friends;
+            this.friends.push(...data.friends);
+          },
+          error => console.log(error.status),
+        )
+      );
+  }
+
+
+  getCityFriends(city: string, page = 1) {
+    AuthService.getHeaders();
+    return this.http.get(environment.baseApiUrl + '/friends/city/' + city + '?page=' + page, {headers: AuthService.headers})
+      .pipe(
+        tap(
+          (data: any) => {
+            // console.log(data);
+            // this.friends = data.cityFriends;
+            if (page === 1) {
+              this.friends = [];
+            }
+            // this.friends = data.friends;
+            this.friends.push(...data.cityFriends);
+          },
           error => console.log(error.status),
         )
       );
@@ -37,7 +62,10 @@ export class RelationService {
     return this.http.get(environment.baseApiUrl + '/followings', {headers: AuthService.headers})
       .pipe(
         tap(
-          data => console.log(data),
+          (data: any) => {
+            // console.log(data);
+            this.friends = data.followings;
+          },
           error => console.log(error.status),
         )
       );
@@ -48,7 +76,10 @@ export class RelationService {
     return this.http.get(environment.baseApiUrl + '/friends/recent', {headers: AuthService.headers})
       .pipe(
         tap(
-          data => console.log(data),
+          (data: any) => {
+            // console.log(data);
+            this.friends = data.addedFriends;
+          },
           error => console.log(error.status),
         )
       );
