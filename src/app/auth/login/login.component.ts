@@ -38,12 +38,12 @@ export class LoginComponent implements OnInit {
       remember_me: new FormControl(true)
     });
 
-    this.helperService.getRandomUser().subscribe(
-      (response: any) => {
-        const user = response.data[0];
-        this.loginForm.get('username').setValue(user.email);
-      }
-    );
+    // this.helperService.getRandomUser().subscribe(
+    //   (response: any) => {
+    //     const user = response.data[0];
+    //     this.loginForm.get('username').setValue(user.email);
+    //   }
+    // );
 
     const userLogged = localStorage.getItem('token') !== null && localStorage.getItem('token') !== undefined;
     if (userLogged) {

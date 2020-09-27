@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
       auth: {headers: {Authorization: 'Bearer ' + token}}
     });
     localStorage.setItem('socketID', JSON.stringify(echo.socketId()));
-    console.log(echo.socketId());
+    // console.log(echo.socketId());
     let channel = '';
     channel = 'event.created';
     echo.private(channel)
