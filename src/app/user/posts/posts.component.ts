@@ -4,7 +4,6 @@ import {AuthService} from '../../auth/auth.service';
 import {Router} from '@angular/router';
 
 import {User} from '../user.model';
-import {NgxSpinnerService} from 'ngx-spinner';
 import {PostsService} from './posts.service';
 import {ProfileService} from '../profile/profile.service';
 import {Page} from '../pages/page/page.model';
@@ -25,6 +24,7 @@ export class PostsComponent implements OnInit {
   scroll = true;
   gotAllPosts = false;
   postsLoaded = false;
+  loadMore = false;
 
   ngOnInit() {
     this.authService.isLogged(this.router);
@@ -83,8 +83,7 @@ export class PostsComponent implements OnInit {
               private profileService: ProfileService,
               private postsService: PostsService,
               private pageService: PageService,
-              private router: Router,
-              private spinner: NgxSpinnerService) {
+              private router: Router) {
   }
 
   initLoad(user: User) {
@@ -99,7 +98,7 @@ export class PostsComponent implements OnInit {
         (response: any) => {
           this.postsLoaded = true;
           this.user.posts = this.postsService.posts;
-          this.spinner.hide();
+          this.loadMore = false;
           if (!response.posts.length) {
             this.gotAllPosts = true;
           }
@@ -111,8 +110,7 @@ export class PostsComponent implements OnInit {
   onLoadMorePosts() {
     if (this.scroll && !this.gotAllPosts) {
       this.scroll = false;
-      this.spinner.show();
-      console.log('on scroll');
+      this.loadMore = true;
       if (!this.isProfile && !this.isPage) {
         console.log('not profile - not page');
         this.getPosts();

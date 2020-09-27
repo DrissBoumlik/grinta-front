@@ -12,6 +12,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {PostsService} from './posts.service';
 import {PageService} from '../pages/page/page.service';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import {PageService} from '../pages/page/page.service';
     CommentComponent,
     ReplyComponent,
   ],
-  imports: [RouterModule, CommonModule, ReactiveFormsModule, NgxSpinnerModule, InfiniteScrollModule],
+  imports: [RouterModule, CommonModule, ReactiveFormsModule, NgxSpinnerModule, InfiniteScrollModule, SharedModule],
   providers: [PostsService, PageService]
 })
 export class PostsModule {
