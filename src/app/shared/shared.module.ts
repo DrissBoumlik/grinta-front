@@ -14,6 +14,7 @@ import {HandlerService} from './handler.service';
 import { MapComponent } from './map/map.component';
 import {EventService} from './event.service';
 import { EventActionsComponent } from './event-actions/event-actions.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { EventActionsComponent } from './event-actions/event-actions.component';
     FeedbackComponent,
     MapComponent,
     EventActionsComponent,
+    SpinnerComponent,
   ],
   imports: [
     RouterModule,
@@ -35,6 +37,7 @@ import { EventActionsComponent } from './event-actions/event-actions.component';
     FeedbackComponent,
     MapComponent,
     EventActionsComponent,
+    SpinnerComponent,
   ],
   providers: [SearchService, SportService, ToolsService, FeedbackService, HandlerService, EventService]
 })
