@@ -8,16 +8,16 @@
   bottom: -20px;
 }
 
-@media (max-width: 767px) {
-  .profile-header .user-detail {
-    margin-bottom: 0;
-  }
+@media (max-width:576px) {
   .profile-img img {
     width: 100px;
   }
 }
 
-@media (max-width:576px) {
+@media (max-width: 767px) {
+  .profile-header .user-detail {
+    margin-bottom: 0;
+  }
   .profile-img img {
     width: 100px;
   }

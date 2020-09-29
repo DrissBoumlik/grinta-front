@@ -20,15 +20,11 @@
 <!--          <a class="search-link" href="#"><i class="ri-search-line"></i></a>-->
 <!--        </form>-->
       </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
-        <i class="ri-menu-3-line"></i>
-      </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto navbar-list">
           <li>
             <a routerLink="/{{ user?.username }}" class="iq-waves-effect d-flex align-items-center">
-              <img src="{{ user?.picture }}" class="img-fluid rounded-circle mr-3" alt="user">
+              <img src="{{ user?.picture }}" class="img-fluid rounded-circle mr-3 profile-img-30" alt="user">
               <div class="caption">
                 <h6 class="mb-0 line-height">{{ user?.firstname }}</h6>
               </div>
