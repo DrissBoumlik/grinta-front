@@ -19,7 +19,7 @@
       <h3 class="capitalize align-center">Events you were invited to</h3>
     </div>
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let event of profile?.event_invitations">
+      <li class="list-group-item" *ngFor="let event of profile?.eventInvitations">
         <div class="event-row clearfix">
           <div class="event-image float-left mg-sides"><img src="{{ event.image }}" alt="" class="round" style="width: 20px; height: 20px;"></div>
           <div class="event-name float-left">{{ event.name }}</div>

@@ -17,11 +17,11 @@ export class EventsComponent implements OnInit {
   ngOnInit() {
     this.profileService.profileLoaded.subscribe((profile: User) => {
       this.profile = profile;
-      this.noEvents = this.profile.events.length === 0 && this.profile.event_invitations.length === 0;
+      this.noEvents = this.profile.events.length === 0 && this.profile.eventInvitations.length === 0;
     });
     this.profile = this.profileService.profile;
     if (this.profile) {
-      this.noEvents = this.profile.events.length === 0 && this.profile.event_invitations.length === 0;
+      this.noEvents = this.profile.events.length === 0 && this.profile.eventInvitations.length === 0;
     }
   }
 

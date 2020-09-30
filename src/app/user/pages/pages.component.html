@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <div class="pages pages-wrapper clearfix border-grey" *ngIf="profile?.managed_pages?.length">
+  <div class="pages pages-wrapper clearfix border-grey" *ngIf="profile?.adminedPages?.length">
     <div class="col-md-12">
       <div class="header">
         <h3 class="capitalize">
@@ -25,7 +25,7 @@
       </div>
       <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-6 liked-page-block" *ngFor="let page of profile?.managed_pages">
+        <div class="col-md-6 col-sm-6 col-xs-6 liked-page-block" *ngFor="let page of profile?.adminedPages">
           <app-page-item [page]="page" [type]="'manager'"></app-page-item>
         </div>
       </div>
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <div class="pages pages-wrapper clearfix border-grey" *ngIf="profile?.page_invitations?.length">
+  <div class="pages pages-wrapper clearfix border-grey" *ngIf="profile?.moderatedPages?.length">
     <div class="col-md-12">
       <div class="header">
         <h3 class="capitalize">
@@ -42,7 +42,7 @@
       </div>
       <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-6 liked-page-block" *ngFor="let page of profile?.page_invitations">
+        <div class="col-md-6 col-sm-6 col-xs-6 liked-page-block" *ngFor="let page of profile?.moderatedPages">
           <app-page-item [page]="page" [type]="'invited'"></app-page-item>
         </div>
       </div>

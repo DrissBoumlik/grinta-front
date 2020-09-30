@@ -10,8 +10,8 @@ import {AuthService} from '../../auth/auth.service';
 @Injectable()
 export class PagesService {
   pages: Page[];
-  managedPages: Page[];
-  pageInvitations: Page[];
+  adminedPages: Page[];
+  moderatedPages: Page[];
   pagesUpdated = new Subject();
 
   constructor(private http: HttpClient,
@@ -30,9 +30,9 @@ export class PagesService {
 
   removePage(id: number) {
     this.pages = this.pages.filter((page) => page.id !== id);
-    this.managedPages = this.managedPages.filter((page) => page.id !== id);
-    this.pageInvitations = this.pageInvitations.filter((page) => page.id !== id);
-    this.pagesUpdated.next({pages: this.pages, managedPages: this.managedPages, pageInvitations: this.pageInvitations});
+    this.adminedPages = this.adminedPages.filter((page) => page.id !== id);
+    this.moderatedPages = this.moderatedPages.filter((page) => page.id !== id);
+    this.pagesUpdated.next({pages: this.pages, adminedPages: this.adminedPages, moderatedPages: this.moderatedPages});
   }
 
   deletePage(id: number, type: string = null) {

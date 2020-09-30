@@ -19,24 +19,24 @@ export class PagesComponent implements OnInit {
     this.profileService.profileLoaded.subscribe((profile: User) => {
       this.profile = profile;
       this.pagesService.pages = profile.pages;
-      this.pagesService.managedPages = profile.managed_pages;
-      this.pagesService.pageInvitations = profile.page_invitations;
+      this.pagesService.adminedPages = profile.adminedPages;
+      this.pagesService.moderatedPages = profile.moderatedPages;
       this.noPages = (this.profile.pages && this.profile.pages.length === 0)
-        && (this.profile.managed_pages && this.profile.managed_pages.length === 0)
-        && (this.profile.page_invitations && this.profile.page_invitations.length === 0);
+        && (this.profile.adminedPages && this.profile.adminedPages.length === 0)
+        && (this.profile.moderatedPages && this.profile.moderatedPages.length === 0);
     });
     this.profile = this.profileService.profile;
     if (this.profile) {
       this.noPages = (this.profile.pages && this.profile.pages.length === 0)
-        && (this.profile.managed_pages && this.profile.managed_pages.length === 0)
-        && (this.profile.page_invitations && this.profile.page_invitations.length === 0);
+        && (this.profile.adminedPages && this.profile.adminedPages.length === 0)
+        && (this.profile.moderatedPages && this.profile.moderatedPages.length === 0);
     }
 
     this.pagesService.pagesUpdated.subscribe((updatedPages: any) => {
       console.log(updatedPages);
       this.profile.pages = updatedPages.pages;
-      this.profile.managed_pages = updatedPages.managedPages;
-      this.profile.page_invitations = updatedPages.pageInvitations;
+      this.profile.adminedPages = updatedPages.adminedPages;
+      this.profile.moderatedPages = updatedPages.moderatedPages;
     });
   }
 
