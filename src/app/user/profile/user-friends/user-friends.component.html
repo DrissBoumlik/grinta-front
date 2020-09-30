@@ -6,16 +6,16 @@
         <ul
           class="nav nav-pills d-flex align-items-center justify-content-left friend-list-items p-0 mb-2">
           <li>
-            <a class="nav-link active" data-toggle="pill" href="#all-friends" (click)="getRelation('friends')">All Friends</a>
+            <a class="nav-link pointer active" data-toggle="pill" (click)="getRelation('friends')">All Friends</a>
           </li>
           <li>
-            <a class="nav-link" data-toggle="pill" href="#recently-add" (click)="getRelation('addedFriends')">Recently Added</a>
+            <a class="nav-link pointer" data-toggle="pill" (click)="getRelation('addedFriends')">Recently Added</a>
           </li>
           <li>
-            <a class="nav-link" data-toggle="pill" href="#home" (click)="getRelation('cityFriends')">Home/Town</a>
+            <a class="nav-link pointer" data-toggle="pill" (click)="getRelation('cityFriends')">Home/Town</a>
           </li>
           <li>
-            <a class="nav-link" data-toggle="pill" href="#following" (click)="getRelation('followings')">Following</a>
+            <a class="nav-link pointer" data-toggle="pill" (click)="getRelation('followings')">Following</a>
           </li>
         </ul>
         <div class="tab-content">
@@ -38,7 +38,6 @@
                                class="img-fluid profile-img-list">
                           <div class="friend-info ml-3">
                             <h5>{{ friend.fullName }}</h5>
-                            <p class="mb-0">15 friends</p>
                           </div>
                         </a>
                       </div>
@@ -71,160 +70,6 @@
             </div>
           </div>
           <app-spinner *ngIf="loading"></app-spinner>
-<!--          <div class="tab-pane fade" id="recently-add" role="tabpanel">-->
-<!--            <div class="iq-card-body p-0">-->
-<!--              <div class="row">-->
-<!--                <div class="col-md-6 col-lg-6 mb-3" *ngFor="let friend of addedFriends">-->
-<!--                  <div class="iq-friendlist-block">-->
-<!--                    <div class="d-flex align-items-center justify-content-between">-->
-<!--                      <div class="d-flex align-items-center">-->
-<!--                        <a href="#">-->
-<!--                          <img src="{{ friend?.picture }}" alt="profile-img"-->
-<!--                               class="img-fluid profile-img-list">-->
-<!--                        </a>-->
-<!--                        <div class="friend-info ml-3">-->
-<!--                          <h5>{{ friend?.fullName }}</h5>-->
-<!--                          <p class="mb-0">5 friends</p>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                      <div class="iq-card-header-toolbar d-flex align-items-center">-->
-<!--                        <div class="dropdown">-->
-<!--                                                               <span class="dropdown-toggle btn btn-secondary mr-2"-->
-<!--                                                                     id="dropdownMenuButton37" data-toggle="dropdown"-->
-<!--                                                                     aria-expanded="true" role="button">-->
-<!--                                                               <i-->
-<!--                                                                 class="ri-check-line mr-1 text-white font-size-16"></i> Friend-->
-<!--                                                               </span>-->
-<!--                          <div class="dropdown-menu dropdown-menu-right"-->
-<!--                               aria-labelledby="dropdownMenuButton37">-->
-<!--                            <a class="dropdown-item" href="#">Get Notification</a>-->
-<!--                            <a class="dropdown-item" href="#">Close Friend</a>-->
-<!--                            <a class="dropdown-item" href="#">Unfollow</a>-->
-<!--                            <a class="dropdown-item" href="#">Unfriend</a>-->
-<!--                            <a class="dropdown-item" href="#">Block</a>-->
-<!--                          </div>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="tab-pane fade" id="home" role="tabpanel">-->
-<!--            <div class="iq-card-body p-0">-->
-<!--              <div class="row">-->
-<!--                <div class="col-md-6 col-lg-6 mb-3">-->
-<!--                  <div class="iq-friendlist-block">-->
-<!--                    <div class="d-flex align-items-center justify-content-between">-->
-<!--                      <div class="d-flex align-items-center">-->
-<!--                        <a href="#">-->
-<!--                          <img src="/assets/plugins/socialV/images/user/18.jpg" alt="profile-img"-->
-<!--                               class="img-fluid">-->
-<!--                        </a>-->
-<!--                        <div class="friend-info ml-3">-->
-<!--                          <h5>Paul Molive</h5>-->
-<!--                          <p class="mb-0">14 friends</p>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                      <div class="iq-card-header-toolbar d-flex align-items-center">-->
-<!--                        <div class="dropdown">-->
-<!--                           <span class="dropdown-toggle btn btn-secondary mr-2"-->
-<!--                                 id="dropdownMenuButton49" data-toggle="dropdown"-->
-<!--                                 aria-expanded="true" role="button">-->
-<!--                           <i-->
-<!--                             class="ri-check-line mr-1 text-white font-size-16"></i> Friend-->
-<!--                           </span>-->
-<!--                          <div class="dropdown-menu dropdown-menu-right"-->
-<!--                               aria-labelledby="dropdownMenuButton49">-->
-<!--                            <a class="dropdown-item" href="#">Get Notification</a>-->
-<!--                            <a class="dropdown-item" href="#">Close Friend</a>-->
-<!--                            <a class="dropdown-item" href="#">Unfollow</a>-->
-<!--                            <a class="dropdown-item" href="#">Unfriend</a>-->
-<!--                            <a class="dropdown-item" href="#">Block</a>-->
-<!--                          </div>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-6 col-lg-6 mb-3">-->
-<!--                  <div class="iq-friendlist-block">-->
-<!--                    <div class="d-flex align-items-center justify-content-between">-->
-<!--                      <div class="d-flex align-items-center">-->
-<!--                        <a href="#">-->
-<!--                          <img src="/assets/plugins/socialV/images/user/19.jpg" alt="profile-img"-->
-<!--                               class="img-fluid">-->
-<!--                        </a>-->
-<!--                        <div class="friend-info ml-3">-->
-<!--                          <h5>Paige Turner</h5>-->
-<!--                          <p class="mb-0">8 friends</p>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                      <div class="iq-card-header-toolbar d-flex align-items-center">-->
-<!--                        <div class="dropdown">-->
-<!--                                                               <span class="dropdown-toggle btn btn-secondary mr-2"-->
-<!--                                                                     id="dropdownMenuButton50" data-toggle="dropdown"-->
-<!--                                                                     aria-expanded="true" role="button">-->
-<!--                                                               <i-->
-<!--                                                                 class="ri-check-line mr-1 text-white font-size-16"></i> Friend-->
-<!--                                                               </span>-->
-<!--                          <div class="dropdown-menu dropdown-menu-right"-->
-<!--                               aria-labelledby="dropdownMenuButton50">-->
-<!--                            <a class="dropdown-item" href="#">Get Notification</a>-->
-<!--                            <a class="dropdown-item" href="#">Close Friend</a>-->
-<!--                            <a class="dropdown-item" href="#">Unfollow</a>-->
-<!--                            <a class="dropdown-item" href="#">Unfriend</a>-->
-<!--                            <a class="dropdown-item" href="#">Block</a>-->
-<!--                          </div>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="tab-pane fade" id="following" role="tabpanel">-->
-<!--            <div class="iq-card-body p-0">-->
-<!--              <div class="row">-->
-<!--                <div class="col-md-6 col-lg-6 mb-3" *ngFor="let following of followings">-->
-<!--                  <div class="iq-friendlist-block">-->
-<!--                    <div class="d-flex align-items-center justify-content-between">-->
-<!--                      <div class="d-flex align-items-center">-->
-<!--                        <a href="#">-->
-<!--                          <img src="{{ following?.picture }}" alt="profile-img"-->
-<!--                               class="img-fluid profile-img-list">-->
-<!--                        </a>-->
-<!--                        <div class="friend-info ml-3">-->
-<!--                          <h5>{{ following?.fullName }}</h5>-->
-<!--                          <p class="mb-0">20 friends</p>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                      <div class="iq-card-header-toolbar d-flex align-items-center">-->
-<!--                        <div class="dropdown">-->
-<!--                           <span class="dropdown-toggle btn btn-secondary mr-2"-->
-<!--                                 id="dropdownMenuButton54" data-toggle="dropdown"-->
-<!--                                 aria-expanded="true" role="button">-->
-<!--                           <i-->
-<!--                             class="ri-check-line mr-1 text-white font-size-16"></i> Friend-->
-<!--                           </span>-->
-<!--                          <div class="dropdown-menu dropdown-menu-right"-->
-<!--                               aria-labelledby="dropdownMenuButton54">-->
-<!--                            <a class="dropdown-item" href="#">Get Notification</a>-->
-<!--                            <a class="dropdown-item" href="#">Close Friend</a>-->
-<!--                            <a class="dropdown-item" href="#">Unfollow</a>-->
-<!--                            <a class="dropdown-item" href="#">Unfriend</a>-->
-<!--                            <a class="dropdown-item" href="#">Block</a>-->
-<!--                          </div>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
         </div>
       </div>
     </div>
