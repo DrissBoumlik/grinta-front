@@ -1,7 +1,7 @@
 
-@import "profile/_header.css";
-@import "profile/_list-users.css";
-@import "profile/_gallery-photos.css";
+@import "profile/common/_header.css";
+@import "profile/friends/_list-users.css";
+@import "profile/photos/_gallery-photos.css";
 @import "search/_search.css";
 @import "search/_search-result.css";
 @import "search/_search-results.css";

@@ -22,3 +22,9 @@
     width: 100px;
   }
 }
+
+@media (max-width: 992px) {
+  .profile-feed-items li a {
+    margin: 0;
+  }
+}
