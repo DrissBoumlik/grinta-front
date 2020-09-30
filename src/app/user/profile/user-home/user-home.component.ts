@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Params} from '@angular/router';
+import {User} from '../../user.model';
+import {ProfileService} from '../profile.service';
+import {Media} from '../../albums/album/medias/media/media.model';
 
 @Component({
   selector: 'app-user-home',
@@ -6,10 +10,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-home.component.css']
 })
 export class UserHomeComponent implements OnInit {
-
-  constructor() { }
+  profile: User;
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
+    this.profileService.profileLoaded.subscribe((profile: User) => {
+      this.profile = profile;
+    });
+    this.profile = this.profileService.profile;
   }
 
 }

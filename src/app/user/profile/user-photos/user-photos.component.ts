@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../../user.model";
+import {ProfileService} from "../profile.service";
 
 @Component({
   selector: 'app-user-photos',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-photos.component.css']
 })
 export class UserPhotosComponent implements OnInit {
-
-  constructor() { }
+  profile: User;
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
+    this.profileService.profileLoaded.subscribe((profile: User) => {
+      this.profile = profile;
+      console.log(this.profile);
+    });
+    this.profile = this.profileService.profile;
+    console.log(this.profile);
   }
 
 }
