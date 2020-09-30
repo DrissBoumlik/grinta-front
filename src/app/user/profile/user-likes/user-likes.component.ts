@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProfileService} from '../profile.service';
 import {User} from '../../user.model';
+import {Page} from '../../pages/page/page.model';
 
 @Component({
   selector: 'app-user-likes',
@@ -9,13 +10,38 @@ import {User} from '../../user.model';
 })
 export class UserLikesComponent implements OnInit {
   profile: User;
+  pages: Page[] = [];
+  type = 'pages';
+  emptyList = false;
+  urls = {
+    pages: () => {
+      this.pages = this.profile.pages;
+      this.emptyList = !this.pages.length;
+    },
+    adminPages: () => {
+      this.pages = this.profile.adminedPages;
+      this.emptyList = !this.pages.length;
+    },
+    moderatedPages: () => {
+      this.pages = this.profile.moderatedPages;
+      this.emptyList = !this.pages.length;
+    },
+  };
   constructor(private profileService: ProfileService) {}
 
   ngOnInit() {
+    this.pages = [];
     this.profileService.profileLoaded.subscribe((profile: User) => {
       this.profile = profile;
+      this.urls[this.type]();
     });
     this.profile = this.profileService.profile;
+    this.urls[this.type]();
   }
 
+  getPages(type: string) {
+    this.pages = [];
+    this.type = type;
+    this.urls[type]();
+  }
 }
