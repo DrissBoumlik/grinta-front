@@ -89,18 +89,24 @@
             <div class="iq-card">
               <div class="iq-card-body p-0">
                 <div class="user-tabing">
-                  <ul class="nav nav-pills d-flex align-items-center justify-content-center profile-feed-items p-0 m-0">
-                    <li class="col-sm-3 p-0">
+                  <ul class="nav nav-pills d-flex align-items-center justify-content-center profile-feed-items py-lg-0 py-md-0 py-3">
+                    <li class="col-sm-3 col-md-3 col-lg-2 col-12 m-0">
                       <a class="nav-link" data-toggle="pill" routerLinkActive="active" routerLink="/{{ profile?.username }}/home">Timeline</a>
                     </li>
-                    <li class="col-sm-3 p-0">
-                      <a class="nav-link" data-toggle="pill" routerLinkActive="active" routerLink="/{{ profile?.username }}/about">A Propos</a>
+                    <li class="col-sm-3 col-md-3 col-lg-2 col-12 m-0">
+                      <a class="nav-link" data-toggle="pill" routerLinkActive="active" routerLink="/{{ profile?.username }}/likes">Likes</a>
                     </li>
-                    <li class="col-sm-3 p-0">
+                    <li class="col-sm-3 col-md-3 col-lg-2 col-12 m-0">
                       <a class="nav-link" data-toggle="pill" routerLinkActive="active" routerLink="/{{ profile?.username }}/friends">Amis</a>
                     </li>
-                    <li class="col-sm-3 p-0">
+                    <li class="col-sm-3 col-md-3 col-lg-2 col-12 m-0">
                       <a class="nav-link" data-toggle="pill" routerLinkActive="active" routerLink="/{{ profile?.username }}/photos">Photos</a>
+                    </li>
+                    <li class="col-sm-3 col-md-3 col-lg-2 col-12 m-0">
+                      <a class="nav-link" data-toggle="pill" routerLinkActive="active" routerLink="/{{ profile?.username }}/events">Events</a>
+                    </li>
+                    <li class="col-sm-3 col-md-3 col-lg-2 col-12 m-0">
+                      <a class="nav-link" data-toggle="pill" routerLinkActive="active" routerLink="/{{ profile?.username }}/about">About</a>
                     </li>
                   </ul>
                 </div>
