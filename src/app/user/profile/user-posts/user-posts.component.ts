@@ -16,8 +16,7 @@ export class UserPostsComponent implements OnInit {
 
   constructor(private userService: UserService,
               private postsService: PostsService,
-              private profileService: ProfileService,
-              private spinner: NgxSpinnerService) { }
+              private profileService: ProfileService) { }
 
   ngOnInit() {
     // if (this.profileService.profile) {
