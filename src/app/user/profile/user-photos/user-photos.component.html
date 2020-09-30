@@ -15,7 +15,7 @@
         <div class="tab-content">
           <div class="tab-pane fade active show" id="photosofyou" role="tabpanel">
             <div class="iq-card-body p-0">
-              <div class="row">
+              <div class="row" *ngIf="!emptyList">
                 <div class="col-md-6 col-lg-3 mb-3" *ngFor="let photo of profile?.photos">
                   <div class="user-images position-relative overflow-hidden">
                     <a href="#">
@@ -39,11 +39,16 @@
                   </div>
                 </div>
               </div>
+              <div class="row" *ngIf="emptyList">
+                <div class="col-12">
+                  <p class="text-center list-empty m-0">Pas de photos à afficher</p>
+                </div>
+              </div>
             </div>
           </div>
           <div class="tab-pane fade" id="your-photos" role="tabpanel">
             <div class="iq-card-body p-0">
-              <div class="row">
+              <div class="row" *ngIf="!emptyList">
                 <div class="col-md-6 col-lg-3 mb-3" *ngFor="let photo of profile?.photos.reverse()">
                   <div class="user-images position-relative overflow-hidden">
                     <a href="#">
@@ -51,6 +56,11 @@
                            alt="Responsive image">
                     </a>
                   </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="emptyList">
+                <div class="col-12">
+                  <p class="text-center list-empty m-0">Pas de photos à afficher</p>
                 </div>
               </div>
             </div>
