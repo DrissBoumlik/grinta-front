@@ -19,9 +19,6 @@ div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg pa
   stroke: var(--grintaaa);
 }
 
-.right-sidebar-toggle.bg-primary {
-  background-color: var(--grintaaa) !important;
-}
 
 .media-support-user-img img {
   height: 40px;
@@ -42,18 +39,6 @@ div#lottie-beil svg path, div#lottie-mail svg path, div#lottie-fullscreen svg pa
 /*  !*transform: translateX(0px);*!*/
 
 /*}*/
-.right-sidebar-panel {
-  height: 90vh;
-  overflow-x: hidden;
-}
-
-.search-friend {
-  background-color: #fff;
-  position: absolute;
-  bottom: 5px;
-  width: 100%;
-  z-index: 999;
-}
 
 .iq-sidebar-menu .iq-menu li.active > a,
 .iq-sidebar-menu .iq-menu li a:hover {
@@ -156,10 +141,6 @@ ul.header-nav {
 
 form.comment-text input {
   padding-right: 4rem;
-}
-
-.right-sidebar-toggle {
-  z-index: -1;
 }
 
 @media (max-width: 767px) {

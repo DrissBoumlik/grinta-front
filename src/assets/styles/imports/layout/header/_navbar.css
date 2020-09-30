@@ -1,9 +1,9 @@
 
 .navbar,
 .iq-top-navbar {
-  min-height: 60px;
-  height: 60px;
-  line-height: 60px;
+  line-height: var(--navbar-height);
+  height: var(--navbar-height);
+  min-height: var(--navbar-height);
 }
 
 a, .navbar-list li > a,
