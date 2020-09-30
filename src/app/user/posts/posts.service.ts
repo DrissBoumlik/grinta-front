@@ -34,7 +34,7 @@ export class PostsService {
       .pipe(
         tap(
           (data: any) => {
-            console.log(data.posts);
+            // console.log(data.posts);
             if (page === 1) {
               this.posts = [];
             }
@@ -65,7 +65,9 @@ export class PostsService {
     return this.http.post(environment.baseApiUrl + '/like-post', {post_id: post.id}, {headers: AuthService.headers})
       .pipe(
         tap(
-          data => console.log(data),
+          data => {
+            // console.log(data);
+          },
           error => console.log(error.status),
         )
       );
@@ -76,20 +78,24 @@ export class PostsService {
     return this.http.delete(environment.baseApiUrl + '/unlike-post/' + post.id, {headers: AuthService.headers})
       .pipe(
         tap(
-          data => console.log(data),
+          data => {
+            // console.log(data);
+          },
           error => console.log(error.status),
         )
       );
   }
 
   createPost(body: any): Observable<any> {
-    console.log(this.posts);
+    // console.log(this.posts);
     AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/posts',
       body, {headers: AuthService.headers})
       .pipe(
         tap(
-          data => console.log(data),
+          data => {
+            // console.log(data);
+          },
           error => console.log(error.status),
         )
       );

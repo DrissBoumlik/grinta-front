@@ -50,29 +50,29 @@ export class PostsComponent implements OnInit {
     this.profileService.profileLoaded.subscribe((user: User) => {
       localStorage.setItem('profile', JSON.stringify(user));
       this.initLoad(user);
-      console.log('++user');
+      // console.log('++user');
       this.getPosts(this.user.id, 'user');
     });
     this.pageService.pageLoaded.subscribe((page: Page) => {
       localStorage.setItem('page', JSON.stringify(page));
       this.page = page;
       this.initLoad(page.user);
-      console.log('++page');
+      // console.log('++page');
       this.getPosts(this.page.id, 'page');
     });
     if (!this.isProfile && !this.isPage) {
-      console.log('not profile - not page');
+      // console.log('not profile - not page');
       this.getPosts();
     } else if (this.isPage) {
-      console.log('__page');
+      // console.log('__page');
       const pageId = this.isPage ? this.page.id : null;
       this.getPosts(pageId, 'page');
     } else if (this.isProfile) {
-      console.log('__profile');
+      // console.log('__profile');
       const profileId = this.isProfile ? this.user.id : null;
       this.getPosts(profileId, 'user');
     } else if (this.profileService.alreadyLoaded) {
-      console.log('profile already loaded');
+      // console.log('profile already loaded');
       const profileId = this.isProfile ? this.user.id : null;
       this.getPosts(profileId, 'user');
     }
@@ -112,7 +112,7 @@ export class PostsComponent implements OnInit {
       this.scroll = false;
       this.loadMore = true;
       if (!this.isProfile && !this.isPage) {
-        console.log('not profile - not page');
+        // console.log('not profile - not page');
         this.getPosts();
       } else if (this.isPage) {
         const pageId = this.isPage ? this.page.id : null;

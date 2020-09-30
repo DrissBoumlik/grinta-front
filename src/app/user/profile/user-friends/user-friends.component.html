@@ -2,7 +2,7 @@
   <div class="iq-card">
     <div class="iq-card-body">
       <h2>Friends</h2>
-      <div class="friend-list-tab mt-2">
+      <div class="friend-list-tab list-tab mt-2">
         <ul
           class="nav nav-pills d-flex align-items-center justify-content-left friend-list-items p-0 mb-2">
           <li>
@@ -64,7 +64,9 @@
               </div>
               <div class="row" *ngIf="emptyList">
                 <div class="col-12">
-                  <p class="text-center list-empty m-0">Pas de contacts à afficher</p>
+                  <div class="text-center list-empty m-0">
+                    <p class="">Pas de contacts à afficher</p>
+                  </div>
                 </div>
               </div>
             </div>
