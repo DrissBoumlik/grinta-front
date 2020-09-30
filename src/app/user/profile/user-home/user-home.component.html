@@ -12,13 +12,18 @@
             </div>
           </div>
           <div class="iq-card-body">
-            <ul class="profile-img-gallary d-flex flex-wrap justify-content-evenly p-0 m-0">
-              <li class="pl-2 pr-0 pb-3" *ngFor="let photo of profile.photos">
-                <a href="javascript:void();">
+            <ul class="profile-img-gallary d-flex flex-wrap justify-content-evenly p-0 m-0" *ngIf="!emptyListPhotos">
+              <li class="col-md-4 col-6 pl-2 pr-0 pb-3" *ngFor="let photo of profile.photos | slice:0:9">
+                <div class="photo-box">
                   <img src="{{ photo.media_url }}" alt="gallary-image" class="img-fluid gallery-img"/>
-                </a>
+                </div>
               </li>
             </ul>
+            <div class="row" *ngIf="emptyListPhotos">
+              <div class="col-12">
+                <p class="text-center list-empty m-0">Pas de photos à afficher</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="iq-card">
@@ -31,13 +36,21 @@
             </div>
           </div>
           <div class="iq-card-body">
-            <ul class="profile-img-gallary d-flex flex-wrap p-0 m-0">
-              <li class="col-md-4 col-6 pl-2 pr-0 pb-3" *ngFor="let friend of profile.friends">
-                <a href="javascript:void();">
-                  <img src="{{ friend.picture }}" alt="gallary-image" class="img-fluid gallery-img"/></a>
-                <h6 class="mt-2">{{ friend.fullName }}</h6>
+            <ul class="profile-img-gallary d-flex flex-wrap p-0 m-0" *ngIf="!emptyListFriends">
+              <li class="col-md-4 col-6 pl-2 pr-0 pb-3" *ngFor="let friend of profile.friends | slice:0:9">
+                <div class="friend-box">
+                  <a routerLink="/{{ friend.username }}">
+                    <img src="{{ friend.picture }}" alt="gallary-image" class="img-fluid gallery-img"/>
+                    <h6 class="mt-2">{{ friend.fullName }}</h6>
+                  </a>
+                </div>
               </li>
             </ul>
+            <div class="row" *ngIf="emptyListFriends">
+              <div class="col-12">
+                <p class="text-center list-empty m-0">Pas de contacts à afficher</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

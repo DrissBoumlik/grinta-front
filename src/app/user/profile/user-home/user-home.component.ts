@@ -11,13 +11,19 @@ import {Media} from '../../albums/album/medias/media/media.model';
 })
 export class UserHomeComponent implements OnInit {
   profile: User;
+  emptyListPhotos = false;
+  emptyListFriends = false;
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
     this.profileService.profileLoaded.subscribe((profile: User) => {
       this.profile = profile;
+      this.emptyListPhotos = !this.profile.photos.length;
+      this.emptyListFriends = !this.profile.friends.length;
     });
     this.profile = this.profileService.profile;
+    this.emptyListPhotos = !this.profile.photos.length;
+    this.emptyListFriends = !this.profile.friends.length;
   }
 
 }
