@@ -33,14 +33,14 @@
                   <div class="iq-friendlist-block">
                     <div class="d-flex align-items-center justify-content-between">
                       <div class="d-flex align-items-center">
-                        <a href="#">
-                          <img src="{{ friend?.picture }}" alt="profile-img"
+                        <a routerLink="/{{ friend.username }}">
+                          <img src="{{ friend.picture }}" alt="profile-img"
                                class="img-fluid profile-img-list">
+                          <div class="friend-info ml-3">
+                            <h5>{{ friend.fullName }}</h5>
+                            <p class="mb-0">15 friends</p>
+                          </div>
                         </a>
-                        <div class="friend-info ml-3">
-                          <h5>{{ friend?.fullName }}</h5>
-                          <p class="mb-0">15 friends</p>
-                        </div>
                       </div>
                       <div class="iq-card-header-toolbar d-flex align-items-center">
                         <div class="dropdown">
