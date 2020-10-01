@@ -1,4 +1,9 @@
 
+.iq-friendlist-block {
+  border-radius: 5px;
+  position: relative;
+}
+
 .friends-list.right-sidebar-mini {
   /*width: 300px;*/
   z-index: 1100;
@@ -9,8 +14,24 @@
   transform: translateX(0%);
 }
 
+.profile-img-wrapper {
+  border-radius: 5px;
+  overflow: hidden;
+}
 
-.profile-img-list {
+.profile-img-item {
   height: 100px;
   width: 100px;
+  max-width: 100px;
+  object-fit: cover;
+}
+
+.friend-info * {
+  font-size: 15px;
+}
+
+.iq-card-header-toolbar {
+  position: absolute;
+  right: 0;
+  top: 0;
 }

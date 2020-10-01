@@ -25,28 +25,31 @@
                 <div class=""
                      infiniteScroll
                      [infiniteScrollDistance]="1"
-                     [infiniteScrollThrottle]="50"
-                     [scrollWindow]="true"
+                     [infiniteScrollThrottle]="300"
                      (scrolled)="onLoadMore()"
                 ></div>
-                <div class="col-md-6 col-lg-6 col-12 mb-3" *ngFor="let friend of friends">
-                  <div class="iq-friendlist-block">
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="d-flex align-items-center">
+                <div class="col-md-6 col-lg-6 col-sm-6 col-12 mb-3" *ngFor="let friend of friends">
+                  <div class="iq-friendlist-block p-3">
+                    <div class="iq-friendlist-wrapper d-flex align-items-center">
+                      <div class="d-flex align-items-center mr-3">
+                        <div class="profile-img-wrapper d-inline-block">
+                          <a routerLink="/{{ friend.username }}">
+                            <img src="{{ friend.picture }}" alt="profile-img"
+                                 class="img-fluid profile-img-item">
+                          </a>
+                        </div>
+                      </div>
+                      <div class="friend-info">
                         <a routerLink="/{{ friend.username }}">
-                          <img src="{{ friend.picture }}" alt="profile-img"
-                               class="img-fluid profile-img-list">
-                          <div class="friend-info ml-3">
-                            <h5>{{ friend.fullName }}</h5>
-                          </div>
+                          <span class="m-0">{{ friend.fullName }}</span>
                         </a>
                       </div>
-                      <div class="iq-card-header-toolbar d-flex align-items-center">
+                      <div class="iq-card-header-toolbar pointer d-flex align-items-center">
                         <div class="dropdown">
-                            <span class="dropdown-toggle btn btn-secondary mr-2"
+                            <span class="dropdown-toggle"
                                  id="dropdownMenuButton01" data-toggle="dropdown"
                                  aria-expanded="true" role="button">
-                           <i class="ri-more-2-fill mr-1 text-white font-size-16"></i>
+                           <i class="ri-more-fill mr-2 font-size-16"></i>
                            </span>
                             <div class="dropdown-menu dropdown-menu-right"
                                aria-labelledby="dropdownMenuButton01">
