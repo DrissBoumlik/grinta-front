@@ -1,4 +1,9 @@
 
+.sign-in-page {
+  /*background-color: var(--grintaaa) !important;*/
+  background-image: linear-gradient(135deg, var(--grintaaa) 0%, #5a9400 100%) !important;
+}
+
 .login-wrapper .sign-in-page {
    /*height: auto;*/
    /*position: fixed;*/
