@@ -3,9 +3,13 @@
 @import "profile/common/_header.css";
 @import "profile/friends/_list-users.css";
 @import "profile/photos/_gallery-photos.css";
+@import "profile/likes/pages/_list.css";
+
 @import "search/_search.css";
 @import "search/_search-result.css";
 @import "search/_search-results.css";
+
 @import "events/_event-options.css";
 @import "events/_map.css";
+
 @import "friends/_list.css";
