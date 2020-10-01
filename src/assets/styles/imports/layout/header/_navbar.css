@@ -20,7 +20,18 @@ ul.header-nav li a {
   height: 30px;
 }
 
-@media (max-width: 767px) {
+.navbar-list li > a {
+  line-height: var(--navbar-height);
+  min-height: var(--navbar-height);
+}
+
+@media (max-width: 479px) {
+  .iq-search-bar {
+    margin: 0;
+  }
+}
+
+  @media (max-width: 767px) {
   .navbar-collapse {
     margin-top: 0;
   }
