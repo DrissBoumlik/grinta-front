@@ -47,6 +47,7 @@ import { UserAboutComponent } from './user/profile/user-about/user-about.compone
 import { UserFriendsComponent } from './user/profile/user-friends/user-friends.component';
 import { UserPhotosComponent } from './user/profile/user-photos/user-photos.component';
 import { UserHomeComponent } from './user/profile/user-home/user-home.component';
+import { UserEventsComponent } from './user/profile/user-events/user-events.component';
 
 const config = new AuthServiceConfig([
   {
@@ -86,6 +87,7 @@ export function provideConfig() {
     UserFriendsComponent,
     UserPhotosComponent,
     UserHomeComponent,
+    UserEventsComponent,
   ],
   imports: [
     BrowserModule,
