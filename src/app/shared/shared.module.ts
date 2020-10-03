@@ -15,6 +15,7 @@ import { MapComponent } from './map/map.component';
 import {EventService} from './event.service';
 import { EventActionsComponent } from './event-actions/event-actions.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { ExcerptPipe } from './excerpt.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     MapComponent,
     EventActionsComponent,
     SpinnerComponent,
+    ExcerptPipe,
   ],
   imports: [
     RouterModule,
@@ -38,6 +40,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     MapComponent,
     EventActionsComponent,
     SpinnerComponent,
+    ExcerptPipe,
   ],
   providers: [SearchService, SportService, ToolsService, FeedbackService, HandlerService, EventService]
 })
