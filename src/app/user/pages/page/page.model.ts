@@ -20,6 +20,7 @@ export class Page {
     public posts: Post[],
     public medias: Media[],
     public albums: Album[],
+    public likers: User[],
     public sport: Sport
   ) {}
 }

@@ -23,7 +23,7 @@
                   <div class="iq-card">
                     <a routerLink="/pages/{{ page.pagename }}">
                       <div class="top-bg-image">
-                        <img src="{{ page.cover }}" class="img-fluid w-100" alt="group-bg">
+                        <img src="{{ page.cover }}" class="img-fluid w-100 h-100" alt="group-bg">
                       </div>
                     </a>
                     <div class="iq-card-body text-center">
@@ -36,7 +36,14 @@
                           <p class="mb-2">{{ page.pagename }}</p>
                         </div>
                       </a>
-                      <button type="submit" class="btn bgclr-grintaaa text-white d-block w-100">Like</button>
+                      <div class="group-member mb-3">
+                        <div class="iq-media-group">
+                          <a routerLink="/{{ liker.username }}" class="iq-media" *ngFor="let liker of page.likers | slice:0:5">
+                            <img class="img-fluid avatar-40 rounded-circle" src="{{ liker.picture }}" alt="">
+                          </a>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn bgclr-grintaaa text-white d-block w-100" (click)="onUnlike(page)">Unlike</button>
                     </div>
                   </div>
                 </div>

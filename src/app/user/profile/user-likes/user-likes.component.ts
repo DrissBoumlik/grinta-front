@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProfileService} from '../profile.service';
 import {User} from '../../user.model';
 import {Page} from '../../pages/page/page.model';
+import {PagesService} from '../../pages/pages.service';
 
 @Component({
   selector: 'app-user-likes',
@@ -27,7 +28,8 @@ export class UserLikesComponent implements OnInit {
       this.emptyList = !this.pages.length;
     },
   };
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService,
+              private pagesService: PagesService) {}
 
   ngOnInit() {
     this.pages = [];
@@ -43,5 +45,15 @@ export class UserLikesComponent implements OnInit {
     this.pages = [];
     this.type = type;
     this.urls[type]();
+  }
+
+  onUnlike(page: Page) {
+    console.clear();
+    console.log('unliked');
+    this.pagesService.unlikePage(page).subscribe(
+      (data) => {
+        console.log(data);
+      }
+    );
   }
 }
