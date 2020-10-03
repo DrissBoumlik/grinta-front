@@ -1,0 +1,74 @@
+<div class="tab-pane fade active show" id="friends" role="tabpanel">
+  <div class="iq-card">
+    <div class="iq-card-body">
+      <h2>Events</h2>
+      <div class="friend-list-tab list-tab mt-2">
+        <ul
+          class="nav nav-pills d-flex align-items-center justify-content-left friend-list-items p-0 mb-2">
+          <li>
+            <a class="nav-link pointer active" data-toggle="pill" (click)="getEvents('events')">Yours</a>
+          </li>
+          <li>
+            <a class="nav-link pointer" data-toggle="pill" (click)="getEvents('eventInvitations')">Invitations</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane fade active show" id="all-friends" role="tabpanel">
+            <div class="iq-card-body p-0">
+              <div class="row" *ngIf="!emptyList">
+                <div class="col-md-6 col-lg-4" *ngFor="let event of events">
+                  <div class="iq-card rounded iq-card-block iq-card-stretch iq-card-height">
+                    <div class="event-images">
+                      <a href="#">
+                        <img src="{{ event.cover }}" class="img-fluid" alt="Responsive image">
+                      </a>
+                    </div>
+                    <div class="iq-card-body">
+                      <div class="d-flex">
+                        <div class="date-of-event">
+                          <span>{{ event.date | date:'MMM' }}</span>
+                          <h5>{{ event.date | date:'dd' }}</h5>
+                        </div>
+                        <div class="events-detail ml-3">
+                          <h5>{{ event.name }}</h5>
+                          <p>{{ event.description | excerpt:40 }}</p>
+                          <div class="event-member">
+                            <div class="iq-media-group">
+                              <a href="#" class="iq-media">
+                                <img class="img-fluid avatar-40 rounded-circle" src="/assets/plugins/socialV/images/user/05.jpg" alt="">
+                              </a>
+                              <a href="#" class="iq-media">
+                                <img class="img-fluid avatar-40 rounded-circle" src="/assets/plugins/socialV/images/user/06.jpg" alt="">
+                              </a>
+                              <a href="#" class="iq-media">
+                                <img class="img-fluid avatar-40 rounded-circle" src="/assets/plugins/socialV/images/user/07.jpg" alt="">
+                              </a>
+                              <a href="#" class="iq-media">
+                                <img class="img-fluid avatar-40 rounded-circle" src="/assets/plugins/socialV/images/user/08.jpg" alt="">
+                              </a>
+                              <a href="#" class="iq-media">
+                                <img class="img-fluid avatar-40 rounded-circle" src="/assets/plugins/socialV/images/user/09.jpg" alt="">
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="emptyList">
+                <div class="col-12">
+                  <div class="text-center list-empty m-0">
+                    <p class="">Pas de page à afficher</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--          <app-spinner *ngIf="loading"></app-spinner>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

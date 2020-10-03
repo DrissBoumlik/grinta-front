@@ -26,6 +26,7 @@ import {UserAboutComponent} from './user/profile/user-about/user-about.component
 import {UserPhotosComponent} from './user/profile/user-photos/user-photos.component';
 import {UserFriendsComponent} from './user/profile/user-friends/user-friends.component';
 import {UserHomeComponent} from './user/profile/user-home/user-home.component';
+import {UserEventsComponent} from './user/profile/user-events/user-events.component';
 
 
 const routes: Routes = [
@@ -81,7 +82,7 @@ const routes: Routes = [
       },
       {path: 'likes', component: UserLikesComponent},
       {path: 'pages', component: PagesComponent},
-      {path: 'events', component: EventsComponent},
+      {path: 'events', component: UserEventsComponent},
       {path: 'about', component: UserAboutComponent},
       {path: 'photos', component: UserPhotosComponent},
       {path: 'friends', component: UserFriendsComponent},
