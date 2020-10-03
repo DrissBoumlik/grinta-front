@@ -28,6 +28,32 @@ export class PagesService {
     return page;
   }
 
+  likePage(page: Page) {
+    AuthService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/like-page', {page_id: page.id}, {headers: AuthService.headers})
+      .pipe(
+        tap(
+          data => {
+            // console.log(data);
+          },
+          error => console.log(error.status),
+        )
+      );
+  }
+
+  unlikePage(page: Page) {
+    AuthService.getHeaders();
+    return this.http.delete(environment.baseApiUrl + '/unlike-page/' + page.id, {headers: AuthService.headers})
+      .pipe(
+        tap(
+          data => {
+            // console.log(data);
+          },
+          error => console.log(error.status),
+        )
+      );
+  }
+
   removePage(id: number) {
     this.pages = this.pages.filter((page) => page.id !== id);
     this.adminedPages = this.adminedPages.filter((page) => page.id !== id);
