@@ -32,79 +32,45 @@
             <input type="text" class="form-control" id="uname" formControlName="username">
           </div>
           <div class="form-group col-sm-6">
-            <label for="cname">City:</label>
-<!--            <input type="text" class="form-control" id="cname" value="Atlanta">-->
-            <select formControlName="city" id="cname" class="form-control selectpicker">
-              <option value=" " disabled></option>
-              <option *ngFor="let city of cities" value="{{ city.name }}">{{ city.name }}</option>
-            </select>
+            <label for="city">City:</label>
+            <input type="text" class="form-control" id="city" formControlName="city">
+<!--            <select formControlName="city" id="cname" class="form-control selectpicker">-->
+<!--              <option value=" " disabled></option>-->
+<!--              <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>-->
+<!--            </select>-->
           </div>
           <div class="form-group col-sm-6">
             <label class="d-block">Gender:</label>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="customRadio6" name="customRadio1" class="custom-control-input" checked="">
+              <input type="radio" id="customRadio6" name="gender" class="custom-control-input" formControlName="gender" value="male">
               <label class="custom-control-label" for="customRadio6"> Male </label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="customRadio7" name="customRadio1" class="custom-control-input">
+              <input type="radio" id="customRadio7" name="gender" class="custom-control-input" formControlName="gender" value="female">
               <label class="custom-control-label" for="customRadio7"> Female </label>
             </div>
           </div>
           <div class="form-group col-sm-6">
             <label for="dob">Date Of Birth:</label>
-            <input  class="form-control" id="dob" value="1984-01-24">
+            <input class="form-control" id="dob" type="date" formControlName="birth_date">
           </div>
           <div class="form-group col-sm-6">
-            <label>Marital Status:</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option selected="">Single</option>
-              <option>Married</option>
-              <option>Widowed</option>
-              <option>Divorced</option>
-              <option>Separated </option>
-            </select>
-          </div>
-          <div class="form-group col-sm-6">
-            <label>Age:</label>
-            <select class="form-control" id="exampleFormControlSelect2">
-              <option>12-18</option>
-              <option>19-32</option>
-              <option selected="">33-45</option>
-              <option>46-62</option>
-              <option>63 > </option>
-            </select>
-          </div>
-          <div class="form-group col-sm-6">
-            <label>Country:</label>
-            <select class="form-control" id="exampleFormControlSelect3">
-              <option>Caneda</option>
-              <option>Noida</option>
-              <option selected="">USA</option>
-              <option>India</option>
-              <option>Africa</option>
-            </select>
-          </div>
-          <div class="form-group col-sm-6">
-            <label>State:</label>
-            <select class="form-control" id="exampleFormControlSelect4">
-              <option>California</option>
-              <option>Florida</option>
-              <option selected="">Georgia</option>
-              <option>Connecticut</option>
-              <option>Louisiana</option>
-            </select>
+            <label for="country">Country:</label>
+            <input type="text" class="form-control" id="country" formControlName="country">
+<!--            <select class="form-control" id="exampleFormControlSelect3">-->
+<!--              <option>Caneda</option>-->
+<!--              <option>Noida</option>-->
+<!--              <option selected="">USA</option>-->
+<!--              <option>India</option>-->
+<!--              <option>Africa</option>-->
+<!--            </select>-->
           </div>
           <div class="form-group col-sm-12">
             <label>Address:</label>
-            <textarea class="form-control" name="address" rows="5" style="line-height: 22px;">
-                                             37 Cardinal Lane
-                                             Petersburg, VA 23803
-                                             United States of America
-                                             Zip Code: 85001
-                                             </textarea>
+            <textarea class="form-control" formControlName="address" name="address" rows="5" style="line-height: 22px;"></textarea>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <button type="submit" class="btn btn-primary bgclr-grintaaa mr-2">Submit</button>
         <button type="reset" class="btn iq-bg-danger">Cancle</button>
       </form>
     </div>

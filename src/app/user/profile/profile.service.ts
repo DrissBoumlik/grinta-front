@@ -33,11 +33,25 @@ export class ProfileService {
       );
   }
 
-  updateProfile(username, firstname, lastname, email, password, passwordConfirmation, gender, picture, cover, sport, city) {
+  updateProfile(profile: any) {
     AuthService.getHeaders();
-    return this.http.put(environment.baseApiUrl + '/user-profile/' + username,
-      {username, firstname, lastname, email, password,
-        password_confirmation: passwordConfirmation, gender, picture, cover, sport, city},
+    return this.http.put(environment.baseApiUrl + '/user-profile/',
+      {
+        username: profile.username,
+        firstname: profile.firstname,
+        lastname: profile.lastname,
+        // email: profile.email,
+        // password: profile.password,
+        // password_confirmation: profile.password_confirmation,
+        gender: profile.gender,
+        birth_date: profile.birth_date,
+        picture: profile.picture,
+        cover: profile.cover,
+        // sport: profile.sport,
+        address: profile.address,
+        city: profile.city,
+        country: profile.country
+      },
       {headers: AuthService.headers})
       .pipe(
         tap(

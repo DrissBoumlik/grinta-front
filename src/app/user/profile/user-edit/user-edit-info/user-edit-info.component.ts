@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../../../user.model';
 import {ProfileService} from '../../profile.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -6,6 +6,7 @@ import {Sport} from '../../../sports/sport.model';
 import {UserService} from '../../../user.service';
 import {SportService} from '../../../../shared/sport.service';
 import {ToolsService} from '../../../../shared/tools.service';
+import {FeedbackService} from '../../../../shared/feedback/feedback.service';
 
 @Component({
   selector: 'app-user-edit-info',
@@ -20,30 +21,34 @@ export class UserEditInfoComponent implements OnInit {
   imageToUpload: any = File;
 
   editUserForm = new FormGroup({
-      username: new FormControl(null, Validators.required),
-      firstname: new FormControl(null, Validators.required),
-      lastname: new FormControl(null, Validators.required),
-      gender: new FormControl(null, Validators.required),
-      city: new FormControl(null, Validators.required),
-      picture: new FormControl(null),
-      cover: new FormControl(null),
-      email: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required),
-      password_confirmation: new FormControl(null, Validators.required),
-      sport: new FormControl(null, Validators.required)
+    username: new FormControl(null, Validators.required),
+    firstname: new FormControl(null, Validators.required),
+    lastname: new FormControl(null, Validators.required),
+    gender: new FormControl(null, Validators.required),
+    birth_date: new FormControl(null, Validators.required),
+    address: new FormControl(null, Validators.required),
+    city: new FormControl(null, Validators.required),
+    country: new FormControl(null, Validators.required),
+    picture: new FormControl(null),
+    cover: new FormControl(null),
+    // email: new FormControl(null, Validators.required),
+    // password: new FormControl(null, Validators.required),
+    // password_confirmation: new FormControl(null, Validators.required),
+    // sport: new FormControl(null, Validators.required)
   });
   constructor(private userService: UserService,
               private profileService: ProfileService,
               private sportService: SportService,
+              private feedbackService: FeedbackService,
               private toolsService: ToolsService) { }
 
   ngOnInit() {
     this.sportService.getSports().subscribe((response: any) => {
       this.sports = response.sports;
     });
-    this.toolsService.getCities().subscribe((response: any) => {
-      this.cities = response;
-    });
+    // this.toolsService.getCities().subscribe((response: any) => {
+    //   this.cities = response;
+    // });
     this.profileService.profileLoaded.subscribe((profile: User) => {
       this.profile = profile;
       this.initForm();
@@ -64,8 +69,11 @@ export class UserEditInfoComponent implements OnInit {
       firstname: this.profile.firstname,
       lastname: this.profile.lastname,
       gender: this.profile.gender,
+      birth_date: this.profile.birth_date,
       city: this.profile.city,
-      email: this.profile.email,
+      country: this.profile.country,
+      address: this.profile.address,
+      // email: this.profile.email,
     });
   }
 
@@ -83,16 +91,36 @@ export class UserEditInfoComponent implements OnInit {
   }
 
   onEdit() {
-    this.profileService.updateProfile(this.editUserForm.value.username, this.editUserForm.value.firstname,
-      this.editUserForm.value.lastname, this.editUserForm.value.email,
-      this.editUserForm.value.password, this.editUserForm.value.password_confirmation,
-      this.editUserForm.value.gender, this.editUserForm.value.picture,
-      this.editUserForm.value.cover, this.editUserForm.value.sport,
-      this.editUserForm.value.city)
+    const profile = {
+      username: this.editUserForm.value.username,
+      firstname: this.editUserForm.value.firstname,
+      lastname: this.editUserForm.value.lastname,
+      // email: this.editUserForm.value.email,
+      // password: this.editUserForm.value.password,
+      // passwordConfirmation: this.editUserForm.value.password_confirmation,
+      gender: this.editUserForm.value.gender,
+      birth_date: this.editUserForm.value.birth_date,
+      picture: this.editUserForm.value.picture,
+      cover: this.editUserForm.value.cover,
+      // sport: this.editUserForm.value.sport,
+      address: this.editUserForm.value.address,
+      city: this.editUserForm.value.city,
+      country: this.editUserForm.value.country
+    };
+
+    this.profileService.updateProfile(profile)
       .subscribe((response: any) => {
-        this.profileService.getProfile(response.user.username).subscribe((data: any) => {
-          this.profileService.profileUpdated.next(data.user);
-        });
-      });
+          this.profileService.getProfile(response.user.username).subscribe((data: any) => {
+            this.profileService.profileUpdated.next(data.user);
+          });
+
+          this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
+        },
+        (error: any) => {
+          console.log(error);
+          const message = error.error.errors ? error.error.errors : error.error.message;
+          this.feedbackService.feedbackReceived.next({feedback: 'error', message});
+        }
+      );
   }
 }
