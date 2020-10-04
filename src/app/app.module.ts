@@ -29,7 +29,7 @@ import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLog
 import {SharedModule} from './shared/shared.module';
 import {PagesService} from './user/pages/pages.service';
 import {FriendsModule} from './user/friends/friends.module';
-import {EditUserComponent} from './user/profile/edit-user/edit-user.component';
+import {UserEditComponent} from './user/profile/user-edit/user-edit.component';
 import {UserOptionsComponent} from './user/user-options/user-options.component';
 import {UserUpdatesComponent} from './user/user-updates/user-updates.component';
 import {NewPageComponent} from './user/pages/new-page/new-page.component';
@@ -48,6 +48,9 @@ import { UserFriendsComponent } from './user/profile/user-friends/user-friends.c
 import { UserPhotosComponent } from './user/profile/user-photos/user-photos.component';
 import { UserHomeComponent } from './user/profile/user-home/user-home.component';
 import { UserEventsComponent } from './user/profile/user-events/user-events.component';
+import { UserEditInfoComponent } from './user/profile/user-edit/user-edit-info/user-edit-info.component';
+import { UserEditPasswordComponent } from './user/profile/user-edit/user-edit-password/user-edit-password.component';
+import { UserEditContactComponent } from './user/profile/user-edit/user-edit-contact/user-edit-contact.component';
 
 const config = new AuthServiceConfig([
   {
@@ -74,7 +77,7 @@ export function provideConfig() {
     UserLikesComponent,
     HomeComponent,
     RegisterComponent,
-    EditUserComponent,
+    UserEditComponent,
     UserOptionsComponent,
     UserUpdatesComponent,
     NewPageComponent,
@@ -88,6 +91,9 @@ export function provideConfig() {
     UserPhotosComponent,
     UserHomeComponent,
     UserEventsComponent,
+    UserEditInfoComponent,
+    UserEditPasswordComponent,
+    UserEditContactComponent,
   ],
   imports: [
     BrowserModule,

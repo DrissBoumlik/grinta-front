@@ -1,34 +1,36 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from '../../../user.model';
+import {ProfileService} from '../../profile.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {User} from '../../user.model';
-import {UserService} from '../../user.service';
-import {ProfileService} from '../profile.service';
-import {SportService} from '../../../shared/sport.service';
-import {Sport} from '../../sports/sport.model';
-import {ToolsService} from '../../../shared/tools.service';
+import {Sport} from '../../../sports/sport.model';
+import {UserService} from '../../../user.service';
+import {SportService} from '../../../../shared/sport.service';
+import {ToolsService} from '../../../../shared/tools.service';
 
 @Component({
-  selector: 'app-edit-user',
-  templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.css']
+  selector: 'app-user-edit-info',
+  templateUrl: './user-edit-info.component.html',
+  styleUrls: ['./user-edit-info.component.css']
 })
-export class EditUserComponent implements OnInit {
+export class UserEditInfoComponent implements OnInit {
+
   profile: User;
   sports: Sport[] = [];
   cities = [];
   imageToUpload: any = File;
+
   editUserForm = new FormGroup({
-    username: new FormControl(null, Validators.required),
-    firstname: new FormControl(null, Validators.required),
-    lastname: new FormControl(null, Validators.required),
-    gender: new FormControl(null, Validators.required),
-    city: new FormControl(null, Validators.required),
-    picture: new FormControl(null),
-    cover: new FormControl(null),
-    email: new FormControl(null, Validators.required),
-    password: new FormControl(null, Validators.required),
-    password_confirmation: new FormControl(null, Validators.required),
-    sport: new FormControl(null, Validators.required)
+      username: new FormControl(null, Validators.required),
+      firstname: new FormControl(null, Validators.required),
+      lastname: new FormControl(null, Validators.required),
+      gender: new FormControl(null, Validators.required),
+      city: new FormControl(null, Validators.required),
+      picture: new FormControl(null),
+      cover: new FormControl(null),
+      email: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required),
+      password_confirmation: new FormControl(null, Validators.required),
+      sport: new FormControl(null, Validators.required)
   });
   constructor(private userService: UserService,
               private profileService: ProfileService,
@@ -52,6 +54,10 @@ export class EditUserComponent implements OnInit {
     }
   }
 
+  selectedSport(sport: Sport) {
+    return this.profile.sports.some(selectedSport => selectedSport.id === sport.id);
+  }
+
   initForm() {
     this.editUserForm.patchValue({
       username: this.profile.username,
@@ -63,29 +69,12 @@ export class EditUserComponent implements OnInit {
     });
   }
 
-  selectedSport(sport: Sport) {
-    return this.profile.sports.some(selectedSport => selectedSport.id === sport.id);
-  }
-
   onFilePictureChange(files: FileList) {
     this.imageToUpload = files.item(0);
     const reader = new FileReader();
     reader.readAsDataURL(this.imageToUpload);
     reader.onload = (data) => {
       this.editUserForm.get('picture').setValue({
-        filename: this.imageToUpload.name,
-        filetype: this.imageToUpload.type,
-        value: reader.result
-      });
-    };
-  }
-
-  onFileCoverChange(files: FileList) {
-    this.imageToUpload = files.item(0);
-    const reader = new FileReader();
-    reader.readAsDataURL(this.imageToUpload);
-    reader.onload = (data) => {
-      this.editUserForm.get('cover').setValue({
         filename: this.imageToUpload.name,
         filetype: this.imageToUpload.type,
         value: reader.result

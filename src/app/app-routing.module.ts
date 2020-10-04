@@ -13,7 +13,7 @@ import {HomeComponent} from './user/home/home.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {PageComponent} from './user/pages/page/page.component';
 import {AlbumComponent} from './user/albums/album/album.component';
-import {EditUserComponent} from './user/profile/edit-user/edit-user.component';
+import {UserEditComponent} from './user/profile/user-edit/user-edit.component';
 import {PostComponent} from './user/posts/post/post.component';
 import {TemplateComponent} from './user/template/template.component';
 import {PostsComponent} from './user/posts/posts.component';
@@ -27,6 +27,9 @@ import {UserPhotosComponent} from './user/profile/user-photos/user-photos.compon
 import {UserFriendsComponent} from './user/profile/user-friends/user-friends.component';
 import {UserHomeComponent} from './user/profile/user-home/user-home.component';
 import {UserEventsComponent} from './user/profile/user-events/user-events.component';
+import {UserEditInfoComponent} from './user/profile/user-edit/user-edit-info/user-edit-info.component';
+import {UserEditPasswordComponent} from './user/profile/user-edit/user-edit-password/user-edit-password.component';
+import {UserEditContactComponent} from './user/profile/user-edit/user-edit-contact/user-edit-contact.component';
 
 
 const routes: Routes = [
@@ -72,7 +75,14 @@ const routes: Routes = [
     path: ':username', component: UserComponent, children: [
       {path: '', component: UserHomeComponent},
       {path: 'home', component: UserHomeComponent},
-      {path: 'edit', component: EditUserComponent},
+      {
+        path: 'edit', component: UserEditComponent, children: [
+          {path: '', component: UserEditInfoComponent},
+          {path: 'infos', component: UserEditInfoComponent},
+          {path: 'password', component: UserEditPasswordComponent},
+          {path: 'contact', component: UserEditContactComponent}
+        ]
+      },
       {path: 'posts', component: UserPostsComponent},
       {
         path: 'albums', children: [

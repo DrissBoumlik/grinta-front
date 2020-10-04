@@ -1,6 +1,8 @@
 
 @import "auth/_login.css";
+
 @import "profile/common/_header.css";
+@import "profile/edit/_menu.css";
 @import "profile/friends/_list-users.css";
 @import "profile/photos/_gallery-photos.css";
 @import "profile/likes/pages/_list.css";

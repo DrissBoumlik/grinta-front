@@ -1,0 +1,38 @@
+<div class="tab-pane fade active show" id="timeline" role="tabpanel">
+  <div class="iq-card-body p-0">
+    <div class="row">
+    <div class="col-lg-12">
+      <div class="iq-card">
+        <div class="iq-card-body p-0">
+          <div class="iq-edit-list">
+            <ul class="iq-edit-profile d-flex nav nav-pills">
+              <li class="col-md-4 p-0">
+                <a class="nav-link active" data-toggle="pill" routerLink="/{{ profile.username }}/edit/infos">
+                  Informations
+                </a>
+              </li>
+              <li class="col-md-4 p-0">
+                <a class="nav-link" data-toggle="pill" routerLink="/{{ profile.username }}/edit/password">
+                  Change Password
+                </a>
+              </li>
+              <li class="col-md-4 p-0">
+                <a class="nav-link" data-toggle="pill" routerLink="/{{ profile.username }}/edit/contact">
+                  Manage Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="iq-edit-list-data">
+        <div class="tab-content">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
