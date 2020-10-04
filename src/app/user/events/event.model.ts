@@ -15,5 +15,6 @@ export class Event {
     public cover: string,
     public type: string,
     public user: User,
+    public users: User[]
   ) {}
 }

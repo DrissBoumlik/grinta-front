@@ -34,20 +34,8 @@
                           <p>{{ event.description | excerpt:40 }}</p>
                           <div class="event-member">
                             <div class="iq-media-group">
-                              <a href="#" class="iq-media">
-                                <img class="img-fluid avatar-40 rounded-circle" src="/assets/plugins/socialV/images/user/05.jpg" alt="">
-                              </a>
-                              <a href="#" class="iq-media">
-                                <img class="img-fluid avatar-40 rounded-circle" src="/assets/plugins/socialV/images/user/06.jpg" alt="">
-                              </a>
-                              <a href="#" class="iq-media">
-                                <img class="img-fluid avatar-40 rounded-circle" src="/assets/plugins/socialV/images/user/07.jpg" alt="">
-                              </a>
-                              <a href="#" class="iq-media">
-                                <img class="img-fluid avatar-40 rounded-circle" src="/assets/plugins/socialV/images/user/08.jpg" alt="">
-                              </a>
-                              <a href="#" class="iq-media">
-                                <img class="img-fluid avatar-40 rounded-circle" src="/assets/plugins/socialV/images/user/09.jpg" alt="">
+                              <a routerLink="/{{ user.username }}" class="iq-media" *ngFor="let user of event.users | slice:0:5">
+                                <img class="img-fluid avatar-40 rounded-circle" src="{{ user.picture }}" alt="">
                               </a>
                             </div>
                           </div>

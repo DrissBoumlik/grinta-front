@@ -4,6 +4,7 @@
 @import "profile/friends/_list-users.css";
 @import "profile/photos/_gallery-photos.css";
 @import "profile/likes/pages/_list.css";
+@import "profile/events/_list.css";
 
 @import "search/_search.css";
 @import "search/_search-result.css";
