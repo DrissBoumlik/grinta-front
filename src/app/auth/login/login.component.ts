@@ -8,6 +8,7 @@ import {GoogleLoginProvider, AuthService as SocialService, SocialUser} from 'ang
 import {UserService} from '../../user/user.service';
 import {ToolsService} from '../../shared/tools.service';
 import {HelperService} from '../../helper.service';
+import {FeedbackService} from '../../shared/feedback/feedback.service';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
               private route: ActivatedRoute,
               private socialService: SocialService,
               private helperService: HelperService,
+              private feedbackService: FeedbackService,
               private toolsService: ToolsService) {
   }
 
@@ -109,11 +111,16 @@ export class LoginComponent implements OnInit {
       remember_me: this.loginForm.value.remember_me
     };
     this.authService.login(data)
-      .subscribe((response: any) => {
+      .subscribe(
+        (response: any) => {
         this.user = response.success.user;
         this.router.navigate(['home']);
         // window.location.href = '/home';
-      });
+      }, (error) => {
+          console.log(error);
+          const message = error.error ? error.error : (error.error.errors ? error.error.errors : error.error.message);
+          this.feedbackService.feedbackReceived.next({feedback: 'error', message});
+        });
   }
   signInWithGoogle(): void {
     this.socialService.signIn(GoogleLoginProvider.PROVIDER_ID)
