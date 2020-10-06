@@ -35,7 +35,7 @@ export class ProfileService {
 
   updateProfile(profile: any) {
     AuthService.getHeaders();
-    return this.http.put(environment.baseApiUrl + '/user-profile/',
+    return this.http.put(environment.baseApiUrl + '/user-profile',
       {
         username: profile.username,
         firstname: profile.firstname,
@@ -51,6 +51,39 @@ export class ProfileService {
         address: profile.address,
         city: profile.city,
         country: profile.country
+      },
+      {headers: AuthService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
+  }
+
+  updatePassword(profile: any) {
+    AuthService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/password/reset',
+      {
+        password_old: profile.password_old,
+        password: profile.password,
+        password_confirmation: profile.password_confirmation,
+      },
+      {headers: AuthService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
+  }
+
+  updateContact(profile: any) {
+    AuthService.getHeaders();
+    return this.http.put(environment.baseApiUrl + '/user-profile',
+      {
+        phone_number: profile.phone_number,
+        email: profile.email,
       },
       {headers: AuthService.headers})
       .pipe(
