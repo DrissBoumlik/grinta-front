@@ -6,18 +6,14 @@
       </div>
     </div>
     <div class="iq-card-body">
-      <form>
+      <form [formGroup]="editUserForm" (ngSubmit)="onEdit()">
         <div class="form-group">
           <label for="cno">Contact Number:</label>
-          <input type="text" class="form-control" id="cno" value="001 2536 123 458">
+          <input type="text" class="form-control" id="cno" formControlName="phone_number">
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
-          <input type="text" class="form-control" id="email" value="Bnijone@demo.com">
-        </div>
-        <div class="form-group">
-          <label for="url">Url:</label>
-          <input type="text" class="form-control" id="url" value="https://getbootstrap.com">
+          <input type="text" class="form-control" id="email" formControlName="email">
         </div>
         <button type="submit" class="btn btn-primary mr-2">Submit</button>
         <button type="reset" class="btn iq-bg-danger">Cancle</button>
