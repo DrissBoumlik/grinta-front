@@ -57,7 +57,7 @@ export class AuthService {
   logout(params = {serverSide: true}) {
     if (params.serverSide) {
       AuthService.getHeaders();
-      return this.http.get(environment.baseApiUrl + '/logout', {headers: AuthService.headers})
+      return this.http.post(environment.baseApiUrl + '/logout', {headers: AuthService.headers})
         .pipe(
           tap(
             (data: any) => {
