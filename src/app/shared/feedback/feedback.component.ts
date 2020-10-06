@@ -10,7 +10,9 @@ import {isObject} from 'util';
   styleUrls: ['./feedback.component.css']
 })
 export class FeedbackComponent implements OnInit {
-  flag: string;
+  flag = null;
+  bgClassName: string;
+  icon: string;
   texts = [];
 
   constructor(private feedbackService: FeedbackService,
@@ -40,6 +42,8 @@ export class FeedbackComponent implements OnInit {
       //   icon: (SweetAlertIcon) feedback
       // });
       // text = html;
+    } else if (message.hasOwnProperty('error')) {
+      this.texts.push(message.error);
     } else if (isObject(message)) {
       message = Object.values(message);
       // let html = '<ul class="align-left">';
@@ -49,17 +53,36 @@ export class FeedbackComponent implements OnInit {
       });
       // text = html;
     } else {
-      // Swal.fire({
-      //   title: message,
-      //   icon: (SweetAlertIcon) feedback
-      // });
-      // text = message;
       this.texts.push(message);
     }
 
     // this.text = text;
     this.flag = feedback;
-    console.log(this.flag, this.texts);
+    this.setFeedBackParams(feedback);
+    setTimeout(() => {
+      this.flag = null;
+    }, 5000);
+  }
+
+  setFeedBackParams(feedback: string) {
+    switch (feedback) {
+      case 'info':
+        this.bgClassName = 'bg-primary';
+        this.icon = 'ri-information-line';
+        break;
+      case 'success':
+        this.bgClassName = 'bg-success';
+        this.icon = 'ri-information-line';
+        break;
+      case 'warning':
+        this.bgClassName = 'bg-warning';
+        this.icon = 'ri-alert-line';
+        break;
+      case 'error':
+        this.bgClassName = 'bg-danger';
+        this.icon = 'ri-alert-line';
+        break;
+    }
   }
 
   onCloseAlert(textIndex) {
