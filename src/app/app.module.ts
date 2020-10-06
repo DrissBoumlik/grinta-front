@@ -51,6 +51,7 @@ import { UserEventsComponent } from './user/profile/user-events/user-events.comp
 import { UserEditInfoComponent } from './user/profile/user-edit/user-edit-info/user-edit-info.component';
 import { UserEditPasswordComponent } from './user/profile/user-edit/user-edit-password/user-edit-password.component';
 import { UserEditContactComponent } from './user/profile/user-edit/user-edit-contact/user-edit-contact.component';
+import { ProfileComponent } from './user/profile/profile/profile.component';
 
 const config = new AuthServiceConfig([
   {
@@ -94,6 +95,7 @@ export function provideConfig() {
     UserEditInfoComponent,
     UserEditPasswordComponent,
     UserEditContactComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
