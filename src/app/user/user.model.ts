@@ -17,6 +17,7 @@ export class User {
     public fullName: string,
     public gender: string,
     public birth_date: string,
+    public phoneNumber: string,
     public address: string,
     public city: string,
     public country: string,
