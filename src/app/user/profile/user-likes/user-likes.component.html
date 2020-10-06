@@ -37,10 +37,13 @@
                         </div>
                       </a>
                       <div class="group-member mb-3">
-                        <div class="iq-media-group">
+                        <div class="iq-media-group" *ngIf="page?.likers?.length">
                           <a routerLink="/{{ liker.username }}" class="iq-media" *ngFor="let liker of page.likers | slice:0:5">
                             <img class="img-fluid avatar-40 rounded-circle" src="{{ liker.picture }}" alt="">
                           </a>
+                        </div>
+                        <div class="iq-media-group" *ngIf="!page?.likers?.length">
+                          <span style="line-height: 46px; height: 46px">Invite people</span>
                         </div>
                       </div>
                       <button type="submit" class="btn bgclr-grintaaa text-white d-block w-100" (click)="onUnlike(page)">Unlike</button>
