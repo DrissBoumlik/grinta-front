@@ -83,7 +83,7 @@
 }
 
 .bg-gray {
-  background-color: #F2F3F5;
+  background-color: var(--light-gray);
 }
 
 .no-border {

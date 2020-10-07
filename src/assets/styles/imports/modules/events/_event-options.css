@@ -39,7 +39,7 @@
   /*border: 6px solid var(--grintaaa);*/
   text-align: center;
   border-radius: 50%;
-  background-color: #F2F3F5;
+  background-color: var(--light-gray);
   position: relative;
 }
 .option-icon i {

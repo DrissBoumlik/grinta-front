@@ -19,13 +19,21 @@
                       <div class="h-200 h-md-300 overflow-hidden center-img">
                         <img src="{{ event?.cover }}" alt="profile-bg" class="rounded img-fluid w-100 centered-img">
                       </div>
-                      <ul class="header-nav d-flex flex-wrap justify-end p-0 m-0">
+                      <ul class="header-nav header-nav-event d-flex flex-wrap justify-content-start ml-3 p-0 m-0">
                         <li><a routerLink="/events/{{ event?.uuid }}/edit"><i class="ri-pencil-line"></i></a></li>
                         <li><a routerLink="/messenger/{{ event?.user?.username }}"><i class="ri-message-line"></i></a></li>
                       </ul>
                     </div>
-                    <div class="user-detail d-flex justify-content-start ml-4">
-                      <div class="profile-img">
+                    <div class="user-detail d-flex justify-content-end mr-4">
+                      <div class="event-date">
+                        <div class="wrapper">
+                          <div class="header"></div>
+                          <div class="body">
+                            <div class="text">{{ event?.date | date:'dd' }}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-none profile-img">
                         <div class="profile-img-wrapper">
                           <img src="{{ event?.image }}" alt="profile-img"
                                class="avatar-130 img-fluid"/>
