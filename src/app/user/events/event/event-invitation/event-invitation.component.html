@@ -1,6 +1,6 @@
 <div class="modal modal-event-invitations fade d-block show" id="eventInvitationsModal" tabindex="-1" role="dialog"
-     aria-labelledby="eventInvitationsModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
+     aria-labelledby="eventInvitationsModalTitle" aria-hidden="true" #modalWrapper>
+  <div class="modal-dialog modal-dialog-scrollable" role="document" #modal>
     <div class="modal-content">
       <div class="modal-header justify-content-evenly">
         <h5 class="modal-title text-center" id="eventInvitationsModalTitle">Invite</h5>
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onCloseModal()">Cancel</button>
+        <button type="button" class="btn btn-light" data-dismiss="modal" (click)="onCloseModal()">Cancel</button>
         <button type="button" class="btn btn-primary bgclr-grintaaa" (click)="onSend()">Send Invites</button>
       </div>
     </div>
