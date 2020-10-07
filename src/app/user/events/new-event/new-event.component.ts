@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../user.model';
-import {FormBuilder, FormControl} from '@angular/forms';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {UserService} from '../../user.service';
 import {FeedbackService} from '../../../shared/feedback/feedback.service';
+import {SportService} from '../../../shared/sport.service';
+import {Sport} from '../../sports/sport.model';
 
 @Component({
   selector: 'app-new-event',
@@ -11,6 +13,7 @@ import {FeedbackService} from '../../../shared/feedback/feedback.service';
 })
 export class NewEventComponent implements OnInit {
   user: User;
+  sports: Sport[] = [];
   imageToUpload: any = File;
   steps = {
     infos: {active: true, done: false},
@@ -29,15 +32,20 @@ export class NewEventComponent implements OnInit {
     cover: new FormControl(null),
     type: new FormControl('public'),
     description: new FormControl('kokokokokosss'),
+    sport: new FormControl(1, Validators.required)
   });
 
   constructor(private fb: FormBuilder,
               private feedbackService: FeedbackService,
+              private sportService: SportService,
               private userService: UserService) {
     this.user = this.userService.user;
   }
 
   ngOnInit() {
+    this.sportService.getSports().subscribe((response: any) => {
+      this.sports = response.sports;
+    });
   }
 
   onFileImageChange(files: FileList) {
@@ -67,15 +75,24 @@ export class NewEventComponent implements OnInit {
   }
 
   onCreateEvent() {
-    this.userService.createEvent(this.CreateEventForm.value.name,
-      this.CreateEventForm.value.date, this.CreateEventForm.value.limit_signup,
-      this.CreateEventForm.value.address, this.CreateEventForm.value.location,
-      this.CreateEventForm.value.image, this.CreateEventForm.value.cover,
-      this.CreateEventForm.value.type, this.CreateEventForm.value.description)
+    // name, date, limitSignup, address, location, image, cover, type, description
+    const event = {
+      name: this.CreateEventForm.value.name,
+      date: this.CreateEventForm.value.date,
+      limit_signup: this.CreateEventForm.value.limit_signup,
+      address: this.CreateEventForm.value.address,
+      location: this.CreateEventForm.value.location,
+      image: this.CreateEventForm.value.image,
+      cover: this.CreateEventForm.value.cover,
+      type: this.CreateEventForm.value.type,
+      description: this.CreateEventForm.value.description,
+      sport_id: this.CreateEventForm.value.sport
+    };
+    this.userService.createEvent(event)
       .subscribe((response: any) => {
-        console.log(response);
-        this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
-      },
+          console.log(response);
+          this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
+        },
         (error: any) => {
           console.log(error);
           const message = error.error.errors ? error.error.errors : error.error.message;

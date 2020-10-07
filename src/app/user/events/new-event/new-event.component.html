@@ -71,6 +71,15 @@
                       <textarea type="text" class="form-control" name="description" formControlName="description" placeholder="Project Description" required></textarea>
                     </div>
                   </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Sport: *</label>
+                      <select class="form-control" formControlName="sport" required>
+                        <option selected disabled>Select Sport</option>
+                        <option *ngFor="let sport of sports" value="{{ sport.id }}">{{ sport.name }}</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
 <!--                <div class="row">-->
 <!--                  <div class="col-md-12">-->
