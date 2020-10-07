@@ -15,7 +15,9 @@ import { MapComponent } from './map/map.component';
 import {EventService} from './event.service';
 import { EventActionsComponent } from './event-actions/event-actions.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { ExcerptPipe } from './excerpt.pipe';
+import { ExcerptPipe } from './pipes/excerpt.pipe';
+import { MapPreviewComponent } from './map-preview/map-preview.component';
+import { LocationPipe } from './pipes/location.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { ExcerptPipe } from './excerpt.pipe';
     EventActionsComponent,
     SpinnerComponent,
     ExcerptPipe,
+    MapPreviewComponent,
+    LocationPipe,
   ],
   imports: [
     RouterModule,
@@ -41,6 +45,8 @@ import { ExcerptPipe } from './excerpt.pipe';
     EventActionsComponent,
     SpinnerComponent,
     ExcerptPipe,
+    MapPreviewComponent,
+    LocationPipe,
   ],
   providers: [SearchService, SportService, ToolsService, FeedbackService, HandlerService, EventService]
 })

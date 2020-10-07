@@ -31,6 +31,8 @@ import {UserEditInfoComponent} from './user/profile/user-edit/user-edit-info/use
 import {UserEditPasswordComponent} from './user/profile/user-edit/user-edit-password/user-edit-password.component';
 import {UserEditContactComponent} from './user/profile/user-edit/user-edit-contact/user-edit-contact.component';
 import {ProfileComponent} from './user/profile/profile/profile.component';
+import {EventComponent} from './user/events/event/event.component';
+import {EventAboutComponent} from './user/events/event/event-about/event-about.component';
 
 
 const routes: Routes = [
@@ -52,6 +54,14 @@ const routes: Routes = [
   },
   {
     path: 'events', children: [
+      {
+        path: ':uuid', component: EventComponent, children: [
+          {path: '', component: EventAboutComponent},
+          {path: 'about', component: EventAboutComponent},
+          // {path: 'photos', component: EventPhotosComponent},
+          {path: 'edit', component: NewEventComponent},
+        ]
+      },
       {path: 'options', component: EventOptionsComponent},
     ]
   },

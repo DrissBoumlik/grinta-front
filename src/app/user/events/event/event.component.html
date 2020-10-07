@@ -1,1 +1,82 @@
-<p>event works!</p>
+<div class="wrapper">
+
+  <!--  <app-user-options></app-user-options>-->
+
+  <app-header></app-header>
+
+  <app-friends></app-friends>
+
+  <div id="content-page" class="content-page">
+    <div class="user-profile container-fluid">
+      <div class="container">
+        <div class="row" *ngIf="event">
+          <div class="col-md-10 offset-md-1 col-12">
+            <div class="iq-card">
+              <div class="iq-card-body profile-page p-0">
+                <div class="profile-header">
+                  <div class="cover-profile position-relative">
+                    <div class="cover-container">
+                      <div class="h-200 h-md-300 overflow-hidden center-img">
+                        <img src="{{ event?.cover }}" alt="profile-bg" class="rounded img-fluid w-100 centered-img">
+                      </div>
+                      <ul class="header-nav d-flex flex-wrap justify-end p-0 m-0">
+                        <li><a routerLink="/events/{{ event?.uuid }}/edit"><i class="ri-pencil-line"></i></a></li>
+                        <li><a routerLink="/messenger/{{ event?.user?.username }}"><i class="ri-message-line"></i></a></li>
+                      </ul>
+                    </div>
+                    <div class="user-detail d-flex justify-content-start ml-4">
+                      <div class="profile-img">
+                        <div class="profile-img-wrapper">
+                          <img src="{{ event?.image }}" alt="profile-img"
+                               class="avatar-130 img-fluid"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="profile-info p-4 text-left position-relative">
+                    <div class="profile-detail">
+                      <h3 class="m-0">{{ event?.name }}</h3>
+<!--                      <a routerLink="/events{{ event?.name }}" class="m-0">@{{ event?.name }}</a>-->
+                    </div>
+                    <div class="profile-about mt-2">
+                      <span>{{ event?.description }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="iq-card">
+              <div class="iq-card-body p-0">
+                <div class="user-tabing d-flex justify-content-between align-items-center">
+                  <ul class="nav nav-pills d-flex align-items-center justify-content-center profile-feed-items py-lg-0 py-md-0 py-3">
+                    <li class="col-6 m-0">
+                      <a class="nav-link" data-toggle="pill" routerLinkActive="active" routerLink="/events/{{ event?.uuid }}/about">About</a>
+                    </li>
+                    <li class="col-6 m-0">
+                      <a class="nav-link" data-toggle="pill" routerLinkActive="active" routerLink="/events/{{ event?.uuid }}/photos">Photos</a>
+                    </li>
+                  </ul>
+                  <div class="event-actions">
+                    <button class="btn btn-light mr-2" type="submit">Interested</button>
+                    <button class="btn btn-light mr-2" type="submit">Going</button>
+                    <button class="btn btn-info bgclr-grintaaa mr-2" type="submit">Invite</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-10 offset-md-1 col-12">
+            <div class="tab-content">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+          <!--          <div class="col-sm-12 text-center">-->
+          <!--            <img src="/assets/plugins/socialV/images/page-img/page-load-loader.gif" alt="loader" style="height: 100px;">-->
+          <!--          </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-event-action></app-event-action>
+  <app-feedback></app-feedback>
+</div>

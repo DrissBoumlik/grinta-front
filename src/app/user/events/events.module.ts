@@ -9,6 +9,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { EventOptionsComponent } from './event-options/event-options.component';
 import {RouterModule} from '@angular/router';
+import {FriendsModule} from '../friends/friends.module';
+import { EventAboutComponent } from './event/event-about/event-about.component';
 
 
 
@@ -18,6 +20,7 @@ import {RouterModule} from '@angular/router';
     NewEventComponent,
     EventComponent,
     EventOptionsComponent,
+    EventAboutComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +28,7 @@ import {RouterModule} from '@angular/router';
     HttpClientModule,
     FormsModule,
     RouterModule,
+    FriendsModule,
     SharedModule
   ],
   exports: [

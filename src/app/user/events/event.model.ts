@@ -1,4 +1,5 @@
 import {User} from '../user.model';
+import {Sport} from "../sports/sport.model";
 
 export class Event {
   constructor(
@@ -15,6 +16,7 @@ export class Event {
     public cover: string,
     public type: string,
     public user: User,
-    public users: User[]
+    public users: User[],
+    public sport: Sport
   ) {}
 }

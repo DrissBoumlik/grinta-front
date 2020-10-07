@@ -12,6 +12,7 @@
 @import "search/_search-result.css";
 @import "search/_search-results.css";
 
+@import "events/_event.css";
 @import "events/_event-options.css";
 @import "events/_map.css";
 

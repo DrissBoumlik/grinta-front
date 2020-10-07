@@ -19,7 +19,7 @@
                 <div class="col-md-6 col-lg-4" *ngFor="let event of events">
                   <div class="iq-card rounded iq-card-block iq-card-stretch iq-card-height">
                     <div class="event-images">
-                      <a href="#">
+                      <a routerLink="/events/{{ event.uuid }}">
                         <img src="{{ event.cover }}" class="img-fluid" alt="Responsive image">
                       </a>
                     </div>
