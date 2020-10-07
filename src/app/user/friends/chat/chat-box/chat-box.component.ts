@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import * as firebase from 'firebase';
 import {User} from '../../../user.model';
@@ -13,13 +13,15 @@ import {DatePipe} from '@angular/common';
   templateUrl: './chat-box.component.html',
   styleUrls: ['./chat-box.component.css']
 })
-export class ChatBoxComponent implements OnInit {
+export class ChatBoxComponent implements OnInit, AfterViewChecked {
 
+  @ViewChild('scrollToBottom', {static: false}) private scrollToBottomBox: ElementRef;
   @Input() user: User;
   authUser: User;
   chats: any[] = [];
   fbDB = firebase.database();
   chatId = null;
+  sendingMessage = true;
   constructor(private chatService: ChatService,
               private authService: AuthService,
               private fb: FormBuilder,
@@ -49,6 +51,7 @@ export class ChatBoxComponent implements OnInit {
             this.chats = [];
             this.chats = this.snapshotToArray(resp);
             console.log(this.chats);
+            this.sendingMessage = true;
             // setTimeout(() => this.scrolltop = this.chatcontent.nativeElement.scrollHeight, 500);
           });
         },
@@ -57,13 +60,29 @@ export class ChatBoxComponent implements OnInit {
     });
   }
 
+  ngAfterViewChecked() {
+    if (this.sendingMessage) {
+      this.updateScroll();
+      this.sendingMessage = false;
+    }
+  }
+
+  updateScroll() {
+    console.log('scrolling');
+    try {
+      this.scrollToBottomBox.nativeElement.scrollTop = this.scrollToBottomBox.nativeElement.scrollHeight;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   snapshotToArray(snapshot: any) {
     const returnArr = [];
 
     snapshot.forEach((childSnapshot: any) => {
       const item = childSnapshot.val();
-      console.log(item.date);
       item.sender = item.from === this.user.username ? this.user : this.authUser;
+      item.receiver = item.from !== this.user.username ? this.user : this.authUser;
       item.key = childSnapshot.key;
       returnArr.push(item);
     });
@@ -72,6 +91,7 @@ export class ChatBoxComponent implements OnInit {
   }
 
   onSendMessage() {
+    this.sendingMessage = true;
     console.log(this.sendMessageForm.value);
     const chat = {
       message: this.sendMessageForm.value.message,

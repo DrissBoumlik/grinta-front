@@ -88,7 +88,7 @@
                   </div>
                 </header>
               </div>
-              <div class="chat-content scroller">
+              <div class="chat-content scroller" #scrollToBottom>
 
                 <div class="chat" *ngFor="let chat of chats;" [ngClass]="{'chat-left': chat?.from === user.username}">
                   <div class="chat-user">
