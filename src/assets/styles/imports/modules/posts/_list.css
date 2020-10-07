@@ -1,0 +1,10 @@
+.container {
+  /*padding-top: 100px;*/
+  /*padding-bottom: 100px;*/
+}
+
+.btn-load-more {
+  background-color: transparent;
+  text-decoration: underline;
+  font-size: 1.6rem;
+}
