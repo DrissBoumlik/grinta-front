@@ -168,18 +168,30 @@ export class NewPageComponent implements OnInit {
   }
 
   onUpdatePage() {
-    this.userService.updatePage(this.CreatePageForm.value.name, this.CreatePageForm.value.pagename,
-      this.CreatePageForm.value.image, this.CreatePageForm.value.cover,
-      this.CreatePageForm.value.type, this.CreatePageForm.value.description, this.CreatePageForm.value.sport)
+    const page = {
+      name: this.CreatePageForm.value.name,
+      pagename: this.CreatePageForm.value.pagename,
+      image: this.CreatePageForm.value.image,
+      cover: this.CreatePageForm.value.cover,
+      type: this.CreatePageForm.value.type,
+      description: this.CreatePageForm.value.description,
+      sport: this.CreatePageForm.value.sport
+    };
+    this.userService.updatePage(page)
       .subscribe((response: any) => console.log(response));
   }
 
   onCreatePage() {
-    // console.log('submitted');
-    // return;
-    this.userService.createPage(this.CreatePageForm.value.name, this.CreatePageForm.value.pagename,
-      this.CreatePageForm.value.image, this.CreatePageForm.value.cover,
-      this.CreatePageForm.value.type, this.CreatePageForm.value.description, this.CreatePageForm.value.sport)
+    const page = {
+      name: this.CreatePageForm.value.name,
+      pagename: this.CreatePageForm.value.pagename,
+      image: this.CreatePageForm.value.image,
+      cover: this.CreatePageForm.value.cover,
+      type: this.CreatePageForm.value.type,
+      description: this.CreatePageForm.value.description,
+      sport: this.CreatePageForm.value.sport
+    };
+    this.userService.createPage(page)
       .subscribe(
         (response: any) => {
           console.log(response);

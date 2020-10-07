@@ -60,10 +60,18 @@ export class UserService {
       );
   }
 
-  updatePage(name, pagename, image, cover, type, description, sport) {
+  updatePage(page: any) {
     AuthService.getHeaders();
     return this.http.put(environment.baseApiUrl + '/pages',
-      {name, pagename, image, cover, type, description, sport},
+      {
+        name: page.name,
+        pagename: page.pagename,
+        image: page.image,
+        cover: page.cover,
+        type: page.type,
+        description: page.description,
+        sport: page.sport
+      },
       {headers: AuthService.headers})
       .pipe(
         tap(
@@ -73,10 +81,18 @@ export class UserService {
       );
   }
 
-  createPage(name, pagename, image, cover, type, description, sport) {
+  createPage(page: any) {
     AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/pages',
-      {name, pagename, image, cover, type, description, sport},
+      {
+        name: page.name,
+        pagename: page.pagename,
+        image: page.image,
+        cover: page.cover,
+        type: page.type,
+        description: page.description,
+        sport: page.sport
+      },
       {headers: AuthService.headers})
       .pipe(
         tap(
@@ -86,10 +102,21 @@ export class UserService {
       );
   }
 
-  createEvent(name, date, limitSignup, address, location, image, cover, type, description) {
+  createEvent(event: any) {
     AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/events',
-      {name,  date, limit_signup: limitSignup, address, location, image, cover, type, description},
+      {
+        name: event.name,
+        date: event.date,
+        limit_signup: event.limit_signup,
+        address: event.address,
+        location: event.location,
+        image: event.image,
+        cover: event.cover,
+        type: event.type,
+        description: event.description,
+        sport_id: event.sport_id
+      },
       {headers: AuthService.headers})
       .pipe(
         tap(
