@@ -17,15 +17,7 @@ export class SearchResultsComponent implements OnInit {
   });
 
   constructor(private searchService: SearchService,
-              private renderer: Renderer2) {
-    this.renderer.listen('window', 'click', (e: Event) => {
-      if (this.searchInput && e.target !== this.searchInput.nativeElement) {
-        this.showResults = false;
-      } else if (this.searchInput && e.target === this.searchInput.nativeElement) {
-        this.onSearch(this.searchForm.value.search);
-      }
-    });
-  }
+              private renderer: Renderer2) { }
 
   ngOnInit() {
     // this.searchForm = new FormGroup({
@@ -34,6 +26,13 @@ export class SearchResultsComponent implements OnInit {
     // this.searchService.resultsShowed.subscribe((resultsShowed: boolean) => {
     //   this.showResults = resultsShowed;
     // });
+    this.renderer.listen('window', 'click', (e: Event) => {
+      if (this.searchInput && e.target !== this.searchInput.nativeElement) {
+        this.showResults = false;
+      } else if (this.searchInput && e.target === this.searchInput.nativeElement) {
+        this.onSearch(this.searchForm.value.search);
+      }
+    });
   }
 
   onSearch(value: string) {
