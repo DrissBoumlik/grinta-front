@@ -19,7 +19,7 @@ export class FriendsComponent implements OnInit {
   ngOnInit() {
     this.relationService.getFriends().subscribe((response: any) => {
       this.friends = this.relationService.friends = response.friends;
-      this.noFriends = this.friends.length <= 0;
+      this.noFriends = !this.friends.length;
     });
   }
 

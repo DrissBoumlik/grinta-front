@@ -23,7 +23,6 @@ export class ProfileComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-    this.authService.isLogged(this.router);
     let username = this.route.snapshot.params.username;
     this.onGetProfile(username);
     this.route.params.subscribe((params: Params) => {
