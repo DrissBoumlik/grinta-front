@@ -16,14 +16,19 @@ export class PageComponent implements OnInit {
               private pageService: PageService) { }
 
   ngOnInit() {
+    let pagename = this.route.snapshot.params.pagename;
+    this.onGetPage(pagename);
     this.route.params.subscribe((params: Params) => {
       window.scroll(0, 0);
-      const pagename = params.pagename;
-      this.pageService.getPage(pagename).subscribe((response: any) => {
-        this.page = response.page;
-        this.user = response.page.user;
-        console.log(this.page.cover);
-      });
+      pagename = params.pagename;
+      this.onGetPage(pagename);
+    });
+  }
+
+  onGetPage(pagename: string) {
+    this.pageService.getPage(pagename).subscribe((response: any) => {
+      this.page = response.page;
+      this.user = response.page.user;
     });
   }
 
