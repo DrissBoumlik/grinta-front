@@ -27,7 +27,7 @@ export class ToolsService {
   }
 
   getCities() {
-    return this.http.get('./assets/data/france-cities.json')
+    return this.http.get('./assets/data/cities.json')
       .pipe(
         tap(
           data => console.log(data),
