@@ -12,7 +12,7 @@ import {Event} from '../event.model';
 export class EventComponent implements OnInit {
   user: User;
   event: Event;
-
+  showInvitationModal = false;
   constructor(private route: ActivatedRoute,
               private eventService: EventService) { }
 
@@ -24,6 +24,9 @@ export class EventComponent implements OnInit {
       uuid = params.uuid;
       this.onGetEvent(uuid);
     });
+    this.eventService.eventUpdated.subscribe((event: Event) => {
+      this.event = event;
+    });
   }
 
   onGetEvent(uuid: string) {
@@ -33,4 +36,12 @@ export class EventComponent implements OnInit {
     });
   }
 
+  onInvite() {
+    console.log('invited');
+    this.showInvitationModal = true;
+  }
+
+  onCloseModal(value: boolean) {
+    this.showInvitationModal = false;
+  }
 }

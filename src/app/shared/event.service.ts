@@ -12,6 +12,7 @@ export class EventService {
   user: User;
   event: Event;
   eventLoaded = new Subject<Event>();
+  eventUpdated = new Subject<Event>();
 
   constructor(private http: HttpClient) { }
 
@@ -49,6 +50,17 @@ export class EventService {
             console.log(data);
           },
           error => console.log(error)
+        )
+      );
+  }
+
+  inviteUsers(usersUuids: any, eventUuid) {
+    AuthService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/events/invite', {users: usersUuids, event: eventUuid}, {headers: AuthService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
         )
       );
   }

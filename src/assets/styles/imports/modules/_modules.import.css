@@ -1,6 +1,9 @@
 
 @import "auth/_login.css";
 
+@import "shared/_user-item.css";
+@import "shared/_alert.css";
+
 @import "profile/common/_header.css";
 @import "profile/edit/_menu.css";
 @import "profile/friends/_list-users.css";
@@ -13,6 +16,7 @@
 @import "search/_search-results.css";
 
 @import "events/_event.css";
+@import "events/_event-invitations.css";
 @import "events/_event-options.css";
 @import "events/_map.css";
 

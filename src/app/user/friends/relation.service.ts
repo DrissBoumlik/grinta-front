@@ -10,12 +10,13 @@ import {AuthService} from '../../auth/auth.service';
 @Injectable()
 export class RelationService {
   friends: User[] = [];
+  relations: User[] = [];
 
   constructor(private http: HttpClient) {}
 
   getFriends(page = 1) {
     AuthService.getHeaders();
-    return this.http.get(environment.baseApiUrl + '/friends' + '?page=' + page, {headers: AuthService.headers})
+    return this.http.get(environment.baseApiUrl + '/friends?page=' + page, {headers: AuthService.headers})
       .pipe(
         tap(
           (data: any) => {
@@ -31,6 +32,23 @@ export class RelationService {
       );
   }
 
+  getAllRelations(page = 1) {
+    AuthService.getHeaders();
+    return this.http.get(environment.baseApiUrl + '/relations?page=' + page, {headers: AuthService.headers})
+      .pipe(
+        tap(
+          (data: any) => {
+            // console.log(data);
+            if (page === 1) {
+              this.relations = [];
+            }
+            // this.friends = data.friends;
+            this.relations.push(...data.relations);
+          },
+          error => console.log(error.status),
+        )
+      );
+  }
 
   getCityFriends(city: string, page = 1) {
     AuthService.getHeaders();

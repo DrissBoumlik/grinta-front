@@ -1,0 +1,40 @@
+<div class="modal modal-event-invitations fade d-block show" id="eventInvitationsModal" tabindex="-1" role="dialog"
+     aria-labelledby="eventInvitationsModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header justify-content-evenly">
+        <h5 class="modal-title text-center" id="eventInvitationsModalTitle">Invite</h5>
+        <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close" (click)="onCloseModal()">
+          <i class="icon dripicons-exit"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <div class="user-item-wrapper pointer" *ngFor="let user of relations" (click)="onToggleUser(user)">
+              <div class="d-flex align-items-center">
+                <div class="user-item-img-wrapper">
+                  <div class="user-item-img-container">
+                    <img src="{{ user?.picture }}" class="user-item-img"/>
+                  </div>
+                </div>
+                <div class="user-item-info">
+                  <span>{{ user?.fullName }}</span>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline" style="position: absolute; right: 10px;">
+                  <input type="checkbox" id="{{ user?.username }}" name="{{ user?.username }}" [checked]="user?.chosen"
+                         value="{{ user?.uuid }}" class="custom-control-input">
+                  <label class="custom-control-label" for="{{ user?.username }}"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onCloseModal()">Cancel</button>
+        <button type="button" class="btn btn-primary bgclr-grintaaa" (click)="onSend()">Send Invites</button>
+      </div>
+    </div>
+  </div>
+</div>
