@@ -54,6 +54,7 @@ const routes: Routes = [
   },
   {
     path: 'events', children: [
+      {path: 'options', component: EventOptionsComponent},
       {
         path: ':uuid', component: EventComponent, children: [
           {path: '', component: EventAboutComponent},
@@ -62,7 +63,6 @@ const routes: Routes = [
           {path: 'edit', component: NewEventComponent},
         ]
       },
-      {path: 'options', component: EventOptionsComponent},
     ]
   },
   {path: 'messenger', component: TemplateComponent, children: [
