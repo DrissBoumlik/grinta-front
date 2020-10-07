@@ -3,6 +3,13 @@
   border: 5px solid #fff;
 }
 
+.profile-img .profile-img-wrapper {
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 .profile-header .user-detail {
   z-index: 1000;
   bottom: -20px;
