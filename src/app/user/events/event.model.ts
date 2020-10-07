@@ -1,5 +1,5 @@
 import {User} from '../user.model';
-import {Sport} from "../sports/sport.model";
+import {Sport} from '../sports/sport.model';
 
 export class Event {
   constructor(
