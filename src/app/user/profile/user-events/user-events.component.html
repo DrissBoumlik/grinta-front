@@ -30,7 +30,9 @@
                           <h5>{{ event.date | date:'dd' }}</h5>
                         </div>
                         <div class="events-detail ml-3">
-                          <h5>{{ event.name }}</h5>
+                          <a routerLink="/events/{{ event.uuid }}">
+                            <h5>{{ event.name }}</h5>
+                          </a>
                           <p>{{ event.description | excerpt:40 }}</p>
                           <div class="event-member">
                             <div class="iq-media-group">
