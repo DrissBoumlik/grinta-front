@@ -34,6 +34,7 @@ import {ProfileComponent} from './user/profile/profile/profile.component';
 import {EventComponent} from './user/events/event/event.component';
 import {EventAboutComponent} from './user/events/event/event-about/event-about.component';
 import {EventWrapperComponent} from './user/events/event-wrapper/event-wrapper.component';
+import {PageWrapperComponent} from './user/pages/page-wrapper/page-wrapper.component';
 
 
 const routes: Routes = [
@@ -73,7 +74,7 @@ const routes: Routes = [
   // { path: ':username', component: UserComponent},
   {
     path: 'create', children: [
-      {path: 'page', component: NewPageComponent},
+      {path: 'page', component: PageWrapperComponent},
       {path: 'event', component: EventWrapperComponent}
     ]
   },

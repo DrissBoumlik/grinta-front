@@ -198,7 +198,7 @@ export class NewPageComponent implements OnInit {
           this.steps = {
             infos: {active: false, done: true},
             details: {active: false, done: true},
-            media: {active: false, done: true},
+            media: {active: true, done: true},
             finish: {active: true, done: true},
           };
           this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});

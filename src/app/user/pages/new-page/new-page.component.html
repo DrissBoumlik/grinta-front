@@ -1,169 +1,164 @@
-<div class="wrapper">
-
-  <app-header></app-header>
-
-  <div id="content-page" class="content-page">
-    <div class="container">
-          <div class="iq-card">
-            <div class="iq-card-header d-flex justify-content-between">
-              <div class="iq-header-title">
-                <h4 class="card-title">{{ editMode ? 'Update' : 'Create' }} Page</h4>
-              </div>
+<div class="iq-card">
+  <div class="iq-card-header d-flex justify-content-between">
+    <div class="iq-header-title">
+      <h4 class="card-title">{{ editMode ? 'Update' : 'Create' }} Page</h4>
+    </div>
+  </div>
+  <div class="iq-card-body">
+    <form [formGroup]="CreatePageForm" (ngSubmit)="onCreatePage()" id="form-wizard1" class="text-center mt-4">
+      <ul id="top-tab-list" class="p-0 row">
+        <li [ngClass]="{'active': steps.infos.active , 'done': steps.infos.done}" class="col-lg-4 col-md-4 col-12 pb-lg-0 pb-md-0 pb-2" id="infos">
+          <a (click)="goToInfos()" class="pointer">
+            <i class="ri-information-fill"></i><span>Information</span>
+          </a>
+        </li>
+        <li [ngClass]="{'active': steps.details.active, 'done': steps.details.done}" class="col-lg-4 col-md-4 col-12 pb-lg-0 pb-md-0 pb-2" id="details">
+          <a (click)="goToDetails()" class="pointer">
+            <i class="icon dripicons-trophy"></i><span>Details</span>
+          </a>
+        </li>
+        <li [ngClass]="{'active': steps.media.active, 'done': steps.media.done}" class="col-lg-4 col-md-4 col-12 pb-lg-0 pb-md-0 pb-2" id="media">
+          <a (click)="goToMedia()" class="pointer">
+            <i class="ri-camera-fill"></i><span>Image / Cover</span>
+          </a>
+        </li>
+        <!--                  <li [ngClass]="{'active': steps.finish.active, 'done': steps.finish.done}" id="confirm">-->
+        <!--                    <a (click)="goToFinish()" class="pointer">-->
+        <!--                      <i class="ri-check-fill"></i><span>Finish</span>-->
+        <!--                    </a>-->
+        <!--                  </li>-->
+      </ul>
+      <!-- fieldsets -->
+      <fieldset *ngIf="steps.infos.active">
+        <div class="form-card text-left">
+          <div class="row">
+            <div class="col-7">
+              <h3 class="mb-4">Information:</h3>
             </div>
-            <div class="iq-card-body">
-              <form [formGroup]="CreatePageForm" (ngSubmit)="onCreatePage()" id="form-wizard1" class="text-center mt-4">
-                <ul id="top-tab-list" class="p-0 row">
-                  <li [ngClass]="{'active': steps.infos.active , 'done': steps.infos.done}" class="col-4" id="infos">
-                    <a (click)="goToInfos()" class="pointer">
-                      <i class="ri-lock-unlock-line"></i><span>Information</span>
-                    </a>
-                  </li>
-                  <li [ngClass]="{'active': steps.details.active, 'done': steps.details.done}" class="col-4" id="details">
-                    <a (click)="goToDetails()" class="pointer">
-                      <i class="ri-user-fill"></i><span>Details</span>
-                    </a>
-                  </li>
-                  <li [ngClass]="{'active': steps.media.active, 'done': steps.media.done}" class="col-4" id="media">
-                    <a (click)="goToMedia()" class="pointer">
-                      <i class="ri-camera-fill"></i><span>Image / Cover</span>
-                    </a>
-                  </li>
-<!--                  <li [ngClass]="{'active': steps.finish.active, 'done': steps.finish.done}" id="confirm">-->
-<!--                    <a (click)="goToFinish()" class="pointer">-->
-<!--                      <i class="ri-check-fill"></i><span>Finish</span>-->
-<!--                    </a>-->
-<!--                  </li>-->
-                </ul>
-                <!-- fieldsets -->
-                <fieldset *ngIf="steps.infos.active">
-                  <div class="form-card text-left">
-                    <div class="row">
-                      <div class="col-7">
-                        <h3 class="mb-4">Information:</h3>
-                      </div>
-                      <div class="col-5">
-                        <h2 class="steps">Step 1 - 3</h2>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label>Page name: *</label>
-                          <input type="text" class="form-control" name="name" formControlName="name" placeholder="Page Name" required />
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label>Page Username: *</label>
-                          <input type="text" class="form-control" name="pagename" formControlName="pagename" placeholder="Page Username" required />
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label>Description: </label>
-                          <textarea type="text" class="form-control" name="description" formControlName="description" placeholder="Project Description" required></textarea>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label>Type: *</label>
-                          <div class="custom-control custom-radio custom-radio-color">
-                            <input type="radio" id="public" name="type" class="custom-control-input bg-success" formControlName="type" value="public">
-                            <label class="custom-control-label" for="public"> Public </label>
-                          </div>
-                          <div class="custom-control custom-radio custom-radio-color">
-                            <input type="radio" id="private" name="type" class="custom-control-input bg-danger" formControlName="type" value="private">
-                            <label class="custom-control-label" for="private"> Private </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" (click)="goToDetails()">Details =></button>
-                </fieldset>
-                <fieldset *ngIf="steps.details.active">
-                  <div class="form-card text-left">
-                    <div class="row">
-                      <div class="col-7">
-                        <h3 class="mb-4">Details:</h3>
-                      </div>
-                      <div class="col-5">
-                        <h2 class="steps">Step 2 - 3</h2>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label>Sport: *</label>
-                          <select class="form-control" formControlName="sport" required>
-                            <option selected disabled>Select Sport</option>
-                            <option *ngFor="let sport of sports" value="{{ sport.id }}">{{ sport.name }}</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next" (click)="goToMedia()">Media =></button>
-                  <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" (click)="goToInfos()"><= Infos</button>
-                </fieldset>
-                <fieldset *ngIf="steps.media.active">
-                  <div class="form-card text-left">
-                    <div class="row">
-                      <div class="col-7">
-                        <h3 class="mb-4">Image / Cover:</h3>
-                      </div>
-                      <div class="col-5">
-                        <h2 class="steps">Step 3 - 3</h2>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="custom-file">
-<!--                        <label class="custom-file-label">Upload Image:</label>-->
-<!--                        <input type="file" class="custom-file-input" name="image" accept="image/*" (change)="onFileImageChange($event.srcElement.files)">-->
-                          <input type="file" class="custom-file-input" data-toggle="custom-file-input" id="file"
-                                 name="image" accept="image/*" (change)="onFileImageChange($event.srcElement.files)">
-                          <label class="custom-file-label capitalize-first-letter" for="file">Upload Image</label>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="custom-file">
-                        <label class="custom-file-label">Upload Cover :</label>
-                        <input type="file" class="custom-file-input" name="cover" accept="image/*" (change)="onFileCoverChange($event.srcElement.files)">
-                      </div>
-                    </div>
-                  </div>
-                  <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Submit" (click)="goToFinish()">Submit</button>
-                  <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous" (click)="goToDetails()"><= Details></button>
-                </fieldset>
-<!--                <fieldset *ngIf="steps.finish.active">-->
-<!--                  <div class="form-card">-->
-<!--                    <div class="row">-->
-<!--                      <div class="col-7">-->
-<!--                        <h3 class="mb-4 text-left">Finish:</h3>-->
-<!--                      </div>-->
-<!--                      <div class="col-5">-->
-<!--                        <h2 class="steps">Step 4 - 4</h2>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                    <br><br>-->
-<!--                    <h2 class="text-success text-center clr-grintaaa"><strong>SUCCESS !</strong></h2>-->
-<!--                    <br>-->
-<!--                    <div class="row justify-content-center">-->
-<!--                      <div class="col-3"> <img src="/assets/plugins/socialV/images/page-img/img-success.png" class="fit-image" alt="fit-image"> </div>-->
-<!--                    </div>-->
-<!--                    <br><br>-->
-<!--                    <div class="row justify-content-center">-->
-<!--                      <div class="col-7 text-center">-->
-<!--                        <h5 class="purple-text text-center">Page créée avec succès</h5>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </fieldset>-->
-              </form>
+            <div class="col-5">
+              <h2 class="steps">Step 1 - 3</h2>
             </div>
           </div>
-    </div><!-- /.container -->
-
-    <app-feedback></app-feedback>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Page name: *</label>
+                <input type="text" class="form-control" name="name" formControlName="name" placeholder="Page Name" required />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Page Username: *</label>
+                <input type="text" class="form-control" name="pagename" formControlName="pagename" placeholder="Page Username" required />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Description: </label>
+                <textarea type="text" class="form-control" name="description" formControlName="description" placeholder="Project Description" required></textarea>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Type: *</label>
+                <div class="custom-control custom-radio custom-radio-color">
+                  <input type="radio" id="public" name="type" class="custom-control-input bg-success" formControlName="type" value="public">
+                  <label class="custom-control-label" for="public"> Public </label>
+                </div>
+                <div class="custom-control custom-radio custom-radio-color">
+                  <input type="radio" id="private" name="type" class="custom-control-input bg-danger" formControlName="type" value="private">
+                  <label class="custom-control-label" for="private"> Private </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-actions mt-3">
+          <button type="button" name="next" class="btn btn-primary bgclr-grintaaa next action-button float-right" value="Next" (click)="goToDetails()">Details =></button>
+        </div>
+      </fieldset>
+      <fieldset *ngIf="steps.details.active">
+        <div class="form-card text-left">
+          <div class="row">
+            <div class="col-7">
+              <h3 class="mb-4">Details:</h3>
+            </div>
+            <div class="col-5">
+              <h2 class="steps">Step 2 - 3</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Sport: *</label>
+                <select class="form-control" formControlName="sport" required>
+                  <option selected disabled>Select Sport</option>
+                  <option *ngFor="let sport of sports" value="{{ sport.id }}">{{ sport.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-actions mt-3">
+          <button type="button" name="next" class="btn btn-primary bgclr-grintaaa next action-button float-right" value="Next" (click)="goToMedia()">Media =></button>
+          <button type="button" name="previous" class="btn btn-light previous action-button-previous float-right mr-3" value="Previous" (click)="goToInfos()"><= Infos</button>
+        </div>
+      </fieldset>
+      <fieldset *ngIf="steps.media.active">
+        <div class="form-card text-left">
+          <div class="row">
+            <div class="col-7">
+              <h3 class="mb-4">Image / Cover:</h3>
+            </div>
+            <div class="col-5">
+              <h2 class="steps">Step 3 - 3</h2>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="custom-file">
+              <!--                        <label class="custom-file-label">Upload Image:</label>-->
+              <!--                        <input type="file" class="custom-file-input" name="image" accept="image/*" (change)="onFileImageChange($event.srcElement.files)">-->
+              <input type="file" class="custom-file-input" data-toggle="custom-file-input" id="file"
+                     name="image" accept="image/*" (change)="onFileImageChange($event.srcElement.files)">
+              <label class="custom-file-label capitalize-first-letter" for="file">Upload Image</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="custom-file">
+              <label class="custom-file-label">Upload Cover :</label>
+              <input type="file" class="custom-file-input" name="cover" accept="image/*" (change)="onFileCoverChange($event.srcElement.files)">
+            </div>
+          </div>
+        </div>
+        <div class="btn-actions mt-3">
+          <button type="button" name="next" class="btn btn-primary bgclr-grintaaa next action-button float-right" value="Submit" (click)="goToFinish()">Submit</button>
+          <button type="button" name="previous" class="btn btn-light previous action-button-previous float-right mr-3" value="Previous" (click)="goToDetails()"><= Details></button>
+        </div>
+      </fieldset>
+      <!--                <fieldset *ngIf="steps.finish.active">-->
+      <!--                  <div class="form-card">-->
+      <!--                    <div class="row">-->
+      <!--                      <div class="col-7">-->
+      <!--                        <h3 class="mb-4 text-left">Finish:</h3>-->
+      <!--                      </div>-->
+      <!--                      <div class="col-5">-->
+      <!--                        <h2 class="steps">Step 4 - 4</h2>-->
+      <!--                      </div>-->
+      <!--                    </div>-->
+      <!--                    <br><br>-->
+      <!--                    <h2 class="text-success text-center clr-grintaaa"><strong>SUCCESS !</strong></h2>-->
+      <!--                    <br>-->
+      <!--                    <div class="row justify-content-center">-->
+      <!--                      <div class="col-3"> <img src="/assets/plugins/socialV/images/page-img/img-success.png" class="fit-image" alt="fit-image"> </div>-->
+      <!--                    </div>-->
+      <!--                    <br><br>-->
+      <!--                    <div class="row justify-content-center">-->
+      <!--                      <div class="col-7 text-center">-->
+      <!--                        <h5 class="purple-text text-center">Page créée avec succès</h5>-->
+      <!--                      </div>-->
+      <!--                    </div>-->
+      <!--                  </div>-->
+      <!--                </fieldset>-->
+    </form>
   </div>
 </div>
