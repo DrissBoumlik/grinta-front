@@ -18,6 +18,7 @@ export class User {
     public gender: string,
     public birth_date: string,
     public phoneNumber: string,
+    public location: string,
     public address: string,
     public city: string,
     public country: string,
