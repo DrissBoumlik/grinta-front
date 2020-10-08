@@ -66,20 +66,6 @@ ul.header-nav {
   color: var(--grintaaa);
 }
 
-#top-tab-list li.done a {
-  background-color: var(--grintaaa);
-  color: #fff;
-}
-
-#top-tab-list li.done i {
-  background-color: #fff;
-  color: var(--grintaaa);
-}
-
-#top-tab-list li#confirm.active a {
-  /*background-color: var(--iq-primary);*/
-}
-
 .iq-profile-avatar:before {
   height: 12px;
   width: 12px;

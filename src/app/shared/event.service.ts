@@ -27,9 +27,15 @@ export class EventService {
       );
   }
 
-  getNearEvents(kilometers, latitude, longitude) {
+  getNearEvents(kilometers, position: any) {
     AuthService.getHeaders();
-    return this.http.get(environment.baseApiUrl + `/events/${kilometers}/location/${latitude}/${longitude}`, {headers: AuthService.headers})
+    return this.http.post(environment.baseApiUrl + `/events/location`,
+      {
+        kilometers,
+        latitude: position.latitude,
+        longitude: position.longitude
+      },
+      {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),

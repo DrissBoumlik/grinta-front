@@ -12,6 +12,7 @@ import {RouterModule} from '@angular/router';
 import {FriendsModule} from '../friends/friends.module';
 import { EventAboutComponent } from './event/event-about/event-about.component';
 import { EventInvitationComponent } from './event/event-invitation/event-invitation.component';
+import { EventWrapperComponent } from './event-wrapper/event-wrapper.component';
 
 
 
@@ -23,6 +24,7 @@ import { EventInvitationComponent } from './event/event-invitation/event-invitat
     EventOptionsComponent,
     EventAboutComponent,
     EventInvitationComponent,
+    EventWrapperComponent,
   ],
   imports: [
     CommonModule,

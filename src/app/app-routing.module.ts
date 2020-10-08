@@ -33,6 +33,7 @@ import {UserEditContactComponent} from './user/profile/user-edit/user-edit-conta
 import {ProfileComponent} from './user/profile/profile/profile.component';
 import {EventComponent} from './user/events/event/event.component';
 import {EventAboutComponent} from './user/events/event/event-about/event-about.component';
+import {EventWrapperComponent} from './user/events/event-wrapper/event-wrapper.component';
 
 
 const routes: Routes = [
@@ -73,7 +74,7 @@ const routes: Routes = [
   {
     path: 'create', children: [
       {path: 'page', component: NewPageComponent},
-      {path: 'event', component: NewEventComponent}
+      {path: 'event', component: EventWrapperComponent}
     ]
   },
   {

@@ -6,6 +6,7 @@ export class Event {
     public id: number,
     public uuid: string,
     public user_id: number,
+    public sport_id: number,
     public name: string,
     public description: string,
     public date: string,

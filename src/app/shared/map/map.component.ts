@@ -6,6 +6,8 @@ import {EventService} from '../event.service';
 import {FormBuilder, FormControl} from '@angular/forms';
 import {LatLngExpression, Marker, Point} from 'leaflet';
 import {User} from '../../user/user.model';
+import {Event} from '../../user/events/event.model';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-map',
@@ -27,15 +29,18 @@ export class MapComponent implements OnInit, AfterViewInit {
   provider = null;
   results = [];
   user: User;
+  event: Event;
   showResults = false;
 
   constructor(private eventService: EventService,
               private fb: FormBuilder,
+              private authService: AuthService,
               private router: Router) {
   }
 
 
   ngOnInit() {
+    this.user = this.authService.user;
     // setup
     this.provider = new OpenStreetMapProvider();
   }
@@ -46,12 +51,18 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.storedPosition = JSON.parse(this.storedPosition);
       this.initMap(this.storedPosition);
     } else {
-
-      this.getCurrentPosition((position) => {
-        this.storedPosition = position;
+      try {
+        this.getCurrentPosition((position) => {
+          this.storedPosition = position;
+          localStorage.setItem('position', JSON.stringify(this.storedPosition));
+          this.initMap(this.storedPosition);
+        }, null);
+      } catch (e) {
+        const location = this.user.location.split(',');
+        this.storedPosition = { latitude: location[0], longitude: location[1] };
         localStorage.setItem('position', JSON.stringify(this.storedPosition));
         this.initMap(this.storedPosition);
-      }, null);
+      }
     }
   }
 
@@ -67,7 +78,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     tiles.addTo(this.map);
 
     const location: any = [position.latitude, position.longitude];
-    this.user = JSON.parse(localStorage.getItem('authUser'));
+    // this.user = JSON.parse(localStorage.getItem('authUser'));
     // const location = event.location.split(',').map((str) => parseFloat(str));
     const marker = L.marker(location, {
       icon: L.icon({
@@ -81,7 +92,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     });
     marker.addTo(this.map);
 
-    this.getNearEvents(this.Kilometers, position.latitude, position.longitude);
+    this.getNearEvents(this.Kilometers, position);
   }
 
   getCurrentPosition(resolve, reject = null) {
@@ -99,8 +110,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getNearEvents(kilometers, latitude, longitude) {
-    this.eventService.getNearEvents(kilometers, latitude, longitude)
+  getNearEvents(kilometers, position) {
+    this.eventService.getNearEvents(kilometers, position)
       .subscribe(
         (response: any) => {
           this.events = response.events;
@@ -140,14 +151,14 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.markers = [];
     this.Kilometers = this.GetEvents.value.Kilometers;
     if (this.storedPosition) {
-      this.getNearEvents(this.Kilometers, this.storedPosition.latitude, this.storedPosition.longitude);
+      this.getNearEvents(this.Kilometers, this.storedPosition);
+    } else {
+      this.getCurrentPosition((position) => {
+        this.storedPosition = position;
+        localStorage.setItem('position', JSON.stringify(this.storedPosition));
+        this.getNearEvents(this.Kilometers, this.storedPosition);
+      }, null);
     }
-
-    this.getCurrentPosition((position) => {
-      this.storedPosition = position;
-      localStorage.setItem('position', JSON.stringify(this.storedPosition));
-      this.getNearEvents(this.Kilometers, this.storedPosition.latitude, this.storedPosition.longitude);
-    }, null);
   }
 
   onGetAddresses() {

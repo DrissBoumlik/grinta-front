@@ -5,6 +5,8 @@ import {UserService} from '../../user.service';
 import {FeedbackService} from '../../../shared/feedback/feedback.service';
 import {SportService} from '../../../shared/sport.service';
 import {Sport} from '../../sports/sport.model';
+import {Event} from '../event.model';
+import {EventService} from '../../../shared/event.service';
 
 @Component({
   selector: 'app-new-event',
@@ -21,6 +23,7 @@ export class NewEventComponent implements OnInit {
     media: {active: false, done: false},
     finish: {active: false, done: false},
   };
+  event: Event;
 
   CreateEventForm = this.fb.group({
     name: new FormControl('eventoosss'),
@@ -38,13 +41,35 @@ export class NewEventComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private feedbackService: FeedbackService,
               private sportService: SportService,
-              private userService: UserService) {
-    this.user = this.userService.user;
-  }
+              private eventService: EventService,
+              private userService: UserService) {}
 
   ngOnInit() {
+    this.user = this.userService.user;
     this.sportService.getSports().subscribe((response: any) => {
       this.sports = response.sports;
+    });
+
+    this.eventService.eventLoaded.subscribe((event: Event) => {
+      this.event = event;
+      this.initForm();
+    });
+    this.event = this.eventService.event;
+    this.initForm();
+  }
+
+  initForm() {
+    this.CreateEventForm.patchValue({
+      name: this.event.name,
+      date: this.event.date.split(' ')[0],
+      limit_signup: this.event.limit_signup.split(' ')[0],
+      address: this.event.address,
+      location: this.event.location,
+      // image: this.event.image,
+      // cover: this.event.cover,
+      type: this.event.type,
+      description: this.event.description,
+      sport: this.event.sport_id
     });
   }
 
@@ -75,7 +100,6 @@ export class NewEventComponent implements OnInit {
   }
 
   onCreateEvent() {
-    // name, date, limitSignup, address, location, image, cover, type, description
     const event = {
       name: this.CreateEventForm.value.name,
       date: this.CreateEventForm.value.date,
@@ -91,6 +115,12 @@ export class NewEventComponent implements OnInit {
     this.userService.createEvent(event)
       .subscribe((response: any) => {
           console.log(response);
+          this.steps = {
+            infos: {active: false, done: true},
+            details: {active: false, done: true},
+            media: {active: true, done: true},
+            finish: {active: true, done: true},
+          };
           this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
         },
         (error: any) => {
