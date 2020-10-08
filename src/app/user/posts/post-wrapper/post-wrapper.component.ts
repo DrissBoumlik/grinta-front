@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import {Post} from '../posts/post/post.model';
-import {PostsService} from '../posts/posts.service';
+import {Post} from '../post/post.model';
+import {PostsService} from '../posts.service';
 
 @Component({
   selector: 'app-post-wrapper',

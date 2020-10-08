@@ -36,7 +36,7 @@ import {NewPageComponent} from './user/pages/new-page/new-page.component';
 import {PageComponent} from './user/pages/page/page.component';
 import {PagesComponent} from './user/pages/pages.component';
 import {PageItemComponent} from './user/pages/page-item/page-item.component';
-import {PostWrapperComponent} from './user/post-wrapper/post-wrapper.component';
+import {PostWrapperComponent} from './user/posts/post-wrapper/post-wrapper.component';
 import {TemplateComponent} from './user/template/template.component';
 import {HandlerHttpInterceptor} from './handler/handler-http-interceptor';
 import {DatePipe} from '@angular/common';

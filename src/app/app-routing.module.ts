@@ -17,7 +17,7 @@ import {UserEditComponent} from './user/profile/user-edit/user-edit.component';
 import {PostComponent} from './user/posts/post/post.component';
 import {TemplateComponent} from './user/template/template.component';
 import {PostsComponent} from './user/posts/posts.component';
-import {PostWrapperComponent} from './user/post-wrapper/post-wrapper.component';
+import {PostWrapperComponent} from './user/posts/post-wrapper/post-wrapper.component';
 import {ChatComponent} from './user/friends/chat/chat.component';
 import {EventOptionsComponent} from './user/events/event-options/event-options.component';
 import {SearchEventsComponent} from './search/search-events/search-events.component';
