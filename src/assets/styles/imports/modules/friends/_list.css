@@ -30,8 +30,8 @@
   font-size: 15px;
 }
 
-.iq-card-header-toolbar {
+.iq-friendlist-block .iq-card-header-toolbar {
   position: absolute;
-  right: .5rem;
+  right: 0;
   top: 0;
 }
