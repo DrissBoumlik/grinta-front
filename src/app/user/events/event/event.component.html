@@ -20,7 +20,7 @@
                         <img src="{{ event?.cover }}" alt="profile-bg" class="rounded img-fluid w-100 centered-img">
                       </div>
                       <ul class="header-nav header-nav-event d-flex flex-wrap justify-content-start ml-3 p-0 m-0">
-                        <li *ngIf="authUser.uuid == event.user_id"><a routerLink="/events/{{ event?.uuid }}/edit"><i class="ri-pencil-line"></i></a></li>
+                        <li *ngIf="authUser.uuid == event.user.uuid"><a routerLink="/events/{{ event?.uuid }}/edit"><i class="ri-pencil-line"></i></a></li>
                         <li><a routerLink="/messenger/{{ event?.user?.username }}"><i class="ri-message-line"></i></a></li>
                       </ul>
                     </div>
