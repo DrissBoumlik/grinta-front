@@ -55,11 +55,11 @@
               <h6 class="mb-0">{{ chatItem.firstname }}</h6>
               <span>{{ chatItem.lastMsg | excerpt:10 }}</span>
             </div>
-            <div class="chat-meta text-center mt-2 mr-1 d-none">
+            <div class="chat-meta text-center mt-2 mr-1">
               <div class="chat-msg-counter bg-primary text-white">20</div>
               <div class="msg-date">
-                <span class="text-nowrap align-left">{{ chatItem.dateMsg | date:'MMM-dd' }}</span>
-<!--                <span class="text-nowrap align-left">{{ chatItem.dateMsg | date:' hh:mm' }} min</span>-->
+<!--                <span class="text-nowrap align-left">{{ chatItem.dateMsg | date:'MMM-dd' }}</span>-->
+                <span class="font-size-12 text-nowrap align-left">{{ chatItem.dateMsg | date:' hh:mm' }}</span>
               </div>
             </div>
           </div>

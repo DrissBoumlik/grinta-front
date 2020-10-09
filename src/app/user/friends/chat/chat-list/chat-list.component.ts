@@ -41,6 +41,16 @@ export class ChatListComponent implements OnInit {
                 return null;
             });
           });
+          this.chatService.chatList = this.chatList = this.chatList.sort((chatItem1, chatItem2) => {
+              if (chatItem1.dateMsg > chatItem2.dateMsg) {
+                return -1;
+              }
+              if (chatItem1.dateMsg < chatItem2.dateMsg) {
+                return 1;
+              }
+              return 0;
+          });
+          console.log(this.chatList);
         },
         error => console.log(error)
       );
