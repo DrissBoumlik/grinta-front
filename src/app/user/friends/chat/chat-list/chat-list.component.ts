@@ -14,7 +14,8 @@ export class ChatListComponent implements OnInit {
   authUser: User;
   fbDB = firebase.database();
   chatDB = 'chats';
-  chatList: User[] = [];
+  chatList: (User | any)[] = [];
+
   constructor(private authService: AuthService,
               private userService: UserService,
               private chatService: ChatService) { }
@@ -26,10 +27,22 @@ export class ChatListComponent implements OnInit {
     );
 
     this.fbDB.ref(this.chatDB).on('value', resp => {
-      const userNames = this.snapshotToArray(resp);
-      this.userService.getUsers(userNames).subscribe(
+      const results = this.snapshotToArray(resp);
+      this.userService.getUsers(results.userNames).subscribe(
         (response: any) => {
           this.chatList = response.users;
+          console.log(results.chats);
+          console.log(this.chatList);
+          this.chatList = this.chatList.filter((user) => {
+            return results.chats.filter((chat) => {
+                if (user.username === chat.username) {
+                  user.lastMsg = chat.lastMsg;
+                  user.dateMsg = chat.date;
+                  return user;
+                }
+                return null;
+            });
+          });
         },
         error => console.log(error)
       );
@@ -39,20 +52,24 @@ export class ChatListComponent implements OnInit {
 
   snapshotToArray(snapshot: any) {
     const returnArr = [];
+    const chats = [];
 
     snapshot.forEach((childSnapshot: any) => {
       const items: any = Object.values(childSnapshot.val());
+      const lastItem = items[items.length - 1];
+      const ChatUserWith = this.authUser.username === lastItem.from ? lastItem.to : lastItem.from;
       const chat = {
-        userFrom: items[0].from,
-        userTo: items[0].to
+        username: ChatUserWith,
+        lastMsg: lastItem.message,
+        date: lastItem.date
       };
-      // item.sender = item.from === this.user.username ? this.user : this.authUser;
-      // item.receiver = item.from !== this.user.username ? this.user : this.authUser;
-      // items.key = childSnapshot.key;
-      returnArr.push(this.authUser.username === chat.userFrom ? chat.userTo : chat.userFrom);
+      if (this.authUser.username === lastItem.from || this.authUser.username === lastItem.to) {
+        chats.push(chat);
+        returnArr.push(chat.username);
+      }
     });
 
-    return returnArr;
+    return {userNames: returnArr, chats};
   }
 
 }

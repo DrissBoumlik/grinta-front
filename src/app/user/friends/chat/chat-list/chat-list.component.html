@@ -9,18 +9,15 @@
       </div>
       <button type="submit" class="close-btn-res p-3"><i class="ri-close-fill"></i></button>
     </div>
-    <div id="user-detail-popup" class="scroller">
+    <div id="user-detail-popup" class="scroller d-none">
       <div class="user-profile">
         <button type="submit" class="close-popup p-3"><i class="ri-close-fill"></i></button>
         <div class="user text-center mb-4">
           <a class="avatar m-0">
-            <img src="/assets/plugins/socialV/images/user/1.jpg" alt="avatar">
+            <img src="{{ authUser?.picture }}" alt="avatar">
           </a>
           <div class="user-name mt-4">
-            <h4>Bni Jordan</h4>
-          </div>
-          <div class="user-desc">
-            <p>Web Designer</p>
+            <h4>{{ authUser?.fullName }}</h4>
           </div>
         </div>
         <hr>
@@ -56,49 +53,11 @@
             </div>
             <div class="chat-sidebar-name">
               <h6 class="mb-0">{{ chatItem.fullName }}</h6>
-              <span>Lorem Ipsum is</span>
+              <span>{{ chatItem.lastMsg }}</span>
             </div>
             <div class="chat-meta float-right text-center mt-2 mr-1">
               <div class="chat-msg-counter bg-primary text-white">20</div>
-              <span class="text-nowrap">05 min</span>
-            </div>
-          </div>
-        </a>
-      </li>
-
-
-      <li>
-        <a  data-toggle="pill" href="#chatbox1">
-          <div class="d-flex align-items-center">
-            <div class="avatar mr-2">
-              <img src="/assets/plugins/socialV/images/user/05.jpg" alt="chatuserimage" class="avatar-50 ">
-              <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-success"></i></span>
-            </div>
-            <div class="chat-sidebar-name">
-              <h6 class="mb-0">Team Discussions</h6>
-              <span>Lorem Ipsum is</span>
-            </div>
-            <div class="chat-meta float-right text-center mt-2 mr-1">
-              <div class="chat-msg-counter bg-primary text-white">20</div>
-              <span class="text-nowrap">05 min</span>
-            </div>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a  data-toggle="pill" href="#chatbox2">
-          <div class="d-flex align-items-center">
-            <div class="avatar mr-2">
-              <img src="/assets/plugins/socialV/images/user/06.jpg" alt="chatuserimage" class="avatar-50 ">
-              <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-success"></i></span>
-            </div>
-            <div class="chat-sidebar-name">
-              <h6 class="mb-0">Announcement</h6>
-              <span>This Sunday we</span>
-            </div>
-            <div class="chat-meta float-right text-center mt-2 mr-1">
-              <div class="chat-msg-counter bg-primary text-white">10</div>
-              <span class="text-nowrap">10 min</span>
+              <span class="text-nowrap">{{ chatItem.dateMsg | date:'mm' }} min</span>
             </div>
           </div>
         </a>
