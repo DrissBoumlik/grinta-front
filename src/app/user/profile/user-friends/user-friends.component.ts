@@ -77,6 +77,7 @@ export class UserFriendsComponent implements OnInit {
 
   onLoadMore() {
     if (this.shouldScroll) {
+      this.shouldScroll = false;
       this.urls[this.type]();
     }
   }

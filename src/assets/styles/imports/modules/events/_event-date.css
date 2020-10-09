@@ -3,7 +3,6 @@
 .event-date .wrapper {
   border-radius: 5px;
   overflow: hidden;
-  border: 1px solid var(--light-gray);
   box-shadow: 0 0 12px var(--light-gray);
 }
 
