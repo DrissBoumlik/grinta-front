@@ -47,11 +47,11 @@ export class ChatBoxComponent implements OnInit, AfterViewChecked {
             this.chatId = (this.user.username + '_' + this.authUser.username).replace(/\.|\#|\$|\[|\]/g, '_');
           }
 
-          this.fbDB.ref(this.chatId).on('value', resp => {
-            console.log(resp);
+          this.fbDB.ref('chats/' + this.chatId).on('value', resp => {
+            // console.log(resp);
             this.chats = [];
             this.chats = this.snapshotToArray(resp);
-            console.log(this.chats);
+            // console.log(this.chats);
             this.sendingMessage = true;
             // setTimeout(() => this.scrolltop = this.chatcontent.nativeElement.scrollHeight, 500);
           });
@@ -69,7 +69,6 @@ export class ChatBoxComponent implements OnInit, AfterViewChecked {
   }
 
   updateScroll() {
-    console.log('scrolling');
     try {
       this.scrollToBottomBox.nativeElement.scrollTop = this.scrollToBottomBox.nativeElement.scrollHeight;
     } catch (err) {
@@ -93,7 +92,7 @@ export class ChatBoxComponent implements OnInit, AfterViewChecked {
 
   onSendMessage() {
     this.sendingMessage = true;
-    console.log(this.sendMessageForm.value);
+    // console.log(this.sendMessageForm.value);
     const chat = {
       message: this.sendMessageForm.value.message,
       date: this.datePipe.transform(new Date(), 'yyyy-MM-ddTHH:mm:ss'),
@@ -101,7 +100,7 @@ export class ChatBoxComponent implements OnInit, AfterViewChecked {
       from: this.authUser.username,
       to: this.user.username,
     };
-    const newMessage = this.fbDB.ref(this.chatId).push();
+    const newMessage = this.fbDB.ref('chats/' + this.chatId).push();
     newMessage.set(chat);
     this.sendMessageForm = this.fb.group({
       message : [null, Validators.required]

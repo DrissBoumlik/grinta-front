@@ -17,6 +17,24 @@ export class UserService {
     this.user = this.authService.user;
   }
 
+  getUsers(userNames: any[]) {
+    AuthService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/users/list',
+      {userNames},
+      {headers: AuthService.headers})
+      .pipe(
+        tap(
+          (data: any) => {
+            console.log(data);
+            // this.profile = data.user;
+            // this.alreadyLoaded = true;
+            // this.profileLoaded.next(this.profile);
+          },
+          error => console.log(error.status),
+        )
+      );
+  }
+
   followUser(followedId: number) {
     AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/followers', {followedId}, {headers: AuthService.headers})
@@ -49,6 +67,7 @@ export class UserService {
         )
       );
   }
+
   removeFriend(friendId: number) {
     AuthService.getHeaders();
     return this.http.delete(environment.baseApiUrl + '/friends/' + friendId, {headers: AuthService.headers})
