@@ -37,27 +37,29 @@ export class ChatBoxComponent implements OnInit, AfterViewChecked {
     this.authUser = this.authService.user;
     this.route.params.subscribe((params: Params) => {
       const username = params.username;
-      this.chatService.getUser(username).subscribe(
-        (response: any) => {
-          this.user = response.user;
+      if (username) {
+        this.chatService.getUser(username).subscribe(
+          (response: any) => {
+            this.user = response.user;
 
-          if (this.authUser.username < this.user.username) {
-            this.chatId = (this.authUser.username + '_' + this.user.username).replace(/\.|\#|\$|\[|\]/g, '_');
-          } else {
-            this.chatId = (this.user.username + '_' + this.authUser.username).replace(/\.|\#|\$|\[|\]/g, '_');
-          }
+            if (this.authUser.username < this.user.username) {
+              this.chatId = (this.authUser.username + '_' + this.user.username).replace(/\.|\#|\$|\[|\]/g, '_');
+            } else {
+              this.chatId = (this.user.username + '_' + this.authUser.username).replace(/\.|\#|\$|\[|\]/g, '_');
+            }
 
-          this.fbDB.ref('chats/' + this.chatId).on('value', resp => {
-            // console.log(resp);
-            this.chats = [];
-            this.chats = this.snapshotToArray(resp);
-            // console.log(this.chats);
-            this.sendingMessage = true;
-            // setTimeout(() => this.scrolltop = this.chatcontent.nativeElement.scrollHeight, 500);
-          });
-        },
-        (error: any) => console.log(error)
-      );
+            this.fbDB.ref('chats/' + this.chatId).on('value', resp => {
+              // console.log(resp);
+              this.chats = [];
+              this.chats = this.snapshotToArray(resp);
+              // console.log(this.chats);
+              this.sendingMessage = true;
+              // setTimeout(() => this.scrolltop = this.chatcontent.nativeElement.scrollHeight, 500);
+            });
+          },
+          (error: any) => console.log(error)
+        );
+      }
     });
   }
 

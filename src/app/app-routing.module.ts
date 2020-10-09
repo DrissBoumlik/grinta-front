@@ -35,6 +35,8 @@ import {EventComponent} from './user/events/event/event.component';
 import {EventAboutComponent} from './user/events/event/event-about/event-about.component';
 import {EventWrapperComponent} from './user/events/event-wrapper/event-wrapper.component';
 import {PageWrapperComponent} from './user/pages/page-wrapper/page-wrapper.component';
+import {ChatBoxComponent} from './user/friends/chat/chat-box/chat-box.component';
+import {ChatDefaultComponent} from './user/friends/chat/chat-default/chat-default.component';
 
 
 const routes: Routes = [
@@ -67,7 +69,12 @@ const routes: Routes = [
       },
     ]
   },
-  {path: 'messenger/:username', component: ChatComponent},
+  {
+    path: 'messenger', component: ChatComponent, children: [
+      {path: '', component: ChatDefaultComponent},
+      {path: ':username', component: ChatBoxComponent},
+    ]
+  },
   // { path: ':username', component: UserComponent},
   {
     path: 'create', children: [
