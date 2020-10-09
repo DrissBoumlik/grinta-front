@@ -9,6 +9,7 @@ import {tap} from 'rxjs/operators';
 @Injectable()
 export class ChatService {
   user: User;
+  chatList: (User | any)[] = [];
   userLoaded = new Subject<User>();
   toggleChatList = new Subject();
 
@@ -29,5 +30,11 @@ export class ChatService {
           error => console.log(error.status),
         )
       );
+  }
+
+  searchChatList(value: string) {
+    return this.chatList.filter((chatItem: User) => {
+      return chatItem.firstname.toLowerCase().includes(value) || chatItem.lastname.toLowerCase().includes(value);
+    });
   }
 }

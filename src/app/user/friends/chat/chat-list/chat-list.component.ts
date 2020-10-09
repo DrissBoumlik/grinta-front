@@ -31,9 +31,7 @@ export class ChatListComponent implements OnInit {
       this.userService.getUsers(results.userNames).subscribe(
         (response: any) => {
           this.chatList = response.users;
-          console.log(results.chats);
-          console.log(this.chatList);
-          this.chatList = this.chatList.filter((user) => {
+          this.chatService.chatList = this.chatList = this.chatList.filter((user) => {
             return results.chats.filter((chat) => {
                 if (user.username === chat.username) {
                   user.lastMsg = chat.lastMsg;
@@ -72,4 +70,7 @@ export class ChatListComponent implements OnInit {
     return {userNames: returnArr, chats};
   }
 
+  onSearch(value: string) {
+    this.chatList = this.chatService.searchChatList(value.toLowerCase());
+  }
 }
