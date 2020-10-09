@@ -53,9 +53,9 @@ export class RegisterComponent implements OnInit {
     //   this.sports = response.sports;
     // });
 
-    this.toolsService.getCities().subscribe((response: any) => {
-      this.cities = response;
-    });
+    // this.toolsService.getCities().subscribe((response: any) => {
+    //   this.cities = response;
+    // });
 
     this.socialService.authState.subscribe((user) => {
       this.socialUser = user;
@@ -161,13 +161,15 @@ export class RegisterComponent implements OnInit {
             this.userService.user = this.authService.user = response2.success.user;
             this.router.navigate(['home']);
           });
-      }, (response: any) => {
-        const error = response.error.error;
-        const messages = [];
-        Object.entries(error).forEach((item: any) => {
-          messages.push(item[1].flat()[0]);
-        });
-        this.feedbackService.feedbackReceived.next({feedback: 'error', message: messages});
+      }, (error) => {
+        // const error = response.error.error;
+        // const messages = [];
+        // Object.entries(error).forEach((item: any) => {
+        //   messages.push(item[1].flat()[0]);
+        // });
+        console.log(error);
+        const message = error.error ? error.error : (error.error.errors ? error.error.errors : error.error.message);
+        this.feedbackService.feedbackReceived.next({feedback: 'error', message});
       });
   }
 
