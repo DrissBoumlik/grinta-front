@@ -18,7 +18,7 @@
               <a routerLink="/{{ user.username }}">
                 <img src="{{ user?.picture }}" alt="avatar" class="avatar-50 ">
               </a>
-              <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-success"></i></span>
+              <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill {{ user?.isOnline ? 'text-success' : 'text-danger' }}"></i></span>
             </div>
             <a routerLink="/{{ user.username }}">
               <h5 class="mb-0">{{ user?.fullName }}</h5>

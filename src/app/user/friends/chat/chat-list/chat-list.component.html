@@ -52,7 +52,7 @@
           <div class="d-flex align-items-center">
             <div class="avatar mr-2">
               <img src="{{ chatItem.picture }}" alt="chatuserimage" class="avatar-50 ">
-              <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-success"></i></span>
+              <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill {{ chatItem?.isOnline ? 'text-success' : 'text-danger' }}"></i></span>
             </div>
             <div class="chat-sidebar-name">
               <h6 class="mb-0">{{ chatItem.fullName }}</h6>
