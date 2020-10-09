@@ -1,0 +1,14 @@
+
+
+
+
+
+
+
+
+@media (max-width: 992px) {
+  .chat-data-left {
+    position: absolute;
+    height: calc(100% - 15px);
+  }
+}

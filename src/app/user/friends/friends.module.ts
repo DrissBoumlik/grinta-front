@@ -12,6 +12,8 @@ import {FriendsComponent} from './friends.component';
 import {ChatComponent} from './chat/chat.component';
 import {ChatBoxComponent} from './chat/chat-box/chat-box.component';
 import {ChatService} from './chat.service';
+import { ChatListComponent } from './chat/chat-list/chat-list.component';
+import { ChatWrapperComponent } from './chat/chat-wrapper/chat-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import {ChatService} from './chat.service';
     FriendsComponent,
     ChatComponent,
     ChatBoxComponent,
+    ChatListComponent,
+    ChatWrapperComponent,
   ],
   exports: [
     FriendComponent,

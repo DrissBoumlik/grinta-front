@@ -31,3 +31,6 @@
 @import "events/_map.css";
 
 @import "friends/_list.css";
+
+@import "chat/_list-msg.css";
+@import "chat/_layout.css";

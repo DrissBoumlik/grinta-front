@@ -1,0 +1,88 @@
+<div class="chat-list">
+  <div class="chat-search pt-3 pl-3">
+    <div class="d-flex align-items-center">
+      <div class="chat-profile mr-3">
+        <img src="{{ authUser?.picture }}" alt="chat-user" class="avatar-60 ">
+      </div>
+      <div class="chat-caption">
+        <h5 class="mb-0">{{ authUser?.fullName }}</h5>
+      </div>
+      <button type="submit" class="close-btn-res p-3"><i class="ri-close-fill"></i></button>
+    </div>
+    <div id="user-detail-popup" class="scroller">
+      <div class="user-profile">
+        <button type="submit" class="close-popup p-3"><i class="ri-close-fill"></i></button>
+        <div class="user text-center mb-4">
+          <a class="avatar m-0">
+            <img src="/assets/plugins/socialV/images/user/1.jpg" alt="avatar">
+          </a>
+          <div class="user-name mt-4">
+            <h4>Bni Jordan</h4>
+          </div>
+          <div class="user-desc">
+            <p>Web Designer</p>
+          </div>
+        </div>
+        <hr>
+        <div class="user-detail text-left mt-4 pl-4 pr-4">
+          <h5 class="mt-4 mb-4">About</h5>
+          <p>It is long established fact that a reader will be distracted bt the reddable.</p>
+          <h5 class="mt-3 mb-3">Status</h5>
+          <ul class="user-status p-0">
+            <li class="mb-1"><i class="ri-checkbox-blank-circle-fill text-success pr-1"></i><span>Online</span></li>
+            <li class="mb-1"><i class="ri-checkbox-blank-circle-fill text-warning pr-1"></i><span>Away</span></li>
+            <li class="mb-1"><i class="ri-checkbox-blank-circle-fill text-danger pr-1"></i><span>Do Not Disturb</span></li>
+            <li class="mb-1"><i class="ri-checkbox-blank-circle-fill text-light pr-1"></i><span>Offline</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="chat-searchbar mt-4">
+      <div class="form-group chat-search-data m-0">
+        <input type="text" class="form-control" id="chat-search" placeholder="Search">
+        <i class="ri-search-line"></i>
+      </div>
+    </div>
+  </div>
+  <div class="chat-sidebar-channel scroller mt-4 pl-3">
+    <h5 class="">Chats</h5>
+    <ul class="iq-chat-ui nav flex-column nav-pills">
+      <li>
+        <a  data-toggle="pill" href="#chatbox1">
+          <div class="d-flex align-items-center">
+            <div class="avatar mr-2">
+              <img src="/assets/plugins/socialV/images/user/05.jpg" alt="chatuserimage" class="avatar-50 ">
+              <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-success"></i></span>
+            </div>
+            <div class="chat-sidebar-name">
+              <h6 class="mb-0">Team Discussions</h6>
+              <span>Lorem Ipsum is</span>
+            </div>
+            <div class="chat-meta float-right text-center mt-2 mr-1">
+              <div class="chat-msg-counter bg-primary text-white">20</div>
+              <span class="text-nowrap">05 min</span>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a  data-toggle="pill" href="#chatbox2">
+          <div class="d-flex align-items-center">
+            <div class="avatar mr-2">
+              <img src="/assets/plugins/socialV/images/user/06.jpg" alt="chatuserimage" class="avatar-50 ">
+              <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-success"></i></span>
+            </div>
+            <div class="chat-sidebar-name">
+              <h6 class="mb-0">Announcement</h6>
+              <span>This Sunday we</span>
+            </div>
+            <div class="chat-meta float-right text-center mt-2 mr-1">
+              <div class="chat-msg-counter bg-primary text-white">10</div>
+              <span class="text-nowrap">10 min</span>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

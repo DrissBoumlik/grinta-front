@@ -15,13 +15,14 @@ import {DatePipe} from '@angular/common';
 })
 export class ChatBoxComponent implements OnInit, AfterViewChecked {
 
-  @ViewChild('scrollToBottom', {static: false}) private scrollToBottomBox: ElementRef;
-  @Input() user: User;
+  @ViewChild('scrollToBottom', {static: false}) scrollToBottomBox: ElementRef;
+  user: User;
   authUser: User;
   chats: any[] = [];
   fbDB = firebase.database();
   chatId = null;
-  sendingMessage = true;
+  sendingMessage = false;
+  toggleChatList = true;
   constructor(private chatService: ChatService,
               private authService: AuthService,
               private fb: FormBuilder,
@@ -105,5 +106,10 @@ export class ChatBoxComponent implements OnInit, AfterViewChecked {
     this.sendMessageForm = this.fb.group({
       message : [null, Validators.required]
     });
+  }
+
+  onToggleChatList() {
+    this.chatService.toggleChatList.next(this.toggleChatList);
+    this.toggleChatList = !this.toggleChatList;
   }
 }

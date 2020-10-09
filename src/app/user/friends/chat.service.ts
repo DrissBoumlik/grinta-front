@@ -10,6 +10,7 @@ import {tap} from 'rxjs/operators';
 export class ChatService {
   user: User;
   userLoaded = new Subject<User>();
+  toggleChatList = new Subject();
 
   constructor(private http: HttpClient) { }
 

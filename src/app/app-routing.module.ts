@@ -67,10 +67,7 @@ const routes: Routes = [
       },
     ]
   },
-  {path: 'messenger', component: TemplateComponent, children: [
-      {path: ':username', component: ChatComponent},
-    ]
-  },
+  {path: 'messenger/:username', component: ChatComponent},
   // { path: ':username', component: UserComponent},
   {
     path: 'create', children: [
