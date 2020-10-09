@@ -1,3 +1,11 @@
+ul.header-nav li a {
+  border: 1px solid var(--grintaaa);
+}
+
+ul.header-nav li a i {
+  position: relative;
+  top: -2px;
+}
 
 .profile-img img {
   border: 5px solid #fff;

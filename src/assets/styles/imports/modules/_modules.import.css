@@ -4,9 +4,11 @@
 @import "shared/_user-item.css";
 @import "shared/_alert.css";
 @import "shared/_preview-page.css";
+@import "shared/_checkbox.css";
 
 @import "profile/common/_header.css";
 @import "profile/edit/_menu.css";
+@import "profile/edit/_edit-form.css";
 @import "profile/friends/_list-users.css";
 @import "profile/photos/_gallery-photos.css";
 @import "profile/likes/pages/_list.css";
