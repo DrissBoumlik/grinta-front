@@ -2,7 +2,9 @@
 
 
 
-
+.chat-item-wrapper:hover {
+  background-color: var(--middle-gray);
+}
 
 
 
