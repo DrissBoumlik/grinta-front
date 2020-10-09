@@ -3,6 +3,7 @@ import {ActivatedRoute, Params} from '@angular/router';
 import {EventService} from '../../../shared/event.service';
 import {User} from '../../user.model';
 import {Event} from '../event.model';
+import {AuthService} from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-event',
@@ -10,13 +11,16 @@ import {Event} from '../event.model';
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
+  authUser: User;
   user: User;
   event: Event;
   showInvitationModal = false;
   constructor(private route: ActivatedRoute,
+              private authService: AuthService,
               private eventService: EventService) { }
 
   ngOnInit() {
+    this.authUser = this.authService.user;
     let uuid = this.route.snapshot.params.uuid;
     this.onGetEvent(uuid);
     this.route.params.subscribe((params: Params) => {
