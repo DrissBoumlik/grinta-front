@@ -4,7 +4,8 @@
 }
 
 .user-item-wrapper:hover {
-  background-color: #F0F2F5;
+  background-color: var(--middle-gray);
+  border-radius: 5px;
 }
 
 .user-item-img-container {

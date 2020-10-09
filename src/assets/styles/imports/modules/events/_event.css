@@ -4,7 +4,7 @@
 }
 
 .host-wrapper:hover {
-  background-color: #F0F2F5;
+  background-color: var(--middle-gray);
 }
 
 .host-img-container {
