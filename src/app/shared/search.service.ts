@@ -13,10 +13,10 @@ export class SearchService {
 
   constructor(private http: HttpClient) {}
 
-  searchEverything(term: any = null) {
-    term = [null, undefined].includes(term) ? '' : term;
+  searchEverything(searchTerm: any = null) {
+    searchTerm = [null, undefined].includes(searchTerm) ? '' : searchTerm;
     AuthService.getHeaders();
-    return this.http.get(environment.baseApiUrl + '/search/' + term, {headers: AuthService.headers})
+    return this.http.get(environment.baseApiUrl + `/search?term=${searchTerm}`, {headers: AuthService.headers})
       .pipe(
         tap(
           (data: any) => {
