@@ -33,7 +33,8 @@ export class EventInvitationComponent implements OnInit {
       this.event = event;
     });
     this.event = this.eventService.event;
-    this.onGetRelations();
+    const params = {page: this.queryPage, searchTerm: this.searchTerm, uuid: this.event.uuid};
+    this.onGetRelations(params);
 
     this.renderer.listen('window', 'click', (e: Event) => {
       if (this.modalWrapper && e.target !== this.modal.nativeElement && e.target === this.modalWrapper.nativeElement) {
@@ -42,13 +43,15 @@ export class EventInvitationComponent implements OnInit {
     });
   }
 
-  onGetRelations(page = 1, searchTerm = '') {
+  onGetRelations(params = {page: 1, searchTerm: '', uuid: ''}) {
     this.loadingData = true;
     this.emptyResults = false;
-    this.relationService.getRelations(page, searchTerm).subscribe((response: any) => {
-      this.relations = this.relationService.relations.filter((user) => {
-        return !this.event.users.some((invitedUser) => user.uuid === invitedUser.uuid );
-      });
+    params = {...{uuid: this.event.uuid}, ...params};
+    this.relationService.getRelations(params).subscribe((response: any) => {
+      // this.relations = this.relationService.relations.filter((user) => {
+      //   return !this.event.users.some((invitedUser) => user.uuid === invitedUser.uuid );
+      // });
+      this.relations = this.relationService.relations;
       this.emptyResults = !response.relations.length && this.queryPage === 1;
       this.stopLoadingMore = !response.relations.length && this.queryPage > 1;
       this.loadingData = false;
@@ -72,7 +75,8 @@ export class EventInvitationComponent implements OnInit {
           this.eventService.eventUpdated.next(data.event);
         });
         this.queryPage = 1;
-        this.onGetRelations(this.queryPage, this.searchTerm);
+        const params = {page: this.queryPage, searchTerm: this.searchTerm, uuid: this.event.uuid};
+        this.onGetRelations(params);
         this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
       }, (error: any) => {
         const message = error.error.errors ? error.error.errors : error.error.message;
@@ -86,13 +90,15 @@ export class EventInvitationComponent implements OnInit {
     this.searchTerm = value;
     clearTimeout(this.sendRequest);
     this.sendRequest = setTimeout(() => {
-      this.onGetRelations(this.queryPage, this.searchTerm);
+      const params = {page: this.queryPage, searchTerm: this.searchTerm, uuid: this.event.uuid};
+      this.onGetRelations(params);
     }, 500);
   }
 
   onLoadMore() {
     if (!this.stopLoadingMore) {
-      this.onGetRelations(++this.queryPage, this.searchTerm);
+      const params = {page: ++this.queryPage, searchTerm: this.searchTerm, uuid: this.event.uuid};
+      this.onGetRelations(params);
     }
   }
 }

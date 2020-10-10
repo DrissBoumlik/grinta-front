@@ -5,7 +5,6 @@ import {tap} from 'rxjs/operators';
 import {User} from '../user.model';
 import {AuthService} from '../../auth/auth.service';
 
-// import {r} from 'rethinkdb-ts';
 
 @Injectable()
 export class RelationService {
@@ -32,14 +31,15 @@ export class RelationService {
       );
   }
 
-  getRelations(page = 1, searchTerm = '') {
+  getRelations(params = {page: 1, searchTerm: '', uuid: ''}) {
     AuthService.getHeaders();
-    return this.http.get(environment.baseApiUrl + `/search/relations?page=${page}&term=${searchTerm}`, {headers: AuthService.headers})
+    return this.http.get(environment.baseApiUrl + `/search/relations?page=${params.page}&term=${params.searchTerm}&uuid=${params.uuid}`,
+      {headers: AuthService.headers})
       .pipe(
         tap(
           (data: any) => {
             // console.log(data);
-            if (page === 1) {
+            if (params.page === 1) {
               this.relations = [];
             }
             // this.friends = data.friends;
