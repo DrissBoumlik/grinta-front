@@ -13,6 +13,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {PostsService} from './posts.service';
 import {PageService} from '../pages/page/page.service';
 import {SharedModule} from '../../shared/shared.module';
+import { PostsWrapperComponent } from './posts-wrapper/posts-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {SharedModule} from '../../shared/shared.module';
     CommentsComponent,
     CommentComponent,
     ReplyComponent,
+    PostsWrapperComponent,
   ],
   exports: [
     PostComponent,
@@ -30,6 +32,7 @@ import {SharedModule} from '../../shared/shared.module';
     CommentsComponent,
     CommentComponent,
     ReplyComponent,
+    PostsWrapperComponent,
   ],
   imports: [RouterModule, CommonModule, ReactiveFormsModule, NgxSpinnerModule, InfiniteScrollModule, SharedModule],
   providers: [PostsService, PageService]

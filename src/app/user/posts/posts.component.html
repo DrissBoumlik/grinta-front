@@ -1,12 +1,6 @@
 <div class="row">
     <div class="col-md-12">
       <div class="container-fluid">
-
-        <div class="row">
-          <div class="col-12 p-0">
-            <app-new-post [user]="authUser"></app-new-post>
-          </div>
-        </div>
         <div class="row posts">
           <div class="col-12 p-0">
             <app-post *ngFor="let post of user?.posts; let i = index"

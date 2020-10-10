@@ -24,7 +24,16 @@ export class PostsComponent implements OnInit {
   scroll = true;
   gotAllPosts = false;
   postsLoaded = false;
-  loadMore = false;
+  loadMore = true;
+
+
+  constructor(private authService: AuthService,
+              private userService: UserService,
+              private profileService: ProfileService,
+              private postsService: PostsService,
+              private pageService: PageService,
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.authService.isLogged(this.router);
@@ -76,14 +85,6 @@ export class PostsComponent implements OnInit {
       const profileId = this.isProfile ? this.user.id : null;
       this.getPosts(profileId, 'user');
     }
-  }
-
-  constructor(private authService: AuthService,
-              private userService: UserService,
-              private profileService: ProfileService,
-              private postsService: PostsService,
-              private pageService: PageService,
-              private router: Router) {
   }
 
   initLoad(user: User) {
