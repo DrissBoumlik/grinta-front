@@ -37,6 +37,16 @@ export class UserFriendsComponent implements OnInit {
         this.loading = false;
       });
     },
+    followers: () => {
+      this.loading = true;
+      this.emptyList = false;
+      this.relationService.getFollowers().subscribe((response: any) => {
+        this.friends = this.relationService.friends;
+        this.emptyList = !this.friends.length;
+        this.shouldScroll = !!response.followers.length;
+        this.loading = false;
+      });
+    },
     addedFriends: () => {
       this.loading = true;
       this.emptyList = false;
