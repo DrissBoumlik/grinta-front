@@ -1,9 +1,7 @@
 import {Component, ElementRef, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {from, Subject} from 'rxjs';
 import {RelationService} from '../../../friends/relation.service';
-import {User} from '../../../user.model';
 import {EventService} from '../../../../shared/event.service';
-import {pluck} from 'rxjs/operators';
 import {Event as EventModel} from '../../event.model';
 import {FeedbackService} from '../../../../shared/feedback/feedback.service';
 
@@ -16,15 +14,20 @@ export class EventInvitationComponent implements OnInit {
   @ViewChild('modal', {static: false}) modal: ElementRef;
   @ViewChild('modalWrapper', {static: false}) modalWrapper: ElementRef;
   event: EventModel;
-  noRelations = false;
   relations: any[] = [];
+  sendRequest = null;
+  searchTerm = '';
+  queryPage: number;
+  loadMore = true;
   @Output() closeModal = new Subject();
+  getAllData = false;
   constructor(private relationService: RelationService,
               private feedbackService: FeedbackService,
               private renderer: Renderer2,
               private eventService: EventService) { }
 
   ngOnInit() {
+    this.queryPage = 1;
     this.eventService.eventLoaded.subscribe((event: EventModel) => {
       this.event = event;
     });
@@ -38,12 +41,20 @@ export class EventInvitationComponent implements OnInit {
     });
   }
 
-  onGetRelations() {
-    this.relationService.getFriends().subscribe((response: any) => {
-      this.relations = this.relationService.friends.filter((user) => {
+  onGetRelations(searchTerm = '', page = 1) {
+    this.relations = [];
+    this.loadMore = true;
+    this.relationService.getRelations(searchTerm, page).subscribe((response: any) => {
+      this.relations = this.relationService.relations.filter((user) => {
         return !this.event.users.some((invitedUser) => user.uuid === invitedUser.uuid );
       });
-      this.noRelations = !this.relations.length;
+      if (!this.relations.length) {
+        this.getAllData = true;
+      }
+      this.loadMore = false;
+      console.clear();
+      console.log(this.loadMore);
+      console.log(this.getAllData);
     });
   }
 
@@ -51,7 +62,7 @@ export class EventInvitationComponent implements OnInit {
     this.closeModal.next(true);
   }
 
-  onToggleUser(user: any) {
+  onToggleChooseUser(user: any) {
     user.chosen = !user.chosen;
   }
 
@@ -70,5 +81,20 @@ export class EventInvitationComponent implements OnInit {
         this.feedbackService.feedbackReceived.next({feedback: 'error', message});
       }
     );
+  }
+
+  onSearch(value: any, page = 1) {
+    this.searchTerm = value;
+    clearTimeout(this.sendRequest);
+    this.sendRequest = setTimeout(() => {
+      this.onGetRelations(this.searchTerm, page);
+    }, 500);
+  }
+
+  onLoadMore() {
+    console.log('loading ...');
+    if (!this.getAllData) {
+      this.onGetRelations(this.searchTerm, ++this.queryPage);
+    }
   }
 }

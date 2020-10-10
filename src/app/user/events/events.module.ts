@@ -13,6 +13,7 @@ import {FriendsModule} from '../friends/friends.module';
 import { EventAboutComponent } from './event/event-about/event-about.component';
 import { EventInvitationComponent } from './event/event-invitation/event-invitation.component';
 import { EventWrapperComponent } from './event-wrapper/event-wrapper.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 
 
@@ -33,7 +34,8 @@ import { EventWrapperComponent } from './event-wrapper/event-wrapper.component';
     FormsModule,
     RouterModule,
     FriendsModule,
-    SharedModule
+    SharedModule,
+    InfiniteScrollModule
   ],
   exports: [
     EventsComponent,

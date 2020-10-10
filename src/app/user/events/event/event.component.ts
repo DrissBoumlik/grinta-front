@@ -41,7 +41,6 @@ export class EventComponent implements OnInit {
   }
 
   onInvite() {
-    console.log('invited');
     this.showInvitationModal = true;
   }
 
