@@ -32,9 +32,9 @@ export class RelationService {
       );
   }
 
-  getAllRelations(page = 1) {
+  getRelations(searchTerm = '', page = 1) {
     AuthService.getHeaders();
-    return this.http.get(environment.baseApiUrl + '/relations?page=' + page, {headers: AuthService.headers})
+    return this.http.get(environment.baseApiUrl + `/search/relations?page=${page}&term=${searchTerm}`, {headers: AuthService.headers})
       .pipe(
         tap(
           (data: any) => {
@@ -83,6 +83,20 @@ export class RelationService {
           (data: any) => {
             // console.log(data);
             this.friends = data.followings;
+          },
+          error => console.log(error.status),
+        )
+      );
+  }
+
+  getFollowers() {
+    AuthService.getHeaders();
+    return this.http.get(environment.baseApiUrl + '/followers', {headers: AuthService.headers})
+      .pipe(
+        tap(
+          (data: any) => {
+            // console.log(data);
+            this.friends = data.followers;
           },
           error => console.log(error.status),
         )
