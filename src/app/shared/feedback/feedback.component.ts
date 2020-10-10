@@ -27,7 +27,6 @@ export class FeedbackComponent implements OnInit {
   }
 
   showFeedback(feedback: string, message: any) {
-    console.log('feedback');
     // let text = null;
     this.flag = null;
     this.texts = [];
