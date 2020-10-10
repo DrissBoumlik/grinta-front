@@ -32,7 +32,7 @@ export class RelationService {
       );
   }
 
-  getRelations(searchTerm = '', page = 1) {
+  getRelations(page = 1, searchTerm = '') {
     AuthService.getHeaders();
     return this.http.get(environment.baseApiUrl + `/search/relations?page=${page}&term=${searchTerm}`, {headers: AuthService.headers})
       .pipe(

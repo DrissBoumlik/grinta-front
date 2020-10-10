@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
-import {from, Subject} from 'rxjs';
+import {Subject} from 'rxjs';
 import {RelationService} from '../../../friends/relation.service';
 import {EventService} from '../../../../shared/event.service';
 import {Event as EventModel} from '../../event.model';
@@ -18,9 +18,10 @@ export class EventInvitationComponent implements OnInit {
   sendRequest = null;
   searchTerm = '';
   queryPage: number;
-  loadMore = true;
+  loadingData = true;
+  stopLoadingMore = true;
   @Output() closeModal = new Subject();
-  getAllData = false;
+  emptyResults = false;
   constructor(private relationService: RelationService,
               private feedbackService: FeedbackService,
               private renderer: Renderer2,
@@ -41,20 +42,16 @@ export class EventInvitationComponent implements OnInit {
     });
   }
 
-  onGetRelations(searchTerm = '', page = 1) {
-    this.relations = [];
-    this.loadMore = true;
-    this.relationService.getRelations(searchTerm, page).subscribe((response: any) => {
+  onGetRelations(page = 1, searchTerm = '') {
+    this.loadingData = true;
+    this.emptyResults = false;
+    this.relationService.getRelations(page, searchTerm).subscribe((response: any) => {
       this.relations = this.relationService.relations.filter((user) => {
         return !this.event.users.some((invitedUser) => user.uuid === invitedUser.uuid );
       });
-      if (!this.relations.length) {
-        this.getAllData = true;
-      }
-      this.loadMore = false;
-      console.clear();
-      console.log(this.loadMore);
-      console.log(this.getAllData);
+      this.emptyResults = !response.relations.length && this.queryPage === 1;
+      this.stopLoadingMore = !response.relations.length && this.queryPage > 1;
+      this.loadingData = false;
     });
   }
 
@@ -74,7 +71,8 @@ export class EventInvitationComponent implements OnInit {
         this.eventService.getEventByUuid(response.event.uuid).subscribe((data: any) => {
           this.eventService.eventUpdated.next(data.event);
         });
-        this.onGetRelations();
+        this.queryPage = 1;
+        this.onGetRelations(this.queryPage, this.searchTerm);
         this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
       }, (error: any) => {
         const message = error.error.errors ? error.error.errors : error.error.message;
@@ -83,18 +81,18 @@ export class EventInvitationComponent implements OnInit {
     );
   }
 
-  onSearch(value: any, page = 1) {
+  onSearch(value: any) {
+    this.queryPage = 1;
     this.searchTerm = value;
     clearTimeout(this.sendRequest);
     this.sendRequest = setTimeout(() => {
-      this.onGetRelations(this.searchTerm, page);
+      this.onGetRelations(this.queryPage, this.searchTerm);
     }, 500);
   }
 
   onLoadMore() {
-    console.log('loading ...');
-    if (!this.getAllData) {
-      this.onGetRelations(this.searchTerm, ++this.queryPage);
+    if (!this.stopLoadingMore) {
+      this.onGetRelations(++this.queryPage, this.searchTerm);
     }
   }
 }

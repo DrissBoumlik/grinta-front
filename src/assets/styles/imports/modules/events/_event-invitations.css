@@ -14,10 +14,10 @@
   overflow: hidden;
 }
 
-.relations-list-wrapper {
-  height: 300px;
-  overflow-y: scroll;
-}
+/*.relations-list-wrapper {*/
+/*  height: 300px;*/
+/*  overflow-y: scroll;*/
+/*}*/
 
 .relations-list .user-item-wrapper {
   position: relative;

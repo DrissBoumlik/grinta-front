@@ -20,37 +20,41 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <div class="relations-list-wrapper" *ngIf="!getAllData"
-                 infinite-scroll
-                 [infiniteScrollDistance]="1"
-                 [infiniteScrollThrottle]="300"
-                 [scrollWindow]="false"
-                 (scrolled)="onLoadMore()"
-            >
-              <div class="relations-list pr-3">
-                <div class="user-item-wrapper pointer" *ngFor="let user of relations" (click)="onToggleChooseUser(user)">
-                  <div class="d-flex align-items-center">
-                    <div class="user-item-img-wrapper">
-                      <div class="user-item-img-container">
-                        <img src="{{ user?.picture }}" class="user-item-img"/>
+            <div class="relations-list-wrapper">
+              <div class="h-300 overflow-y-scroll" *ngIf="!emptyResults || loadingData"
+                   infinite-scroll
+                   [infiniteScrollDistance]="2"
+                   [infiniteScrollThrottle]="300"
+                   [scrollWindow]="false"
+                   (scrolled)="onLoadMore()"
+              >
+                <div class="relations-list pr-3">
+                  <div class="relation-item" *ngIf="!emptyResults">
+                    <div class="user-item-wrapper pointer" *ngFor="let user of relations" (click)="onToggleChooseUser(user)">
+                      <div class="d-flex align-items-center">
+                        <div class="user-item-img-wrapper">
+                          <div class="user-item-img-container">
+                            <img src="{{ user?.picture }}" class="user-item-img"/>
+                          </div>
+                        </div>
+                        <div class="user-item-info">
+                          <span>{{ user?.fullName }}</span>
+                        </div>
+                        <div class="user-item-toggle custom-control custom-radio custom-control-inline">
+                          <input type="checkbox" id="{{ user?.username }}" name="{{ user?.username }}" [checked]="user?.chosen"
+                                 value="{{ user?.uuid }}" class="custom-control-input" disabled>
+                          <label class="custom-control-label pointer" for="{{ user?.username }}"></label>
+                        </div>
                       </div>
                     </div>
-                    <div class="user-item-info">
-                      <span>{{ user?.fullName }}</span>
-                    </div>
-                    <div class="user-item-toggle custom-control custom-radio custom-control-inline">
-                      <input type="checkbox" id="{{ user?.username }}" name="{{ user?.username }}" [checked]="user?.chosen"
-                             value="{{ user?.uuid }}" class="custom-control-input" disabled>
-                      <label class="custom-control-label pointer" for="{{ user?.username }}"></label>
-                    </div>
                   </div>
+                  <app-spinner *ngIf="loadingData"></app-spinner>
                 </div>
-                <app-spinner *ngIf="loadMore"></app-spinner>
               </div>
-            </div>
-            <div class="relations-list" *ngIf="!loadMore && getAllData && queryPage == 1">
-              <div class="text-center list-empty m-0">
-                <p class="">Pas de contacts à afficher</p>
+              <div class="relations-list" *ngIf="emptyResults">
+                <div class="text-center list-empty m-0">
+                  <p class="">Pas de contacts à afficher</p>
+                </div>
               </div>
             </div>
           </div>
