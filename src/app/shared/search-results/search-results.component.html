@@ -1,5 +1,5 @@
 <form action="#" class="searchbox w-100" [formGroup]="searchForm">
-  <input type="text" class="text search-input" placeholder="Type here to search..." formControlName="search"
+  <input type="text" class="text search-input pr-5" placeholder="Rechercher..." formControlName="search"
          (input)="onSearch($event.target.value)" #searchInput>
   <a class="search-link" routerLink="/search"><i class="ri-search-line"></i></a>
 </form>

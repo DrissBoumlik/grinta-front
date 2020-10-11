@@ -5,6 +5,7 @@
 @import "shared/_alert.css";
 @import "shared/_preview-page.css";
 @import "shared/_checkbox.css";
+@import "shared/_search-input.css";
 
 @import "profile/common/_header.css";
 @import "profile/edit/_menu.css";
