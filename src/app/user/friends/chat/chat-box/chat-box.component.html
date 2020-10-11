@@ -92,7 +92,7 @@
 
         <div class="chat" *ngFor="let chat of chats;" [ngClass]="{'chat-left': chat?.from === user.username}">
           <div class="chat-user">
-            <a class="avatar m-0">
+            <a class="avatar m-0" routerLink="/{{ chat?.sender?.username }}">
               <img src="{{ chat?.sender?.picture }}" alt="avatar" class="avatar-35 ">
             </a>
             <!--                    <span class="chat-time mt-1">{{ message?.date }}</span>-->
