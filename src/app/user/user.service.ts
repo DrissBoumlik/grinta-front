@@ -145,4 +145,29 @@ export class UserService {
       );
   }
 
+  updateEvent(event: any) {
+    AuthService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/events',
+      {
+        uuid: event.uuid,
+        name: event.name,
+        date: event.date,
+        limit_signup: event.limit_signup,
+        address: event.address,
+        location: event.location,
+        image: event.image,
+        cover: event.cover,
+        type: event.type,
+        description: event.description,
+        sport_id: event.sport_id
+      },
+      {headers: AuthService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
+  }
+
 }

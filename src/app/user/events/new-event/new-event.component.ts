@@ -24,11 +24,11 @@ export class NewEventComponent implements OnInit {
     finish: {active: false, done: false},
   };
   event: Event;
-
+  editMode = false;
   CreateEventForm = this.fb.group({
     name: new FormControl('eventoosss'),
-    date: new FormControl(new Date().toISOString().slice(0, -14)),
-    limit_signup: new FormControl(new Date().toISOString().substring(0, 10)),
+    date: new FormControl((new Date()).toLocaleString()),
+    limit_signup: new FormControl((new Date()).toISOString()),
     address: new FormControl('Boulevard Massira'),
     location: new FormControl('33.54568,-6.54689'),
     image: new FormControl(null),
@@ -54,12 +54,14 @@ export class NewEventComponent implements OnInit {
       this.event = event;
       this.initForm();
     });
-    this.event = this.eventService.event;
-    this.initForm();
+    // this.event = this.eventService.event;
+    // this.initForm();
   }
 
   initForm() {
+    console.log(this.CreateEventForm.value);
     if (this.event) {
+      this.editMode = true;
       this.CreateEventForm.patchValue({
         name: this.event.name,
         date: this.event.date.split(' ')[0],
@@ -134,6 +136,40 @@ export class NewEventComponent implements OnInit {
   }
 
 
+  onUpdateEvent() {
+    const event = {
+      uuid: this.event.uuid,
+      name: this.CreateEventForm.value.name,
+      date: this.CreateEventForm.value.date,
+      limit_signup: this.CreateEventForm.value.limit_signup,
+      address: this.CreateEventForm.value.address,
+      location: this.CreateEventForm.value.location,
+      image: this.CreateEventForm.value.image,
+      cover: this.CreateEventForm.value.cover,
+      type: this.CreateEventForm.value.type,
+      description: this.CreateEventForm.value.description,
+      sport_id: this.CreateEventForm.value.sport
+    };
+    this.userService.updateEvent(event)
+      .subscribe((response: any) => {
+          console.log(response);
+          this.steps = {
+            infos: {active: false, done: true},
+            details: {active: false, done: true},
+            media: {active: true, done: true},
+            finish: {active: true, done: true},
+          };
+          this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
+        },
+        (error: any) => {
+          console.log(error);
+          const message = error.error.errors ? error.error.errors : error.error.message;
+          this.feedbackService.feedbackReceived.next({feedback: 'error', message});
+        }
+      );
+  }
+
+
   goToInfos() {
     this.steps = {
       infos: {active: true, done: false},
@@ -178,8 +214,11 @@ export class NewEventComponent implements OnInit {
     //   finish: {active: true, done: false},
     // };
     // console.log(this.steps.finish);
-    this.onCreateEvent();
-
+    if (this.editMode) {
+      this.onUpdateEvent();
+    } else {
+      this.onCreateEvent();
+    }
   }
 
 }
