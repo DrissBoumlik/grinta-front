@@ -99,13 +99,13 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Event date: *</label>
-                <input type="date" class="form-control" name="date" formControlName="date" placeholder="Event Date" required />
+                <input type="datetime-local" class="form-control" formControlName="date" placeholder="Event Date" required />
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>Event Echéance: *</label>
-                <input type="date" class="form-control" name="limit_signup" formControlName="limit_signup" placeholder="Event écheance" required />
+                <input type="datetime-local" class="form-control" formControlName="limit_signup" placeholder="Event écheance" required />
               </div>
             </div>
             <div class="col-md-6">
@@ -187,6 +187,4 @@
       <!--                </fieldset>-->
     </form>
   </div>
-
-  <app-feedback></app-feedback>
 </div>
