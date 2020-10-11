@@ -29,8 +29,8 @@ export class NewEventComponent implements OnInit {
     name: new FormControl('eventoosss'),
     date: new FormControl(new Date().toISOString().slice(0, -14)),
     limit_signup: new FormControl(new Date().toISOString().substring(0, 10)),
-    address: new FormControl('event address'),
-    location: new FormControl('event location'),
+    address: new FormControl('Boulevard Massira'),
+    location: new FormControl('33.54568,-6.54689'),
     image: new FormControl(null),
     cover: new FormControl(null),
     type: new FormControl('public'),
@@ -59,18 +59,20 @@ export class NewEventComponent implements OnInit {
   }
 
   initForm() {
-    this.CreateEventForm.patchValue({
-      name: this.event.name,
-      date: this.event.date.split(' ')[0],
-      limit_signup: this.event.limit_signup.split(' ')[0],
-      address: this.event.address,
-      location: this.event.location,
-      // image: this.event.image,
-      // cover: this.event.cover,
-      type: this.event.type,
-      description: this.event.description,
-      sport: this.event.sport_id
-    });
+    if (this.event) {
+      this.CreateEventForm.patchValue({
+        name: this.event.name,
+        date: this.event.date.split(' ')[0],
+        limit_signup: this.event.limit_signup.split(' ')[0],
+        address: this.event.address,
+        location: this.event.location,
+        // image: this.event.image,
+        // cover: this.event.cover,
+        type: this.event.type,
+        description: this.event.description,
+        sport: this.event.sport_id
+      });
+    }
   }
 
   onFileImageChange(files: FileList) {
