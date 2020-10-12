@@ -14,53 +14,45 @@ export class FeedbackComponent implements OnInit {
   bgClassName: string;
   icon: string;
   texts = [];
+  duration = 5000;
 
   constructor(private feedbackService: FeedbackService,
               private toolsService: ToolsService) {
   }
 
   ngOnInit() {
-    this.feedbackService.feedbackReceived.subscribe(({feedback, message}: any) => {
+    this.feedbackService.feedbackReceived.subscribe(({feedback, message, duration}: any) => {
       // this.flag = feedback;
+      if (duration) {
+        this.duration = duration;
+      }
       this.showFeedback(feedback, message);
     });
   }
 
   showFeedback(feedback: string, message: any) {
-    // let text = null;
     this.flag = null;
     this.texts = [];
     if (Array.isArray(message)) {
-      // let html = '<ul class="align-left m-0 p-0">';
       message.forEach((msg) => {
-        // html += '<li>' + msg + '</li>';
         this.texts.push(msg);
       });
-      // Swal.fire({
-      //   html,
-      //   icon: (SweetAlertIcon) feedback
-      // });
-      // text = html;
     } else if (message.hasOwnProperty('error')) {
       this.texts.push(message.error);
     } else if (isObject(message)) {
       message = Object.values(message);
-      // let html = '<ul class="align-left">';
       message.forEach((msg) => {
-        // html += '<li>' + msg[0] + '</li>';
         this.texts.push(msg[0]);
       });
-      // text = html;
     } else {
       this.texts.push(message);
     }
 
-    // this.text = text;
     this.flag = feedback;
     this.setFeedBackParams(feedback);
     setTimeout(() => {
       this.flag = null;
-    }, 5000);
+    }, this.duration);
   }
 
   setFeedBackParams(feedback: string) {
