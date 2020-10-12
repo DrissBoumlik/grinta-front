@@ -45,8 +45,6 @@ export class HeaderComponent implements OnInit {
       host: window.location.hostname + ':6001',
       auth: {headers: {Authorization: 'Bearer ' + token}}
     });
-    localStorage.setItem('socketID', JSON.stringify(echo.socketId()));
-    // console.log(echo.socketId());
     let channel = '';
     channel = 'event.created';
     echo.private(channel)
@@ -63,10 +61,13 @@ export class HeaderComponent implements OnInit {
         this.updateNotificationList(e.data);
         this.eventFeedbackService.eventFeedbackReceived.next(e.data);
       });
+    echo.connector.socket.on('connect', () => {
+      localStorage.setItem('socketID', JSON.stringify(echo.socketId()));
+    });
   }
 
   updateNotificationList(data: any) {
-    const offsetDate = this.timeDifference(new Date(), Date.parse(data.event.date));
+    const offsetDate = this.timeDifference(new Date(), Date.parse(data.event.created_at));
     const notification = {
       event: data.event,
       user: data.user,

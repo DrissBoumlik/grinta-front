@@ -18,7 +18,12 @@ export class AuthService {
 
   static getHeaders() {
     const token = localStorage.getItem('token');
-    const socketID = localStorage.getItem('socketID');
+    let socketID = localStorage.getItem('socketID');
+    if (socketID) {
+      socketID = JSON.parse(socketID);
+    } else {
+      socketID = '';
+    }
     AuthService.headers = new HttpHeaders({
       Accept: 'application/json',
       Authorization: 'Bearer ' + token,
