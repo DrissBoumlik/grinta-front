@@ -26,6 +26,7 @@ export class User {
     public cover: string,
     public isSocial: boolean,
     public isOnline: boolean,
+    public score: number,
     public friends: User[],
     public followers: User[],
     public following: User[],
