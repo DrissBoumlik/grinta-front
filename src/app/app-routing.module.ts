@@ -37,6 +37,7 @@ import {EventWrapperComponent} from './user/events/event-wrapper/event-wrapper.c
 import {PageWrapperComponent} from './user/pages/page-wrapper/page-wrapper.component';
 import {ChatBoxComponent} from './user/friends/chat/chat-box/chat-box.component';
 import {ChatDefaultComponent} from './user/friends/chat/chat-default/chat-default.component';
+import {EventReviewComponent} from './shared/event-review/event-review.component';
 
 
 const routes: Routes = [
@@ -59,6 +60,7 @@ const routes: Routes = [
   {
     path: 'events', children: [
       {path: 'options', component: EventOptionsComponent},
+      {path: 'reviews/:uuid', component: EventReviewComponent},
       {
         path: ':uuid', component: EventComponent, children: [
           {path: '', component: EventAboutComponent},
