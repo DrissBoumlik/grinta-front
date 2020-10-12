@@ -8,8 +8,8 @@
               <a routerLink="/{{ post?.user?.username }}"><img class="rounded-circle img-fluid" src="{{ post?.user?.picture }}" alt=""></a>
             </div>
             <div class="media-support-info mt-2">
-              <h5 class="mb-0 d-inline-block"><a routerLink="/{{ post?.user?.username }}"
-                                                 class="mr-0">{{ post?.user?.fullName }}</a>
+              <h5 class="mb-0 d-inline-block">
+                <a routerLink="/{{ post?.user?.username }}" class="mr-0">{{ post?.user?.fullName }}</a>
                 <span *ngIf='post?.owner'> shared
                   <span *ngIf='post?.user_id !== post?.post_owner_id'><a class="clr-grintaaa" routerLink="/{{ post?.owner?.username }}">{{ post?.owner?.firstname }}</a>'s</span>
                   <span *ngIf='post?.user_id === post?.post_owner_id'>his</span> post
@@ -19,7 +19,7 @@
 <!--              <p class="mb-0 d-inline-block">Added New Image in a Post</p>-->
               <p class="mb-0 text-primary">{{ post?.updated_at | date : 'mediumDate'}}</p>
             </div>
-            <div class="iq-card-post-toolbar">
+            <div class="iq-card-post-toolbar d-none">
               <div class="dropdown pointer">
                 <span class="dropdown-toggle" id="postdata-5" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false" role="button">
