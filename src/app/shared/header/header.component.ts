@@ -61,7 +61,7 @@ export class HeaderComponent implements OnInit {
         this.notify = true;
         console.log(e.data);
         this.updateNotificationList(e.data);
-        // this.eventFeedbackService.eventFeedbackReceived.next(e.data);
+        this.eventFeedbackService.eventFeedbackReceived.next(e.data);
       });
   }
 
@@ -76,6 +76,8 @@ export class HeaderComponent implements OnInit {
       offsetDate
     };
     this.notifications.unshift(notification);
+
+    this.notifications = this.notifications.slice(0, 5);
     localStorage.setItem('notifications', JSON.stringify(this.notifications));
   }
 

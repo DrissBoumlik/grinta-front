@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document" #modal>
     <div class="modal-content">
       <div class="modal-header justify-content-evenly">
-        <h5 class="modal-title text-center" id="eventInvitationsModalTitle">Avez-vous participé </h5>
+        <h5 class="modal-title" id="eventInvitationsModalTitle">Avez-vous participé à l'évènement "{{ event?.name }}"</h5>
         <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close" (click)="onCloseModal()">
           <i class="icon dripicons-exit"></i>
         </button>
@@ -11,13 +11,21 @@
       <div class="modal-body overflow-hidden">
         <div class="row">
           <div class="col-12">
-
+            <div class="event-feedback-wrapper">
+              <div class="btn-actions row">
+                <div class="col-md-6 col-12 pr-2">
+                  <button class="btn bgclr-grintaaa text-white w-100 uppercase" (click)="onSend(1)">oui</button>
+                </div>
+                <div class="col-md-6 col-12 pl-2">
+                  <button class="btn btn-light w-100 uppercase" (click)="onSend(-1)">non</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light" data-dismiss="modal" (click)="onCloseModal()">Cancel</button>
-        <button type="button" class="btn btn-primary bgclr-grintaaa" (click)="onSend()">Send Invites</button>
       </div>
     </div>
   </div>

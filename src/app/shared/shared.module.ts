@@ -19,6 +19,8 @@ import { ExcerptPipe } from './pipes/excerpt.pipe';
 import { MapPreviewComponent } from './map-preview/map-preview.component';
 import { LocationPipe } from './pipes/location.pipe';
 import { EventFeedbackComponent } from './event-feedback/event-feedback.component';
+import { EventReviewComponent } from './event-review/event-review.component';
+import { EventFeedbackService } from './event-feedback/event-feedback.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { EventFeedbackComponent } from './event-feedback/event-feedback.componen
     MapPreviewComponent,
     LocationPipe,
     EventFeedbackComponent,
+    EventReviewComponent,
   ],
   imports: [
     RouterModule,
@@ -50,7 +53,7 @@ import { EventFeedbackComponent } from './event-feedback/event-feedback.componen
     MapPreviewComponent,
     LocationPipe,
   ],
-  providers: [SearchService, SportService, ToolsService, FeedbackService, HandlerService, EventService]
+  providers: [SearchService, SportService, ToolsService, FeedbackService, EventFeedbackService, HandlerService, EventService]
 })
 export class SharedModule {
 
