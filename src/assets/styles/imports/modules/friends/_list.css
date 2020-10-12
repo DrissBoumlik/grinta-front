@@ -14,18 +14,6 @@
   transform: translateX(0%);
 }
 
-.profile-img-wrapper {
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.profile-img-item {
-  height: 100px;
-  width: 100px;
-  max-width: 100px;
-  object-fit: cover;
-}
-
 .friend-info * {
   font-size: 15px;
 }

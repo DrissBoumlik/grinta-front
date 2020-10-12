@@ -18,3 +18,16 @@
 .list-empty *{
   transform: translateY(25%);
 }
+
+
+.iq-friendlist-wrapper .profile-img-wrapper {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.profile-img-item {
+  height: 100px;
+  width: 100px;
+  max-width: 100px;
+  object-fit: cover;
+}
