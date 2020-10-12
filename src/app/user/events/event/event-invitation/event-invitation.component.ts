@@ -37,7 +37,7 @@ export class EventInvitationComponent implements OnInit {
     this.onGetRelations(params);
 
     this.renderer.listen('window', 'click', (e: Event) => {
-      if (this.modalWrapper && e.target !== this.modal.nativeElement && e.target === this.modalWrapper.nativeElement) {
+      if (e.target !== this.modal.nativeElement && e.target === this.modalWrapper.nativeElement) {
         this.onCloseModal();
       }
     });
@@ -87,6 +87,8 @@ export class EventInvitationComponent implements OnInit {
 
   onSearch(value: any) {
     this.queryPage = 1;
+    this.relations = [];
+    this.emptyResults = true;
     this.searchTerm = value;
     clearTimeout(this.sendRequest);
     this.sendRequest = setTimeout(() => {

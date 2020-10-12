@@ -1,6 +1,6 @@
 <div class="modal modal-event-invitations fade d-block show" id="eventInvitationsModal" tabindex="-1" role="dialog"
      aria-labelledby="eventInvitationsModalTitle" aria-hidden="true" #modalWrapper>
-  <div class="modal-dialog modal-dialog-scrollable" role="document" #modal>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document" #modal>
     <div class="modal-content">
       <div class="modal-header justify-content-evenly">
         <h5 class="modal-title text-center" id="eventInvitationsModalTitle">Invite</h5>
@@ -11,9 +11,10 @@
       <div class="modal-body overflow-hidden">
         <div class="row">
           <div class="col-12">
-            <div class="iq-search-bar p-3">
+            <div class="iq-search-bar py-3 pl-0 pr-4">
               <div class="searchbox">
-                <input type="search" class="form-control bg-gray no-border-shadow search search-input" placeholder="Rechercher..." (input)="onSearch($event.target.value)">
+                <input type="search" class="form-control bg-gray no-border-shadow search search-input"
+                       placeholder="Rechercher..." (input)="onSearch($event.target.value)">
               </div>
             </div>
           </div>
@@ -42,7 +43,7 @@
                         </div>
                         <div class="user-item-toggle custom-control custom-radio custom-control-inline">
                           <input type="checkbox" id="{{ user?.username }}" name="{{ user?.username }}" [checked]="user?.chosen"
-                                 value="{{ user?.uuid }}" class="custom-control-input" disabled>
+                                 value="{{ user?.uuid }}" class="custom-control-input px-3 py-2" disabled>
                           <label class="custom-control-label pointer" for="{{ user?.username }}"></label>
                         </div>
                       </div>
@@ -51,7 +52,7 @@
                   <app-spinner *ngIf="loadingData"></app-spinner>
                 </div>
               </div>
-              <div class="relations-list" *ngIf="emptyResults">
+              <div class="relations-list" *ngIf="emptyResults && !loadingData">
                 <div class="text-center list-empty m-0">
                   <p class="">Pas de contacts à afficher</p>
                 </div>

@@ -17,7 +17,7 @@
                   <div class="cover-profile position-relative">
                     <div class="cover-container">
                       <div class="h-200 h-md-300 overflow-hidden center-img">
-                        <img src="{{ event?.cover }}" alt="profile-bg" class="rounded img-fluid w-100 centered-img">
+                        <img src="{{ event?.cover }}" alt="profile-bg" class="rounded img-fluid w-100 h-100 centered-img">
                       </div>
                       <ul class="header-nav header-nav-event d-flex flex-wrap justify-content-start ml-3 p-0 m-0">
                         <li *ngIf="authUser.uuid == event.user.uuid"><a routerLink="/events/{{ event?.uuid }}/edit"><i class="ri-pencil-line"></i></a></li>
