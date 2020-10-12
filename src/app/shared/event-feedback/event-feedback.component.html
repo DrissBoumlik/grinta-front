@@ -1,0 +1,24 @@
+<div class="modal modal-event-invitations fade d-block show" id="eventInvitationsModal" tabindex="-1" role="dialog"
+     aria-labelledby="eventInvitationsModalTitle" aria-hidden="true" #modalWrapper *ngIf="visible">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document" #modal>
+    <div class="modal-content">
+      <div class="modal-header justify-content-evenly">
+        <h5 class="modal-title text-center" id="eventInvitationsModalTitle">Avez-vous participé </h5>
+        <button type="button" class="close btn-close" data-dismiss="modal" aria-label="Close" (click)="onCloseModal()">
+          <i class="icon dripicons-exit"></i>
+        </button>
+      </div>
+      <div class="modal-body overflow-hidden">
+        <div class="row">
+          <div class="col-12">
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal" (click)="onCloseModal()">Cancel</button>
+        <button type="button" class="btn btn-primary bgclr-grintaaa" (click)="onSend()">Send Invites</button>
+      </div>
+    </div>
+  </div>
+</div>
