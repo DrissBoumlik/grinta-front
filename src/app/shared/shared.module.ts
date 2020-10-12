@@ -18,6 +18,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { ExcerptPipe } from './pipes/excerpt.pipe';
 import { MapPreviewComponent } from './map-preview/map-preview.component';
 import { LocationPipe } from './pipes/location.pipe';
+import { EventFeedbackComponent } from './event-feedback/event-feedback.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { LocationPipe } from './pipes/location.pipe';
     ExcerptPipe,
     MapPreviewComponent,
     LocationPipe,
+    EventFeedbackComponent,
   ],
   imports: [
     RouterModule,
