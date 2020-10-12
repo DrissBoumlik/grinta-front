@@ -35,3 +35,11 @@ top-tab-list li {
   color: #fff;
   background-color: var(--grintaaa);
 }
+
+@media (max-width: 992px) {
+  #top-tab-list li i {
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+  }
+}
