@@ -2,12 +2,12 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import * as L from 'leaflet';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
-import {EventService} from '../event.service';
+import {EventService} from '../../event.service';
 import {FormBuilder, FormControl} from '@angular/forms';
 import {LatLngExpression, Marker, Point} from 'leaflet';
-import {User} from '../../user/user.model';
-import {Event} from '../../user/events/event.model';
-import {AuthService} from '../../auth/auth.service';
+import {User} from '../../../user/user.model';
+import {Event} from '../../../user/events/event.model';
+import {AuthService} from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-map',
