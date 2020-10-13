@@ -33,6 +33,9 @@ export class EventComponent implements OnInit {
     this.eventService.eventUpdated.subscribe((event: Event) => {
       this.event = event;
     });
+    this.eventService.eventLoaded.subscribe((event: Event) => {
+      this.event = event;
+    });
   }
 
   onGetEvent(uuid: string) {

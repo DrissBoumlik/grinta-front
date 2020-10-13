@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import {Event} from '../../user/events/event.model';
-import {User} from '../../user/user.model';
-import {AuthService} from '../../auth/auth.service';
-import {EventService} from '../event.service';
+import {Event} from '../../../user/events/event.model';
+import {User} from '../../../user/user.model';
+import {AuthService} from '../../../auth/auth.service';
+import {EventService} from '../../event.service';
 import {EventFeedbackService} from '../event-feedback/event-feedback.service';
-import {FeedbackService} from '../feedback/feedback.service';
+import {FeedbackService} from '../../feedback/feedback.service';
 
 @Component({
   selector: 'app-event-review',
@@ -27,25 +27,36 @@ export class EventReviewComponent implements OnInit {
   ngOnInit() {
     this.authUser = this.authService.user;
     let uuid = this.route.snapshot.params.uuid;
-    this.onGetEvent(uuid);
-    this.route.params.subscribe((params: Params) => {
-      window.scroll(0, 0);
-      uuid = params.uuid;
+    if (uuid) {
       this.onGetEvent(uuid);
-    });
+      this.route.params.subscribe((params: Params) => {
+        window.scroll(0, 0);
+        uuid = params.uuid;
+        this.onGetEvent(uuid);
+      });
+    } else {
+      this.onInitProperties(this.eventService.event);
+    }
     this.eventService.eventUpdated.subscribe((event: Event) => {
-      this.event = event;
+      this.onInitProperties(event);
     });
+    this.eventService.eventLoaded.subscribe((event: Event) => {
+      this.onInitProperties(event);
+    });
+  }
+
+  onInitProperties(event) {
+    this.loadingData = false;
+    this.event = event;
+    this.user = this.event.user;
+    this.participants = this.event.users;
   }
 
   onGetEvent(uuid: string) {
     this.participants = [];
     this.loadingData = true;
     this.eventService.getEventByUuid(uuid).subscribe((response: any) => {
-      this.loadingData = false;
-      this.event = response.event;
-      this.user = this.event.user;
-      this.participants = this.event.users;
+      this.onInitProperties(response.event);
     });
   }
 

@@ -11,16 +11,17 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import {ToolsService} from './tools.service';
 import {FeedbackService} from './feedback/feedback.service';
 import {HandlerService} from './handler.service';
-import { MapComponent } from './map/map.component';
+import { MapComponent } from './maps/map/map.component';
 import {EventService} from './event.service';
-import { EventActionsComponent } from './event-actions/event-actions.component';
+import { EventActionsComponent } from './events/event-actions/event-actions.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ExcerptPipe } from './pipes/excerpt.pipe';
-import { MapPreviewComponent } from './map-preview/map-preview.component';
+import { MapPreviewComponent } from './maps/map-preview/map-preview.component';
 import { LocationPipe } from './pipes/location.pipe';
-import { EventFeedbackComponent } from './event-feedback/event-feedback.component';
-import { EventReviewComponent } from './event-review/event-review.component';
-import { EventFeedbackService } from './event-feedback/event-feedback.service';
+import { EventFeedbackComponent } from './events/event-feedback/event-feedback.component';
+import { EventReviewComponent } from './events/event-review/event-review.component';
+import { EventFeedbackService } from './events/event-feedback/event-feedback.service';
+import { EventReviewWrapperComponent } from './events/event-review-wrapper/event-review-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { EventFeedbackService } from './event-feedback/event-feedback.service';
     LocationPipe,
     EventFeedbackComponent,
     EventReviewComponent,
+    EventReviewWrapperComponent,
   ],
   imports: [
     RouterModule,
