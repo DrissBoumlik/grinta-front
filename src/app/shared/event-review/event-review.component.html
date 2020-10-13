@@ -21,20 +21,26 @@
                 <div class="reviews-list-wrapper">
                   <div class="reviews-list">
                     <div class="header-review py-4 mb-1 d-flex align-items-center justify-content-between text-center row m-0">
-                      <div class="col-4">Participant</div>
-                      <div class="col-4">Behavior</div>
-                      <div class="col-4">Performance</div>
+                      <div class="col-4">
+                        <div class="underline">Participant</div>
+                      </div>
+                      <div class="col-4">
+                        <div class="underline">Behavior</div>
+                      </div>
+                      <div class="col-4">
+                        <div class="underline">Performance</div>
+                      </div>
                     </div>
                     <div class="user-item-wrapper pointer" *ngFor="let user of participants; let i = index">
                       <div class="d-flex align-items-center justify-content-between row">
                         <div class="user-info col-4 d-flex align-items-center">
                           <div class="user-item-img-wrapper">
                             <div class="user-item-img-container">
-                              <img src="{{ user?.picture }}" class="user-item-img"/>
+                              <a routerLink="/{{ user?.username }}"><img src="{{ user?.picture }}" class="user-item-img" alt=""/></a>
                             </div>
                           </div>
                           <div class="user-item-info">
-                            <span>{{ user?.firstname }}</span>
+                            <a routerLink="/{{ user?.username }}"><span>{{ user?.firstname }}</span></a>
                           </div>
                         </div>
                         <div class="user-event-choices col-4 d-flex justify-content-evenly font-size-20">
