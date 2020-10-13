@@ -4,6 +4,7 @@ import {RelationService} from '../../../friends/relation.service';
 import {EventService} from '../../../../shared/event.service';
 import {Event as EventModel} from '../../event.model';
 import {FeedbackService} from '../../../../shared/feedback/feedback.service';
+import {User} from '../../../user.model';
 
 @Component({
   selector: 'app-event-invitation',
@@ -14,7 +15,7 @@ export class EventInvitationComponent implements OnInit {
   @ViewChild('modal', {static: false}) modal: ElementRef;
   @ViewChild('modalWrapper', {static: false}) modalWrapper: ElementRef;
   event: EventModel;
-  relations: any[] = [];
+  relations: (User | any)[] = [];
   sendRequest = null;
   searchTerm = '';
   queryPage: number;

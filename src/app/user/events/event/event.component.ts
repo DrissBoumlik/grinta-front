@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {EventService} from '../../../shared/event.service';
 import {User} from '../../user.model';
 import {Event} from '../event.model';
 import {AuthService} from '../../../auth/auth.service';
+import {FeedbackService} from '../../../shared/feedback/feedback.service';
 
 @Component({
   selector: 'app-event',
@@ -17,6 +18,7 @@ export class EventComponent implements OnInit {
   showInvitationModal = false;
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
+              private feedbackService: FeedbackService,
               private eventService: EventService) { }
 
   ngOnInit() {
@@ -42,6 +44,21 @@ export class EventComponent implements OnInit {
 
   onInvite() {
     this.showInvitationModal = true;
+  }
+
+  onParticipate() {
+    const usersUuids = [this.authUser.uuid];
+    this.eventService.inviteUsers(usersUuids, this.event.uuid).subscribe(
+      (response: any) => {
+        this.eventService.getEventByUuid(response.event.uuid).subscribe((data: any) => {
+          this.eventService.eventUpdated.next(data.event);
+        });
+        this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
+      }, (error: any) => {
+        const message = error.error.errors ? error.error.errors : error.error.message;
+        this.feedbackService.feedbackReceived.next({feedback: 'error', message});
+      }
+    );
   }
 
   onCloseModal(value: boolean) {
