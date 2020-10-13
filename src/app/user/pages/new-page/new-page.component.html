@@ -7,18 +7,18 @@
   <div class="iq-card-body">
     <form [formGroup]="CreatePageForm" (ngSubmit)="onCreatePage()" id="form-wizard1" class="text-center mt-4">
       <ul id="top-tab-list" class="p-0 row">
-        <li [ngClass]="{'active': steps.infos.active , 'done': steps.infos.done}" class="col-lg-4 col-md-4 col-12 pb-lg-0 pb-md-0 pb-2" id="infos">
-          <a (click)="goToInfos()" class="pointer">
+        <li [ngClass]="{'active': steps.infos.active , 'done': steps.infos.done}" class="col-lg-4 col-md-4 col-12 pb-lg-0 pb-md-2 pb-2" id="infos">
+          <a (click)="goToInfos()" class="pointer m-0">
             <i class="ri-information-fill"></i><span>Information</span>
           </a>
         </li>
-        <li [ngClass]="{'active': steps.details.active, 'done': steps.details.done}" class="col-lg-4 col-md-4 col-12 pb-lg-0 pb-md-0 pb-2" id="details">
-          <a (click)="goToDetails()" class="pointer">
+        <li [ngClass]="{'active': steps.details.active, 'done': steps.details.done}" class="col-lg-4 col-md-4 col-12 pb-lg-0 pb-md-2 pb-2" id="details">
+          <a (click)="goToDetails()" class="pointer m-0">
             <i class="icon dripicons-trophy"></i><span>Details</span>
           </a>
         </li>
-        <li [ngClass]="{'active': steps.media.active, 'done': steps.media.done}" class="col-lg-4 col-md-4 col-12 pb-lg-0 pb-md-0 pb-2" id="media">
-          <a (click)="goToMedia()" class="pointer">
+        <li [ngClass]="{'active': steps.media.active, 'done': steps.media.done}" class="col-lg-4 col-md-4 col-12 pb-lg-0 pb-md-2 pb-2" id="media">
+          <a (click)="goToMedia()" class="pointer m-0">
             <i class="ri-camera-fill"></i><span>Image / Cover</span>
           </a>
         </li>
