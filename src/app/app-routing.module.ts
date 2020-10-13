@@ -37,7 +37,8 @@ import {EventWrapperComponent} from './user/events/event-wrapper/event-wrapper.c
 import {PageWrapperComponent} from './user/pages/page-wrapper/page-wrapper.component';
 import {ChatBoxComponent} from './user/friends/chat/chat-box/chat-box.component';
 import {ChatDefaultComponent} from './user/friends/chat/chat-default/chat-default.component';
-import {EventReviewComponent} from './shared/event-review/event-review.component';
+import {EventReviewComponent} from './shared/events/event-review/event-review.component';
+import {EventReviewWrapperComponent} from './shared/events/event-review-wrapper/event-review-wrapper.component';
 
 
 const routes: Routes = [
@@ -60,11 +61,16 @@ const routes: Routes = [
   {
     path: 'events', children: [
       {path: 'options', component: EventOptionsComponent},
-      {path: 'reviews/:uuid', component: EventReviewComponent},
+      {
+        path: 'reviews', children: [
+          {path: ':uuid', component: EventReviewWrapperComponent}
+        ]
+      },
       {
         path: ':uuid', component: EventComponent, children: [
           {path: '', component: EventAboutComponent},
           {path: 'about', component: EventAboutComponent},
+          {path: 'reviews', component: EventReviewComponent},
           // {path: 'photos', component: EventPhotosComponent},
           {path: 'edit', component: NewEventComponent},
         ]
