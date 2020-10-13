@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit {
   notify = false;
   showNotifications = false;
   notifications: any[] = [];
+  newNotifications: any[] = [];
+  emptyList = false;
 
   constructor(private authService: AuthService,
               private eventFeedbackService: EventFeedbackService,
@@ -37,8 +39,13 @@ export class HeaderComponent implements OnInit {
   setUpNotifications() {
     this.notifications = JSON.parse(localStorage.getItem('notifications'));
     if (!this.notifications) {
-      this.notifications = [];
+      this.notifications = this.newNotifications = [];
     }
+    this.emptyList = !this.notifications.length;
+    this.notify = this.notifications.some((notification) => {
+        return !notification.seen;
+    });
+    this.updateNewNotifications();
     const token = localStorage.getItem('token');
     const echo = new Echo({
       broadcaster: 'socket.io',
@@ -51,18 +58,26 @@ export class HeaderComponent implements OnInit {
       .listen('.EventCreated', (e) => {
         this.notify = true;
         console.log(e.data);
-        this.updateNotificationList(e.data);
+        const data = {...e.data, seen: false};
+        this.updateNotificationList(data);
       });
     channel = 'event.ended';
     echo.private(channel)
       .listen('.EventEnded', (e) => {
         this.notify = true;
         console.log(e.data);
-        this.updateNotificationList(e.data);
+        const data = {...e.data, seen: false};
+        this.updateNotificationList(data);
         this.eventFeedbackService.eventFeedbackReceived.next(e.data);
       });
     echo.connector.socket.on('connect', () => {
       localStorage.setItem('socketID', JSON.stringify(echo.socketId()));
+    });
+  }
+
+  updateNewNotifications() {
+    this.newNotifications = this.notifications.filter((notification) => {
+      return !notification.seen;
     });
   }
 
@@ -74,11 +89,14 @@ export class HeaderComponent implements OnInit {
       text: data.text,
       image: data.user.picture,
       link: data.link,
-      offsetDate
+      offsetDate,
+      seen: false
     };
     this.notifications.unshift(notification);
+    this.newNotifications.unshift(notification);
 
     this.notifications = this.notifications.slice(0, 5);
+    this.emptyList = !this.notifications.length;
     localStorage.setItem('notifications', JSON.stringify(this.notifications));
   }
 
@@ -116,5 +134,13 @@ export class HeaderComponent implements OnInit {
   onShowNotifications() {
     this.showNotifications = !this.showNotifications;
     this.notify = false;
+    if (this.showNotifications) {
+      this.newNotifications = [];
+      this.notifications = this.notifications.map((notification) => {
+        notification.seen = true;
+        return notification;
+      });
+      localStorage.setItem('notifications', JSON.stringify(this.notifications));
+    }
   }
 }

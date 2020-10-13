@@ -166,8 +166,8 @@
               </div>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="search-toggle iq-waves-effect pointer" (click)="onShowNotifications()">
+          <li class="nav-item" (click)="onShowNotifications()">
+            <a class="search-toggle iq-waves-effect pointer">
               <div id="lottie-beil">
                 <i class="far fa-bell"></i>
               </div>
@@ -178,7 +178,7 @@
                 <div class="iq-card-body p-0 ">
                   <div class="bgclr-grintaaa p-3">
                     <h5 class="mb-0 text-white">Notifications
-                      <small class="badge  badge-light float-right pt-1">{{ notifications.length }}</small>
+                      <small class="badge  badge-light float-right pt-1">{{ newNotifications.length }}</small>
                     </h5>
                   </div>
                   <a class="iq-sub-card" *ngFor="let notification of notifications" routerLink="{{ notification.link }}">
@@ -192,6 +192,11 @@
                       </div>
                     </div>
                   </a>
+                  <div class="row" *ngIf="emptyList">
+                    <div class="col-12">
+                      <p class="text-center list-empty m-0">Pas de notifications</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
