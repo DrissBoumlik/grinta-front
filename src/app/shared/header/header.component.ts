@@ -3,7 +3,7 @@ import {AuthService} from '../../auth/auth.service';
 import {User} from '../../user/user.model';
 import {Router} from '@angular/router';
 import Echo from 'laravel-echo';
-import {EventFeedbackService} from '../event-feedback/event-feedback.service';
+import {EventFeedbackService} from '../events/event-feedback/event-feedback.service';
 
 @Component({
   selector: 'app-header',

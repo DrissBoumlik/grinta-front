@@ -1,8 +1,8 @@
 import {Component, ElementRef, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {Subject} from 'rxjs';
 import {EventFeedbackService} from './event-feedback.service';
-import {Event as EventModel} from '../../user/events/event.model';
-import {FeedbackService} from '../feedback/feedback.service';
+import {Event as EventModel} from '../../../user/events/event.model';
+import {FeedbackService} from '../../feedback/feedback.service';
 
 @Component({
   selector: 'app-event-feedback',
