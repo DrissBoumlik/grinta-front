@@ -27,6 +27,7 @@ ul.header-nav li a {
 
 @media (max-width: 479px) {
   .iq-search-bar {
+    position: static;
     margin: 0;
   }
 }

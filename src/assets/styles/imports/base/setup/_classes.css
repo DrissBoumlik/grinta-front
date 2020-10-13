@@ -9,6 +9,10 @@
   color: var(--grintaaa) !important;
 }
 
+.bdclr-grintaaa, .bdclr-grintaaa-hover:hover {
+  border-color: var(--grintaaa) !important;
+}
+
 .bgclr-white {
   background-color: #fff !important;
   border-color: #fff !important;

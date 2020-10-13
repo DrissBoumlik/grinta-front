@@ -23,4 +23,16 @@ export class EventFeedbackService {
         )
       );
   }
+
+  noteUsers(notedUsers: any, eventUuid) {
+    AuthService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/events/notes', {users: notedUsers, event: eventUuid},
+      {headers: AuthService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
+  }
 }

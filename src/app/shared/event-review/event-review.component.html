@@ -1,1 +1,123 @@
-<p>event-review works!</p>
+<div class="wrapper">
+
+  <!--  <app-user-options></app-user-options>-->
+
+  <app-header></app-header>
+
+  <div id="content-page" class="content-page">
+    <div class="container">
+      <div class="row py-5">
+        <div class="col-12 col-lg-8 offset-lg-2">
+          <div class="row">
+            <div class="col-12">
+              <div class="text-center mb-3">
+                <div class="h3 d-inline-block pb-3 border-bottom bdclr-grintaaa">
+                  Veuillez noter les participants
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="reviews-wrapper p-4">
+                <div class="reviews-list-wrapper">
+                  <div class="reviews-list">
+                    <div class="header-review py-4 mb-1 d-flex align-items-center justify-content-between text-center row m-0">
+                      <div class="col-4">Participant</div>
+                      <div class="col-4">Behavior</div>
+                      <div class="col-4">Performance</div>
+                    </div>
+                    <div class="user-item-wrapper pointer" *ngFor="let user of participants; let i = index">
+                      <div class="d-flex align-items-center justify-content-between row">
+                        <div class="user-info col-4 d-flex align-items-center">
+                          <div class="user-item-img-wrapper">
+                            <div class="user-item-img-container">
+                              <img src="{{ user?.picture }}" class="user-item-img"/>
+                            </div>
+                          </div>
+                          <div class="user-item-info">
+                            <span>{{ user?.firstname }}</span>
+                          </div>
+                        </div>
+                        <div class="user-event-choices col-4 d-flex justify-content-evenly font-size-20">
+                          <!--                        <div class="user-event-choice">-->
+                          <!--                          <input type="checkbox" id="{{ user?.username }}-behavior-1" name="{{ user?.username }}"-->
+                          <!--                                 [checked]="user.note == 1"-->
+                          <!--                                 class="px-3 py-2" (click)="onNoteUser(user, user.note == 1 ? null : 1)">-->
+                          <!--                          <label class="pointer" for="{{ user?.username }}-behavior-1">-->
+                          <!--                            <i class="far fa-smile-beam"></i>-->
+                          <!--                          </label>-->
+                          <!--                        </div>-->
+                          <!--                        <div class="user-event-choice">-->
+                          <!--                          <input type="checkbox" id="{{ user?.username }}-behavior-2" name="{{ user?.username }}"-->
+                          <!--                                 [checked]="user.note == 0"-->
+                          <!--                                 class="px-3 py-2" (click)="onNoteUser(user, user.note == 0 ? null : 0)">-->
+                          <!--                          <label class="pointer" for="{{ user?.username }}-behavior-2">-->
+                          <!--                            <i class="far fa-smile"></i>-->
+                          <!--                          </label>-->
+                          <!--                        </div>-->
+                          <!--                        <div class="user-event-choice">-->
+                          <!--                          <input type="checkbox" id="{{ user?.username }}-behavior-3" name="{{ user?.username }}"-->
+                          <!--                                 [checked]="user.note == -2"-->
+                          <!--                                 class="px-3 py-2" (click)="onNoteUser(user, user.note == -2 ? null : -2)">-->
+                          <!--                          <label class="pointer" for="{{ user?.username }}-behavior-3">-->
+                          <!--                            <i class="far fa-frown"></i>-->
+                          <!--                          </label>-->
+                          <!--                        </div>-->
+                          <div class="user-event-choice event-note-choice" *ngFor="let value of [-2, 0, 1]; let i = index">
+                            <input type="checkbox" id="{{ user?.username }}-behavior-{{ i }}" name="{{ user?.username }}"
+                                   [checked]="user.note?.behavior == value"
+                                   class="px-3 py-2 event-note-input d-none" (click)="onNoteUserBehavior(user, user.note == value ? null : value)">
+                            <label class="event-note-label pointer" for="{{ user?.username }}-behavior-{{ i }}">
+                              <i class="far " [ngClass]="value == 1 ? 'fa-smile-beam' : value == 0 ? 'fa-smile' : 'fa-frown'"></i>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="user-event-choices col-4 d-flex justify-content-evenly font-size-20">
+                          <div class="user-event-choice event-note-choice" *ngFor="let value of [-2, 0, 1]; let i = index">
+                            <input type="checkbox" id="{{ user?.username }}-performance-{{ i }}" name="{{ user?.username }}"
+                                   [checked]="user.note?.performance == value"
+                                   class="px-3 py-2 event-note-input d-none" (click)="onNoteUserPerformance(user, user.note == value ? null : value)">
+                            <label class="event-note-label pointer" for="{{ user?.username }}-performance-{{ i }}">
+                              <i class="far " [ngClass]="value == 1 ? 'fa-smile-beam' : value == 0 ? 'fa-smile' : 'fa-frown'"></i>
+                            </label>
+                          </div>
+                          <!--                        <div class="user-event-choice">-->
+                          <!--                          <input type="checkbox" id="{{ user?.username }}-performance-1" name="{{ user?.username }}"-->
+                          <!--                                 [checked]="user.note == 1"-->
+                          <!--                                 class="px-3 py-2" (click)="onNoteUser(user, user.note == 1 ? null : 1)">-->
+                          <!--                          <label class="pointer" for="{{ user?.username }}-performance-1">-->
+                          <!--                            <i class="far fa-smile-beam"></i>-->
+                          <!--                          </label>-->
+                          <!--                        </div>-->
+                          <!--                        <div class="user-event-choice">-->
+                          <!--                          <input type="checkbox" id="{{ user?.username }}-performance-2" name="{{ user?.username }}"-->
+                          <!--                                 [checked]="user.note == 0"-->
+                          <!--                                 class="px-3 py-2" (click)="onNoteUser(user, user.note == 0 ? null : 0)">-->
+                          <!--                          <label class="pointer" for="{{ user?.username }}-performance-2">-->
+                          <!--                            <i class="far fa-smile"></i>-->
+                          <!--                          </label>-->
+                          <!--                        </div>-->
+                          <!--                        <div class="user-event-choice">-->
+                          <!--                          <input type="checkbox" id="{{ user?.username }}-performance-3" name="{{ user?.username }}"-->
+                          <!--                                 [checked]="user.note == -2"-->
+                          <!--                                 class="px-3 py-2" (click)="onNoteUser(user, user.note == -2 ? null : -2)">-->
+                          <!--                          <label class="pointer" for="{{ user?.username }}-performance-3">-->
+                          <!--                            <i class="far fa-frown"></i>-->
+                          <!--                          </label>-->
+                          <!--                        </div>-->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <app-spinner *ngIf="loadingData"></app-spinner>
+                </div>
+                <div class="btn-actions mt-4 mb-2 text-center">
+                  <button type="button" class="btn btn-primary bgclr-grintaaa" (click)="onSend()">Send Notes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
