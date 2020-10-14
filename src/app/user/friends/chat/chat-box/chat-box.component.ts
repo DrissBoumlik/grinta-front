@@ -83,8 +83,8 @@ export class ChatBoxComponent implements OnInit, AfterViewChecked {
 
     snapshot.forEach((childSnapshot: any) => {
       const item = childSnapshot.val();
-      item.sender = item.from === this.user.username ? this.user : this.authUser;
-      item.receiver = item.from !== this.user.username ? this.user : this.authUser;
+      item.sender = item.fromUsername === this.user.username ? this.user : this.authUser;
+      item.receiver = item.fromUsername !== this.user.username ? this.user : this.authUser;
       item.key = childSnapshot.key;
       returnArr.push(item);
     });
@@ -99,8 +99,14 @@ export class ChatBoxComponent implements OnInit, AfterViewChecked {
       message: this.sendMessageForm.value.message,
       date: this.datePipe.transform(new Date(), 'yyyy-MM-ddTHH:mm:ss'),
       type: 'message',
-      from: this.authUser.username,
-      to: this.user.username,
+      fromUsername: this.authUser.username,
+      fromFirstname: this.authUser.firstname,
+      fromLastname: this.authUser.lastname,
+      fromPicture: this.authUser.picture,
+      toUsername: this.user.username,
+      toFirstname: this.user.firstname,
+      toLastname: this.user.lastname,
+      toPicture: this.user.picture,
     };
     const newMessage = this.fbDB.ref('chats/' + this.chatId).push();
     newMessage.set(chat);

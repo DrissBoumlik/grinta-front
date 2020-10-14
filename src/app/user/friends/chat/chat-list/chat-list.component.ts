@@ -65,13 +65,13 @@ export class ChatListComponent implements OnInit {
     snapshot.forEach((childSnapshot: any) => {
       const items: any = Object.values(childSnapshot.val());
       const lastItem = items[items.length - 1];
-      const ChatUserWith = this.authUser.username === lastItem.from ? lastItem.to : lastItem.from;
+      const ChatUserWith = this.authUser.username === lastItem.fromUsername ? lastItem.toUsername : lastItem.fromUsername;
       const chat = {
         username: ChatUserWith,
         lastMsg: lastItem.message,
         date: lastItem.date
       };
-      if (this.authUser.username === lastItem.from || this.authUser.username === lastItem.to) {
+      if (this.authUser.username === lastItem.fromUsername || this.authUser.username === lastItem.toUsername) {
         chats.push(chat);
         returnArr.push(chat.username);
       }
