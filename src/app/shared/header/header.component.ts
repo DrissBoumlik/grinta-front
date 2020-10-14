@@ -4,6 +4,7 @@ import {User} from '../../user/user.model';
 import {Router} from '@angular/router';
 import Echo from 'laravel-echo';
 import {EventFeedbackService} from '../events/event-feedback/event-feedback.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +13,15 @@ import {EventFeedbackService} from '../events/event-feedback/event-feedback.serv
 })
 export class HeaderComponent implements OnInit {
   user: User;
-  notify = false;
+  alertNewNotification = false;
+  alertNewMessage = false;
   showNotifications = false;
   notifications: any[] = [];
   newNotifications: any[] = [];
   emptyList = false;
+  fbDB = firebase.database();
+  chatDB = 'chats';
+  chatList = [];
 
   constructor(private authService: AuthService,
               private eventFeedbackService: EventFeedbackService,
@@ -27,6 +32,8 @@ export class HeaderComponent implements OnInit {
 
     this.setUpNotifications();
 
+    this.setupChtNotifications();
+
     // const token = localStorage.getItem('token');
     // const logged = (this.authService.user !== null && this.authService.user !== undefined) && (token !== undefined && token !== null);
     // if (logged) {
@@ -36,13 +43,51 @@ export class HeaderComponent implements OnInit {
     // }
   }
 
+  setupChtNotifications() {
+
+    this.fbDB.ref(this.chatDB).on('value', resp => {
+      const results = this.snapshotToArray(resp);
+      this.chatList = results.chats;
+    });
+  }
+
+
+  snapshotToArray(snapshot: any) {
+    const returnArr = [];
+    const chats = [];
+
+    snapshot.forEach((childSnapshot: any) => {
+      const items: any = Object.values(childSnapshot.val());
+      const lastItem = items[items.length - 1];
+      const otherUsername = this.user.username === lastItem.fromUsername ? lastItem.toUsername : lastItem.fromUsername;
+      const otherPicture = this.user.username === lastItem.fromUsername ? lastItem.toPicture : lastItem.fromPicture;
+      const otherFirstname = this.user.firstname === lastItem.fromFirstname ? lastItem.toFirstname : lastItem.fromFirstname;
+      const otherLastname = this.user.lastname === lastItem.fromLastname ? lastItem.toLastname : lastItem.fromLastname;
+      const offsetDate = this.timeDifference(new Date(), Date.parse(lastItem.date));
+      const chat = {
+        username: otherUsername,
+        firstname: otherFirstname,
+        lastname: otherLastname,
+        lastMsg: lastItem.message,
+        picture: otherPicture,
+        offsetDate // lastItem.date
+      };
+      if (this.user.username === lastItem.fromUsername || this.user.username === lastItem.toUsername) {
+        chats.push(chat);
+        returnArr.push(chat.username);
+      }
+    });
+
+    return {userNames: returnArr, chats};
+  }
+
   setUpNotifications() {
     this.notifications = JSON.parse(localStorage.getItem('notifications'));
     if (!this.notifications) {
       this.notifications = this.newNotifications = [];
     }
     this.emptyList = !this.notifications.length;
-    this.notify = this.notifications.some((notification) => {
+    this.alertNewNotification = this.notifications.some((notification) => {
         return !notification.seen;
     });
     this.updateNewNotifications();
@@ -56,7 +101,7 @@ export class HeaderComponent implements OnInit {
     channel = 'event.created';
     echo.private(channel)
       .listen('.EventCreated', (e) => {
-        this.notify = true;
+        this.alertNewNotification = true;
         console.log(e.data);
         const data = {...e.data, seen: false};
         this.updateNotificationList(data);
@@ -64,7 +109,7 @@ export class HeaderComponent implements OnInit {
     channel = 'event.ended';
     echo.private(channel)
       .listen('.EventEnded', (e) => {
-        this.notify = true;
+        this.alertNewNotification = true;
         console.log(e.data);
         const data = {...e.data, seen: false};
         this.updateNotificationList(data);
@@ -133,7 +178,7 @@ export class HeaderComponent implements OnInit {
 
   onShowNotifications() {
     this.showNotifications = !this.showNotifications;
-    this.notify = false;
+    this.alertNewNotification = false;
     if (this.showNotifications) {
       this.newNotifications = [];
       this.notifications = this.notifications.map((notification) => {
