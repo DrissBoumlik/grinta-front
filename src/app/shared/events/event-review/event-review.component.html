@@ -94,6 +94,11 @@
           </div>
         </div>
       </div>
+      <div class="row p-3" *ngIf="emptyList">
+        <div class="col-12">
+          <p class="text-center list-empty m-0">Vous avez noté tout le monde ou bien personne n'a participé</p>
+        </div>
+      </div>
     </div>
     <app-spinner *ngIf="loadingData"></app-spinner>
   </div>

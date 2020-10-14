@@ -18,6 +18,7 @@ export class EventReviewComponent implements OnInit {
   participants: (User | any)[];
   event: Event;
   loadingData = true;
+  emptyList = false;
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
               private feedbackService: FeedbackService,
@@ -50,6 +51,7 @@ export class EventReviewComponent implements OnInit {
     this.event = event;
     this.user = this.event.user;
     this.participants = this.event.users;
+    this.emptyList = !this.participants.length;
   }
 
   onGetEvent(uuid: string) {
@@ -85,15 +87,19 @@ export class EventReviewComponent implements OnInit {
         return notes.includes(user.note.behavior) || notes.includes(user.note.performance);
       }
     });
-    this.eventFeedbackService.noteUsers(notedUsers, this.event.uuid).subscribe(
-      (response: any) => {
-        console.log(response);
-        this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
-      }, (error: any) => {
-        const message = error.error.errors ? error.error.errors : error.error.message;
-        this.feedbackService.feedbackReceived.next({feedback: 'error', message});
-      }
-    );
+    if (notedUsers.length) {
+      this.eventFeedbackService.noteUsers(notedUsers, this.event.uuid).subscribe(
+        (response: any) => {
+          console.log(response);
+          this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
+        }, (error: any) => {
+          const message = error.error.errors ? error.error.errors : error.error.message;
+          this.feedbackService.feedbackReceived.next({feedback: 'error', message});
+        }
+      );
+    } else {
+      this.feedbackService.feedbackReceived.next({feedback: 'warning', message: 'Aucun utilisateur n\'a été selectionné'});
+    }
     // SEND REQUEST FOR NOTATION
   }
 }
