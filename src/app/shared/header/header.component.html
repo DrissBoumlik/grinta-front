@@ -189,7 +189,7 @@
                       </div>
                     </div>
                   </a>
-                  <div class="row" *ngIf="emptyList">
+                  <div class="row" *ngIf="emptyNotificationsList">
                     <div class="col-12">
                       <p class="text-center list-empty m-0">Pas de notifications</p>
                     </div>
@@ -198,19 +198,19 @@
               </div>
             </div>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown" (click)="onShowChatList()">
             <a class="search-toggle iq-waves-effect pointer">
               <div id="lottie-mail">
                 <i class="fas fa-envelope-open-text"></i>
               </div>
               <span class="bg-primary count-mail" *ngIf="alertNewMessage"></span>
             </a>
-            <div class="iq-sub-dropdown">
+            <div class="iq-sub-dropdown" *ngIf="showChatList">
               <div class="iq-card shadow-none m-0">
                 <div class="iq-card-body p-0 ">
                   <div class="bgclr-grintaaa p-3">
                     <h5 class="mb-0 text-white">All Messages
-                      <small class="badge  badge-light float-right pt-1">{{ chatList.length }}</small>
+                      <small class="badge  badge-light float-right pt-1">{{ newChatList.length > 6 ? 5 : newChatList.length }}</small>
                     </h5>
                   </div>
 
