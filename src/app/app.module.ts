@@ -53,6 +53,8 @@ import { UserEditPasswordComponent } from './user/profile/user-edit/user-edit-pa
 import { UserEditContactComponent } from './user/profile/user-edit/user-edit-contact/user-edit-contact.component';
 import { ProfileComponent } from './user/profile/profile/profile.component';
 import { PageWrapperComponent } from './user/pages/page-wrapper/page-wrapper.component';
+import { LatestEventsComponent } from './user/user-updates/latest-events/latest-events.component';
+import { LatestBirthDatesComponent } from './user/user-updates/latest-birth-dates/latest-birth-dates.component';
 
 const config = new AuthServiceConfig([
   {
@@ -98,6 +100,8 @@ export function provideConfig() {
     UserEditContactComponent,
     ProfileComponent,
     PageWrapperComponent,
+    LatestEventsComponent,
+    LatestBirthDatesComponent,
   ],
   imports: [
     BrowserModule,

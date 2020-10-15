@@ -35,6 +35,19 @@ export class UserService {
       );
   }
 
+  getLatestBirthDates(params) {
+    AuthService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/users/birthdates/latests',
+      { limit: params.limit, period: params.periode},
+      {headers: AuthService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
+  }
+
   followUser(followedId: number) {
     AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/followers', {followedId}, {headers: AuthService.headers})
