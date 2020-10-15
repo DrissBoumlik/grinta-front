@@ -44,6 +44,19 @@ export class EventService {
       );
   }
 
+  getLatestEvents(params) {
+    AuthService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/events/latests',
+      { limit: params.limit, period: params.periode},
+      {headers: AuthService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
+  }
+
   getEventByUuid(uuid: string) {
     AuthService.getHeaders();
     return this.http.get(environment.baseApiUrl + '/events/uuid/' + uuid, {headers: AuthService.headers})

@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import Echo from 'laravel-echo';
 import {EventFeedbackService} from '../events/event-feedback/event-feedback.service';
 import * as firebase from 'firebase';
+import {ToolsService} from '../tools.service';
 
 @Component({
   selector: 'app-header',
@@ -28,6 +29,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private eventFeedbackService: EventFeedbackService,
+              private toolService: ToolsService,
               private router: Router) { }
 
   ngOnInit() {
@@ -80,7 +82,7 @@ export class HeaderComponent implements OnInit {
     snapshot.forEach((childSnapshot: any) => {
       const items: any = Object.values(childSnapshot.val());
       const lastItem = items[items.length - 1];
-      const offsetDate = this.timeDifference(new Date(), Date.parse(lastItem.date));
+      const offsetDate = this.toolService.timeDifference(new Date(), Date.parse(lastItem.date));
       let chat: any = {
         lastMsg: lastItem.message,
         dateMsg: lastItem.date,
@@ -186,7 +188,7 @@ export class HeaderComponent implements OnInit {
   }
 
   updateNotificationList(data: any) {
-    const offsetDate = this.timeDifference(new Date(), Date.parse(data.event.created_at));
+    const offsetDate = this.toolService.timeDifference(new Date(), Date.parse(data.event.created_at));
     const notification = {
       event: data.event,
       user: data.user,
@@ -202,31 +204,6 @@ export class HeaderComponent implements OnInit {
     this.notifications = this.notifications.slice(0, 5);
     this.emptyNotificationsList = !this.notifications.length;
     localStorage.setItem('notifications', JSON.stringify(this.notifications));
-  }
-
-  timeDifference(current, previous) {
-
-    const msPerMinute = 60 * 1000;
-    const msPerHour = msPerMinute * 60;
-    const msPerDay = msPerHour * 24;
-    const msPerMonth = msPerDay * 30;
-    const msPerYear = msPerDay * 365;
-
-    const elapsed = current - previous;
-
-    if (elapsed < msPerMinute) {
-      return Math.round(elapsed / 1000) + ' seconds ago';
-    } else if (elapsed < msPerHour) {
-      return Math.round(elapsed / msPerMinute) + ' minutes ago';
-    } else if (elapsed < msPerDay) {
-      return Math.round(elapsed / msPerHour) + ' hours ago';
-    } else if (elapsed < msPerMonth) {
-      return 'approximately ' + Math.round(elapsed / msPerDay) + ' days ago';
-    } else if (elapsed < msPerYear) {
-      return 'approximately ' + Math.round(elapsed / msPerMonth) + ' months ago';
-    } else {
-      return 'approximately ' + Math.round(elapsed / msPerYear) + ' years ago';
-    }
   }
 
   onLogout() {
