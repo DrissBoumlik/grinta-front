@@ -91,6 +91,7 @@ export class EventReviewComponent implements OnInit {
       this.eventFeedbackService.noteUsers(notedUsers, this.event.uuid).subscribe(
         (response: any) => {
           console.log(response);
+          this.onGetEvent(response.event.uuid);
           this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
         }, (error: any) => {
           const message = error.error.errors ? error.error.errors : error.error.message;
@@ -100,6 +101,5 @@ export class EventReviewComponent implements OnInit {
     } else {
       this.feedbackService.feedbackReceived.next({feedback: 'warning', message: 'Aucun utilisateur n\'a été selectionné'});
     }
-    // SEND REQUEST FOR NOTATION
   }
 }
