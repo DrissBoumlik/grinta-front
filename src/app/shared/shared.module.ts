@@ -21,7 +21,6 @@ import { LocationPipe } from './pipes/location.pipe';
 import { EventFeedbackComponent } from './events/event-feedback/event-feedback.component';
 import { EventReviewComponent } from './events/event-review/event-review.component';
 import { EventFeedbackService } from './events/event-feedback/event-feedback.service';
-import { EventReviewWrapperComponent } from './events/event-review-wrapper/event-review-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import { EventReviewWrapperComponent } from './events/event-review-wrapper/event
     LocationPipe,
     EventFeedbackComponent,
     EventReviewComponent,
-    EventReviewWrapperComponent,
   ],
   imports: [
     RouterModule,
