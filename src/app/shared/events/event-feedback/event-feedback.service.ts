@@ -13,7 +13,7 @@ export class EventFeedbackService {
 
   sendFeedback(participated: number) {
     AuthService.getHeaders();
-    return this.http.post(environment.baseApiUrl + '/events/score',
+    return this.http.post(environment.baseApiUrl + '/users/score',
       {participated},
       {headers: AuthService.headers})
       .pipe(
