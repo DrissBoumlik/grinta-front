@@ -33,7 +33,7 @@ export class RelationService {
 
   getRelations(params = {page: 1, searchTerm: '', uuid: ''}) {
     AuthService.getHeaders();
-    return this.http.get(environment.baseApiUrl + `/search/relations?page=${params.page}&term=${params.searchTerm}&uuid=${params.uuid}`,
+    return this.http.get(environment.baseApiUrl + `/search/users?page=${params.page}&term=${params.searchTerm}&uuid=${params.uuid}`,
       {headers: AuthService.headers})
       .pipe(
         tap(
