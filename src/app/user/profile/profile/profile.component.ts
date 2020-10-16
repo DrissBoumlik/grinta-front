@@ -58,6 +58,10 @@ export class ProfileComponent implements OnInit {
     this.userService.followUser(this.profile.id)
       .subscribe((response: any) => {
         this.isFollowed = true;
+        this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
+      }, (error: any) => {
+        const message = error.error.errors ? error.error.errors : error.error.message;
+        this.feedbackService.feedbackReceived.next({feedback: 'error', message});
       });
   }
 
@@ -65,6 +69,10 @@ export class ProfileComponent implements OnInit {
     this.userService.unFollowUser(this.profile.id)
       .subscribe((response: any) => {
         this.isFollowed = false;
+        this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
+      }, (error: any) => {
+        const message = error.error.errors ? error.error.errors : error.error.message;
+        this.feedbackService.feedbackReceived.next({feedback: 'error', message});
       });
   }
 

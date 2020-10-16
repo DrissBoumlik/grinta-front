@@ -7,6 +7,13 @@ ul.header-nav li a i {
   top: -2px;
 }
 
+ul.header-nav li a.active {
+  border-color: var(--iq-danger);
+}
+ul.header-nav li a i.active {
+  color: var(--iq-danger);
+}
+
 .profile-img img {
   border: 5px solid #fff;
 }
