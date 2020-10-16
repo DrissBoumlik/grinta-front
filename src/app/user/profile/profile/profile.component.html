@@ -20,7 +20,8 @@
                         <img src="{{ profile?.cover }}" alt="profile-bg" class="rounded img-fluid w-100 centered-img">
                       </div>
                       <ul class="header-nav d-flex flex-wrap justify-end p-0 m-0">
-                        <li *ngIf="ownProfile"><a routerLink="/{{ profile?.username }}/edit"><i class="ri-pencil-line"></i></a></li>
+                        <li *ngIf="!ownProfile"><a (click)="isFriend ? onRemoveFriend() : onAddFriend()" class="pointer mr-1"><i [ngClass]="{'fas fa-user-plus' : !isFriend, 'ion-minus-circled': isFriend}"></i></a></li>
+                        <li *ngIf="ownProfile"><a routerLink="/{{ profile?.username }}/edit" class="mr-1"><i class="ri-pencil-line"></i></a></li>
                         <li><a routerLink="/messenger/{{ profile?.username }}"><i class="ri-message-line"></i></a></li>
                       </ul>
                     </div>

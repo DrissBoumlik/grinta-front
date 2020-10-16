@@ -11,7 +11,8 @@ a, .navbar-list li > a,
   color: var(--grintaaa);
 }
 
-ul.header-nav li a {
+ul.header-nav li a,
+ul.header-nav li a:not([href]):not([tabindex]) {
   color: var(--grintaaa);
 }
 

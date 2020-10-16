@@ -4,6 +4,7 @@ import {UserService} from '../../user.service';
 import {ProfileService} from '../profile.service';
 import {AuthService} from '../../../auth/auth.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {FeedbackService} from '../../../shared/feedback/feedback.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +20,7 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService,
               private profileService: ProfileService,
               private authService: AuthService,
+              private feedbackService: FeedbackService,
               private route: ActivatedRoute,
               private router: Router) {}
 
@@ -70,6 +72,10 @@ export class ProfileComponent implements OnInit {
     this.userService.addFriend(this.profile.id)
       .subscribe((response: any) => {
         this.isFriend = true;
+        this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
+      }, (error: any) => {
+        const message = error.error.errors ? error.error.errors : error.error.message;
+        this.feedbackService.feedbackReceived.next({feedback: 'error', message});
       });
   }
 
@@ -77,6 +83,10 @@ export class ProfileComponent implements OnInit {
     this.userService.removeFriend(this.profile.id)
       .subscribe((response: any) => {
         this.isFriend = false;
+        this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
+      }, (error: any) => {
+        const message = error.error.errors ? error.error.errors : error.error.message;
+        this.feedbackService.feedbackReceived.next({feedback: 'error', message});
       });
   }
 
