@@ -70,20 +70,25 @@ export class EventInvitationComponent implements OnInit {
   onSend() {
     const usersUuids = this.relations.filter(user => user.chosen)
       .map(user => user.uuid);
-    this.eventService.inviteUsers(usersUuids, this.event.uuid).subscribe(
-      (response: any) => {
-        this.eventService.getEventByUuid(response.event.uuid).subscribe((data: any) => {
-          this.eventService.eventUpdated.next(data.event);
-        });
-        this.queryPage = 1;
-        const params = {page: this.queryPage, searchTerm: this.searchTerm, uuid: this.event.uuid};
-        this.onGetRelations(params);
-        this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
-      }, (error: any) => {
-        const message = error.error.errors ? error.error.errors : error.error.message;
-        this.feedbackService.feedbackReceived.next({feedback: 'error', message});
-      }
-    );
+
+    if (usersUuids.length) {
+      this.eventService.inviteUsers(usersUuids, this.event.uuid).subscribe(
+        (response: any) => {
+          this.eventService.getEventByUuid(response.event.uuid).subscribe((data: any) => {
+            this.eventService.eventUpdated.next(data.event);
+          });
+          this.queryPage = 1;
+          const params = {page: this.queryPage, searchTerm: this.searchTerm, uuid: this.event.uuid};
+          this.onGetRelations(params);
+          this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
+        }, (error: any) => {
+          const message = error.error.errors ? error.error.errors : error.error.message;
+          this.feedbackService.feedbackReceived.next({feedback: 'error', message});
+        }
+      );
+    } else {
+      this.feedbackService.feedbackReceived.next({feedback: 'warning', message: 'Aucun utilisateur n\'a été selectionné'});
+    }
   }
 
   onSearch(value: any) {
