@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseApiUrl: 'http://api.grintaaa.essorline.com/api',
-  baseUrl: 'http://api.grintaaa.essorline.com/'
+  baseApiUrl: 'https://api.grintaaa.essorline.com/api',
+  baseUrl: 'https://api.grintaaa.essorline.com/'
 };
