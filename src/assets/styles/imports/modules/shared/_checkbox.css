@@ -18,7 +18,7 @@
 
 .event-note-input~.event-note-label i.fa-frown,
 .event-note-choice .event-note-input:disabled~.event-note-label i.fa-frown {
-  color: var(--iq-danger);
+  color: var(--danger);
 }
 .event-note-input~.event-note-label i.fa-smile,
 .event-note-choice .event-note-input:disabled~.event-note-label i.fa-smile {
