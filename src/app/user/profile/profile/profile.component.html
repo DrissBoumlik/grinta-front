@@ -1,6 +1,6 @@
 <div class="wrapper">
 
-  <!--  <app-user-options></app-user-options>-->
+    <app-user-options></app-user-options>
 
   <app-header></app-header>
 
@@ -31,7 +31,7 @@
                           </a>
                         </li>
                         <li *ngIf="ownProfile"><a routerLink="/{{ profile?.username }}/edit" class="mr-1"><i class="ri-pencil-line"></i></a></li>
-                        <li><a routerLink="/messenger/{{ profile?.username }}"><i class="ri-message-line"></i></a></li>
+                        <li><a routerLink="/messages/{{ profile?.username }}"><i class="ri-message-line"></i></a></li>
                       </ul>
                     </div>
                     <div class="user-detail text-center">
