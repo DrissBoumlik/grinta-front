@@ -7,6 +7,7 @@
 @import "shared/_checkbox.css";
 @import "shared/_search-input.css";
 @import "shared/_event-feedback.css";
+@import "shared/_user-options.css";
 
 @import "profile/common/_header.css";
 @import "profile/edit/_menu.css";

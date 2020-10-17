@@ -21,6 +21,10 @@ import { LocationPipe } from './pipes/location.pipe';
 import { EventFeedbackComponent } from './events/event-feedback/event-feedback.component';
 import { EventReviewComponent } from './events/event-review/event-review.component';
 import { EventFeedbackService } from './events/event-feedback/event-feedback.service';
+import {UserOptionsComponent} from './user-options/user-options.component';
+import {UserUpdatesComponent} from './user-updates/user-updates.component';
+import {LatestEventsComponent} from './user-updates/latest-events/latest-events.component';
+import {LatestBirthDatesComponent} from './user-updates/latest-birth-dates/latest-birth-dates.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +40,10 @@ import { EventFeedbackService } from './events/event-feedback/event-feedback.ser
     LocationPipe,
     EventFeedbackComponent,
     EventReviewComponent,
+    UserOptionsComponent,
+    UserUpdatesComponent,
+    LatestEventsComponent,
+    LatestBirthDatesComponent,
   ],
   imports: [
     RouterModule,
@@ -52,6 +60,10 @@ import { EventFeedbackService } from './events/event-feedback/event-feedback.ser
     ExcerptPipe,
     MapPreviewComponent,
     LocationPipe,
+    UserOptionsComponent,
+    UserUpdatesComponent,
+    LatestEventsComponent,
+    LatestBirthDatesComponent,
   ],
   providers: [SearchService, SportService, ToolsService, FeedbackService, EventFeedbackService, HandlerService, EventService]
 })

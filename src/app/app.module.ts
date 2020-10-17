@@ -30,8 +30,6 @@ import {SharedModule} from './shared/shared.module';
 import {PagesService} from './user/pages/pages.service';
 import {FriendsModule} from './user/friends/friends.module';
 import {UserEditComponent} from './user/profile/user-edit/user-edit.component';
-import {UserOptionsComponent} from './user/user-options/user-options.component';
-import {UserUpdatesComponent} from './user/user-updates/user-updates.component';
 import {NewPageComponent} from './user/pages/new-page/new-page.component';
 import {PageComponent} from './user/pages/page/page.component';
 import {PagesComponent} from './user/pages/pages.component';
@@ -53,8 +51,6 @@ import { UserEditPasswordComponent } from './user/profile/user-edit/user-edit-pa
 import { UserEditContactComponent } from './user/profile/user-edit/user-edit-contact/user-edit-contact.component';
 import { ProfileComponent } from './user/profile/profile/profile.component';
 import { PageWrapperComponent } from './user/pages/page-wrapper/page-wrapper.component';
-import { LatestEventsComponent } from './user/user-updates/latest-events/latest-events.component';
-import { LatestBirthDatesComponent } from './user/user-updates/latest-birth-dates/latest-birth-dates.component';
 
 const config = new AuthServiceConfig([
   {
@@ -82,8 +78,6 @@ export function provideConfig() {
     HomeComponent,
     RegisterComponent,
     UserEditComponent,
-    UserOptionsComponent,
-    UserUpdatesComponent,
     NewPageComponent,
     PageComponent,
     PagesComponent,
@@ -100,8 +94,6 @@ export function provideConfig() {
     UserEditContactComponent,
     ProfileComponent,
     PageWrapperComponent,
-    LatestEventsComponent,
-    LatestBirthDatesComponent,
   ],
   imports: [
     BrowserModule,
