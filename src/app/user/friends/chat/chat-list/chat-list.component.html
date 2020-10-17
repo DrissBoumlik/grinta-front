@@ -45,7 +45,7 @@
     <h5 class="pl-2">Chats</h5>
     <ul class="iq-chat-ui nav flex-column nav-pills">
       <li *ngFor="let chatItem of chatList">
-        <a  data-toggle="pill" routerLink="/messenger/{{ chatItem.username }}">
+        <a  data-toggle="pill" routerLink="/messages/{{ chatItem.username }}">
           <div class="chat-item-wrapper d-flex align-items-center p-2">
             <div class="avatar mr-2">
               <img src="{{ chatItem.picture }}" alt="chatuserimage" class="avatar-50 ">

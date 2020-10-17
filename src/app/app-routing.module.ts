@@ -72,7 +72,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'messenger', component: ChatComponent, children: [
+    path: 'messages', component: ChatComponent, children: [
       {path: '', component: ChatDefaultComponent},
       {path: ':username', component: ChatBoxComponent},
     ]
