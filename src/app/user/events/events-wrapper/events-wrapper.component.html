@@ -1,0 +1,29 @@
+<div class="wrapper">
+
+  <app-user-options></app-user-options>
+
+  <app-header></app-header>
+
+  <div id="content-page" class="content-page">
+    <div class="container">
+      <div class="events-wrapper py-5"
+           infiniteScroll
+           [infiniteScrollDistance]="1"
+           [infiniteScrollThrottle]="50"
+           [scrollWindow]="true"
+           (scrolled)="onLoadMore()"
+      >
+        <div class="row">
+          <div class="col-4 event-item-wrapper" *ngFor="let event of events">
+            <app-event-item [event]="event"></app-event-item>
+          </div>
+        </div>
+        <div class="row" *ngIf="loadMore">
+          <div class="col-12">
+            <app-spinner></app-spinner>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.container -->
+  </div>
+</div>

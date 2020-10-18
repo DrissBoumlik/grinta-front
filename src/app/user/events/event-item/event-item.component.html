@@ -1,0 +1,28 @@
+<div class="iq-card rounded iq-card-block iq-card-stretch iq-card-height">
+  <div class="event-images">
+    <a routerLink="/events/{{ event.uuid }}">
+      <img src="{{ event.cover }}" class="img-fluid" alt="Responsive image">
+    </a>
+  </div>
+  <div class="iq-card-body">
+    <div class="d-flex">
+      <div class="date-of-event">
+        <span>{{ event.date | date:'MMM' }}</span>
+        <h5>{{ event.date | date:'dd' }}</h5>
+      </div>
+      <div class="events-detail ml-3">
+        <a routerLink="/events/{{ event.uuid }}">
+          <h5>{{ event.name }}</h5>
+        </a>
+        <p>{{ event.description | excerpt:40 }}</p>
+        <div class="event-member">
+          <div class="iq-media-group">
+            <a routerLink="/{{ user.username }}" class="iq-media" *ngFor="let user of event.users | slice:0:5">
+              <img class="img-fluid avatar-40 rounded-circle" src="{{ user.picture }}" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
