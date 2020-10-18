@@ -57,13 +57,12 @@ export class HeaderComponent implements OnInit {
       //   notification.seen = true;
       //   return notification;
       // });
-      // localStorage.setItem('notifications', JSON.stringify(this.notifications));
-      localStorage.setItem('chatList', JSON.stringify(this.chatList));
+      // localStorage.setItem('chatList', JSON.stringify(this.chatList));
     }
   }
 
   setupChatNotifications() {
-    this.chatList = JSON.parse(localStorage.getItem('chatList'));
+    // this.chatList = JSON.parse(localStorage.getItem('chatList'));
     if (!this.chatList) {
       this.newChatList = [];
       this.chatList = [];
@@ -72,7 +71,7 @@ export class HeaderComponent implements OnInit {
 
     this.fbDB.ref(this.chatDB).on('value', resp => {
       const results = this.snapshotToArray(resp);
-      // this.chatList = results.chats;
+      this.chatList = results.chats;
     });
   }
 
@@ -109,27 +108,28 @@ export class HeaderComponent implements OnInit {
           ...chat
         };
       }
-      const exists = this.chatList.some((chatItem) => {
-        return chatItem.details.fromUsername === chat.details.fromUsername &&
-          chatItem.details.toUsername === chat.details.toUsername &&
-          chatItem.dateMsg === chat.dateMsg;
-      });
-      if (!exists) {
-        if (this.user.username === lastItem.fromUsername || this.user.username === lastItem.toUsername) {
-          this.newChatList.push(chat);
-          returnArr.push(chat.username);
-        }
+      // const exists = this.chatList.some((chatItem) => {
+      //   return chatItem.details.fromUsername === chat.details.fromUsername &&
+      //     chatItem.details.toUsername === chat.details.toUsername &&
+      //     chatItem.dateMsg === chat.dateMsg;
+      // });
+      // if (!exists) {
+      if (this.user.username === lastItem.fromUsername || this.user.username === lastItem.toUsername) {
+        this.newChatList.push(chat);
+        returnArr.push(chat.username);
       }
+      // }
     });
     // TODO: Update message instead of adding to the list if same conversation
     // this.alertNewMessage = !!this.newChatList.length;
-    if (this.newChatList.length && this.chatList.length) {
-      this.alertNewMessage = !(this.newChatList[0].details.fromUsername === this.chatList[0].details.fromUsername &&
-        this.newChatList[0].details.toUsername === this.chatList[0].details.toUsername &&
-        this.newChatList[0].dateMsg === this.chatList[0].dateMsg);
-    }
-    this.chatList.unshift(...this.newChatList);
-    this.chatList = this.chatList.sort((chatItem1, chatItem2) => {
+    // if (this.newChatList.length && this.chatList.length) {
+    //   this.alertNewMessage = !(this.newChatList[0].details.fromUsername === this.chatList[0].details.fromUsername &&
+    //     this.newChatList[0].details.toUsername === this.chatList[0].details.toUsername &&
+    //     this.newChatList[0].dateMsg === this.chatList[0].dateMsg);
+    // }
+    this.alertNewMessage = true;
+    // this.chatList.unshift(...this.newChatList);
+    this.newChatList = this.newChatList.sort((chatItem1, chatItem2) => {
       if (chatItem1.dateMsg > chatItem2.dateMsg) {
         return -1;
       }
@@ -138,8 +138,8 @@ export class HeaderComponent implements OnInit {
       }
       return 0;
     });
-    this.chatList = this.chatList.slice(0, 5);
-    return {userNames: returnArr, chats: this.chatList};
+    this.newChatList = this.newChatList.slice(0, 5);
+    return {userNames: returnArr, chats: this.newChatList};
   }
 
   setUpNotifications() {
