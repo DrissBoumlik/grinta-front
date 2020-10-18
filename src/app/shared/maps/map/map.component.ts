@@ -19,7 +19,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   events: [];
   markers: Marker[] = [];
   Kilometers = 50;
-  GetEvents = this.fb.group({
+  GetEventsForm = this.fb.group({
     Kilometers: new FormControl(),
   });
   storedPosition: any;
@@ -149,7 +149,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       marker.removeFrom(this.map);
     });
     this.markers = [];
-    this.Kilometers = this.GetEvents.value.Kilometers;
+    this.Kilometers = this.GetEventsForm.value.Kilometers;
     if (this.storedPosition) {
       this.getNearEvents(this.Kilometers, this.storedPosition);
     } else {
