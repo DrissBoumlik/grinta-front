@@ -23,7 +23,27 @@ export class UserFriendsComponent implements OnInit {
       this.relationService.getFriends(this.queryPage++).subscribe((response: any) => {
         this.friends = this.relationService.friends;
         this.emptyList = !this.friends.length;
-        this.shouldScroll = !!response.friends.length;
+        this.shouldScroll = !!this.friends.length;
+        this.loading = false;
+      });
+    },
+    requests: () => {
+      this.loading = true;
+      this.emptyList = false;
+      this.relationService.getRequests().subscribe((response: any) => {
+        this.friends = this.relationService.friends;
+        this.emptyList = !this.friends.length;
+        this.shouldScroll = !!this.friends.length;
+        this.loading = false;
+      });
+    },
+    requested: () => {
+      this.loading = true;
+      this.emptyList = false;
+      this.relationService.getRequested().subscribe((response: any) => {
+        this.friends = this.relationService.friends;
+        this.emptyList = !this.friends.length;
+        this.shouldScroll = !!this.friends.length;
         this.loading = false;
       });
     },
@@ -33,7 +53,7 @@ export class UserFriendsComponent implements OnInit {
       this.relationService.getFollowings().subscribe((response: any) => {
         this.friends = this.relationService.friends;
         this.emptyList = !this.friends.length;
-        this.shouldScroll = !!response.followings.length;
+        this.shouldScroll = !!this.friends.length;
         this.loading = false;
       });
     },
@@ -43,7 +63,7 @@ export class UserFriendsComponent implements OnInit {
       this.relationService.getFollowers().subscribe((response: any) => {
         this.friends = this.relationService.friends;
         this.emptyList = !this.friends.length;
-        this.shouldScroll = !!response.followers.length;
+        this.shouldScroll = !!this.friends.length;
         this.loading = false;
       });
     },
@@ -53,7 +73,7 @@ export class UserFriendsComponent implements OnInit {
       this.relationService.getAddedFriends().subscribe((response: any) => {
         this.friends = this.relationService.friends;
         this.emptyList = !this.friends.length;
-        this.shouldScroll = !!response.addedFriends.length;
+        this.shouldScroll = !!this.friends.length;
         this.loading = false;
       });
     },
@@ -63,7 +83,7 @@ export class UserFriendsComponent implements OnInit {
       this.relationService.getCityFriends(this.authUser.city, this.queryPage++).subscribe((response: any) => {
         this.friends = this.relationService.friends;
         this.emptyList = !this.friends.length;
-        this.shouldScroll = !!response.cityFriends.length;
+        this.shouldScroll = !!this.friends.length;
         this.loading = false;
       });
     }

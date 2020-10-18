@@ -9,9 +9,9 @@
         <li>
           <a routerLink="/{{ user?.username }}" class="iq-waves-effect"><i class="las la-user"></i><span>Profile</span></a>
         </li>
-<!--        <li>-->
-<!--          <a  class="iq-waves-effect"><i class="las la-user-friends"></i><span>Friend Lists</span></a>-->
-<!--        </li>-->
+        <li>
+          <a routerLink="/{{ user?.username }}/friends" class="iq-waves-effect"><i class="las la-user-friends"></i><span>Friend Lists</span></a>
+        </li>
 <!--        <li>-->
 <!--          <a  class="iq-waves-effect"><i class="las la-users"></i><span>Group</span></a>-->
 <!--        </li>-->
@@ -27,9 +27,9 @@
 <!--        <li>-->
 <!--          <a  class="iq-waves-effect"><i class="las la-bell"></i><span>Notification</span></a>-->
 <!--        </li>-->
-<!--        <li>-->
-<!--          <a  class="iq-waves-effect"><i class="las la-anchor"></i><span>Friend Request</span></a>-->
-<!--        </li>-->
+        <li>
+          <a routerLink="/{{ user?.username }}/friends/requests" class="iq-waves-effect"><i class="las la-anchor"></i><span>Friend Request</span></a>
+        </li>
         <li>
           <a routerLink="/messages" class="iq-waves-effect"><i class="lab la-rocketchat"></i><span>Chat</span></a>
         </li>

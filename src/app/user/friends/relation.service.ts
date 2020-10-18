@@ -75,6 +75,35 @@ export class RelationService {
     });
   }
 
+
+  getRequested() {
+    AuthService.getHeaders();
+    return this.http.get(environment.baseApiUrl + '/requested', {headers: AuthService.headers})
+      .pipe(
+        tap(
+          (data: any) => {
+            // console.log(data);
+            this.friends = data.requested;
+          },
+          error => console.log(error.status),
+        )
+      );
+  }
+
+  getRequests() {
+    AuthService.getHeaders();
+    return this.http.get(environment.baseApiUrl + '/requests', {headers: AuthService.headers})
+      .pipe(
+        tap(
+          (data: any) => {
+            // console.log(data);
+            this.friends = data.requests;
+          },
+          error => console.log(error.status),
+        )
+      );
+  }
+
   getFollowings() {
     AuthService.getHeaders();
     return this.http.get(environment.baseApiUrl + '/followings', {headers: AuthService.headers})
