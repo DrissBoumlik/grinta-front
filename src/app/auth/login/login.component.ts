@@ -113,6 +113,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(data)
       .subscribe(
         (response: any) => {
+          this.loggedIn = true;
+          this.authService.isLogged = true;
         this.user = response.success.user;
         this.router.navigate(['home']);
         // window.location.href = '/home';

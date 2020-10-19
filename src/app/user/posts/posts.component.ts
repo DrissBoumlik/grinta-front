@@ -36,7 +36,7 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.isLogged(this.router);
+    // this.authService.isLogged(this.router);
     this.authUser = this.authService.user;
     this.user = JSON.parse(localStorage.getItem('profile'));
     this.page = JSON.parse(localStorage.getItem('page'));

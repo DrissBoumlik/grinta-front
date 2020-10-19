@@ -10,10 +10,12 @@ import {tap} from 'rxjs/operators';
 export class AuthService {
   static headers = new HttpHeaders({'Content-Type': 'application/json'});
   public user: User;
+  public isLogged;
 
   constructor(private http: HttpClient,
               private router: Router) {
     this.user = JSON.parse(localStorage.getItem('authUser')) as User;
+    this.isLogged = JSON.parse(localStorage.getItem('isLogged'));
   }
 
   static getHeaders() {
@@ -50,6 +52,8 @@ export class AuthService {
       .pipe(
         tap(
           (response: any) => {
+            this.isLogged = true;
+            localStorage.setItem('isLogged', JSON.stringify(this.isLogged));
             this.user = response.success.user;
             localStorage.setItem('token', response.success.token);
             localStorage.setItem('authUser', JSON.stringify(response.success.user));
@@ -69,7 +73,9 @@ export class AuthService {
               console.log(data);
               localStorage.removeItem('token');
               localStorage.removeItem('authUser');
-              this.router.navigate(['/']);
+              localStorage.removeItem('isLogged');
+              this.isLogged = false;
+              this.router.navigate(['/login']);
             },
             error => console.log(error.status),
           )
@@ -77,17 +83,20 @@ export class AuthService {
     } else {
       localStorage.removeItem('token');
       localStorage.removeItem('authUser');
+      localStorage.removeItem('isLogged');
+      this.isLogged = false;
+      this.router.navigate(['/login']);
       return null;
     }
 
   }
 
-  isLogged(router: Router) {
-
-    const userLogged = localStorage.getItem('token') !== null && localStorage.getItem('token') !== undefined;
-    if (!userLogged) {
-      router.navigate(['/']);
-    }
-  }
+  // isLogged(router: Router) {
+  //
+  //   const userLogged = localStorage.getItem('token') !== null && localStorage.getItem('token') !== undefined;
+  //   if (!userLogged) {
+  //     router.navigate(['/']);
+  //   }
+  // }
 
 }

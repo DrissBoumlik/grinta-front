@@ -39,93 +39,98 @@ import {ChatBoxComponent} from './user/friends/chat/chat-box/chat-box.component'
 import {ChatDefaultComponent} from './user/friends/chat/chat-default/chat-default.component';
 import {EventReviewComponent} from './shared/events/event-review/event-review.component';
 import {EventsWrapperComponent} from './user/events/events-wrapper/events-wrapper.component';
+import {AuthenticationGuard} from './auth/authentication.guard';
 
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'home', component: HomeComponent},
   {
-    path: 'posts', component: TemplateComponent, children: [
-      {path: '', component: PostsComponent},
-      {path: ':uuid', component: PostWrapperComponent}
-    ]
-  },
-  {
-    path: 'pages', children: [
-      {path: ':pagename', component: PageComponent},
-      {path: ':pagename/edit', component: NewPageComponent}
-    ]
-  },
-  {
-    path: 'events', children: [
-      {path: '', component: EventsWrapperComponent},
-      {path: 'options', component: EventOptionsComponent},
+    path: '', canActivate: [AuthenticationGuard], children: [
+      {path: '', component: HomeComponent},
+      {path: 'home', component: HomeComponent},
       {
-        path: ':uuid', component: EventComponent, children: [
-          {path: '', component: EventAboutComponent},
-          {path: 'about', component: EventAboutComponent},
-          {path: 'reviews', component: EventReviewComponent},
-          // {path: 'photos', component: EventPhotosComponent},
-          {path: 'edit', component: NewEventComponent},
+        path: 'posts', component: TemplateComponent, children: [
+          {path: '', component: PostsComponent},
+          {path: ':uuid', component: PostWrapperComponent}
+        ]
+      },
+      {
+        path: 'pages', children: [
+          {path: ':pagename', component: PageComponent},
+          {path: ':pagename/edit', component: NewPageComponent}
+        ]
+      },
+      {
+        path: 'events', children: [
+          {path: '', component: EventsWrapperComponent},
+          {path: 'options', component: EventOptionsComponent},
+          {
+            path: ':uuid', component: EventComponent, children: [
+              {path: '', component: EventAboutComponent},
+              {path: 'about', component: EventAboutComponent},
+              {path: 'reviews', component: EventReviewComponent},
+              // {path: 'photos', component: EventPhotosComponent},
+              {path: 'edit', component: NewEventComponent},
+            ]
+          },
+        ]
+      },
+      {
+        path: 'messages', component: ChatComponent, children: [
+          {path: '', component: ChatDefaultComponent},
+          {path: ':username', component: ChatBoxComponent},
+        ]
+      },
+      // { path: ':username', component: UserComponent},
+      {
+        path: 'create', children: [
+          {path: 'page', component: PageWrapperComponent},
+          {path: 'event', component: EventWrapperComponent}
+        ]
+      },
+      {
+        path: 'search', component: SearchComponent, children: [
+          {path: '', component: SearchEventsComponent},
+          {path: 'events', component: SearchEventsComponent}
+        ]
+      },
+      {
+        path: ':username', component: ProfileComponent, children: [
+          {path: '', component: UserHomeComponent},
+          {path: 'home', component: UserHomeComponent},
+          {
+            path: 'edit', component: UserEditComponent, children: [
+              {path: '', component: UserEditInfoComponent},
+              {path: 'infos', component: UserEditInfoComponent},
+              {path: 'password', component: UserEditPasswordComponent},
+              {path: 'contact', component: UserEditContactComponent}
+            ]
+          },
+          {path: 'posts', component: UserPostsComponent},
+          {
+            path: 'albums', children: [
+              {path: '', component: UserAlbumsComponent},
+              {path: ':id', component: AlbumComponent}
+            ]
+          },
+          {path: 'likes', component: UserLikesComponent},
+          {path: 'pages', component: PagesComponent},
+          {path: 'events', component: UserEventsComponent},
+          {path: 'about', component: UserAboutComponent},
+          {path: 'photos', component: UserPhotosComponent},
+          {path: 'friends', component: UserFriendsComponent},
         ]
       },
     ]
   },
-  {
-    path: 'messages', component: ChatComponent, children: [
-      {path: '', component: ChatDefaultComponent},
-      {path: ':username', component: ChatBoxComponent},
-    ]
-  },
-  // { path: ':username', component: UserComponent},
-  {
-    path: 'create', children: [
-      {path: 'page', component: PageWrapperComponent},
-      {path: 'event', component: EventWrapperComponent}
-    ]
-  },
-  {
-    path: 'search', component: SearchComponent, children: [
-      {path: '', component: SearchEventsComponent},
-      {path: 'events', component: SearchEventsComponent}
-    ]
-  },
-  {
-    path: ':username', component: ProfileComponent, children: [
-      {path: '', component: UserHomeComponent},
-      {path: 'home', component: UserHomeComponent},
-      {
-        path: 'edit', component: UserEditComponent, children: [
-          {path: '', component: UserEditInfoComponent},
-          {path: 'infos', component: UserEditInfoComponent},
-          {path: 'password', component: UserEditPasswordComponent},
-          {path: 'contact', component: UserEditContactComponent}
-        ]
-      },
-      {path: 'posts', component: UserPostsComponent},
-      {
-        path: 'albums', children: [
-          {path: '', component: UserAlbumsComponent},
-          {path: ':id', component: AlbumComponent}
-        ]
-      },
-      {path: 'likes', component: UserLikesComponent},
-      {path: 'pages', component: PagesComponent},
-      {path: 'events', component: UserEventsComponent},
-      {path: 'about', component: UserAboutComponent},
-      {path: 'photos', component: UserPhotosComponent},
-      {path: 'friends', component: UserFriendsComponent},
-    ]
-  },
-
   {path: '**', redirectTo: 'login'}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthenticationGuard]
 })
 export class AppRoutingModule {
 }

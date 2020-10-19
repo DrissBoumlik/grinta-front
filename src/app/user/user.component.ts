@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-    this.authService.isLogged(this.router);
+    // this.authService.isLogged(this.router);
     // let username = this.route.snapshot.params.username;
     this.route.params.subscribe((params: Params) => {
       window.scroll(0, 0);

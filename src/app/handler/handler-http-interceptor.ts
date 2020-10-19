@@ -29,6 +29,7 @@ export class HandlerHttpInterceptor implements HttpInterceptor {
           if (err.status !== 401) {
             return;
           }
+          this.authService.isLogged = false;
           this.authService.logout({serverSide: false});
         }
       }));
