@@ -3,6 +3,7 @@ import { Album } from '../../album.model';
 export class Media {
   constructor(
     public id: number,
+    public uuid: string,
     public user_id: number,
     public album_id: number,
     public name: string,
