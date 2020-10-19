@@ -71,7 +71,8 @@
           <p>{{ post?.body }}</p>
         </div>
         <div class="user-post" *ngIf="post?.media_url">
-          <a><img src="{{ post?.media_url }}" alt="post-image" class="img-fluid rounded w-100"></a>
+          <img src="{{ post?.media_url }}" alt="post-image" class="img-fluid rounded w-100" *ngIf="post?.type == 'image'">
+          <video src="{{ post?.media_url }}" controls class="w-100" *ngIf="post?.type == 'video'"></video>
         </div>
         <div class="comment-area mt-3">
           <div class="d-flex justify-content-between align-items-center">
