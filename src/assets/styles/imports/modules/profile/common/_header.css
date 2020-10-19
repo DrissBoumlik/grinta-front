@@ -45,6 +45,17 @@ ul.header-nav li a i.active {
   font-weight: 800;
 }
 
+.user-score-aside {
+  top: unset;
+  bottom: 0;
+  transform: translateY(40%);
+  z-index: 1010;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+}
+
 @media (max-width:576px) {
   .profile-img img {
     width: 100px;

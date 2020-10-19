@@ -19,6 +19,9 @@
                       <div class="h-200 h-md-300 overflow-hidden center-img">
                         <img src="{{ profile?.cover }}" alt="profile-bg" class="rounded img-fluid w-100 centered-img">
                       </div>
+<!--                      <div class="user-score user-score-aside text-center">-->
+<!--                        <span>{{ profile?.score }}</span>-->
+<!--                      </div>-->
                       <ul class="header-nav d-flex flex-wrap justify-end p-0 m-0">
                         <li *ngIf="!ownProfile">
                           <a (click)="isFollowed ? onUnfollowFriend() : onFollowFriend()" title="Follow" class="pointer mr-1" [ngClass]="{'active': isFollowed}">
