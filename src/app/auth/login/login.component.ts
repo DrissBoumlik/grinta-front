@@ -116,7 +116,11 @@ export class LoginComponent implements OnInit {
           this.loggedIn = true;
           this.authService.isLogged = true;
           this.user = response.success.user;
-          this.router.navigate(['home']);
+          const message = 'Login successfully';
+          this.feedbackService.feedbackReceived.next({feedback: 'success', message});
+          setTimeout(() => {
+            this.router.navigate(['home']);
+          }, 1000);
           // window.location.href = '/home';
         }, (error) => {
           console.log(error);
