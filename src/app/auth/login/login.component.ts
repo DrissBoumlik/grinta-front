@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    const data =  {
+    const data = {
       isSocial: false,
       username: this.loginForm.value.username,
       email: this.loginForm.value.username,
@@ -115,20 +115,24 @@ export class LoginComponent implements OnInit {
         (response: any) => {
           this.loggedIn = true;
           this.authService.isLogged = true;
-        this.user = response.success.user;
-        this.router.navigate(['home']);
-        // window.location.href = '/home';
-      }, (error) => {
+          this.user = response.success.user;
+          this.router.navigate(['home']);
+          // window.location.href = '/home';
+        }, (error) => {
           console.log(error);
-          const message = error.error ? error.error : (error.error.errors ? error.error.errors : error.error.message);
+          let message = error.error ? error.error : (error.error.errors ? error.error.errors : error.error.message);
+          if (error.status === 500) {
+            message = 'Une erreur interne s\'est produite';
+          }
           this.feedbackService.feedbackReceived.next({feedback: 'error', message});
         });
   }
+
   signInWithGoogle(): void {
     this.socialService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((socialUser: SocialUser) => {
         const username = this.toolsService.slugify(socialUser.name);
-        const data =  {
+        const data = {
           isSocial: true,
           username,
           email: socialUser.id
