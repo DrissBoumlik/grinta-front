@@ -92,6 +92,28 @@ export class UserService {
       );
   }
 
+  acceptRequest(friendId: number) {
+    AuthService.getHeaders();
+    return this.http.put(environment.baseApiUrl + '/friends', {friendId, accept: 1}, {headers: AuthService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error),
+        )
+      );
+  }
+
+  cancelRequest(friendId: number) {
+    AuthService.getHeaders();
+    return this.http.put(environment.baseApiUrl + '/friends', {friendId, accept: -1}, {headers: AuthService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error),
+        )
+      );
+  }
+
   updatePage(page: any) {
     AuthService.getHeaders();
     return this.http.put(environment.baseApiUrl + '/pages',
