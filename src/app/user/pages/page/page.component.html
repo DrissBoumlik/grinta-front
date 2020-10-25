@@ -13,7 +13,7 @@
         <div class="col-sm-10 offset-sm-1">
           <div class="iq-card">
             <div class="iq-card-body profile-page p-0">
-              <div class="profile-header">
+              <div class="profile-header position-relative">
                 <div class="cover-container">
                   <div class="h-300 overflow-hidden center-img">
                     <img src="{{ page?.cover }}" alt="profile-bg" class="rounded img-fluid w-100 centered-img">
@@ -23,56 +23,16 @@
                     <li><a href="javascript:void();"><i class="ri-settings-4-line"></i></a></li>
                   </ul>
                 </div>
-                <div class="user-detail text-center">
+                <div class="user-detail text-left ml-2">
                   <div class="profile-img">
                     <img src="{{ page?.image }}" alt="profile-img" class="avatar-130 img-fluid"/>
                   </div>
-                  <div class="profile-detail">
-                    <h3 class="page-title">{{ page?.name }}</h3>
-                    <a routerLink="/pages/{{ page?.pagename }}" class="m-0">@{{ page?.pagename }}</a>
-                  </div>
                 </div>
-                <div class="profile-info p-4 d-flex align-items-center justify-content-between position-relative">
-                  <div class="social-links">
-                    <ul class="social-data-block d-flex align-items-center justify-content-between list-inline p-0 m-0">
-                      <li class="text-center pr-3">
-                        <a href="#"><img src="/assets/plugins/socialV/images/icon/08.png" class="img-fluid rounded"
-                                         alt="facebook"></a>
-                      </li>
-                      <li class="text-center pr-3">
-                        <a href="#"><img src="/assets/plugins/socialV/images/icon/09.png" class="img-fluid rounded"
-                                         alt="Twitter"></a>
-                      </li>
-                      <li class="text-center pr-3">
-                        <a href="#"><img src="/assets/plugins/socialV/images/icon/10.png" class="img-fluid rounded"
-                                         alt="Instagram"></a>
-                      </li>
-                      <li class="text-center pr-3">
-                        <a href="#"><img src="/assets/plugins/socialV/images/icon/12.png" class="img-fluid rounded"
-                                         alt="You tube"></a>
-                      </li>
-                      <li class="text-center pr-3">
-                        <a href="#"><img src="/assets/plugins/socialV/images/icon/13.png" class="img-fluid rounded"
-                                         alt="linkedin"></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="social-info">
-                    <ul class="social-data-block d-flex align-items-center justify-content-between list-inline p-0 m-0">
-                      <li class="text-center pl-3">
-                        <h6>Posts</h6>
-                        <p class="mb-0">690</p>
-                      </li>
-                      <li class="text-center pl-3">
-                        <h6>Followers</h6>
-                        <p class="mb-0">206</p>
-                      </li>
-                      <li class="text-center pl-3">
-                        <h6>Following</h6>
-                        <p class="mb-0">100</p>
-                      </li>
-                    </ul>
-                  </div>
+              </div>
+              <div class="profile-info p-4 text-left position-relative">
+                <div class="profile-detail">
+                  <h3 class="page-title">{{ page?.name }}</h3>
+                  <a routerLink="/pages/{{ page?.pagename }}" class="m-0">@{{ page?.pagename }}</a>
                 </div>
               </div>
             </div>
@@ -103,55 +63,7 @@
             <div class="tab-pane fade active show" id="timeline" role="tabpanel">
               <div class="iq-card-body p-0">
                 <div class="row">
-                  <div class="col-lg-4">
-                    <div class="iq-card">
-                      <div class="iq-card-body">
-                        <a href="#"><span class="badge badge-pill badge-primary bgclr-grintaaa font-weight-normal ml-auto mr-1"><i
-                          class="ri-star-line"></i></span> 27 Items for yoou</a>
-                      </div>
-                    </div>
-                    <div class="iq-card">
-                      <div class="iq-card-header d-flex justify-content-between">
-                        <div class="iq-header-title">
-                          <h4 class="card-title">Life Event</h4>
-                        </div>
-                        <div class="iq-card-header-toolbar d-flex align-items-center">
-                          <p class="m-0"><a href="javacsript:void();"> Create </a></p>
-                        </div>
-                      </div>
-                      <div class="iq-card-body">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <div class="event-post position-relative">
-                              <a href="javascript:void();"><img src="/assets/plugins/socialV/images/page-img/07.jpg"
-                                                                alt="gallary-image" class="img-fluid rounded"></a>
-                              <div class="job-icon-position">
-                                <div class="job-icon bg-primary bgclr-grintaaa p-2 d-inline-block rounded-circle"><i
-                                  class="ri-briefcase-line"></i></div>
-                              </div>
-                              <div class="iq-card-body text-center p-2">
-                                <h5>Started New Job at Apple</h5>
-                                <p>January 24, 2019</p>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-sm-12">
-                            <div class="event-post position-relative">
-                              <a href="javascript:void();"><img src="/assets/plugins/socialV/images/page-img/06.jpg"
-                                                                alt="gallary-image" class="img-fluid rounded"></a>
-                              <div class="job-icon-position">
-                                <div class="job-icon bg-primary bgclr-grintaaa p-2 d-inline-block rounded-circle"><i
-                                  class="ri-briefcase-line"></i></div>
-                              </div>
-                              <div class="iq-card-body text-center p-2">
-                                <h5>Freelance Photographer</h5>
-                                <p>January 24, 2019</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="col-lg-5">
                     <div class="iq-card">
                       <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
@@ -193,68 +105,8 @@
                         </ul>
                       </div>
                     </div>
-                    <div class="iq-card">
-                      <div class="iq-card-header d-flex justify-content-between">
-                        <div class="iq-header-title">
-                          <h4 class="card-title">Friends</h4>
-                        </div>
-                        <div class="iq-card-header-toolbar d-flex align-items-center">
-                          <p class="m-0"><a href="javacsript:void();">Add New </a></p>
-                        </div>
-                      </div>
-                      <div class="iq-card-body">
-                        <ul class="profile-img-gallary d-flex flex-wrap p-0 m-0">
-                          <li class="col-md-4 col-6 pl-2 pr-0 pb-3">
-                            <a href="javascript:void();">
-                              <img src="/assets/plugins/socialV/images/user/05.jpg" alt="gallary-image"
-                                   class="img-fluid"/></a>
-                            <h6 class="mt-2">Anna Rexia</h6>
-                          </li>
-                          <li class="col-md-4 col-6 pl-2 pr-0 pb-3">
-                            <a href="javascript:void();"><img src="/assets/plugins/socialV/images/user/06.jpg"
-                                                              alt="gallary-image" class="img-fluid"/></a>
-                            <h6 class="mt-2">Tara Zona</h6>
-                          </li>
-                          <li class="col-md-4 col-6 pl-2 pr-0 pb-3">
-                            <a href="javascript:void();"><img src="/assets/plugins/socialV/images/user/07.jpg"
-                                                              alt="gallary-image" class="img-fluid"/></a>
-                            <h6 class="mt-2">Polly Tech</h6>
-                          </li>
-                          <li class="col-md-4 col-6 pl-2 pr-0 pb-3">
-                            <a href="javascript:void();"><img src="/assets/plugins/socialV/images/user/08.jpg"
-                                                              alt="gallary-image" class="img-fluid"/></a>
-                            <h6 class="mt-2">Bill Emia</h6>
-                          </li>
-                          <li class="col-md-4 col-6 pl-2 pr-0 pb-3">
-                            <a href="javascript:void();"><img src="/assets/plugins/socialV/images/user/09.jpg"
-                                                              alt="gallary-image" class="img-fluid"/></a>
-                            <h6 class="mt-2">Moe Fugga</h6>
-                          </li>
-                          <li class="col-md-4 col-6 pl-2 pr-0 pb-3">
-                            <a href="javascript:void();"><img src="/assets/plugins/socialV/images/user/10.jpg"
-                                                              alt="gallary-image" class="img-fluid"/></a>
-                            <h6 class="mt-2">Hal Appeno </h6>
-                          </li>
-                          <li class="col-md-4 col-6 pl-2 pr-0 pb-0">
-                            <a href="javascript:void();"><img src="/assets/plugins/socialV/images/user/07.jpg"
-                                                              alt="gallary-image" class="img-fluid"/></a>
-                            <h6 class="mt-2">Zack Lee</h6>
-                          </li>
-                          <li class="col-md-4 col-6 pl-2 pr-0 pb-0">
-                            <a href="javascript:void();"><img src="/assets/plugins/socialV/images/user/06.jpg"
-                                                              alt="gallary-image" class="img-fluid"/></a>
-                            <h6 class="mt-2">Terry Aki</h6>
-                          </li>
-                          <li class="col-md-4 col-6 pl-2 pr-0 pb-0">
-                            <a href="javascript:void();"><img src="/assets/plugins/socialV/images/user/05.jpg"
-                                                              alt="gallary-image" class="img-fluid"/></a>
-                            <h6 class="mt-2">Greta Life</h6>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
                   </div>
-                  <div class="col-lg-8">
+                  <div class="col-lg-7 pl-lg-0">
                     <app-posts [page]="page" [isPage]="true"></app-posts>
                   </div>
                 </div>
