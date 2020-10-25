@@ -16,6 +16,7 @@
 @import "profile/photos/_gallery-photos.css";
 @import "profile/likes/pages/_list.css";
 @import "profile/events/_list.css";
+@import "profile/about/_about.css";
 
 @import "comments/_comments.css";
 @import "comments/_comment.css";
