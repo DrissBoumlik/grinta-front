@@ -8,6 +8,7 @@ import {PostsService} from './posts.service';
 import {ProfileService} from '../profile/profile.service';
 import {Page} from '../pages/page/page.model';
 import {PageService} from '../pages/page/page.service';
+import {Post} from './post/post.model';
 
 @Component({
   selector: 'app-posts',
@@ -15,6 +16,7 @@ import {PageService} from '../pages/page/page.service';
   styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent implements OnInit {
+  posts: Post[];
   @Input() isProfile = false;
   @Input() isPage = false;
   @Input() page: Page;
@@ -50,7 +52,7 @@ export class PostsComponent implements OnInit {
     }
 
     this.postsService.postsUpdated.subscribe((posts) => {
-      this.user.posts = posts;
+      this.user.posts = this.posts = posts;
     });
 
     // this.postsService.postsLoaded.subscribe((posts) => {
@@ -89,7 +91,7 @@ export class PostsComponent implements OnInit {
 
   initLoad(user: User) {
     this.user = user;
-    this.user.posts = [];
+    this.user.posts = this.posts = [];
     this.queryPage = 1;
   }
 
@@ -98,7 +100,7 @@ export class PostsComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.postsLoaded = true;
-          this.user.posts = this.postsService.posts;
+          this.user.posts = this.posts = this.postsService.posts;
           this.loadMore = false;
           if (!response.posts.length) {
             this.gotAllPosts = true;
