@@ -5,7 +5,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from './auth/login/login.component';
 import {UserComponent} from './user/user.component';
 import {ProfilePostsComponent} from './user/profile/profile-posts/profile-posts.component';
-import {ProfileAlbumsComponent} from './user/profile/profile-albums/profile-albums.component';
+import {ProfileAlbumsComponent} from './user/profile/profile-media/profile-albums/profile-albums.component';
 import {ProfileLikesComponent} from './user/profile/profile-likes/profile-likes.component';
 import {EventsComponent} from './user/events/events.component';
 import {PagesComponent} from './user/pages/pages.component';
@@ -23,7 +23,7 @@ import {EventOptionsComponent} from './user/events/event-options/event-options.c
 import {SearchEventsComponent} from './search/search-events/search-events.component';
 import {SearchComponent} from './search/search.component';
 import {ProfileAboutComponent} from './user/profile/profile-about/profile-about.component';
-import {ProfilePhotosComponent} from './user/profile/profile-photos/profile-photos.component';
+import {ProfilePhotosComponent} from './user/profile/profile-media/profile-photos/profile-photos.component';
 import {ProfileFriendsComponent} from './user/profile/profile-friends/profile-friends.component';
 import {ProfileHomeComponent} from './user/profile/profile-home/profile-home.component';
 import {ProfileEventsComponent} from './user/profile/profile-events/profile-events.component';
@@ -40,6 +40,7 @@ import {ChatDefaultComponent} from './user/friends/chat/chat-default/chat-defaul
 import {EventReviewComponent} from './shared/events/event-review/event-review.component';
 import {EventsWrapperComponent} from './user/events/events-wrapper/events-wrapper.component';
 import {AuthenticationGuard} from './auth/authentication.guard';
+import {ProfileMediaComponent} from './user/profile/profile-media/profile-media.component';
 
 
 const routes: Routes = [
@@ -108,17 +109,24 @@ const routes: Routes = [
             ]
           },
           {path: 'posts', component: ProfilePostsComponent},
+          // {
+          //   path: 'albums', children: [
+          //     {path: '', component: ProfileAlbumsComponent},
+          //     {path: ':id', component: AlbumComponent}
+          //   ]
+          // },
           {
-            path: 'albums', children: [
-              {path: '', component: ProfileAlbumsComponent},
-              {path: ':id', component: AlbumComponent}
+            path: 'media', component: ProfileMediaComponent, children: [
+              {path: '', component: ProfilePhotosComponent},
+              {path: 'photos', component: ProfilePhotosComponent},
+              {path: 'albums', component: ProfileAlbumsComponent}
             ]
           },
           {path: 'likes', component: ProfileLikesComponent},
           {path: 'pages', component: PagesComponent},
           {path: 'events', component: ProfileEventsComponent},
           {path: 'about', component: ProfileAboutComponent},
-          {path: 'photos', component: ProfilePhotosComponent},
+          // {path: 'photos', component: ProfilePhotosComponent},
           {path: 'friends', component: ProfileFriendsComponent},
         ]
       },

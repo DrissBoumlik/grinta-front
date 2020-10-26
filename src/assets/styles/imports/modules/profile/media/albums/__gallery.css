@@ -1,0 +1,9 @@
+.create-album .wrapper {
+  font-size: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: gray;
+  color: white;
+  border-radius: 5px;
+}
