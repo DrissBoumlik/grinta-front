@@ -8,11 +8,11 @@ import {Sport} from '../../sports/sport.model';
 import {ToolsService} from '../../../shared/tools.service';
 
 @Component({
-  selector: 'app-edit-user',
-  templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.css']
+  selector: 'app-profile-edit',
+  templateUrl: './profile-edit.component.html',
+  styleUrls: ['./profile-edit.component.css']
 })
-export class UserEditComponent implements OnInit {
+export class ProfileEditComponent implements OnInit {
   profile: User;
   sports: Sport[] = [];
 

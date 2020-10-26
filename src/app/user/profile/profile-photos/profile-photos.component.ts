@@ -4,11 +4,11 @@ import {ProfileService} from '../profile.service';
 import {Album} from '../../albums/album/album.model';
 
 @Component({
-  selector: 'app-user-photos',
-  templateUrl: './user-photos.component.html',
-  styleUrls: ['./user-photos.component.css']
+  selector: 'app-profile-photos',
+  templateUrl: './profile-photos.component.html',
+  styleUrls: ['./profile-photos.component.css']
 })
-export class UserPhotosComponent implements OnInit {
+export class ProfilePhotosComponent implements OnInit {
   profile: User;
   albums: (Album | any)[];
   emptyList = false;

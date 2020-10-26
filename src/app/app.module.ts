@@ -18,9 +18,9 @@ import {MediasComponent} from './user/albums/album/medias/medias.component';
 
 import {AuthService} from './auth/auth.service';
 import {UserService} from './user/user.service';
-import {UserPostsComponent} from './user/profile/user-posts/user-posts.component';
-import {UserAlbumsComponent} from './user/profile/user-albums/user-albums.component';
-import {UserLikesComponent} from './user/profile/user-likes/user-likes.component';
+import {ProfilePostsComponent} from './user/profile/profile-posts/profile-posts.component';
+import {ProfileAlbumsComponent} from './user/profile/profile-albums/profile-albums.component';
+import {ProfileLikesComponent} from './user/profile/profile-likes/profile-likes.component';
 import {HomeComponent} from './user/home/home.component';
 import {ProfileService} from './user/profile/profile.service';
 import {RegisterComponent} from './auth/register/register.component';
@@ -29,7 +29,7 @@ import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLog
 import {SharedModule} from './shared/shared.module';
 import {PagesService} from './user/pages/pages.service';
 import {FriendsModule} from './user/friends/friends.module';
-import {UserEditComponent} from './user/profile/user-edit/user-edit.component';
+import {ProfileEditComponent} from './user/profile/profile-edit/profile-edit.component';
 import {NewPageComponent} from './user/pages/new-page/new-page.component';
 import {PageComponent} from './user/pages/page/page.component';
 import {PagesComponent} from './user/pages/pages.component';
@@ -41,14 +41,14 @@ import {DatePipe} from '@angular/common';
 import {EventsModule} from './user/events/events.module';
 import {SearchModule} from './search/search.module';
 import {HelperService} from './helper.service';
-import { UserAboutComponent } from './user/profile/user-about/user-about.component';
-import { UserFriendsComponent } from './user/profile/user-friends/user-friends.component';
-import { UserPhotosComponent } from './user/profile/user-photos/user-photos.component';
-import { UserHomeComponent } from './user/profile/user-home/user-home.component';
-import { UserEventsComponent } from './user/profile/user-events/user-events.component';
-import { UserEditInfoComponent } from './user/profile/user-edit/user-edit-info/user-edit-info.component';
-import { UserEditPasswordComponent } from './user/profile/user-edit/user-edit-password/user-edit-password.component';
-import { UserEditContactComponent } from './user/profile/user-edit/user-edit-contact/user-edit-contact.component';
+import { ProfileAboutComponent } from './user/profile/profile-about/profile-about.component';
+import { ProfileFriendsComponent } from './user/profile/profile-friends/profile-friends.component';
+import { ProfilePhotosComponent } from './user/profile/profile-photos/profile-photos.component';
+import { ProfileHomeComponent } from './user/profile/profile-home/profile-home.component';
+import { ProfileEventsComponent } from './user/profile/profile-events/profile-events.component';
+import { ProfileEditInfoComponent } from './user/profile/profile-edit/profile-edit-info/profile-edit-info.component';
+import { ProfileEditPasswordComponent } from './user/profile/profile-edit/profile-edit-password/profile-edit-password.component';
+import { ProfileEditContactComponent } from './user/profile/profile-edit/profile-edit-contact/profile-edit-contact.component';
 import { ProfileComponent } from './user/profile/profile/profile.component';
 import { PageWrapperComponent } from './user/pages/page-wrapper/page-wrapper.component';
 
@@ -72,26 +72,26 @@ export function provideConfig() {
     MediaComponent,
     AlbumsComponent,
     MediasComponent,
-    UserPostsComponent,
-    UserAlbumsComponent,
-    UserLikesComponent,
+    ProfilePostsComponent,
+    ProfileAlbumsComponent,
+    ProfileLikesComponent,
     HomeComponent,
     RegisterComponent,
-    UserEditComponent,
+    ProfileEditComponent,
     NewPageComponent,
     PageComponent,
     PagesComponent,
     PageItemComponent,
     PostWrapperComponent,
     TemplateComponent,
-    UserAboutComponent,
-    UserFriendsComponent,
-    UserPhotosComponent,
-    UserHomeComponent,
-    UserEventsComponent,
-    UserEditInfoComponent,
-    UserEditPasswordComponent,
-    UserEditContactComponent,
+    ProfileAboutComponent,
+    ProfileFriendsComponent,
+    ProfilePhotosComponent,
+    ProfileHomeComponent,
+    ProfileEventsComponent,
+    ProfileEditInfoComponent,
+    ProfileEditPasswordComponent,
+    ProfileEditContactComponent,
     ProfileComponent,
     PageWrapperComponent,
   ],

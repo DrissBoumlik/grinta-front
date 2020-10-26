@@ -4,16 +4,16 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from './auth/login/login.component';
 import {UserComponent} from './user/user.component';
-import {UserPostsComponent} from './user/profile/user-posts/user-posts.component';
-import {UserAlbumsComponent} from './user/profile/user-albums/user-albums.component';
-import {UserLikesComponent} from './user/profile/user-likes/user-likes.component';
+import {ProfilePostsComponent} from './user/profile/profile-posts/profile-posts.component';
+import {ProfileAlbumsComponent} from './user/profile/profile-albums/profile-albums.component';
+import {ProfileLikesComponent} from './user/profile/profile-likes/profile-likes.component';
 import {EventsComponent} from './user/events/events.component';
 import {PagesComponent} from './user/pages/pages.component';
 import {HomeComponent} from './user/home/home.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {PageComponent} from './user/pages/page/page.component';
 import {AlbumComponent} from './user/albums/album/album.component';
-import {UserEditComponent} from './user/profile/user-edit/user-edit.component';
+import {ProfileEditComponent} from './user/profile/profile-edit/profile-edit.component';
 import {PostComponent} from './user/posts/post/post.component';
 import {TemplateComponent} from './user/template/template.component';
 import {PostsComponent} from './user/posts/posts.component';
@@ -22,14 +22,14 @@ import {ChatComponent} from './user/friends/chat/chat.component';
 import {EventOptionsComponent} from './user/events/event-options/event-options.component';
 import {SearchEventsComponent} from './search/search-events/search-events.component';
 import {SearchComponent} from './search/search.component';
-import {UserAboutComponent} from './user/profile/user-about/user-about.component';
-import {UserPhotosComponent} from './user/profile/user-photos/user-photos.component';
-import {UserFriendsComponent} from './user/profile/user-friends/user-friends.component';
-import {UserHomeComponent} from './user/profile/user-home/user-home.component';
-import {UserEventsComponent} from './user/profile/user-events/user-events.component';
-import {UserEditInfoComponent} from './user/profile/user-edit/user-edit-info/user-edit-info.component';
-import {UserEditPasswordComponent} from './user/profile/user-edit/user-edit-password/user-edit-password.component';
-import {UserEditContactComponent} from './user/profile/user-edit/user-edit-contact/user-edit-contact.component';
+import {ProfileAboutComponent} from './user/profile/profile-about/profile-about.component';
+import {ProfilePhotosComponent} from './user/profile/profile-photos/profile-photos.component';
+import {ProfileFriendsComponent} from './user/profile/profile-friends/profile-friends.component';
+import {ProfileHomeComponent} from './user/profile/profile-home/profile-home.component';
+import {ProfileEventsComponent} from './user/profile/profile-events/profile-events.component';
+import {ProfileEditInfoComponent} from './user/profile/profile-edit/profile-edit-info/profile-edit-info.component';
+import {ProfileEditPasswordComponent} from './user/profile/profile-edit/profile-edit-password/profile-edit-password.component';
+import {ProfileEditContactComponent} from './user/profile/profile-edit/profile-edit-contact/profile-edit-contact.component';
 import {ProfileComponent} from './user/profile/profile/profile.component';
 import {EventComponent} from './user/events/event/event.component';
 import {EventAboutComponent} from './user/events/event/event-about/event-about.component';
@@ -97,29 +97,29 @@ const routes: Routes = [
       },
       {
         path: ':username', component: ProfileComponent, children: [
-          {path: '', component: UserHomeComponent},
-          {path: 'home', component: UserHomeComponent},
+          {path: '', component: ProfileHomeComponent},
+          {path: 'home', component: ProfileHomeComponent},
           {
-            path: 'edit', component: UserEditComponent, children: [
-              {path: '', component: UserEditInfoComponent},
-              {path: 'infos', component: UserEditInfoComponent},
-              {path: 'password', component: UserEditPasswordComponent},
-              {path: 'contact', component: UserEditContactComponent}
+            path: 'edit', component: ProfileEditComponent, children: [
+              {path: '', component: ProfileEditInfoComponent},
+              {path: 'infos', component: ProfileEditInfoComponent},
+              {path: 'password', component: ProfileEditPasswordComponent},
+              {path: 'contact', component: ProfileEditContactComponent}
             ]
           },
-          {path: 'posts', component: UserPostsComponent},
+          {path: 'posts', component: ProfilePostsComponent},
           {
             path: 'albums', children: [
-              {path: '', component: UserAlbumsComponent},
+              {path: '', component: ProfileAlbumsComponent},
               {path: ':id', component: AlbumComponent}
             ]
           },
-          {path: 'likes', component: UserLikesComponent},
+          {path: 'likes', component: ProfileLikesComponent},
           {path: 'pages', component: PagesComponent},
-          {path: 'events', component: UserEventsComponent},
-          {path: 'about', component: UserAboutComponent},
-          {path: 'photos', component: UserPhotosComponent},
-          {path: 'friends', component: UserFriendsComponent},
+          {path: 'events', component: ProfileEventsComponent},
+          {path: 'about', component: ProfileAboutComponent},
+          {path: 'photos', component: ProfilePhotosComponent},
+          {path: 'friends', component: ProfileFriendsComponent},
         ]
       },
     ]

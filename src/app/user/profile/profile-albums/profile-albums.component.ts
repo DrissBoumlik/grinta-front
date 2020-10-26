@@ -7,11 +7,11 @@ import {Router} from '@angular/router';
 import {Album} from '../../albums/album/album.model';
 
 @Component({
-  selector: 'app-user-albums',
-  templateUrl: './user-albums.component.html',
-  styleUrls: ['./user-albums.component.css']
+  selector: 'app-profile-albums',
+  templateUrl: './profile-albums.component.html',
+  styleUrls: ['./profile-albums.component.css']
 })
-export class UserAlbumsComponent implements OnInit {
+export class ProfileAlbumsComponent implements OnInit {
   profile: User;
   cover = undefined;
 

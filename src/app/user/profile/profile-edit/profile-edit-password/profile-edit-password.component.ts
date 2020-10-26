@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../../user.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProfileService} from '../../profile.service';
 import {FeedbackService} from '../../../../shared/feedback/feedback.service';
+import {User} from '../../../user.model';
 
 @Component({
-  selector: 'app-user-edit-contact',
-  templateUrl: './user-edit-contact.component.html',
-  styleUrls: ['./user-edit-contact.component.css']
+  selector: 'app-profile-edit-password',
+  templateUrl: './profile-edit-password.component.html',
+  styleUrls: ['./profile-edit-password.component.css']
 })
-export class UserEditContactComponent implements OnInit {
+export class ProfileEditPasswordComponent implements OnInit {
 
   profile: User;
 
   editUserForm = new FormGroup({
-    phone_number: new FormControl(null, Validators.required),
-    email: new FormControl(null, Validators.required),
+    password_old: new FormControl(null, Validators.required),
+    password: new FormControl(null, Validators.required),
+    password_confirmation: new FormControl(null, Validators.required),
   });
   constructor(private profileService: ProfileService,
               private feedbackService: FeedbackService) { }
@@ -23,27 +24,23 @@ export class UserEditContactComponent implements OnInit {
   ngOnInit() {
     this.profileService.profileLoaded.subscribe((profile: User) => {
       this.profile = profile;
-      this.initForm();
     });
     this.profile = this.profileService.profile;
-    this.initForm();
-  }
-
-  initForm() {
-    this.editUserForm.patchValue({
-      phone_number: this.profile.phoneNumber,
-      email: this.profile.email,
-    });
   }
 
   onEdit() {
     const profile = {
-      phone_number: this.editUserForm.value.phone_number,
-      email: this.editUserForm.value.email,
+      password_old: this.editUserForm.value.password_old,
+      password: this.editUserForm.value.password,
+      password_confirmation: this.editUserForm.value.password_confirmation,
     };
 
-    this.profileService.updateContact(profile)
+    this.profileService.updatePassword(profile)
       .subscribe((response: any) => {
+          this.profileService.getProfile(response.user.username).subscribe((data: any) => {
+            this.profileService.profileUpdated.next(data.user);
+          });
+
           this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
         },
         (error: any) => {
@@ -53,5 +50,4 @@ export class UserEditContactComponent implements OnInit {
         }
       );
   }
-
 }

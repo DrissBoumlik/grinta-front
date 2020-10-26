@@ -5,11 +5,11 @@ import {ProfileService} from '../profile.service';
 import {Media} from '../../albums/album/medias/media/media.model';
 
 @Component({
-  selector: 'app-user-home',
-  templateUrl: './user-home.component.html',
-  styleUrls: ['./user-home.component.css']
+  selector: 'app-profile-home',
+  templateUrl: './profile-home.component.html',
+  styleUrls: ['./profile-home.component.css']
 })
-export class UserHomeComponent implements OnInit {
+export class ProfileHomeComponent implements OnInit {
   profile: User;
   emptyListPhotos = false;
   emptyListFriends = false;

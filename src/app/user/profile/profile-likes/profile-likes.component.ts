@@ -5,11 +5,11 @@ import {Page} from '../../pages/page/page.model';
 import {PagesService} from '../../pages/pages.service';
 
 @Component({
-  selector: 'app-user-likes',
-  templateUrl: './user-likes.component.html',
-  styleUrls: ['./user-likes.component.css']
+  selector: 'app-profile-likes',
+  templateUrl: './profile-likes.component.html',
+  styleUrls: ['./profile-likes.component.css']
 })
-export class UserLikesComponent implements OnInit {
+export class ProfileLikesComponent implements OnInit {
   profile: User;
   pages: Page[] = [];
   type = 'pages';

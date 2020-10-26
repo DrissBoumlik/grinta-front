@@ -4,11 +4,11 @@ import {Event} from '../../events/event.model';
 import {ProfileService} from '../profile.service';
 
 @Component({
-  selector: 'app-user-events',
-  templateUrl: './user-events.component.html',
-  styleUrls: ['./user-events.component.css']
+  selector: 'app-profile-events',
+  templateUrl: './profile-events.component.html',
+  styleUrls: ['./profile-events.component.css']
 })
-export class UserEventsComponent implements OnInit {
+export class ProfileEventsComponent implements OnInit {
   profile: User;
   events: Event[] = [];
   type = 'events';

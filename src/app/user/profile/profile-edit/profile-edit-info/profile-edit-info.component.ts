@@ -9,11 +9,11 @@ import {ToolsService} from '../../../../shared/tools.service';
 import {FeedbackService} from '../../../../shared/feedback/feedback.service';
 
 @Component({
-  selector: 'app-user-edit-info',
-  templateUrl: './user-edit-info.component.html',
-  styleUrls: ['./user-edit-info.component.css']
+  selector: 'app-profile-edit-info',
+  templateUrl: './profile-edit-info.component.html',
+  styleUrls: ['./profile-edit-info.component.css']
 })
-export class UserEditInfoComponent implements OnInit {
+export class ProfileEditInfoComponent implements OnInit {
 
   profile: User;
   sports: Sport[] = [];

@@ -3,11 +3,11 @@ import {User} from '../../user.model';
 import {ProfileService} from '../profile.service';
 
 @Component({
-  selector: 'app-user-about',
-  templateUrl: './user-about.component.html',
-  styleUrls: ['./user-about.component.css']
+  selector: 'app-profile-about',
+  templateUrl: './profile-about.component.html',
+  styleUrls: ['./profile-about.component.css']
 })
-export class UserAboutComponent implements OnInit {
+export class ProfileAboutComponent implements OnInit {
 
   profile: User;
   constructor(private profileService: ProfileService) { }

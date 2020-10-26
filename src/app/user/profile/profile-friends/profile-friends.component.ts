@@ -4,11 +4,11 @@ import {User} from '../../user.model';
 import {AuthService} from '../../../auth/auth.service';
 
 @Component({
-  selector: 'app-user-friends',
-  templateUrl: './user-friends.component.html',
-  styleUrls: ['./user-friends.component.css']
+  selector: 'app-profile-friends',
+  templateUrl: './profile-friends.component.html',
+  styleUrls: ['./profile-friends.component.css']
 })
-export class UserFriendsComponent implements OnInit {
+export class ProfileFriendsComponent implements OnInit {
   authUser: User;
   friends: User[] = [];
   type = 'friends';

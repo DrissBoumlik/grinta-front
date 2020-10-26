@@ -6,11 +6,11 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {PostsService} from '../../posts/posts.service';
 
 @Component({
-  selector: 'app-user-posts',
-  templateUrl: './user-posts.component.html',
-  styleUrls: ['./user-posts.component.css']
+  selector: 'app-profile-posts',
+  templateUrl: './profile-posts.component.html',
+  styleUrls: ['./profile-posts.component.css']
 })
-export class UserPostsComponent implements OnInit {
+export class ProfilePostsComponent implements OnInit {
   user: User;
   justLoaded = false;
 
