@@ -9,7 +9,7 @@
             <a class="nav-link active" data-toggle="pill" href="#photosofyou">Photos of You</a>
           </li>
           <li>
-            <a class="nav-link" data-toggle="pill" href="#your-photos">Your Photos</a>
+            <a class="nav-link" data-toggle="pill" href="#your-photos">Albums</a>
           </li>
         </ul>
         <div class="tab-content">
@@ -49,10 +49,10 @@
           <div class="tab-pane fade" id="your-photos" role="tabpanel">
             <div class="iq-card-body p-0">
               <div class="row" *ngIf="!emptyList">
-                <div class="col-md-6 col-lg-3 mb-3" *ngFor="let photo of profile?.photos.reverse()">
+                <div class="col-md-6 col-lg-3 mb-3" *ngFor="let album of albums">
                   <div class="user-images position-relative overflow-hidden">
                     <a href="#">
-                      <img src="{{ photo.media_url }}" class="photo-item img-fluid rounded"
+                      <img src="{{ album.cover }}" class="photo-item img-fluid rounded"
                            alt="Responsive image">
                     </a>
                   </div>

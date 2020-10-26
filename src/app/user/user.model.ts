@@ -43,7 +43,7 @@ export class User {
     public likedPages: Page[],
     public medias: Media[],
     public photos: Media[],
-    public albums: Album[],
+    public albums: (Album | any)[],
     public sports: Sport[]
   ) {}
 }
