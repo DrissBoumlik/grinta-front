@@ -1,0 +1,21 @@
+<div class="tab-pane fade active show" id="photos" role="tabpanel">
+  <div class="iq-card">
+    <div class="iq-card-body">
+      <h2>Photos</h2>
+      <div class="friend-list-tab mt-2">
+        <ul
+          class="nav nav-pills d-flex align-items-center justify-content-left friend-list-items p-0 mb-2">
+          <li>
+            <a class="nav-link active" data-toggle="pill" routerLink="/{{ profile.username }}/media/photos">Photos of You</a>
+          </li>
+          <li>
+            <a class="nav-link" data-toggle="pill" routerLink="/{{ profile.username }}/media/albums">Albums</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,7 +19,7 @@ import {MediasComponent} from './user/albums/album/medias/medias.component';
 import {AuthService} from './auth/auth.service';
 import {UserService} from './user/user.service';
 import {ProfilePostsComponent} from './user/profile/profile-posts/profile-posts.component';
-import {ProfileAlbumsComponent} from './user/profile/profile-albums/profile-albums.component';
+import {ProfileAlbumsComponent} from './user/profile/profile-media/profile-albums/profile-albums.component';
 import {ProfileLikesComponent} from './user/profile/profile-likes/profile-likes.component';
 import {HomeComponent} from './user/home/home.component';
 import {ProfileService} from './user/profile/profile.service';
@@ -43,7 +43,7 @@ import {SearchModule} from './search/search.module';
 import {HelperService} from './helper.service';
 import { ProfileAboutComponent } from './user/profile/profile-about/profile-about.component';
 import { ProfileFriendsComponent } from './user/profile/profile-friends/profile-friends.component';
-import { ProfilePhotosComponent } from './user/profile/profile-photos/profile-photos.component';
+import { ProfilePhotosComponent } from './user/profile/profile-media/profile-photos/profile-photos.component';
 import { ProfileHomeComponent } from './user/profile/profile-home/profile-home.component';
 import { ProfileEventsComponent } from './user/profile/profile-events/profile-events.component';
 import { ProfileEditInfoComponent } from './user/profile/profile-edit/profile-edit-info/profile-edit-info.component';
@@ -51,6 +51,7 @@ import { ProfileEditPasswordComponent } from './user/profile/profile-edit/profil
 import { ProfileEditContactComponent } from './user/profile/profile-edit/profile-edit-contact/profile-edit-contact.component';
 import { ProfileComponent } from './user/profile/profile/profile.component';
 import { PageWrapperComponent } from './user/pages/page-wrapper/page-wrapper.component';
+import { ProfileMediaComponent } from './user/profile/profile-media/profile-media.component';
 
 const config = new AuthServiceConfig([
   {
@@ -94,6 +95,7 @@ export function provideConfig() {
     ProfileEditContactComponent,
     ProfileComponent,
     PageWrapperComponent,
+    ProfileMediaComponent,
   ],
   imports: [
     BrowserModule,

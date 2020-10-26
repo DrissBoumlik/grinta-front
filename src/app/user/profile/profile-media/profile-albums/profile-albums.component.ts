@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../user.model';
-import {ProfileService} from '../profile.service';
-import {Album} from '../../albums/album/album.model';
+import {User} from '../../../user.model';
+import {UserService} from '../../../user.service';
+import {ProfileService} from '../../profile.service';
+import {AuthService} from '../../../../auth/auth.service';
+import {Router} from '@angular/router';
+import {Album} from '../../../albums/album/album.model';
 
 @Component({
-  selector: 'app-profile-photos',
-  templateUrl: './profile-photos.component.html',
-  styleUrls: ['./profile-photos.component.css']
+  selector: 'app-profile-albums',
+  templateUrl: './profile-albums.component.html',
+  styleUrls: ['./profile-albums.component.css']
 })
-export class ProfilePhotosComponent implements OnInit {
+export class ProfileAlbumsComponent implements OnInit {
   profile: User;
   albums: (Album | any)[];
-  emptyList = false;
   emptyAlbums = false;
-  constructor(private profileService: ProfileService) { }
+
+  constructor(private profileService: ProfileService) {}
 
   ngOnInit() {
     this.profileService.profileLoaded.subscribe((profile: User) => {
@@ -25,7 +28,6 @@ export class ProfilePhotosComponent implements OnInit {
   }
 
   init() {
-    this.emptyList = !this.profile.photos.length;
     this.emptyAlbums = !this.profile.albums.length;
     this.albums = this.profile.albums.filter((album) => {
       return album.medias.length;
