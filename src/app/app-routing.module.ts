@@ -41,6 +41,7 @@ import {EventReviewComponent} from './shared/events/event-review/event-review.co
 import {EventsWrapperComponent} from './user/events/events-wrapper/events-wrapper.component';
 import {AuthenticationGuard} from './auth/authentication.guard';
 import {ProfileMediaComponent} from './user/profile/profile-media/profile-media.component';
+import {ProfileVideosComponent} from './user/profile/profile-media/profile-videos/profile-videos.component';
 
 
 const routes: Routes = [
@@ -119,6 +120,7 @@ const routes: Routes = [
             path: 'media', component: ProfileMediaComponent, children: [
               {path: '', component: ProfilePhotosComponent},
               {path: 'photos', component: ProfilePhotosComponent},
+              {path: 'videos', component: ProfileVideosComponent},
               {path: 'albums', component: ProfileAlbumsComponent}
             ]
           },

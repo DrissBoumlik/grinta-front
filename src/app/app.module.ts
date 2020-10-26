@@ -52,6 +52,7 @@ import { ProfileEditContactComponent } from './user/profile/profile-edit/profile
 import { ProfileComponent } from './user/profile/profile/profile.component';
 import { PageWrapperComponent } from './user/pages/page-wrapper/page-wrapper.component';
 import { ProfileMediaComponent } from './user/profile/profile-media/profile-media.component';
+import { ProfileVideosComponent } from './user/profile/profile-media/profile-videos/profile-videos.component';
 
 const config = new AuthServiceConfig([
   {
@@ -96,6 +97,7 @@ export function provideConfig() {
     ProfileComponent,
     PageWrapperComponent,
     ProfileMediaComponent,
+    ProfileVideosComponent,
   ],
   imports: [
     BrowserModule,

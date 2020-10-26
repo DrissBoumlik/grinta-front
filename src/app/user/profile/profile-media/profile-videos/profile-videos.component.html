@@ -1,0 +1,32 @@
+<div class="tab-pane fade active show" id="photosofyou" role="tabpanel">
+  <div class="iq-card-body p-0">
+    <div class="row" *ngIf="!emptyList">
+      <div class="col-md-6 col-lg-4 mb-3" *ngFor="let video of profile?.videos">
+        <div class="user-images position-relative overflow-hidden">
+          <a href="#">
+            <video src="{{ video?.media_url }}" class="photo-item img-fluid rounded w-100"></video>
+          </a>
+          <!--                    <div class="image-hover-data">-->
+          <!--                      <div class="product-elements-icon">-->
+          <!--                        <ul class="d-flex align-items-center m-0 p-0 list-inline">-->
+          <!--                          <li><a href="#" class="pr-3 text-white"> 60 <i class="ri-thumb-up-line"></i>-->
+          <!--                          </a></li>-->
+          <!--                          <li><a href="#" class="pr-3 text-white"> 30 <i class="ri-chat-3-line"></i> </a>-->
+          <!--                          </li>-->
+          <!--                          <li><a href="#" class="pr-3 text-white"> 10 <i-->
+          <!--                            class="ri-share-forward-line"></i> </a></li>-->
+          <!--                        </ul>-->
+          <!--                      </div>-->
+          <!--                    </div>-->
+          <!--                    <a href="#" class="image-edit-btn" data-toggle="tooltip" data-placement="top" title=""-->
+          <!--                       data-original-title="Edit or Remove"><i class="ri-edit-2-fill"></i></a>-->
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="emptyList">
+      <div class="col-12">
+        <p class="text-center list-empty m-0">Pas de video à afficher</p>
+      </div>
+    </div>
+  </div>
+</div>
