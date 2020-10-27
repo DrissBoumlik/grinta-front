@@ -54,12 +54,11 @@ export class NewEventComponent implements OnInit {
       this.event = event;
       this.initForm();
     });
-    // this.event = this.eventService.event;
-    // this.initForm();
+    this.event = this.eventService.event;
+    this.initForm();
   }
 
   initForm() {
-    console.log(this.CreateEventForm.value);
     if (this.event) {
       this.editMode = true;
       this.CreateEventForm.patchValue({
