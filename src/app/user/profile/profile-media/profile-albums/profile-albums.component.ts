@@ -37,6 +37,7 @@ export class ProfileAlbumsComponent implements OnInit {
       for (const media of album.medias) {
         if (media.type === 'image') {
           coverAlbum = media.media_url;
+          break;
         }
       }
       album.cover = coverAlbum;
