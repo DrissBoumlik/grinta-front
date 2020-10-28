@@ -43,6 +43,7 @@ import {AuthenticationGuard} from './auth/authentication.guard';
 import {ProfileMediaComponent} from './user/profile/profile-media/profile-media.component';
 import {ProfileVideosComponent} from './user/profile/profile-media/profile-videos/profile-videos.component';
 import {NewAlbumComponent} from './user/profile/profile-media/new-album/new-album.component';
+import {NewPhotoComponent} from './user/profile/profile-media/new-photo/new-photo.component';
 
 
 const routes: Routes = [
@@ -134,6 +135,7 @@ const routes: Routes = [
           {
             path: 'create', children: [
               {path: 'album', component: NewAlbumComponent},
+              {path: 'photo', component: NewPhotoComponent},
             ]
           }
         ]

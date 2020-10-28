@@ -54,6 +54,7 @@ import { PageWrapperComponent } from './user/pages/page-wrapper/page-wrapper.com
 import { ProfileMediaComponent } from './user/profile/profile-media/profile-media.component';
 import { ProfileVideosComponent } from './user/profile/profile-media/profile-videos/profile-videos.component';
 import { NewAlbumComponent } from './user/profile/profile-media/new-album/new-album.component';
+import { NewPhotoComponent } from './user/profile/profile-media/new-photo/new-photo.component';
 
 const config = new AuthServiceConfig([
   {
@@ -100,6 +101,7 @@ export function provideConfig() {
     ProfileMediaComponent,
     ProfileVideosComponent,
     NewAlbumComponent,
+    NewPhotoComponent,
   ],
   imports: [
     BrowserModule,

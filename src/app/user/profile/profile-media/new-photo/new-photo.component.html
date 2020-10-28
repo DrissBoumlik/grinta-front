@@ -1,0 +1,68 @@
+<div class="tab-pane fade active show" id="friends" role="tabpanel">
+  <div class="iq-card">
+    <div class="iq-card-header d-flex justify-content-between">
+      <div class="iq-header-title">
+        <h4 class="card-title">Create Photo</h4>
+      </div>
+    </div>
+    <div class="iq-card-body">
+      <form [formGroup]="CreatePhotoForm" (ngSubmit)="onCreatePhoto()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Name: *</label>
+                  <input type="text" class="form-control" name="name" formControlName="name"
+                         placeholder="Name" required />
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" data-toggle="custom-file-input" id="file"
+                           name="media" accept="image/*" (change)="onFileMediaChange($event.srcElement.files)">
+                    <label class="custom-file-label capitalize-first-letter" for="file">Upload Image:</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Description: </label>
+                  <textarea type="text" class="form-control" name="description" formControlName="description"
+                            placeholder="Description" required></textarea>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="btn-actions mt-3">
+                  <button type="submit" name="next" class="btn btn-primary bgclr-grintaaa next action-button float-right"
+                          value="Submit">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="row mt-4">
+        <div class="col-md-6 col-lg-4 mb-3" *ngFor="let media of mediaList">
+          <div class="user-images position-relative overflow-hidden">
+            <a href="#" *ngIf="media?.src">
+              <img src="{{ media.src }}" class="photo-item img-fluid rounded" alt="Responsive image"
+                   *ngIf="media.type != 'mp4'">
+              <video src="{{ media?.src }}" controls class="w-100" *ngIf="media.type == 'mp4'"></video>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4" *ngIf="!mediaList?.length">
+        <div class="col-12">
+          <p class="text-center list-empty m-0">Pas de media choisi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

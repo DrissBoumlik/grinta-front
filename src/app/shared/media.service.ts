@@ -21,4 +21,17 @@ export class MediaService {
         )
       );
   }
+
+  createPhotos(params) {
+    AuthService.getHeaders();
+    return this.http.post(environment.baseApiUrl + '/media',
+      {...params},
+      {headers: AuthService.headers})
+      .pipe(
+        tap(
+          data => console.log(data),
+          error => console.log(error.status),
+        )
+      );
+  }
 }
