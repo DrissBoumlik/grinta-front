@@ -11,7 +11,7 @@ export class MediaService {
 
   createAlbum(params) {
     AuthService.getHeaders();
-    return this.http.post(environment.baseApiUrl + '/media',
+    return this.http.post(environment.baseApiUrl + '/albums',
       {...params},
       {headers: AuthService.headers})
       .pipe(

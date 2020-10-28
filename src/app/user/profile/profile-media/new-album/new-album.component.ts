@@ -45,7 +45,7 @@ export class NewAlbumComponent implements OnInit {
     return this.fb.group(params);
   }
 
-  onFileImageChange(files: FileList) {
+  onFileMediaChange(files: FileList) {
     // const file = files.item(0);
 
     // for (const file of files) {
