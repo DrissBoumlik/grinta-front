@@ -44,6 +44,7 @@ import {ProfileMediaComponent} from './user/profile/profile-media/profile-media.
 import {ProfileVideosComponent} from './user/profile/profile-media/profile-videos/profile-videos.component';
 import {NewAlbumComponent} from './user/profile/profile-media/new-album/new-album.component';
 import {NewPhotoComponent} from './user/profile/profile-media/new-photo/new-photo.component';
+import {NewVideoComponent} from './user/profile/profile-media/new-video/new-video.component';
 
 
 const routes: Routes = [
@@ -136,6 +137,7 @@ const routes: Routes = [
             path: 'create', children: [
               {path: 'album', component: NewAlbumComponent},
               {path: 'photo', component: NewPhotoComponent},
+              {path: 'video', component: NewVideoComponent},
             ]
           }
         ]

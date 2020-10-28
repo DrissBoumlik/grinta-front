@@ -6,14 +6,14 @@ import {ProfileService} from '../../profile.service';
 import {MediaService} from '../../../../shared/media.service';
 
 @Component({
-  selector: 'app-new-photo',
-  templateUrl: './new-photo.component.html',
-  styleUrls: ['./new-photo.component.css']
+  selector: 'app-new-video',
+  templateUrl: './new-video.component.html',
+  styleUrls: ['./new-video.component.css']
 })
-export class NewPhotoComponent implements OnInit {
+export class NewVideoComponent implements OnInit {
   profile: User;
   private allowedTypes: string[];
-  CreatePhotoForm = this.fb.group({
+  CreateVideoForm = this.fb.group({
     medias: this.fb.array([])
   });
 
@@ -24,7 +24,7 @@ export class NewPhotoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.allowedTypes = ['jpg', 'jpeg', 'png', 'mp4'];
+    this.allowedTypes = ['mp4'];
 
     this.profileService.profileLoaded.subscribe((profile: User) => {
       this.profile = profile;
@@ -34,7 +34,7 @@ export class NewPhotoComponent implements OnInit {
   }
 
   get medias(): FormArray {
-    return this.CreatePhotoForm.controls.medias as FormArray;
+    return this.CreateVideoForm.controls.medias as FormArray;
   }
 
   onFileMediaChange(files: FileList) {
@@ -42,39 +42,44 @@ export class NewPhotoComponent implements OnInit {
       const file = files.item(i);
       const type = file.type.split('/')[1];
       if (this.allowedTypes.includes(type)) {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = (data: any) => {
-          // Make new FromGroup with empty
-          const params = {
-            src: data.target.result, type,
-            name: new FormControl(null, Validators.required),
-            description: new FormControl(null, Validators.required),
-            media: new FormControl({
-              filename: file.name,
-              filetype: file.type,
-              value: reader.result
-            })
+        try {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onloadend = (data: any) => {
+            // Make new FromGroup with empty
+            const params = {
+              src: data.target.result, type,
+              name: new FormControl(null, Validators.required),
+              description: new FormControl(null, Validators.required),
+              media: new FormControl({
+                filename: file.name,
+                filetype: file.type,
+                value: reader.result
+              })
+            };
+            this.medias.push(this.fb.group(params));
           };
-          this.medias.push(this.fb.group(params));
-        };
+        } catch (e) {
+          console.log(e);
+        }
       }
     }
   }
 
-  onCreatePhoto() {
-    const params = this.CreatePhotoForm.value.medias.map((mediaData) => {
+  onCreateVideo() {
+    const params = this.CreateVideoForm.value.medias.map((mediaData) => {
       return {
         name: mediaData.name,
         description: mediaData.description,
         media: mediaData.media
       };
     });
+    console.log(params);
 
     this.mediaService.createMedia({medias: params})
       .subscribe((response: any) => {
           console.log(response);
-          this.profile.photos = response.photos;
+          this.profile.videos = response.videos;
           this.medias.clear();
           this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
         },

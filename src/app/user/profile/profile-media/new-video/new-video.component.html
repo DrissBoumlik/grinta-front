@@ -1,0 +1,81 @@
+<div class="tab-pane fade active show" id="friends" role="tabpanel">
+  <div class="iq-card">
+    <div class="iq-card-header d-flex justify-content-between">
+      <div class="iq-header-title">
+        <h4 class="card-title">Create Videos</h4>
+      </div>
+    </div>
+    <div class="iq-card-body">
+      <form [formGroup]="CreateVideoForm" (ngSubmit)="onCreateVideo()">
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input d-none" data-toggle="custom-file-input" id="file"
+                       name="medias" formArrayName="medias" multiple
+                       accept="video/*" (change)="onFileMediaChange($event.srcElement.files)">
+                <label class="capitalize-first-letter btn bgclr-grintaaa text-white w-100" for="file">ajouter</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-12">
+            <div class="medias-wrapper" *ngFor="let media of medias?.controls; let i = index">
+              <div class="row mb-2" [formGroup]="media">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="user-images position-relative overflow-hidden">
+                        <a href="#" *ngIf="media?.value.src">
+                          <img src="{{ media.value.src }}" class="photo-item img-fluid rounded" alt="Responsive image"
+                               *ngIf="media.value.type != 'mp4'">
+                          <video src="{{ media?.value.src }}" controls class="w-100" *ngIf="media.value.type == 'mp4'"></video>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label class="d-none">Name: *</label>
+                        <input type="text" class="form-control" name="name" formControlName="name"
+                               placeholder="Name" required />
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label class="d-none">Description: </label>
+                        <textarea type="text" class="form-control" name="description" formControlName="description"
+                                  placeholder="Description" required></textarea>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" name="next" class="btn iq-bg-danger w-100"
+                              value="Submit" (click)="onDelete(i)">Supprimer</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="medias?.controls.length">
+          <div class="col-12">
+            <div class="btn-actions mt-3">
+              <button type="submit" name="next" class="btn btn-primary bgclr-grintaaa w-100"
+                      value="Submit">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="row mt-4" *ngIf="!medias?.controls.length">
+        <div class="col-12">
+          <p class="text-center list-empty m-0">Pas de media choisi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

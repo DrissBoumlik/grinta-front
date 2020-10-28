@@ -22,7 +22,7 @@ export class MediaService {
       );
   }
 
-  createPhotos(params) {
+  createMedia(params) {
     AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/media',
       {...params},

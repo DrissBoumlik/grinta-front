@@ -55,6 +55,7 @@ import { ProfileMediaComponent } from './user/profile/profile-media/profile-medi
 import { ProfileVideosComponent } from './user/profile/profile-media/profile-videos/profile-videos.component';
 import { NewAlbumComponent } from './user/profile/profile-media/new-album/new-album.component';
 import { NewPhotoComponent } from './user/profile/profile-media/new-photo/new-photo.component';
+import { NewVideoComponent } from './user/profile/profile-media/new-video/new-video.component';
 
 const config = new AuthServiceConfig([
   {
@@ -102,6 +103,7 @@ export function provideConfig() {
     ProfileVideosComponent,
     NewAlbumComponent,
     NewPhotoComponent,
+    NewVideoComponent,
   ],
   imports: [
     BrowserModule,
