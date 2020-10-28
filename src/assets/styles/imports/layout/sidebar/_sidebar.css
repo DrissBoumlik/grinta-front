@@ -11,3 +11,9 @@
   width: 100%;
   z-index: 999;
 }
+
+@media (max-width: 1699px) {
+  .search-friend.iq-search-bar .searchbox {
+    width: 100%;
+  }
+}

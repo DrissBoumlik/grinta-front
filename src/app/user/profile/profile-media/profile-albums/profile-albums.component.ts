@@ -12,13 +12,17 @@ import {Album} from '../../../albums/album/album.model';
   styleUrls: ['./profile-albums.component.css']
 })
 export class ProfileAlbumsComponent implements OnInit {
+  authUser: User;
   profile: User;
+  ownProfile: boolean;
   albums: (Album | any)[];
   emptyAlbums = false;
 
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService,
+              private authService: AuthService) {}
 
   ngOnInit() {
+    this.authUser = this.authService.user;
     this.profileService.profileLoaded.subscribe((profile: User) => {
       this.profile = profile;
       this.init();
@@ -28,6 +32,7 @@ export class ProfileAlbumsComponent implements OnInit {
   }
 
   init() {
+    this.ownProfile = this.authUser.uuid === this.profile.uuid;
     this.emptyAlbums = !this.profile.albums.length;
     this.albums = this.profile.albums.filter((album) => {
       return album.medias.length;

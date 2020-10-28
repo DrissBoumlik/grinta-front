@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../../user.model';
 import {ProfileService} from '../../profile.service';
+import {AuthService} from '../../../../auth/auth.service';
 
 @Component({
   selector: 'app-profile-videos',
@@ -8,12 +9,16 @@ import {ProfileService} from '../../profile.service';
   styleUrls: ['./profile-videos.component.css']
 })
 export class ProfileVideosComponent implements OnInit {
+  authUser: User;
   profile: User;
+  ownProfile: boolean;
   emptyList = false;
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService,
+              private authService: AuthService) { }
 
   ngOnInit() {
+    this.authUser = this.authService.user;
     this.profileService.profileLoaded.subscribe((profile: User) => {
       this.profile = profile;
       this.init();
@@ -23,6 +28,7 @@ export class ProfileVideosComponent implements OnInit {
   }
 
   init() {
+    this.ownProfile = this.authUser.uuid === this.profile.uuid;
     this.emptyList = !this.profile.videos.length;
   }
 
