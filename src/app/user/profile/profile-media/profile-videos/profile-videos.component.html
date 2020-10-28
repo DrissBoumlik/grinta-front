@@ -12,7 +12,7 @@
       </div>
       <div class="col-md-6 col-lg-4 mb-3" *ngFor="let video of profile?.videos">
         <div class="user-images position-relative overflow-hidden">
-          <a href="#">
+          <a href="{{ video?.media_url }}" target="_blank">
             <video src="{{ video?.media_url }}" class="photo-item img-fluid rounded w-100"></video>
           </a>
           <!--                    <div class="image-hover-data">-->

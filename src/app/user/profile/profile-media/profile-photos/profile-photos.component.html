@@ -12,7 +12,7 @@
       </div>
       <div class="col-md-6 col-lg-4 mb-3" *ngFor="let photo of profile?.photos">
         <div class="user-images position-relative overflow-hidden">
-          <a href="#">
+          <a href="{{ photo.media_url }}" target="_blank">
             <img src="{{ photo.media_url }}" class="photo-item img-fluid rounded"
                  alt="Responsive image">
           </a>
