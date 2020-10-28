@@ -3,6 +3,7 @@ import { User } from '../../user.model';
 export class Album {
   constructor(
     public id: number,
+    public uuid: string,
     public user_id: number,
     public name: string,
     public description: string,

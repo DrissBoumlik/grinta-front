@@ -13,8 +13,7 @@
 @import "profile/edit/_menu.css";
 @import "profile/edit/_edit-form.css";
 @import "profile/friends/_list-users.css";
-@import "profile/media/albums/__gallery.css";
-@import "profile/media/photos/_gallery-photos.css";
+@import "profile/media/albums/_gallery.css";
 @import "profile/likes/pages/_list.css";
 @import "profile/events/_list.css";
 @import "profile/about/_about.css";

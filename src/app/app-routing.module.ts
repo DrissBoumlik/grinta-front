@@ -45,6 +45,7 @@ import {ProfileVideosComponent} from './user/profile/profile-media/profile-video
 import {NewAlbumComponent} from './user/profile/profile-media/new-album/new-album.component';
 import {NewPhotoComponent} from './user/profile/profile-media/new-photo/new-photo.component';
 import {NewVideoComponent} from './user/profile/profile-media/new-video/new-video.component';
+import {ProfileAlbumComponent} from './user/profile/profile-media/profile-albums/profile-album/profile-album.component';
 
 
 const routes: Routes = [
@@ -124,7 +125,12 @@ const routes: Routes = [
               {path: '', component: ProfilePhotosComponent},
               {path: 'photos', component: ProfilePhotosComponent},
               {path: 'videos', component: ProfileVideosComponent},
-              {path: 'albums', component: ProfileAlbumsComponent}
+              {
+                path: 'albums', children: [
+                  {path: '', component: ProfileAlbumsComponent},
+                  {path: ':uuid', component: ProfileAlbumComponent}
+                ]
+              }
             ]
           },
           {path: 'likes', component: ProfileLikesComponent},
