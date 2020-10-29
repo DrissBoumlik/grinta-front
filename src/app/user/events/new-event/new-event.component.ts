@@ -25,6 +25,8 @@ export class NewEventComponent implements OnInit {
   };
   event: Event;
   editMode = false;
+  srcCover: string | any;
+  srcImage: string | any;
   CreateEventForm = this.fb.group({
     name: new FormControl('eventoosss'),
     date: new FormControl((new Date()).toLocaleString()),
@@ -81,6 +83,7 @@ export class NewEventComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(this.imageToUpload);
     reader.onload = (data) => {
+      this.srcImage = reader.result;
       this.CreateEventForm.get('image').setValue({
         filename: this.imageToUpload.name,
         filetype: this.imageToUpload.type,
@@ -94,6 +97,7 @@ export class NewEventComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(this.imageToUpload);
     reader.onload = (data) => {
+      this.srcCover = reader.result;
       this.CreateEventForm.get('cover').setValue({
         filename: this.imageToUpload.name,
         filetype: this.imageToUpload.type,
