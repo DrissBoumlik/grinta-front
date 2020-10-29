@@ -36,6 +36,29 @@ top-tab-list li {
   background-color: var(--grintaaa);
 }
 
+.input-wrapper {
+  position: absolute;
+  z-index: 99;
+  font-size: 2rem;
+  left: 10px;
+}
+
+.profile-img-wrapper:hover:before {
+  content: '\f083';
+  font-family: 'Font Awesome 5 Free', serif;
+  font-weight: 900;
+  position: absolute;
+  font-size: 3rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+.profile-img-wrapper:hover img {
+  opacity: .5;
+}
+
 @media (max-width: 992px) {
   #top-tab-list li i {
     height: 30px;

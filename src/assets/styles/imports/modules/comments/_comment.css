@@ -65,6 +65,11 @@
   margin-top: 10px;
   padding-left: 30px;
 }
+
+.comment-reply-form {
+  margin-top: 5px;
+}
+
 .comment-reply-form {
   margin: 5px 20px 0;
 }
@@ -76,6 +81,16 @@
   width: 40px;
   margin-right: 5px;
 }
+
+.btn-send-comment {
+  position: relative;
+  /*top: -1px;*/
+  right: -3px;
+  background-color: var(--grintaaa);
+  border-color: var(--grintaaa);
+  padding: 5px 10px;
+}
+
 .comment-reply-form .btn-send-comment{
   right: 7px;
 }

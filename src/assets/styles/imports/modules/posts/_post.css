@@ -1,0 +1,8 @@
+
+.liked, .liked:hover, .liked:focus {
+  color: var(--grintaaa)!important;
+  text-decoration: underline;
+  font-weight: bolder;
+  background-color: transparent;
+  border-color: transparent;
+}
