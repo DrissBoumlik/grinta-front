@@ -43,7 +43,7 @@ top-tab-list li {
   left: 10px;
 }
 
-.profile-img-wrapper:hover:before {
+.edit-img:hover:before {
   content: '\f083';
   font-family: 'Font Awesome 5 Free', serif;
   font-weight: 900;
@@ -55,7 +55,7 @@ top-tab-list li {
   z-index: 100;
 }
 
-.profile-img-wrapper:hover img {
+.edit-img:hover img {
   opacity: .5;
 }
 
