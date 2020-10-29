@@ -72,6 +72,7 @@ export class HeaderComponent implements OnInit {
     this.fbDB.ref(this.chatDB).on('value', resp => {
       const results = this.snapshotToArray(resp);
       this.chatList = results.chats;
+      this.emptyChatList = !this.chatList.length;
     });
   }
 
