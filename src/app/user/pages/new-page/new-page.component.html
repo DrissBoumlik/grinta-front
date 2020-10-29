@@ -114,19 +114,44 @@
               <h2 class="steps">Step 3 - 3</h2>
             </div>
           </div>
-          <div class="form-group">
-            <div class="custom-file">
-              <!--                        <label class="custom-file-label">Upload Image:</label>-->
-              <!--                        <input type="file" class="custom-file-input" name="image" accept="image/*" (change)="onFileImageChange($event.srcElement.files)">-->
-              <input type="file" class="custom-file-input" data-toggle="custom-file-input" id="file"
-                     name="image" accept="image/*" (change)="onFileImageChange($event.srcElement.files)">
-              <label class="custom-file-label capitalize-first-letter" for="file">Upload Image</label>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="custom-file">
-              <label class="custom-file-label">Upload Cover :</label>
-              <input type="file" class="custom-file-input" name="cover" accept="image/*" (change)="onFileCoverChange($event.srcElement.files)">
+          <div class="row">
+            <div class="col-12">
+              <div class="iq-card">
+                <div class="iq-card-body profile-page p-0">
+                  <div class="profile-header">
+                    <div class="cover-profile position-relative">
+                      <div class="cover-container">
+                        <div class="input-wrapper">
+                          <label class="m-0 pointer" for="cover">
+                            <i class="fas fa-camera-retro"></i>
+                            <input type="file" class="custom-file-input d-none" name="cover" id="cover"
+                                   accept="image/*" (change)="onFileCoverChange($event?.srcElement.files)">
+                          </label>
+                        </div>
+                        <div class="center-img h-min-200 h-max-300 ov-hidden">
+                          <img src="{{ srcCover || '/assets/images/default/cover.png' }}" alt="profile-bg"
+                               class="rounded img-fluid w-100">
+                        </div>
+                      </div>
+                      <div class="user-detail text-right">
+                        <div class="profile-img">
+                          <label class="m-0 pointer" for="image">
+                            <div class="profile-img-wrapper mr-3">
+                              <img src="{{ srcImage || '/assets/images/default/image.png' }}" alt="profile-img"
+                                   class="avatar-130 img-fluid"/>
+                            </div>
+                            <div class="input-wrapper d-none">
+                              <input type="file" class="custom-file-input" data-toggle="custom-file-input" id="image"
+                                     name="image" accept="image/*"
+                                     (change)="onFileImageChange($event.srcElement.files)">
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

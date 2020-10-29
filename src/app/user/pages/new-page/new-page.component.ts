@@ -19,6 +19,8 @@ export class NewPageComponent implements OnInit {
   sports: Sport[] = [];
   imageToUpload: any = File;
   editMode = false;
+  srcCover: string | any;
+  srcImage: string | any;
   steps = {
     infos: {active: true, done: false},
     details: {active: false, done: false},
@@ -146,6 +148,7 @@ export class NewPageComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(this.imageToUpload);
     reader.onload = (data) => {
+      this.srcImage = reader.result;
       this.CreatePageForm.get('image').setValue({
         filename: this.imageToUpload.name,
         filetype: this.imageToUpload.type,
@@ -159,6 +162,7 @@ export class NewPageComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(this.imageToUpload);
     reader.onload = (data) => {
+      this.srcCover = reader.result;
       this.CreatePageForm.get('cover').setValue({
         filename: this.imageToUpload.name,
         filetype: this.imageToUpload.type,
