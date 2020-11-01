@@ -62,6 +62,10 @@ ul.header-nav {
   color: var(--grintaaa);
 }
 
+.nav-pills .nav-link.active:hover {
+  color: #fff;
+}
+
 .like-block span:hover {
   color: var(--grintaaa);
 }
