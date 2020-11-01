@@ -8,6 +8,7 @@
 @import "shared/_search-input.css";
 @import "shared/_event-feedback.css";
 @import "shared/_user-options.css";
+@import "shared/_user-reaction.css";
 
 @import "profile/common/_header.css";
 @import "profile/edit/_menu.css";
@@ -27,7 +28,7 @@
 @import "search/_search-results.css";
 
 @import "posts/_list.css";
-@import "posts/new/_new-post.css";
+@import "posts/_new-post.css";
 
 @import "events/_event-date.css";
 @import "events/_event.css";
