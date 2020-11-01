@@ -46,6 +46,7 @@ import {NewAlbumComponent} from './user/profile/profile-media/new-album/new-albu
 import {NewPhotoComponent} from './user/profile/profile-media/new-photo/new-photo.component';
 import {NewVideoComponent} from './user/profile/profile-media/new-video/new-video.component';
 import {ProfileAlbumComponent} from './user/profile/profile-media/profile-albums/profile-album/profile-album.component';
+import {ProfileNotesComponent} from './user/profile/profile-notes/profile-notes.component';
 
 
 const routes: Routes = [
@@ -136,6 +137,7 @@ const routes: Routes = [
           {path: 'likes', component: ProfileLikesComponent},
           {path: 'pages', component: PagesComponent},
           {path: 'events', component: ProfileEventsComponent},
+          {path: 'notes', component: ProfileNotesComponent},
           {path: 'about', component: ProfileAboutComponent},
           // {path: 'photos', component: ProfilePhotosComponent},
           {path: 'friends', component: ProfileFriendsComponent},

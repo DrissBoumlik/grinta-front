@@ -26,6 +26,7 @@ import {UserUpdatesComponent} from './user-updates/user-updates.component';
 import {LatestEventsComponent} from './user-updates/latest-events/latest-events.component';
 import {LatestBirthDatesComponent} from './user-updates/latest-birth-dates/latest-birth-dates.component';
 import {MediaService} from './media.service';
+import {NoteService} from './note.service';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import {MediaService} from './media.service';
     EventFeedbackService,
     HandlerService,
     EventService,
-    MediaService
+    MediaService,
+    NoteService
   ]
 })
 export class SharedModule {

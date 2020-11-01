@@ -1,0 +1,90 @@
+<div class="tab-pane fade active show" id="about" role="tabpanel">
+  <div class="row">
+    <div class="col-12">
+      <div class="reviews-wrapper p-4">
+        <div class="reviews-list-wrapper">
+          <div class="reviews-list">
+            <div class="header-review py-4 mb-1 d-flex align-items-center justify-content-between text-center row m-0">
+              <div class="col-4">
+                <div class="underline">Noted by</div>
+              </div>
+              <div class="col-4">
+                <div class="underline">Behavior</div>
+              </div>
+              <div class="col-4">
+                <div class="underline">Performance</div>
+              </div>
+            </div>
+            <div class="user-item-wrapper pointer" *ngFor="let note of notes; let i = index">
+              <div class="d-flex align-items-center justify-content-between row">
+                <div class="user-info col-4 d-flex align-items-center">
+                  <div class="user-item-img-wrapper">
+                    <div class="user-item-img-container">
+                      <a routerLink="/{{ note?.user?.username }}"><img src="{{ note?.user?.picture }}"
+                                                                       class="user-item-img" alt=""/></a>
+                    </div>
+                  </div>
+                  <div class="user-item-info">
+                    <a routerLink="/{{ note?.user?.username }}"><span>{{ note?.user?.firstname }}</span></a>
+                  </div>
+                </div>
+                <!--                <div class="user-event-choices col-4 d-flex justify-content-evenly font-size-20">-->
+                <!--                  <div class="user-event-choice event-note-choice">-->
+                <!--                    <label class="event-note-label pointer">-->
+                <!--                      <i class="fas " [ngClass]="note?.value?.behavior == 1 ? 'fa-smile-beam clr-grintaaa' : note?.value?.behavior == 0 ? 'fa-smile text-warning' : 'fa-frown text-danger'"></i>-->
+                <!--                    </label>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+                <div class="user-event-choices col-4 d-flex justify-content-evenly font-size-20">
+                  <div class="user-event-choice event-note-choice">
+                    <label class="event-note-label pointer">
+                      <i class="fa-frown text-danger" [ngClass]="note?.value?.behavior == -2 ? 'fas scale-1-2' : 'far'"></i>
+                    </label>
+                  </div>
+                  <div class="user-event-choice event-note-choice">
+                    <label class="event-note-label pointer">
+                      <i class="fa-smile text-warning" [ngClass]="note?.value?.behavior == 0 ? 'fas scale-1-2' : 'far'"></i>
+                    </label>
+                  </div>
+                  <div class="user-event-choice event-note-choice">
+                    <label class="event-note-label pointer">
+                      <i class="fa-smile-beam clr-grintaaa" [ngClass]="note?.value?.behavior == 1 ? 'fas scale-1-2' : 'far'"></i>
+                    </label>
+                  </div>
+                </div>
+
+
+                <!--                <div class="user-event-choices col-4 d-flex justify-content-evenly font-size-20">-->
+                <!--                  <div class="user-event-choice event-note-choice">-->
+                <!--                    <label class="event-note-label pointer">-->
+                <!--                      <i class="fas " [ngClass]="note?.value?.performance == 1 ? 'fa-smile-beam clr-grintaaa' : note?.value?.performance == 0 ? 'fa-smile text-warning' : 'fa-frown text-danger'"></i>-->
+                <!--                    </label>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+
+                <div class="user-event-choices col-4 d-flex justify-content-evenly font-size-20">
+                  <div class="user-event-choice event-note-choice">
+                    <label class="event-note-label pointer">
+                      <i class="fa-frown text-danger" [ngClass]="note?.value?.performance == -2 ? 'fas scale-1-2' : 'far'"></i>
+                    </label>
+                  </div>
+                  <div class="user-event-choice event-note-choice">
+                    <label class="event-note-label pointer">
+                      <i class="fa-smile text-warning" [ngClass]="note?.value?.performance == 0 ? 'fas scale-1-2' : 'far'"></i>
+                    </label>
+                  </div>
+                  <div class="user-event-choice event-note-choice">
+                    <label class="event-note-label pointer">
+                      <i class="fa-smile-beam clr-grintaaa" [ngClass]="note?.value?.performance == 1 ? 'fas scale-1-2' : 'far'"></i>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--          <app-spinner *ngIf="loadingData"></app-spinner>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
