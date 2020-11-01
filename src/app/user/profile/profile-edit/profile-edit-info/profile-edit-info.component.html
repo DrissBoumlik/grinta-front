@@ -10,10 +10,13 @@
         <div class="form-group row align-items-center">
           <div class="col-md-12">
             <div class="profile-img-edit">
-              <img class="profile-pic" src="{{ profile.picture }}" alt="profile-pic">
+              <img class="profile-pic" src="{{ srcImage }}" alt="profile-pic">
               <div class="p-image">
-                <i class="ri-pencil-line upload-button"></i>
-                <input class="file-upload" type="file" accept="image/*"/>
+                <label for="profile-img" class="text-white pointer">
+                  <i class="ri-pencil-line upload-button"></i>
+                  <input id="profile-img" class="file-upload" type="file" accept="image/*"
+                         (change)="onFilePictureChange($event.srcElement.files)"/>
+                </label>
               </div>
             </div>
           </div>

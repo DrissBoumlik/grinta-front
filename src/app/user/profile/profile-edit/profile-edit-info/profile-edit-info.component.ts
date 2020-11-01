@@ -19,6 +19,7 @@ export class ProfileEditInfoComponent implements OnInit {
   sports: Sport[] = [];
   cities = [];
   imageToUpload: any = File;
+  srcImage: string | any;
 
   editUserForm = new FormGroup({
     username: new FormControl(null, Validators.required),
@@ -64,6 +65,7 @@ export class ProfileEditInfoComponent implements OnInit {
   }
 
   initForm() {
+    this.srcImage = this.profile.picture;
     this.editUserForm.patchValue({
       username: this.profile.username,
       firstname: this.profile.firstname,
@@ -81,7 +83,8 @@ export class ProfileEditInfoComponent implements OnInit {
     this.imageToUpload = files.item(0);
     const reader = new FileReader();
     reader.readAsDataURL(this.imageToUpload);
-    reader.onload = (data) => {
+    reader.onloadend = (data) => {
+      this.srcImage = reader.result;
       this.editUserForm.get('picture').setValue({
         filename: this.imageToUpload.name,
         filetype: this.imageToUpload.type,
