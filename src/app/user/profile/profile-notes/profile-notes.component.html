@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="reviews-wrapper p-4">
         <div class="reviews-list-wrapper">
-          <div class="reviews-list">
+          <div class="reviews-list" *ngIf="notes?.length">
             <div class="header-review py-4 mb-1 d-flex align-items-center justify-content-between text-center row m-0">
               <div class="col-4">
                 <div class="underline">Noted by</div>
@@ -83,6 +83,11 @@
             </div>
           </div>
           <!--          <app-spinner *ngIf="loadingData"></app-spinner>-->
+          <div class="reviews-list" *ngIf="!notes?.length">
+            <div class="text-center list-empty m-0">
+              <p class="">Pas de Notes à afficher</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
