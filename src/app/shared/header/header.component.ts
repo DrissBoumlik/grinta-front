@@ -6,6 +6,7 @@ import Echo from 'laravel-echo';
 import {EventFeedbackService} from '../events/event-feedback/event-feedback.service';
 import * as firebase from 'firebase';
 import {ToolsService} from '../tools.service';
+import {ProfileService} from '../../user/profile/profile.service';
 
 @Component({
   selector: 'app-header',
@@ -30,10 +31,15 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService,
               private eventFeedbackService: EventFeedbackService,
               private toolService: ToolsService,
+              private profileService: ProfileService,
               private router: Router) { }
 
   ngOnInit() {
     this.user = this.authService.user;
+    this.profileService.profileUpdated.subscribe((profile: User) => {
+      this.user = profile;
+      localStorage.setItem('profile', JSON.stringify(profile));
+    });
 
     this.setUpNotifications();
 
