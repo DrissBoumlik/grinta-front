@@ -17,6 +17,7 @@ ul.header-nav li a i.active {
 
 .profile-img img {
   border: 5px solid #fff;
+  height: 130px;
 }
 
 .profile-img .profile-img-wrapper {

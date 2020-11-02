@@ -84,7 +84,7 @@ export class ProfileComponent implements OnInit {
           }
           this.isPending = this.profile.pendingFriends.some((pendingFriend: User) => pendingFriend.id === this.authService.user.id);
         }
-        localStorage.setItem('currentProfile', JSON.stringify(this.profile));
+        localStorage.setItem('profile', JSON.stringify(this.profile));
       },
       (error: any) => console.log(error)
     );
