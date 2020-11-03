@@ -7,6 +7,7 @@ import {SportService} from '../../../shared/sport.service';
 import {Sport} from '../../sports/sport.model';
 import {Event} from '../event.model';
 import {EventService} from '../../../shared/event.service';
+import {MapService} from '../../../shared/map.service';
 
 @Component({
   selector: 'app-new-event',
@@ -17,33 +18,28 @@ export class NewEventComponent implements OnInit {
   user: User;
   sports: Sport[] = [];
   imageToUpload: any = File;
-  steps = {
-    infos: {active: true, done: false},
-    details: {active: false, done: false},
-    media: {active: false, done: false},
-    finish: {active: false, done: false},
-  };
   event: Event;
   editMode = false;
   srcCover: string | any;
   srcImage: string | any;
   CreateEventForm = this.fb.group({
-    name: new FormControl('eventoosss'),
-    date: new FormControl((new Date()).toLocaleString()),
-    limit_signup: new FormControl((new Date()).toISOString()),
-    address: new FormControl('Boulevard Massira'),
-    location: new FormControl('33.54568,-6.54689'),
+    name: new FormControl(null),
+    date: new FormControl(null),
+    limit_signup: new FormControl(null),
+    address: new FormControl(null),
+    location: new FormControl(null),
     image: new FormControl(null),
     cover: new FormControl(null),
-    type: new FormControl('public'),
-    description: new FormControl('kokokokokosss'),
-    sport: new FormControl(1, Validators.required)
+    type: new FormControl(null),
+    description: new FormControl(null),
+    sport: new FormControl(null, Validators.required)
   });
 
   constructor(private fb: FormBuilder,
               private feedbackService: FeedbackService,
               private sportService: SportService,
               private eventService: EventService,
+              private mapService: MapService,
               private userService: UserService) {}
 
   ngOnInit() {
@@ -51,6 +47,14 @@ export class NewEventComponent implements OnInit {
     this.sportService.getSports().subscribe((response: any) => {
       this.sports = response.sports;
     });
+
+    this.mapService.adresseChosen.subscribe(((positionData: any) => {
+      console.log(positionData);
+      this.CreateEventForm.patchValue({
+        address: positionData.label,
+        location: positionData.y + ',' + positionData.x,
+      });
+    }));
 
     this.eventService.eventLoaded.subscribe((event: Event) => {
       this.event = event;
@@ -65,8 +69,8 @@ export class NewEventComponent implements OnInit {
       this.editMode = true;
       this.CreateEventForm.patchValue({
         name: this.event.name,
-        date: this.event.date.split(' ')[0],
-        limit_signup: this.event.limit_signup.split(' ')[0],
+        date: (new Date(this.event.date)).toISOString().substring(0, 16),
+        limit_signup: (new Date(this.event.limit_signup)).toISOString().substring(0, 16),
         address: this.event.address,
         location: this.event.location,
         // image: this.event.image,
@@ -74,6 +78,19 @@ export class NewEventComponent implements OnInit {
         type: this.event.type,
         description: this.event.description,
         sport: this.event.sport_id
+      });
+    } else {
+      console.log('init');
+      const today = new Date();
+      this.CreateEventForm.patchValue({
+        // name: 'eventoosss',
+        date: today.toISOString().substring(0, 16),
+        limit_signup: today.toISOString().substring(0, 16),
+        // address: 'Boulevard Massira',
+        // location: '33.54568,-6.54689',
+        // type: 'public',
+        // description: 'kokokokokosss',
+        // sport: 5,
       });
     }
   }
@@ -122,12 +139,6 @@ export class NewEventComponent implements OnInit {
     this.userService.createEvent(event)
       .subscribe((response: any) => {
           console.log(response);
-          this.steps = {
-            infos: {active: false, done: true},
-            details: {active: false, done: true},
-            media: {active: true, done: true},
-            finish: {active: true, done: true},
-          };
           this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
         },
         (error: any) => {
@@ -156,12 +167,6 @@ export class NewEventComponent implements OnInit {
     this.userService.updateEvent(event)
       .subscribe((response: any) => {
           console.log(response);
-          this.steps = {
-            infos: {active: false, done: true},
-            details: {active: false, done: true},
-            media: {active: true, done: true},
-            finish: {active: true, done: true},
-          };
           this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
         },
         (error: any) => {
@@ -172,51 +177,9 @@ export class NewEventComponent implements OnInit {
       );
   }
 
-
-  goToInfos() {
-    this.steps = {
-      infos: {active: true, done: false},
-      details: {active: false, done: false},
-      media: {active: false, done: false},
-      finish: {active: false, done: false},
-    };
-    console.log(this.steps.infos);
-  }
-
-  goToDetails() {
-    // validation
-    // branching
-    this.steps = {
-      infos: {active: false, done: true},
-      details: {active: true, done: false},
-      media: {active: false, done: false},
-      finish: {active: false, done: false},
-    };
-    console.log(this.steps.details);
-  }
-
-  goToMedia() {
-    // validation
-    // branching
-    this.steps = {
-      infos: {active: false, done: true},
-      details: {active: false, done: true},
-      media: {active: true, done: false},
-      finish: {active: false, done: false},
-    };
-    console.log(this.steps.media);
-  }
-
   goToFinish() {
+    console.log(this.CreateEventForm.value);
     // validation
-    // branching
-    // this.steps = {
-    //   infos: {active: false, done: true},
-    //   details: {active: false, done: true},
-    //   media: {active: false, done: true},
-    //   finish: {active: true, done: false},
-    // };
-    // console.log(this.steps.finish);
     if (this.editMode) {
       this.onUpdateEvent();
     } else {
