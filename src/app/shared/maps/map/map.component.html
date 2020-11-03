@@ -15,7 +15,7 @@
           <button type="submit" class="btn btn-primary bgclr-grintaaa ml-2"><i class="fas fa-search"></i></button>
         </form>
         <div class="dropdown-menu d-block dropdown-search" *ngIf="showResults">
-          <a class="dropdown-item pointer search-result-link" *ngFor="let result of results" (click)="onAddMarker(result)">
+          <a class="dropdown-item pointer search-result-link" *ngFor="let result of results" (click)="onChooseAddress(result)">
             {{ result.label }}
           </a>
         </div>

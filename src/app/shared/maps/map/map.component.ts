@@ -1,13 +1,13 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import * as L from 'leaflet';
-import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import {EventService} from '../../event.service';
 import {FormBuilder, FormControl} from '@angular/forms';
 import {LatLngExpression, Marker, Point} from 'leaflet';
 import {User} from '../../../user/user.model';
 import {Event} from '../../../user/events/event.model';
 import {AuthService} from '../../../auth/auth.service';
+import {MapService} from '../../map.service';
 
 @Component({
   selector: 'app-map',
@@ -26,7 +26,6 @@ export class MapComponent implements OnInit, AfterViewInit {
   GetAddresses = this.fb.group({
     searchTerm: new FormControl(),
   });
-  provider = null;
   results = [];
   user: User;
   event: Event;
@@ -35,14 +34,13 @@ export class MapComponent implements OnInit, AfterViewInit {
   constructor(private eventService: EventService,
               private fb: FormBuilder,
               private authService: AuthService,
+              private mapService: MapService,
               private router: Router) {
   }
 
 
   ngOnInit() {
     this.user = this.authService.user;
-    // setup
-    this.provider = new OpenStreetMapProvider();
   }
 
   ngAfterViewInit(): void {
@@ -163,13 +161,17 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   onGetAddresses() {
     // search
-    this.getAddresses().then((results) => {
+    this.mapService.getAddresses(this.GetAddresses.value.searchTerm).then((results) => {
       this.results = results;
       this.showResults = this.results.length > 0;
     });
   }
-  async getAddresses() {
-    return await this.provider.search({query: this.GetAddresses.value.searchTerm});
+
+  onChooseAddress(positionData) {
+    // Add marker
+    this.onAddMarker(positionData);
+    // Update chosen address for Map service => new Event component
+    this.mapService.adresseChosen.next(positionData);
   }
 
   onAddMarker(positionData) {
