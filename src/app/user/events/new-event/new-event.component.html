@@ -28,19 +28,22 @@
               <div class="form-group">
                 <label>Type: *</label>
                 <div class="custom-control custom-radio custom-radio-color">
-                  <input type="radio" id="public" name="type" class="custom-control-input bg-success" formControlName="type" value="public">
+                  <input type="radio" id="public" name="type" class="custom-control-input bg-success"
+                         formControlName="type" value="public">
                   <label class="custom-control-label" for="public"> Public </label>
                 </div>
                 <div class="custom-control custom-radio custom-radio-color">
-                  <input type="radio" id="private" name="type" class="custom-control-input bg-danger" formControlName="type" value="private">
+                  <input type="radio" id="private" name="type" class="custom-control-input bg-danger"
+                         formControlName="type" value="private">
                   <label class="custom-control-label" for="private"> Private </label>
                 </div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>Description: </label>
-                <textarea type="text" class="form-control" name="description" formControlName="description" placeholder="Project Description" required></textarea>
+                <label for="description">Description: </label>
+                <textarea type="text" class="form-control" id="description" name="description"
+                          formControlName="description" placeholder="Project Description" required></textarea>
               </div>
             </div>
             <div class="col-md-6">
@@ -147,7 +150,7 @@
             </div>
           </div>
         </div>
-        <div class="btn-actions mt-3">
+        <div class="btn-actions mt-5">
           <button type="button" name="next" class="btn btn-primary bgclr-grintaaa next action-button float-right"
                   value="Submit" (click)="goToFinish()">Submit</button>
         </div>
