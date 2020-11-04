@@ -17,7 +17,7 @@ export class ChatService {
 
   getUser(username: string = null) {
     AuthService.getHeaders();
-    const url = environment.baseApiUrl + '/user-profile/' + (username === null ? '' : username);
+    const url = environment.baseApiUrl + '/users/profile/' + (username === null ? '' : username);
     return this.http.get(url, {headers: AuthService.headers})
       .pipe(
         tap(

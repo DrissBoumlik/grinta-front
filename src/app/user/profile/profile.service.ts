@@ -19,7 +19,7 @@ export class ProfileService {
 
   getProfile(username: string = null) {
     AuthService.getHeaders();
-    const url = environment.baseApiUrl + '/user-profile/' + (username === null ? '' : username);
+    const url = environment.baseApiUrl + '/users/profile/' + (username === null ? '' : username);
     return this.http.get(url, {headers: AuthService.headers})
       .pipe(
         tap(
@@ -35,7 +35,7 @@ export class ProfileService {
 
   updateProfile(profile: any) {
     AuthService.getHeaders();
-    return this.http.put(environment.baseApiUrl + '/user-profile',
+    return this.http.put(environment.baseApiUrl + '/users/profile',
       {
         username: profile.username,
         firstname: profile.firstname,
@@ -80,7 +80,7 @@ export class ProfileService {
 
   updateContact(profile: any) {
     AuthService.getHeaders();
-    return this.http.put(environment.baseApiUrl + '/user-profile',
+    return this.http.put(environment.baseApiUrl + '/users/profile',
       {
         phone_number: profile.phone_number,
         email: profile.email,
