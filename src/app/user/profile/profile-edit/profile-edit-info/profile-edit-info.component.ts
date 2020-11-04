@@ -115,6 +115,7 @@ export class ProfileEditInfoComponent implements OnInit {
       .subscribe((response: any) => {
           this.profileService.getProfile(response.user.username).subscribe((data: any) => {
             this.profileService.profileUpdated.next(data.user);
+            localStorage.setItem('authUser', JSON.stringify(data.user));
           });
 
           this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
