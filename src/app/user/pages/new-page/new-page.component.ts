@@ -8,6 +8,7 @@ import {ActivatedRoute, Params} from '@angular/router';
 import {SportService} from '../../../shared/sport.service';
 import {ProfileService} from '../../profile/profile.service';
 import {FeedbackService} from '../../../shared/feedback/feedback.service';
+import {Page} from '../page/page.model';
 
 @Component({
   selector: 'app-new-page',
@@ -18,6 +19,7 @@ export class NewPageComponent implements OnInit {
   user: User;
   sports: Sport[] = [];
   imageToUpload: any = File;
+  page: Page;
   editMode = false;
   srcCover: string | any;
   srcImage: string | any;
@@ -25,7 +27,7 @@ export class NewPageComponent implements OnInit {
     infos: {active: true, done: false},
     details: {active: false, done: false},
     media: {active: false, done: false},
-    finish: {active: false, done: false},
+    finish: {active: false, done: false}
   };
 
   CreatePageForm = this.fb.group({
@@ -45,10 +47,10 @@ export class NewPageComponent implements OnInit {
               private sportService: SportService,
               private route: ActivatedRoute,
               private feedbackService: FeedbackService) {
-    this.user = this.userService.user;
   }
 
   ngOnInit() {
+    this.user = this.userService.user;
     this.sportService.getSports().subscribe((response: any) => {
       this.sports = response.sports;
     });
@@ -65,82 +67,31 @@ export class NewPageComponent implements OnInit {
               cover: page.cover,
               type: page.type,
               description: page.description,
-              sport: page.sport_id,
+              sport: page.sport_id
             });
           });
       }
     });
 
-    // this.initForm();
+    this.initForm();
   }
 
   initForm() {
-    let e;
-    let t;
-    let a;
-    let n;
-    let o = 1;
-    const r = $('fieldset').length;
-
-    function i(e) {
-      let t: any = parseFloat(String(100 / r)) * e;
-      t = t.toFixed();
-      $('.progress-bar').css('width', t + '%');
+    if (this.page) {
+      this.editMode = true;
+      this.CreatePageForm.patchValue({
+        name: this.page.name,
+        pagename: this.page.pagename,
+        // image: new FormControl(null),
+        // cover: new FormControl(null),
+        type: this.page.type,
+        description: this.page.description,
+        sport: this.page.sport_id
+      });
+    } else {
+      console.log('init');
+      // Init with necessary values
     }
-
-    i(o);
-    $('.next').click(function() {
-      e = $(this).parent();
-      t = $(this).parent().next();
-      const topTabListItem = $('#top-tab-list li');
-      const fieldset = $('fieldset');
-      topTabListItem.eq(fieldset.index(t)).addClass('active');
-      topTabListItem.eq(fieldset.index(e)).addClass('done');
-      t.show();
-      e.animate({
-        opacity: 0
-      }, {
-        step: (a) => {
-          n = 1 - a;
-          e.css({
-            display: 'none',
-            position: 'relative'
-          });
-          t.css({
-            opacity: n
-          });
-        },
-        duration: 500
-      });
-      i(++o);
-    });
-    $('.previous').click(function () {
-      e = $(this).parent();
-      a = $(this).parent().prev();
-      const topTabListItem = $('#top-tab-list li');
-      const fieldset = $('fieldset');
-      topTabListItem.eq(fieldset.index(e)).removeClass('active');
-      topTabListItem.eq(fieldset.index(a)).removeClass('done');
-      a.show();
-      e.animate({
-        opacity: 0
-      }, {
-        step: (t) => {
-          n = 1 - t, e.css({
-            display: 'none',
-            position: 'relative'
-          });
-          a.css({
-            opacity: n
-          });
-        },
-        duration: 500
-      });
-      i(--o);
-    });
-    $('.submit').click(() => {
-      return !1;
-    });
   }
 
   onFileImageChange(files: FileList) {
@@ -203,7 +154,7 @@ export class NewPageComponent implements OnInit {
             infos: {active: false, done: true},
             details: {active: false, done: true},
             media: {active: true, done: true},
-            finish: {active: true, done: true},
+            finish: {active: true, done: true}
           };
           this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
         },
@@ -215,51 +166,14 @@ export class NewPageComponent implements OnInit {
       );
   }
 
-  goToInfos() {
-    this.steps = {
-      infos: {active: true, done: false},
-      details: {active: false, done: false},
-      media: {active: false, done: false},
-      finish: {active: false, done: false},
-    };
-    console.log(this.steps.infos);
-  }
-
-  goToDetails() {
-    // validation
-    // branching
-    this.steps = {
-      infos: {active: false, done: true},
-      details: {active: true, done: false},
-      media: {active: false, done: false},
-      finish: {active: false, done: false},
-    };
-    console.log(this.steps.details);
-  }
-
-  goToMedia() {
-    // validation
-    // branching
-    this.steps = {
-      infos: {active: false, done: true},
-      details: {active: false, done: true},
-      media: {active: true, done: false},
-      finish: {active: false, done: false},
-    };
-    console.log(this.steps.media);
-  }
-
   goToFinish() {
+    console.log(this.CreatePageForm.value);
     // validation
-    // branching
-    // this.steps = {
-    //   infos: {active: false, done: true},
-    //   details: {active: false, done: true},
-    //   media: {active: false, done: true},
-    //   finish: {active: true, done: false},
-    // };
-    // console.log(this.steps.finish);
-    this.onCreatePage();
+    if (this.editMode) {
+      this.onUpdatePage();
+    } else {
+      this.onCreatePage();
+    }
 
   }
 }
