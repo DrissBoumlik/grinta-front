@@ -42,6 +42,7 @@ export class EventComponent implements OnInit {
     this.eventService.getEventByUuid(uuid).subscribe((response: any) => {
       this.event = response.event;
       this.user = response.event.user;
+      localStorage.setItem('_event', JSON.stringify(this.event));
     });
   }
 

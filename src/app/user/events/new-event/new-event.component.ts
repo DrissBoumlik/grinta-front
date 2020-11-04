@@ -60,7 +60,9 @@ export class NewEventComponent implements OnInit {
       this.event = event;
       this.initForm();
     });
-    this.event = this.eventService.event;
+    this.event = JSON.parse(localStorage.getItem('_event'));
+    localStorage.removeItem('_event');
+    // this.event = this.eventService.event;
     this.initForm();
   }
 
