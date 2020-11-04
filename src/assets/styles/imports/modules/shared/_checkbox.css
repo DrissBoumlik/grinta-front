@@ -8,6 +8,11 @@
 .event-note-choice {
   font-size: 1.5rem;
 }
+
+.event-note-label {
+  margin: 0;
+}
+
 .event-note-input~.event-note-label i {
   transition: transform .3s ease;
 }
