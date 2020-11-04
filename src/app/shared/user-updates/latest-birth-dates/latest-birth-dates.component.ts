@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../../user/user.service';
 import {User} from '../../../user/user.model';
 import {ToolsService} from '../../tools.service';
@@ -11,17 +11,23 @@ import {ToolsService} from '../../tools.service';
 export class LatestBirthDatesComponent implements OnInit {
 
   users: (User | any)[] = [];
+  loadMore = false;
+
   constructor(private userService: UserService,
-              private toolService: ToolsService) { }
+              private toolService: ToolsService) {
+  }
 
   ngOnInit() {
+    this.loadMore = true;
     const params = {limit: 3, period: -6};
     this.userService.getLatestBirthDates(params).subscribe(
       (response: any) => {
-        this.users = response.data.map((user) => {
-            user._birth_date = this.toolService.timeDifference(new Date(), Date.parse(user.birth_date));
-            return user;
-        });
+        // this.users = response.data.map((user) => {
+        //     user._birth_date = this.toolService.timeDifference(new Date(), Date.parse(user.birth_date));
+        //     return user;
+        // });
+        this.users = response.data;
+        this.loadMore = false;
       }
     );
   }
