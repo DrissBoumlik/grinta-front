@@ -16,7 +16,7 @@
 .user-item-wrapper .user-item-img-container {
   padding: 0;
   display: inline-block;
-  margin-right: 10px;
+  /*margin-right: 10px;*/
 }
 .user-item-wrapper .user-item-img-container img {
   height: 40px;

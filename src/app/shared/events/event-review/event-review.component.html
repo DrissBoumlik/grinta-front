@@ -2,31 +2,35 @@
   <div class="reviews-list-wrapper">
     <div class="reviews-list">
       <div class="header-review py-4 mb-1 d-flex align-items-center justify-content-between text-center row m-0">
-        <div class="col-4">
+        <div class="col-3">
           <div class="_underline">
             <i class="far fa-user"></i>
             <span class="underline d-md-block d-lg-block d-sm-block d-none">Participant</span>
           </div>
         </div>
-        <div class="col-4">
-          <div class="_underline">
-            <i class="fas fa-user-friends"></i>
-            <span class="underline d-md-block d-lg-block d-sm-block d-none">Behavior</span>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="_underline">
-            <i class="fas fa-running"></i>
-            <span class="underline d-md-block d-lg-block d-sm-block d-none">Performance</span>
+        <div class="col-9">
+          <div class="row">
+            <div class="col-6">
+              <div class="_underline">
+                <i class="fas fa-user-friends"></i>
+                <span class="underline d-md-block d-lg-block d-sm-block d-none">Comportement</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="_underline">
+                <i class="fas fa-running"></i>
+                <span class="underline d-md-block d-lg-block d-sm-block d-none">Performance</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="user-item-wrapper pointer" *ngFor="let user of participants; let i = index">
         <div class="d-flex align-items-center justify-content-between row">
-          <div class="user-info col-4 d-flex justify-content-center justify-content-md-start justify-content-lg-start
+          <div class="user-info col-3 d-flex justify-content-center justify-content-md-start justify-content-lg-start
           justify-content-sm-start align-items-center">
             <div class="user-item-img-wrapper">
-              <div class="user-item-img-container">
+              <div class="user-item-img-container mr-0 mr-md-2 mr-lg-2 mr-sm-2">
                 <a routerLink="/{{ user?.username }}"><img src="{{ user?.picture }}" class="user-item-img" alt=""/></a>
               </div>
             </div>
@@ -34,56 +38,60 @@
               <a routerLink="/{{ user?.username }}"><span>{{ user?.firstname }}</span></a>
             </div>
           </div>
-          <div class="user-event-choices col-4 d-flex justify-content-evenly align-items-center font-size-20">
-            <div class="user-event-choice event-note-choice">
-              <input type="checkbox" id="{{ user?.username }}-behavior-0" name="{{ user?.username }}"
-                     [checked]="user.note?.behavior == -2"
-                     class="px-3 py-2 event-note-input d-none" (click)="onNoteUserBehavior(user, user.note == -2 ? null : -2)">
-              <label class="event-note-label pointer" for="{{ user?.username }}-behavior-0">
-                <i class="far fa-frown"></i>
-              </label>
-            </div>
-            <div class="user-event-choice event-note-choice">
-              <input type="checkbox" id="{{ user?.username }}-behavior-1" name="{{ user?.username }}"
-                     [checked]="user.note?.behavior == 0"
-                     class="px-3 py-2 event-note-input d-none" (click)="onNoteUserBehavior(user, user.note == 0 ? null : 0)">
-              <label class="event-note-label pointer" for="{{ user?.username }}-behavior-1">
-                <i class="far fa-smile"></i>
-              </label>
-            </div>
-            <div class="user-event-choice event-note-choice">
-              <input type="checkbox" id="{{ user?.username }}-behavior-2" name="{{ user?.username }}"
-                     [checked]="user.note?.behavior == 1"
-                     class="px-3 py-2 event-note-input d-none" (click)="onNoteUserBehavior(user, user.note == 1 ? null : 1)">
-              <label class="event-note-label pointer" for="{{ user?.username }}-behavior-2">
-                <i class="far fa-smile-beam"></i>
-              </label>
-            </div>
-          </div>
-          <div class="user-event-choices col-4 d-flex justify-content-evenly align-items-center font-size-20">
-            <div class="user-event-choice event-note-choice">
-              <input type="checkbox" id="{{ user?.username }}-performance-0" name="{{ user?.username }}"
-                     [checked]="user.note?.performance == -2"
-                     class="px-3 py-2 event-note-input d-none" (click)="onNoteUserPerformance(user, user.note == -2 ? null : -2)">
-              <label class="event-note-label pointer" for="{{ user?.username }}-performance-0">
-                <i class="far fa-frown"></i>
-              </label>
-            </div>
-            <div class="user-event-choice event-note-choice">
-              <input type="checkbox" id="{{ user?.username }}-performance-1" name="{{ user?.username }}"
-                     [checked]="user.note?.performance == 0"
-                     class="px-3 py-2 event-note-input d-none" (click)="onNoteUserPerformance(user, user.note == 0 ? null : 0)">
-              <label class="event-note-label pointer" for="{{ user?.username }}-performance-1">
-                <i class="far fa-smile"></i>
-              </label>
-            </div>
-            <div class="user-event-choice event-note-choice">
-              <input type="checkbox" id="{{ user?.username }}-performance-2" name="{{ user?.username }}"
-                     [checked]="user.note?.performance == 1"
-                     class="px-3 py-2 event-note-input d-none" (click)="onNoteUserPerformance(user, user.note == 1 ? null : 1)">
-              <label class="event-note-label pointer" for="{{ user?.username }}-performance-2">
-                <i class="far fa-smile-beam"></i>
-              </label>
+          <div class="col-9">
+            <div class="row">
+              <div class="user-event-choices col-6 d-flex justify-content-evenly align-items-center font-size-20">
+                <div class="user-event-choice event-note-choice mr-1">
+                  <input type="checkbox" id="{{ user?.username }}-behavior-0" name="{{ user?.username }}"
+                         [checked]="user.note?.behavior == -2"
+                         class="px-3 py-2 event-note-input d-none" (click)="onNoteUserBehavior(user, user.note == -2 ? null : -2)">
+                  <label class="event-note-label pointer" for="{{ user?.username }}-behavior-0">
+                    <i class="far fa-frown"></i>
+                  </label>
+                </div>
+                <div class="user-event-choice event-note-choice mr-1">
+                  <input type="checkbox" id="{{ user?.username }}-behavior-1" name="{{ user?.username }}"
+                         [checked]="user.note?.behavior == 0"
+                         class="px-3 py-2 event-note-input d-none" (click)="onNoteUserBehavior(user, user.note == 0 ? null : 0)">
+                  <label class="event-note-label pointer" for="{{ user?.username }}-behavior-1">
+                    <i class="far fa-smile"></i>
+                  </label>
+                </div>
+                <div class="user-event-choice event-note-choice">
+                  <input type="checkbox" id="{{ user?.username }}-behavior-2" name="{{ user?.username }}"
+                         [checked]="user.note?.behavior == 1"
+                         class="px-3 py-2 event-note-input d-none" (click)="onNoteUserBehavior(user, user.note == 1 ? null : 1)">
+                  <label class="event-note-label pointer" for="{{ user?.username }}-behavior-2">
+                    <i class="far fa-smile-beam"></i>
+                  </label>
+                </div>
+              </div>
+              <div class="user-event-choices col-6 d-flex justify-content-evenly align-items-center font-size-20">
+                  <div class="user-event-choice event-note-choice mr-1">
+                    <input type="checkbox" id="{{ user?.username }}-performance-0" name="{{ user?.username }}"
+                           [checked]="user.note?.performance == -2"
+                           class="px-3 py-2 event-note-input d-none" (click)="onNoteUserPerformance(user, user.note == -2 ? null : -2)">
+                    <label class="event-note-label pointer" for="{{ user?.username }}-performance-0">
+                      <i class="far fa-frown"></i>
+                    </label>
+                  </div>
+                  <div class="user-event-choice event-note-choice mr-1">
+                    <input type="checkbox" id="{{ user?.username }}-performance-1" name="{{ user?.username }}"
+                           [checked]="user.note?.performance == 0"
+                           class="px-3 py-2 event-note-input d-none" (click)="onNoteUserPerformance(user, user.note == 0 ? null : 0)">
+                    <label class="event-note-label pointer" for="{{ user?.username }}-performance-1">
+                      <i class="far fa-smile"></i>
+                    </label>
+                  </div>
+                  <div class="user-event-choice event-note-choice">
+                    <input type="checkbox" id="{{ user?.username }}-performance-2" name="{{ user?.username }}"
+                           [checked]="user.note?.performance == 1"
+                           class="px-3 py-2 event-note-input d-none" (click)="onNoteUserPerformance(user, user.note == 1 ? null : 1)">
+                    <label class="event-note-label pointer" for="{{ user?.username }}-performance-2">
+                      <i class="far fa-smile-beam"></i>
+                    </label>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
