@@ -22,6 +22,9 @@ export class NewEventComponent implements OnInit {
   editMode = false;
   srcCover: string | any;
   srcImage: string | any;
+  slideStep = 10;
+  transformCoverX = 0;
+  transformCoverY = 0;
   CreateEventForm = this.fb.group({
     name: new FormControl(null),
     date: new FormControl(null),
@@ -189,4 +192,8 @@ export class NewEventComponent implements OnInit {
     }
   }
 
+  slideImage(x = 0, y = 0) {
+    this.transformCoverX += x;
+    this.transformCoverY += y;
+  }
 }

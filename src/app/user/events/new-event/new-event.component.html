@@ -124,8 +124,13 @@
                           </label>
                         </div>
                         <div class="center-img h-min-200 h-max-300 ov-hidden">
+                          <div class="directionIcon slideUp"><i class="fas fa-arrow-circle-up" (click)="slideImage(0, -slideStep)"></i></div>
+                          <div class="directionIcon slideDown"><i class="fas fa-arrow-circle-down" (click)="slideImage(0, slideStep)"></i></div>
+                          <div class="directionIcon slideRight"><i class="fas fa-arrow-circle-right" (click)="slideImage(slideStep, 0)"></i></div>
+                          <div class="directionIcon slideLeft"><i class="fas fa-arrow-circle-left" (click)="slideImage(-slideStep, 0)"></i></div>
                           <img src="{{ srcCover || '/assets/images/default/cover.png' }}" alt="profile-bg"
-                               class="rounded img-fluid w-100">
+                               class="rounded img-fluid w-100"
+                               [ngStyle]="{transform: 'translate(' + transformCoverX + 'px, ' + transformCoverY +'px)'}">
                         </div>
                       </div>
                       <div class="user-detail text-right">

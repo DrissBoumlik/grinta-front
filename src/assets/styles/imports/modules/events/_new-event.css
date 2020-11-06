@@ -59,6 +59,44 @@ top-tab-list li {
   opacity: .5;
 }
 
+.directionIcon {
+  position: absolute;
+  font-size: 2rem;
+  z-index: 1000;
+}
+
+.directionIcon i {
+  cursor: pointer;
+  color: var(--iq-white);
+  background-color: var(--iq-dark);
+  border-radius: 50%;
+}
+
+.slideUp {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0px);
+}
+
+.slideDown {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0px);
+}
+
+.slideRight {
+  right: 0;
+  top: 50%;
+  transform: translate(-10px, -50%);
+}
+
+.slideLeft {
+  left: 0;
+  top: 50%;
+  transform: translate(10px, -50%);
+}
+
+
 @media (max-width: 992px) {
   #top-tab-list li i {
     height: 30px;
