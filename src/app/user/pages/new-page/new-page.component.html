@@ -84,12 +84,12 @@
                                    accept="image/*" (change)="onFileCoverChange($event?.srcElement.files)">
                           </label>
                         </div>
-                        <div class="center-img h-min-200 h-max-300 ov-hidden">
+                        <div class="center-img h-200 h-md-300 ov-hidden">
                           <img src="{{ srcCover || '/assets/images/default/cover.png' }}" alt="profile-bg"
-                               class="rounded img-fluid w-100">
+                               class="centered-img rounded img-fluid w-100">
                         </div>
                       </div>
-                      <div class="user-detail text-right">
+                      <div class="user-detail text-right left-unset">
                         <div class="profile-img">
                           <label class="m-0 pointer" for="image">
                             <div class="profile-img-wrapper edit-img mr-3">

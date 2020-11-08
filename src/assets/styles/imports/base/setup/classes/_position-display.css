@@ -29,6 +29,10 @@
   display: inline;
 }
 
+.left-unset {
+  left: unset !important;
+}
+
 .float-left {
   float: left;
 }
@@ -55,6 +59,7 @@
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  height: auto !important;
 }
 
 .justify-content-evenly {

@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   baseApiUrl: 'http://127.0.0.1:8000/api',
-  baseUrl: 'http://127.0.0.1:8000'
+  baseUrl: 'http://127.0.0.1:8000',
+  maxWidthCover: 1000,
+  maxHeightCover: 400,
 };
 
 /*

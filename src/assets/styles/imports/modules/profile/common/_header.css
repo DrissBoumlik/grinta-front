@@ -31,7 +31,7 @@ ul.header-nav li a i.active {
 .profile-header .user-detail {
   z-index: 1000;
   bottom: -20px;
-  left: unset;
+  /*left: unset;*/
 }
 
 .user-score {

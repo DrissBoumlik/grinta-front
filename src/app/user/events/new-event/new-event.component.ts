@@ -8,6 +8,7 @@ import {Sport} from '../../sports/sport.model';
 import {Event} from '../event.model';
 import {EventService} from '../../../shared/event.service';
 import {MapService} from '../../../shared/map.service';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-new-event',
@@ -85,7 +86,6 @@ export class NewEventComponent implements OnInit {
         sport: this.event.sport_id
       });
     } else {
-      console.log('init');
       const today = new Date();
       this.CreateEventForm.patchValue({
         // name: 'eventoosss',
@@ -118,13 +118,27 @@ export class NewEventComponent implements OnInit {
     this.imageToUpload = files.item(0);
     const reader = new FileReader();
     reader.readAsDataURL(this.imageToUpload);
-    reader.onload = (data) => {
-      this.srcCover = reader.result;
-      this.CreateEventForm.get('cover').setValue({
-        filename: this.imageToUpload.name,
-        filetype: this.imageToUpload.type,
-        value: reader.result
-      });
+    reader.onload = (data: any) => {
+      console.log(data);
+
+      const image = new Image();
+      image.src = data.target.result;
+      image.onload = (rs: any) => {
+        console.log(rs.currentTarget);
+        const imgHeight = rs.currentTarget.height;
+        const imgWidth = rs.currentTarget.width;
+        console.log('load');
+        if (imgHeight < environment.maxHeightCover || imgWidth < environment.maxWidthCover) {
+          this.feedbackService.feedbackReceived.next({feedback: 'warning', message: 'The cover should be at least 1000 x 400'});
+          return;
+        }
+        this.srcCover = reader.result;
+        this.CreateEventForm.get('cover').setValue({
+          filename: this.imageToUpload.name,
+          filetype: this.imageToUpload.type,
+          value: reader.result
+        });
+      };
     };
   }
 
@@ -190,10 +204,5 @@ export class NewEventComponent implements OnInit {
     } else {
       this.onCreateEvent();
     }
-  }
-
-  slideImage(x = 0, y = 0) {
-    this.transformCoverX += x;
-    this.transformCoverY += y;
   }
 }
