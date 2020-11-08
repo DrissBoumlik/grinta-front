@@ -8,12 +8,12 @@
               <h4 class="card-title">Photos</h4>
             </div>
             <div class="iq-card-header-toolbar d-flex align-items-center">
-              <p class="m-0"><a routerLink="/{{ profile?.username }}/photos">Voir Tous </a></p>
+              <p class="m-0"><a routerLink="/{{ profile?.username }}/media/photos">Voir Tous </a></p>
             </div>
           </div>
           <div class="iq-card-body">
             <ul class="profile-img-gallary d-flex flex-wrap p-0 m-0" *ngIf="!emptyListPhotos">
-              <li class="col-md-4 col-sm-6 col-12 pl-2 pr-0 pb-3" *ngFor="let photo of profile.photos | slice:0:9">
+              <li class="col-md-4 col-sm-6 col-6 pl-2 pr-0 pb-3" *ngFor="let photo of profile.photos | slice:0:9">
                 <div class="photo-box">
                   <img src="{{ photo.media_url }}" alt="gallary-image" class="img-fluid gallery-img"/>
                 </div>
