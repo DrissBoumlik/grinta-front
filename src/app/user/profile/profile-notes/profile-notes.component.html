@@ -5,78 +5,81 @@
         <div class="reviews-list-wrapper">
           <div class="reviews-list" *ngIf="notes?.length">
             <div class="header-review py-4 mb-1 d-flex align-items-center justify-content-between text-center row m-0">
-              <div class="col-4">
-                <div class="underline">Noted by</div>
+              <div class="col-3">
+                <div class="_underline">
+                  <i class="far fa-user"></i>
+                  <span class="underline d-md-block d-lg-block d-sm-block d-none">Noted by</span>
+                </div>
               </div>
-              <div class="col-4">
-                <div class="underline">Behavior</div>
+              <div class="col-9">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="_underline">
+                      <i class="fas fa-user-friends"></i>
+                      <span class="underline d-md-block d-lg-block d-sm-block d-none">Comportement</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                <div class="_underline">
+                  <i class="fas fa-running"></i>
+                  <span class="underline d-md-block d-lg-block d-sm-block d-none">Performance</span>
+                </div>
               </div>
-              <div class="col-4">
-                <div class="underline">Performance</div>
+                </div>
               </div>
             </div>
             <div class="user-item-wrapper pointer" *ngFor="let note of notes; let i = index">
               <div class="d-flex align-items-center justify-content-between row">
-                <div class="user-info col-4 d-flex align-items-center">
+                <div class="user-info col-3 d-flex justify-content-center justify-content-md-start justify-content-lg-start
+                justify-content-sm-start align-items-center">
                   <div class="user-item-img-wrapper">
-                    <div class="user-item-img-container">
+                    <div class="user-item-img-container mr-0 mr-md-2 mr-lg-2 mr-sm-2">
                       <a routerLink="/{{ note?.user?.username }}"><img src="{{ note?.user?.picture }}"
                                                                        class="user-item-img" alt=""/></a>
                     </div>
                   </div>
-                  <div class="user-item-info">
+                  <div class="user-item-info d-md-block d-lg-block d-sm-block d-none">
                     <a routerLink="/{{ note?.user?.username }}"><span>{{ note?.user?.firstname }}</span></a>
                   </div>
                 </div>
-                <!--                <div class="user-event-choices col-4 d-flex justify-content-evenly font-size-20">-->
-                <!--                  <div class="user-event-choice event-note-choice">-->
-                <!--                    <label class="event-note-label pointer">-->
-                <!--                      <i class="fas " [ngClass]="note?.value?.behavior == 1 ? 'fa-smile-beam clr-grintaaa' : note?.value?.behavior == 0 ? 'fa-smile text-warning' : 'fa-frown text-danger'"></i>-->
-                <!--                    </label>-->
-                <!--                  </div>-->
-                <!--                </div>-->
-                <div class="user-event-choices col-4 d-flex justify-content-evenly font-size-20">
-                  <div class="user-event-choice event-note-choice">
-                    <label class="event-note-label pointer">
-                      <i class="fa-frown text-danger" [ngClass]="note?.value?.behavior == -2 ? 'fas scale-1-2' : 'far'"></i>
-                    </label>
-                  </div>
-                  <div class="user-event-choice event-note-choice">
-                    <label class="event-note-label pointer">
-                      <i class="fa-smile text-warning" [ngClass]="note?.value?.behavior == 0 ? 'fas scale-1-2' : 'far'"></i>
-                    </label>
-                  </div>
-                  <div class="user-event-choice event-note-choice">
-                    <label class="event-note-label pointer">
-                      <i class="fa-smile-beam clr-grintaaa" [ngClass]="note?.value?.behavior == 1 ? 'fas scale-1-2' : 'far'"></i>
-                    </label>
-                  </div>
-                </div>
 
+                <div class="col-9">
+                  <div class="row">
+                    <div class="user-event-choices col-6 d-flex justify-content-evenly font-size-20">
+                      <div class="user-event-choice event-note-choice">
+                        <label class="event-note-label pointer">
+                          <i class="fa-frown text-danger" [ngClass]="note?.value?.behavior == -2 ? 'fas scale-1-2' : 'far'"></i>
+                        </label>
+                      </div>
+                      <div class="user-event-choice event-note-choice">
+                        <label class="event-note-label pointer">
+                          <i class="fa-smile text-warning" [ngClass]="note?.value?.behavior == 0 ? 'fas scale-1-2' : 'far'"></i>
+                        </label>
+                      </div>
+                      <div class="user-event-choice event-note-choice">
+                        <label class="event-note-label pointer">
+                          <i class="fa-smile-beam clr-grintaaa" [ngClass]="note?.value?.behavior == 1 ? 'fas scale-1-2' : 'far'"></i>
+                        </label>
+                      </div>
+                    </div>
 
-                <!--                <div class="user-event-choices col-4 d-flex justify-content-evenly font-size-20">-->
-                <!--                  <div class="user-event-choice event-note-choice">-->
-                <!--                    <label class="event-note-label pointer">-->
-                <!--                      <i class="fas " [ngClass]="note?.value?.performance == 1 ? 'fa-smile-beam clr-grintaaa' : note?.value?.performance == 0 ? 'fa-smile text-warning' : 'fa-frown text-danger'"></i>-->
-                <!--                    </label>-->
-                <!--                  </div>-->
-                <!--                </div>-->
-
-                <div class="user-event-choices col-4 d-flex justify-content-evenly font-size-20">
-                  <div class="user-event-choice event-note-choice">
-                    <label class="event-note-label pointer">
-                      <i class="fa-frown text-danger" [ngClass]="note?.value?.performance == -2 ? 'fas scale-1-2' : 'far'"></i>
-                    </label>
-                  </div>
-                  <div class="user-event-choice event-note-choice">
-                    <label class="event-note-label pointer">
-                      <i class="fa-smile text-warning" [ngClass]="note?.value?.performance == 0 ? 'fas scale-1-2' : 'far'"></i>
-                    </label>
-                  </div>
-                  <div class="user-event-choice event-note-choice">
-                    <label class="event-note-label pointer">
-                      <i class="fa-smile-beam clr-grintaaa" [ngClass]="note?.value?.performance == 1 ? 'fas scale-1-2' : 'far'"></i>
-                    </label>
+                    <div class="user-event-choices col-6 d-flex justify-content-evenly font-size-20">
+                      <div class="user-event-choice event-note-choice">
+                        <label class="event-note-label pointer">
+                          <i class="fa-frown text-danger" [ngClass]="note?.value?.performance == -2 ? 'fas scale-1-2' : 'far'"></i>
+                        </label>
+                      </div>
+                      <div class="user-event-choice event-note-choice">
+                        <label class="event-note-label pointer">
+                          <i class="fa-smile text-warning" [ngClass]="note?.value?.performance == 0 ? 'fas scale-1-2' : 'far'"></i>
+                        </label>
+                      </div>
+                      <div class="user-event-choice event-note-choice">
+                        <label class="event-note-label pointer">
+                          <i class="fa-smile-beam clr-grintaaa" [ngClass]="note?.value?.performance == 1 ? 'fas scale-1-2' : 'far'"></i>
+                        </label>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
