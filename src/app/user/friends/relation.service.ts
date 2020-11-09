@@ -50,6 +50,20 @@ export class RelationService {
       );
   }
 
+  getRelation(params) {
+    AuthService.getHeaders();
+    return this.http.get(environment.baseApiUrl + `/relation/pair`,
+      {headers: AuthService.headers, params})
+      .pipe(
+        tap(
+          (data: any) => {
+            console.log(data);
+          },
+          error => console.log(error.status),
+        )
+      );
+  }
+
   getCityFriends(city: string, page = 1) {
     AuthService.getHeaders();
     return this.http.get(environment.baseApiUrl + '/friends/city/' + city + '?page=' + page, {headers: AuthService.headers})

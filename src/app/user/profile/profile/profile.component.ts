@@ -5,6 +5,7 @@ import {ProfileService} from '../profile.service';
 import {AuthService} from '../../../auth/auth.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {FeedbackService} from '../../../shared/feedback/feedback.service';
+import {RelationService} from '../../friends/relation.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,19 +14,12 @@ import {FeedbackService} from '../../../shared/feedback/feedback.service';
 })
 export class ProfileComponent implements OnInit {
   profile: User;
-  isFollowed = false;
-  isFriend: number;
-  // Nothing = 0;
-  // requested = 1;
-  // request = -1;
-  // friend = 0 (accepted);
-  // blocked = -2
-  friendshipStatusText = '';
-  followshipStatusText = '';
-  isPending = false;
+  followParams = {text: 'follow', status: 0};
+  friendParams = {text: 'add friend', status: 0};
   ownProfile: boolean;
 
   constructor(private userService: UserService,
+              private relationService: RelationService,
               private profileService: ProfileService,
               private authService: AuthService,
               private feedbackService: FeedbackService,
@@ -52,58 +46,54 @@ export class ProfileComponent implements OnInit {
         this.ownProfile = true;
         if (this.profile.id !== this.authService.user.id) {
           this.ownProfile = false;
-          const requested = this.profile.requested.some((user: User) => user.uuid === this.authService.user.uuid);
-          const request = this.profile.requests.some((user: User) => user.uuid === this.authService.user.uuid);
-          const friend = this.profile.friends.some((user: User) => user.id === this.authService.user.id);
-          // const block = this.profile.friends.some((friend: User) => friend.id === this.authService.user.id);
-          // if requested
-          if (requested) {
-            this.isFriend = 1;
-            this.friendshipStatusText = 'Accept';
-          } else if (request) {
-            this.isFriend = -1;
-            this.friendshipStatusText = 'Cancel';
-          } else if (friend) {
-            this.isFriend = 0;
-            this.friendshipStatusText = 'Unfriend';
-          }
-          // else if (block) {
-          //   this.isFriend = -2;
-          //   this.friendshipStatusText = 'Block';
-          // }
-          else {
-            this.isFriend = 2;
-            this.friendshipStatusText = 'Add friend';
-          }
-
-          // this.isFriend = this.profile.friends.some((friend: User) => friend.id === this.authService.user.id);
-          this.isFollowed = this.profile.followers.some((follower: User) => follower.id === this.authService.user.id);
-          this.followshipStatusText = 'Follow';
-          if (this.isFollowed) {
-            this.followshipStatusText = 'Unfollow';
-          }
-          this.isPending = this.profile.pendingFriends.some((pendingFriend: User) => pendingFriend.id === this.authService.user.id);
         }
         localStorage.setItem('profile', JSON.stringify(this.profile));
+
+        this.relationService.getRelation({user_1: this.authService.user.id, user_2: this.profile.id})
+          .subscribe((response2: any) => {
+            if (response2.data) {
+              const relation = response2.data;
+              if (relation.type === 'friend') {
+                switch (relation.status) {
+                  case 'pending':
+                    if (this.authService.user.id === relation.start_user_id) {
+                      this.friendParams = { text: 'cancel', status: 12 };
+                      this.followParams = { text: 'unfollow', status: 1 };
+                    } else {
+                      this.friendParams = { text: 'confirm', status: 11 };
+                    }
+                    break;
+                  case 'accepted':
+                    this.friendParams = { text: 'unfriend', status: 2 };
+                    this.followParams = { text: 'unfollow', status: 1 };
+                    break;
+                  case 'declined': break;
+                  case 'blocked': break;
+                }
+              } else if (relation.type === 'follower') {
+                if (this.authService.user.id === relation.start_user_id) {
+                  this.followParams = { text: 'unfollow', status: 1 };
+                }
+              }
+            }
+          });
       },
       (error: any) => console.log(error)
     );
   }
 
   onToggleFollow() {
-    if (this.isFollowed) {
+    if (this.followParams.status === 1) {
       this.onUnfollowFriend();
-      this.followshipStatusText = 'Follow';
     } else {
       this.onFollowFriend();
-      this.followshipStatusText = 'Unfollow';
     }
   }
 
   onFollowFriend() {
     this.userService.followUser(this.profile.id)
       .subscribe((response: any) => {
-        this.isFollowed = true;
+        this.followParams = { text: 'unfollow', status: 1 };
         this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
       }, (error: any) => {
         const message = error.error.errors ? error.error.errors : error.error.message;
@@ -114,7 +104,7 @@ export class ProfileComponent implements OnInit {
   onUnfollowFriend() {
     this.userService.unFollowUser(this.profile.id)
       .subscribe((response: any) => {
-        this.isFollowed = false;
+        this.followParams = { text: 'follow', status: 0 };
         this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
       }, (error: any) => {
         const message = error.error.errors ? error.error.errors : error.error.message;
@@ -123,30 +113,24 @@ export class ProfileComponent implements OnInit {
   }
 
   onToggleFriend() {
-    if (this.isFriend === -1) {
+    if (this.friendParams.status === 12) {
       // cancel request
       this.onCancelRequest();
-      this.friendshipStatusText = 'Add friend';
-    }
-    else if (this.isFriend === 1) {
+    } else if (this.friendParams.status === 11) {
       // Accept request
       this.onAcceptRequest();
-      this.friendshipStatusText = 'Unfriend';
-    }
-    else if (this.isFriend === 0) {
+    } else if (this.friendParams.status === 2) {
       this.onRemoveFriend();
-      this.friendshipStatusText = 'Add friend';
-    }
-    else if (this.isFriend === 2) {
+    } else if (this.friendParams.status === 0) {
       this.onAddFriend();
-      this.friendshipStatusText = 'Cancel';
     }
   }
 
   onAddFriend() {
     this.userService.addFriend(this.profile.id)
       .subscribe((response: any) => {
-        this.isFriend = -1;
+        this.friendParams = {text : 'cancel', status: 12};
+        this.followParams = {text : 'unfollow', status: 1};
         this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
       }, (error: any) => {
         const message = error.error.errors ? error.error.errors : error.error.message;
@@ -157,7 +141,7 @@ export class ProfileComponent implements OnInit {
   onRemoveFriend() {
     this.userService.removeFriend(this.profile.id)
       .subscribe((response: any) => {
-        this.isFriend = 2;
+        this.friendParams = {text : 'add friend', status: 0};
         this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
       }, (error: any) => {
         const message = error.error.errors ? error.error.errors : error.error.message;
@@ -168,7 +152,8 @@ export class ProfileComponent implements OnInit {
   onAcceptRequest() {
     this.userService.acceptRequest(this.profile.id)
       .subscribe((response: any) => {
-        this.isFriend = 0;
+        this.friendParams = {text : 'unfriend', status: 2};
+        this.followParams = {text : 'unfollow', status: 1};
         this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
       }, (error: any) => {
         const message = error.error.errors ? error.error.errors : error.error.message;
@@ -179,11 +164,17 @@ export class ProfileComponent implements OnInit {
   onCancelRequest() {
     this.userService.cancelRequest(this.profile.id)
       .subscribe((response: any) => {
-        this.isFriend = 2;
+        this.friendParams = {text : 'add friend', status: 0};
+        this.followParams = {text : 'follow', status: 0};
         this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
       }, (error: any) => {
         const message = error.error.errors ? error.error.errors : error.error.message;
         this.feedbackService.feedbackReceived.next({feedback: 'error', message});
       });
+  }
+
+  onDeleteRequest() {
+    // Decline friend request
+    this.onCancelRequest();
   }
 }
