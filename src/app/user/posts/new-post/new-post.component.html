@@ -21,7 +21,7 @@
               </div>
               <hr class="m-3">
               <ul class="post-opt-block d-flex align-items-center list-inline m-0 p-0">
-                <li class="iq-bg-primary rounded p-2 pointer mr-3"><a href="#"></a><img
+                <li class="iq-bg-primary rounded p-2 pointer"><a href="#"></a><img
                   src="/assets/plugins/socialV/images/small/07.png" alt="icon"
                   class="img-fluid"> Photo/Video
                 </li>
@@ -53,7 +53,7 @@
             </div>
             <div class="modal fade p-0" id="post-modal" tabindex="-1" role="dialog" aria-labelledby="post-modalLabel"
                  aria-hidden="true" style="display: none;">
-              <form class="post-text w-100" [formGroup]="sharePostForm" enctype="multipart/form-data">
+              <form class="post-text w-100" [formGroup]="sharePostForm" (ngSubmit)="onCreatePost()" enctype="multipart/form-data">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -71,14 +71,28 @@
                                formControlName="body"
                                style="border:none;">
                       </div>
+                      <div class="post-img-wrapper" *ngIf="srcMedia">
+                        <hr>
+                        <div class="center-img h-200 h-md-300 ov-hidden">
+                          <img src="{{ srcMedia }}"
+                               class="centered-img rounded img-fluid w-100" alt="" *ngIf="mediaType  != 'mp4'" />
+                          <video src="{{ srcMedia }}" controls class="w-100" *ngIf="mediaType  == 'mp4'"></video>
+                        </div>
+                      </div>
                       <hr>
                       <ul class="d-flex flex-wrap align-items-center list-inline m-0 p-0">
-                        <li class="col-md-6 mb-3">
-                          <div class="iq-bg-primary rounded p-2 pointer mr-3"><a href="#"></a><img
-                            src="/assets/plugins/socialV/images/small/07.png"
-                            alt="icon" class="img-fluid">
-                            Photo/Video
-                          </div>
+                        <li class="col-md-6">
+                          <label for="image">
+                            <div class="iq-bg-primary rounded p-2 pointer mr-3">
+                              <a href="#">
+                                <input accept="image/*,video/*"
+                                       type="file" id="image" class="hidden d-none"
+                                       (change)="onFileChange($event.srcElement.files)">
+                              </a>
+                              <img src="/assets/plugins/socialV/images/small/07.png" alt="icon" class="img-fluid">
+                              Photo/Video
+                            </div>
+                          </label>
                         </li>
 <!--                        <li class="col-md-6 mb-3">-->
 <!--                          <div class="iq-bg-primary rounded p-2 pointer mr-3"><a href="#"></a><img-->
@@ -188,9 +202,7 @@
 <!--                          </div>-->
 <!--                        </div>-->
 <!--                      </div>-->
-                      <button type="submit" class="btn btn-primary bgclr-grintaaa d-block w-100 mt-3"
-                              (click)="onCreatePost()">Post
-                      </button>
+                      <button type="submit" class="btn btn-primary bgclr-grintaaa d-block w-100 mt-3">Post</button>
                     </div>
                   </div>
                 </div>

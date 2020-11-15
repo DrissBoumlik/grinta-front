@@ -14,6 +14,8 @@ import {FeedbackService} from '../../../shared/feedback/feedback.service';
 export class NewPostComponent implements OnInit {
   @Input() user: User;
   imageToUpload: any = File;
+  srcMedia = null;
+  mediaType = null;
 
   sharePostForm = this.fb.group({
     body: new FormControl(null),
@@ -31,10 +33,12 @@ export class NewPostComponent implements OnInit {
   }
 
   onFileChange(files: FileList) {
-    this.imageToUpload = files.item(0);
+    const file = this.imageToUpload = files.item(0);
+    this.mediaType = file.type.split('/')[1];
     const reader = new FileReader();
     reader.readAsDataURL(this.imageToUpload);
     reader.onload = (data) => {
+      this.srcMedia = reader.result;
       this.sharePostForm.get('image').setValue({
         filename: this.imageToUpload.name,
         filetype: this.imageToUpload.type,
