@@ -14,8 +14,8 @@
 
 
 @media (min-width: 1500px) {
-  .right-sidebar-toggle {
-    opacity: 1;
-    margin-left: -44px;
-  }
+  /*.right-sidebar-toggle {*/
+  /*  opacity: 1;*/
+  /*  margin-left: -44px;*/
+  /*}*/
 }
