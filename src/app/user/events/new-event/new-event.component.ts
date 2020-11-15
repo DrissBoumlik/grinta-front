@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User} from '../../user.model';
-import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, ValidationErrors, Validators} from '@angular/forms';
 import {UserService} from '../../user.service';
 import {FeedbackService} from '../../../shared/feedback/feedback.service';
 import {SportService} from '../../../shared/sport.service';
@@ -20,22 +20,22 @@ export class NewEventComponent implements OnInit {
   sports: Sport[] = [];
   imageToUpload: any = File;
   event: Event;
-  editMode = false;
+  @Input() editMode = true;
   srcCover: string | any;
   srcImage: string | any;
   slideStep = 10;
   transformCoverX = 0;
   transformCoverY = 0;
   CreateEventForm = this.fb.group({
-    name: new FormControl(null),
-    date: new FormControl(null),
-    limit_signup: new FormControl(null),
-    address: new FormControl(null),
-    location: new FormControl(null),
-    image: new FormControl(null),
-    cover: new FormControl(null),
-    type: new FormControl(null),
-    description: new FormControl(null),
+    name: new FormControl(null, Validators.required),
+    date: new FormControl(null, Validators.required),
+    limit_signup: new FormControl(null, Validators.required),
+    address: new FormControl(null, Validators.required),
+    location: new FormControl(null, Validators.required),
+    image: new FormControl(null, Validators.required),
+    cover: new FormControl(null, Validators.required),
+    type: new FormControl(null, Validators.required),
+    description: new FormControl(null, Validators.required),
     sport: new FormControl(null, Validators.required)
   });
 
@@ -44,9 +44,11 @@ export class NewEventComponent implements OnInit {
               private sportService: SportService,
               private eventService: EventService,
               private mapService: MapService,
-              private userService: UserService) {}
+              private userService: UserService) {
+  }
 
   ngOnInit() {
+    console.log(this.editMode);
     this.user = this.userService.user;
     this.sportService.getSports().subscribe((response: any) => {
       this.sports = response.sports;
@@ -56,7 +58,7 @@ export class NewEventComponent implements OnInit {
       console.log(positionData);
       this.CreateEventForm.patchValue({
         address: positionData.label,
-        location: positionData.y + ',' + positionData.x,
+        location: positionData.y + ',' + positionData.x
       });
     }));
 
@@ -71,8 +73,8 @@ export class NewEventComponent implements OnInit {
   }
 
   initForm() {
-    if (this.event) {
-      this.editMode = true;
+    if (this.editMode && this.event) {
+      // this.editMode = true;
       this.CreateEventForm.patchValue({
         name: this.event.name,
         date: (new Date(this.event.date)).toISOString().substring(0, 16),
@@ -85,12 +87,12 @@ export class NewEventComponent implements OnInit {
         description: this.event.description,
         sport: this.event.sport_id
       });
-    } else {
+    } else if (!this.editMode && !this.event) {
       const today = new Date();
       this.CreateEventForm.patchValue({
         // name: 'eventoosss',
         date: today.toISOString().substring(0, 16),
-        limit_signup: today.toISOString().substring(0, 16),
+        limit_signup: today.toISOString().substring(0, 16)
         // address: 'Boulevard Massira',
         // location: '33.54568,-6.54689',
         // type: 'public',
@@ -129,7 +131,10 @@ export class NewEventComponent implements OnInit {
         const imgWidth = rs.currentTarget.width;
         console.log('load');
         if (imgHeight < environment.maxHeightCover || imgWidth < environment.maxWidthCover) {
-          this.feedbackService.feedbackReceived.next({feedback: 'warning', message: 'The cover should be at least 1000 x 400'});
+          this.feedbackService.feedbackReceived.next({
+            feedback: 'warning',
+            message: 'The cover should be at least 1000 x 400'
+          });
           return;
         }
         this.srcCover = reader.result;
@@ -199,6 +204,24 @@ export class NewEventComponent implements OnInit {
   goToFinish() {
     console.log(this.CreateEventForm.value);
     // validation
+    if (!this.CreateEventForm.valid) {
+      const texts = [];
+      Object.keys(this.CreateEventForm.controls).forEach(key => {
+        const controlErrors: ValidationErrors = this.CreateEventForm.get(key).errors;
+        if (controlErrors != null) {
+          Object.keys(controlErrors).forEach(keyError => {
+            texts.push(`${key} is required`);
+            console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+          });
+        }
+      });
+      this.feedbackService.feedbackReceived.next({
+        feedback: 'warning',
+        message: texts.length ? texts : 'You form isn\'t complete',
+        duration: 10000
+      });
+      return;
+    }
     if (this.editMode) {
       this.onUpdateEvent();
     } else {
