@@ -13,13 +13,13 @@ import {FeedbackService} from '../../../shared/feedback/feedback.service';
 })
 export class NewPostComponent implements OnInit {
   @Input() user: User;
-  imageToUpload: any = File;
+  mediaToUpload: any = File;
   srcMedia = null;
   mediaType = null;
 
   sharePostForm = this.fb.group({
     body: new FormControl(null),
-    image: new FormControl(null)
+    media: new FormControl(null)
   });
 
   constructor(private userService: UserService,
@@ -33,15 +33,15 @@ export class NewPostComponent implements OnInit {
   }
 
   onFileChange(files: FileList) {
-    const file = this.imageToUpload = files.item(0);
+    const file = this.mediaToUpload = files.item(0);
     this.mediaType = file.type.split('/')[1];
     const reader = new FileReader();
-    reader.readAsDataURL(this.imageToUpload);
+    reader.readAsDataURL(this.mediaToUpload);
     reader.onload = (data) => {
       this.srcMedia = reader.result;
-      this.sharePostForm.get('image').setValue({
-        filename: this.imageToUpload.name,
-        filetype: this.imageToUpload.type,
+      this.sharePostForm.get('media').setValue({
+        filename: this.mediaToUpload.name,
+        filetype: this.mediaToUpload.type,
         value: reader.result
       });
     };
@@ -49,13 +49,14 @@ export class NewPostComponent implements OnInit {
 
   onCreatePost() {
     const body = this.sharePostForm.get('body').value;
-    const image = this.sharePostForm.get('image').value;
+    const media = this.sharePostForm.get('media').value;
     const pageId = this.pageService.page ? this.pageService.page.id : null;
-    this.postsService.createPost({body, image, page_id: pageId}).subscribe((response: any) => {
+    this.postsService.createPost({body, media, page_id: pageId}).subscribe((response: any) => {
       console.log('success');
       this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
       this.postsService.addPost(response.post);
     });
     this.sharePostForm.reset();
+    this.srcMedia = null;
   }
 }
