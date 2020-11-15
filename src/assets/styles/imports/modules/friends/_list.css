@@ -6,7 +6,7 @@
 
 .friends-list.right-sidebar-mini {
   /*width: 300px;*/
-  /*z-index: 1100;*/
+  z-index: 1100;
   /*transform: translateX(100%);*/
   transform: translateX(5px);
 }
