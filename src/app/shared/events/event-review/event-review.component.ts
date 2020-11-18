@@ -19,6 +19,7 @@ export class EventReviewComponent implements OnInit {
   event: Event;
   loadingData = true;
   emptyList = false;
+  allUsersNotes = {behavior: null, performance: null};
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
               private feedbackService: FeedbackService,
@@ -78,6 +79,27 @@ export class EventReviewComponent implements OnInit {
     } else {
       user.note = {...note};
     }
+  }
+
+  onNoteAllUsersBehavior(value: number) {
+    this.onNoteAllUsers(value, 'behavior');
+  }
+
+  onNoteAllUsersPerformance(value: number) {
+    this.onNoteAllUsers(value, 'performance');
+  }
+
+  onNoteAllUsers(value: number, type: string) {
+    const note = {behavior: null, performance: null};
+    note[type] = value;
+    if (this.allUsersNotes) {
+      this.allUsersNotes = {...this.allUsersNotes, ...note};
+    } else {
+      this.allUsersNotes = {...note};
+    }
+    this.participants.forEach((user) => {
+      this.onNoteUser(user, value, type);
+    });
   }
 
   onSend() {
