@@ -23,6 +23,7 @@ export class PostComponent implements OnInit {
   postLiked = false;
   editMode = false;
   commentsCount = 0;
+  likersListShown = false;
 
   editPostForm = this.fb.group({
     content: new FormControl(null),
@@ -157,5 +158,9 @@ export class PostComponent implements OnInit {
 
   onCancel() {
     this.editMode = false;
+  }
+
+  onShowLikersList() {
+    this.likersListShown = !this.likersListShown;
   }
 }

@@ -80,20 +80,18 @@
               <div class="d-flex align-items-center">
                 <div class="like-data">
                   <div class="dropdown">
-                    <span class="dropdown-toggle" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false" role="button">
-                      <img src="/assets/plugins/socialV/images/icon/01.png" class="img-fluid"
-                           alt="">
+                    <span (click)='onLikePost()' role="button">
+                      <img src="/assets/plugins/socialV/images/icon/like.png" class="img-fluid" alt="">
                     </span>
                   </div>
                 </div>
                 <div class="total-like-block ml-2 mr-3">
                   <div class="dropdown">
-                    <span class="dropdown-toggle" data-toggle="dropdown" (click)='onLikePost()' [ngClass]="{'liked': postLiked}"
+                    <span class="dropdown-toggle" data-toggle="dropdown" (click)="onShowLikersList()" [ngClass]="{'liked': postLiked}"
                           aria-haspopup="true" aria-expanded="false" role="button">
                       {{ post?.likers?.length }} Likes
                     </span>
-                    <div class="dropdown-menu" *ngIf="post?.likers?.length">
+                    <div class="dropdown-menu" [ngClass]="{'show': likersListShown}" *ngIf="post?.likers?.length">
                       <a class="dropdown-item" href="/{{ liker?.username }}" *ngFor="let liker of post?.likers">
                         {{ liker?.fullName }}
                       </a>
