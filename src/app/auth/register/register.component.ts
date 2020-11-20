@@ -181,8 +181,8 @@ export class RegisterComponent implements OnInit {
           firstname: responseAuth.additionalUserInfo.profile.given_name,
           lastname: responseAuth.additionalUserInfo.profile.family_name,
           email: this.socialUser.email,
-          password: this.socialUser.uid,
-          password_confirmation: this.socialUser.uid,
+          password: this.socialUser.email,
+          password_confirmation: this.socialUser.email,
           gender: null,
           picture: this.socialUser.photoURL,
           cover: null,
@@ -195,7 +195,7 @@ export class RegisterComponent implements OnInit {
             const data =  {
               isSocial: true,
               username,
-              password: this.socialUser.uid
+              password: this.socialUser.email
             };
             this.authService.login(data)
               .subscribe((response2: any) => {
@@ -206,6 +206,10 @@ export class RegisterComponent implements OnInit {
                   this.router.navigate(['home']);
                 }, 1000);
               });
+          }, (error) => {
+            console.log(error);
+            const message = error.error.error ? error.error.error : error.error.message;
+            this.feedbackService.feedbackReceived.next({feedback: 'error', message});
           });
       });
   }
@@ -221,8 +225,8 @@ export class RegisterComponent implements OnInit {
           firstname: responseAuth.additionalUserInfo.profile.first_name,
           lastname: responseAuth.additionalUserInfo.profile.last_name,
           email: this.socialUser.email,
-          password: this.socialUser.uid,
-          password_confirmation: this.socialUser.uid,
+          password: this.socialUser.email,
+          password_confirmation: this.socialUser.email,
           gender: null,
           picture: this.socialUser.photoURL,
           cover: null,
@@ -235,7 +239,7 @@ export class RegisterComponent implements OnInit {
             const data =  {
               isSocial: true,
               username,
-              password: this.socialUser.uid
+              password: this.socialUser.email
             };
             this.authService.login(data)
               .subscribe((response2: any) => {
@@ -246,7 +250,13 @@ export class RegisterComponent implements OnInit {
                   this.router.navigate(['home']);
                 }, 1000);
               });
+          }, (error) => {
+            console.log(error);
+            const message = error.error.errors ? error.error.errors : error.error.message;
+            this.feedbackService.feedbackReceived.next({feedback: 'error', message});
           });
+      }, (errorSocial) => {
+        console.log(errorSocial);
       });
   }
 }
