@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../../user.model';
 import {AuthService} from '../../../../auth/auth.service';
 import {ChatService} from '../../chat.service';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import {UserService} from '../../../user.service';
 
 @Component({

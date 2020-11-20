@@ -1,6 +1,6 @@
 import {AfterViewChecked, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import {User} from '../../../user.model';
 import {ChatService} from '../../chat.service';
 import {AuthService} from '../../../../auth/auth.service';

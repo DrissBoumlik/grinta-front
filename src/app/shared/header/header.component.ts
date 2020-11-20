@@ -4,7 +4,7 @@ import {User} from '../../user/user.model';
 import {Router} from '@angular/router';
 import Echo from 'laravel-echo';
 import {EventFeedbackService} from '../events/event-feedback/event-feedback.service';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import {ToolsService} from '../tools.service';
 import {ProfileService} from '../../user/profile/profile.service';
 
