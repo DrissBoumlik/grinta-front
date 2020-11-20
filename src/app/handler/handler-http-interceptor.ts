@@ -26,7 +26,7 @@ export class HandlerHttpInterceptor implements HttpInterceptor {
     return next.handle(request).pipe( tap(() => {},
       (err: any) => {
         if (err instanceof HttpErrorResponse) {
-          if (err.status !== 401) {
+          if (err.status !== 401 || err.url.includes('register')) {
             return;
           }
           this.authService.isLogged = false;
