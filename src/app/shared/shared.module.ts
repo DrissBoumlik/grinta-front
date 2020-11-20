@@ -28,6 +28,9 @@ import {LatestBirthDatesComponent} from './user-updates/latest-birth-dates/lates
 import {MediaService} from './media.service';
 import {NoteService} from './note.service';
 import {MapService} from './map.service';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {environment} from '../../environments/environment';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,8 @@ import {MapService} from './map.service';
     RouterModule,
     CommonModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   exports: [
     HeaderComponent,

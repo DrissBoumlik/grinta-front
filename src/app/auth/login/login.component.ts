@@ -9,6 +9,8 @@ import {UserService} from '../../user/user.service';
 import {ToolsService} from '../../shared/tools.service';
 import {HelperService} from '../../helper.service';
 import {FeedbackService} from '../../shared/feedback/feedback.service';
+import {AngularFireAuth} from '@angular/fire/auth';
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-login',
@@ -18,12 +20,13 @@ import {FeedbackService} from '../../shared/feedback/feedback.service';
 export class LoginComponent implements OnInit {
   user: User;
 
-  private socialUser: SocialUser;
+  private socialUser: any;
   private loggedIn: boolean;
 
   loginForm: FormGroup;
 
   constructor(private authService: AuthService,
+              public angularAuth: AngularFireAuth,
               private userService: UserService,
               private router: Router,
               private route: ActivatedRoute,
@@ -133,24 +136,33 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithGoogle(): void {
-    this.socialService.signIn(GoogleLoginProvider.PROVIDER_ID)
-      .then((socialUser: SocialUser) => {
-        const username = this.toolsService.slugify(socialUser.name);
+    this.angularAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then((responseAuth: any) => {
+        console.log(responseAuth);
+        this.socialUser = responseAuth.user;
+        const username = this.toolsService.slugify(this.socialUser.displayName);
         const data = {
           isSocial: true,
           username,
-          email: socialUser.id
+          email: this.socialUser.email,
+          password: this.socialUser.uid
         };
         this.authService.login(data)
           .subscribe((response: any) => {
             this.userService.user = this.authService.user = response.success.user;
-            this.router.navigate(['home']);
+            const message = 'Login successfully';
+            this.feedbackService.feedbackReceived.next({feedback: 'success', message});
+            setTimeout(() => {
+              this.router.navigate(['home']);
+            }, 1000);
           });
       });
   }
 
 
   signOut(): void {
-    this.socialService.signOut();
+    this.angularAuth.signOut().then(response => {
+      console.log(response);
+    });
   }
 }
