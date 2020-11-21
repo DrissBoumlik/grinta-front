@@ -9,6 +9,7 @@ import {Event} from '../event.model';
 import {EventService} from '../../../shared/event.service';
 import {MapService} from '../../../shared/map.service';
 import {environment} from '../../../../environments/environment';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-new-event',
@@ -40,6 +41,7 @@ export class NewEventComponent implements OnInit {
   });
 
   constructor(private fb: FormBuilder,
+              private router: Router,
               private feedbackService: FeedbackService,
               private sportService: SportService,
               private eventService: EventService,
@@ -161,9 +163,13 @@ export class NewEventComponent implements OnInit {
       sport_id: this.CreateEventForm.value.sport
     };
     this.userService.createEvent(event)
-      .subscribe((response: any) => {
+      .subscribe(
+        (response: any) => {
           console.log(response);
           this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
+          setTimeout(() => {
+            this.router.navigate([`/events/${response.event.uuid}`]);
+          }, 1000);
         },
         (error: any) => {
           console.log(error);
