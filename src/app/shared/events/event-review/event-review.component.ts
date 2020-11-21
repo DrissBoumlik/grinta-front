@@ -19,7 +19,7 @@ export class EventReviewComponent implements OnInit {
   event: Event;
   loadingData = true;
   emptyList = false;
-  allUsersNotes = {behavior: null, performance: null};
+  allUsersNotes = {};
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
               private feedbackService: FeedbackService,
@@ -90,7 +90,7 @@ export class EventReviewComponent implements OnInit {
   }
 
   onNoteAllUsers(value: number, type: string) {
-    const note = {behavior: null, performance: null};
+    const note = {};
     note[type] = value;
     if (this.allUsersNotes) {
       this.allUsersNotes = {...this.allUsersNotes, ...note};
