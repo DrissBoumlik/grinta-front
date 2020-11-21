@@ -30,7 +30,7 @@ ul.header-nav li a i.active {
 
 .profile-header .user-detail {
   z-index: 1000;
-  bottom: -20px;
+  bottom: -30px;
   /*left: unset;*/
 }
 
