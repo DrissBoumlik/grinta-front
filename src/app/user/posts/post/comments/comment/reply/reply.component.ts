@@ -19,7 +19,7 @@ export class ReplyComponent implements OnInit {
 
   editMode = false;
   editReplyForm = this.fb.group({
-    content: new FormControl(null),
+    body: new FormControl(null),
   });
 
   constructor(private authService: AuthService,
@@ -35,7 +35,7 @@ export class ReplyComponent implements OnInit {
 
   onLikeReply() {
     this.replyLiked = this.reply.likers.some((liker: User) => liker.id === this.authService.user.id);
-    if(this.replyLiked) {
+    if (this.replyLiked) {
       console.log('You unlike this comment');
       this.postService.unlikeComment(this.reply).subscribe((response: any) => {
         if (response.code === 200) {
@@ -74,7 +74,7 @@ export class ReplyComponent implements OnInit {
   onEditReply() {
     this.editMode = true;
     this.editReplyForm.patchValue({
-      content: this.reply.body
+      body: this.reply.body
     });
   }
 
