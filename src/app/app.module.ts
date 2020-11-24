@@ -25,7 +25,6 @@ import {HomeComponent} from './user/home/home.component';
 import {ProfileService} from './user/profile/profile.service';
 import {RegisterComponent} from './auth/register/register.component';
 import {PostsModule} from './user/posts/posts.module';
-import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {SharedModule} from './shared/shared.module';
 import {PagesService} from './user/pages/pages.service';
 import {FriendsModule} from './user/friends/friends.module';
@@ -59,20 +58,6 @@ import { NewVideoComponent } from './user/profile/profile-media/new-video/new-vi
 import { ProfileAlbumComponent } from './user/profile/profile-media/profile-albums/profile-album/profile-album.component';
 import { ProfileNotesComponent } from './user/profile/profile-notes/profile-notes.component';
 
-const config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('52047750060-bmip7boaqb1cehuhvd3ovq3cf7r21h4u.apps.googleusercontent.com')
-  },
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('378132683390718')
-  }
-]);
-
-export function provideConfig() {
-    return config;
-}
 
 @NgModule({
   declarations: [
@@ -126,7 +111,6 @@ export function provideConfig() {
     FriendsModule,
     EventsModule,
     SearchModule,
-    SocialLoginModule
   ],
   exports: [
     BrowserModule,
@@ -141,7 +125,6 @@ export function provideConfig() {
     PagesService,
     HelperService,
     DatePipe,
-    {provide: AuthServiceConfig, useFactory: provideConfig},
     {provide: HTTP_INTERCEPTORS, useClass: HandlerHttpInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

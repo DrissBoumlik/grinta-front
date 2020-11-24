@@ -4,7 +4,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../user/user.model';
 
-import {GoogleLoginProvider, AuthService as SocialService, SocialUser} from 'angularx-social-login';
 import {UserService} from '../../user/user.service';
 import {ToolsService} from '../../shared/tools.service';
 import {HelperService} from '../../helper.service';
@@ -30,7 +29,6 @@ export class LoginComponent implements OnInit {
               private userService: UserService,
               private router: Router,
               private route: ActivatedRoute,
-              private socialService: SocialService,
               private helperService: HelperService,
               private feedbackService: FeedbackService,
               private toolsService: ToolsService) {
@@ -56,7 +54,7 @@ export class LoginComponent implements OnInit {
       // window.location.reload();
     }
 
-    this.socialService.authState.subscribe((user) => {
+    this.angularAuth.authState.subscribe((user) => {
       this.socialUser = user;
       this.loggedIn = (user != null);
     });
