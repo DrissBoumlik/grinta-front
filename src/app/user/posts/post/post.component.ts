@@ -9,6 +9,7 @@ import {ProfileService} from '../../profile/profile.service';
 import {PageService} from '../../pages/page/page.service';
 import {FormBuilder, FormControl} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
+import {FeedbackService} from '../../../shared/feedback/feedback.service';
 
 @Component({
   selector: 'app-post',
@@ -26,7 +27,7 @@ export class PostComponent implements OnInit {
   likersListShown = false;
 
   editPostForm = this.fb.group({
-    content: new FormControl(null),
+    body: new FormControl(null),
   });
 
   constructor(private userService: UserService,
@@ -35,6 +36,7 @@ export class PostComponent implements OnInit {
               private postsService: PostsService,
               private pageService: PageService,
               private authService: AuthService,
+              private feedbackService: FeedbackService,
               private fb: FormBuilder,
               private route: ActivatedRoute) {
   }
@@ -130,29 +132,37 @@ export class PostComponent implements OnInit {
 
   onDeletePost() {
     if (this.user.id !== this.post.user_id) {
-      console.log('You don\'t own this post');
+      this.feedbackService.feedbackReceived.next({feedback: 'warning', message: 'You don\'t own this post'});
       return;
     }
-    this.postsService.deletePost(this.post.id).subscribe((response: any) => {
+    this.postsService.deletePost(this.post.id)
+      .subscribe((response: any) => {
       this.postsService.removePost(this.post);
+      this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
     });
   }
 
   onUpdatePost() {
-    this.postsService.updatePost(this.editPostForm.value.content, this.post.id).subscribe((response: any) => {
-      if ((this.profileService.profile && this.authService.user.id === this.profileService.profile.id) || this.pageService.page) {
-        console.log(this.postsService.posts);
-      }
+    if (!this.editPostForm.value.body || this.editPostForm.value.body === '') {
+      this.feedbackService.feedbackReceived.next({feedback: 'warning', message: 'Post is empty'});
+      return;
+    }
+    this.postsService.updatePost(this.editPostForm.value.body, this.post.id)
+      .subscribe((response: any) => {
+      // if ((this.profileService.profile && this.authService.user.id === this.profileService.profile.id) || this.pageService.page) {
+      //   console.log(this.postsService.posts);
+      // }
       // this.postsService.addPost(response.post);
-      this.post.body = this.editPostForm.value.content;
+      this.post.body = this.editPostForm.value.body;
       this.editMode = false;
+      this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
     });
   }
 
   onEditPost() {
     this.editMode = true;
     this.editPostForm.patchValue({
-      content: this.post.body
+      body: this.post.body
     });
   }
 
