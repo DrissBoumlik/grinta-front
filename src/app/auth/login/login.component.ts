@@ -204,6 +204,52 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  signInWithTwitter(): void {
+    this.angularAuth.signInWithPopup(new firebase.auth.TwitterAuthProvider())
+      .then((responseAuth: any) => {
+        console.log(responseAuth);
+        this.socialUser = responseAuth.user;
+        const username = responseAuth.additionalUserInfo.username;
+        const data = {
+          isSocial: true,
+          username,
+          password: username
+        };
+        this.authService.login(data)
+          .subscribe((response: any) => {
+            this.userService.user = this.authService.user = response.success.user;
+            const message = 'Login successfully';
+            this.feedbackService.feedbackReceived.next({feedback: 'success', message});
+            setTimeout(() => {
+              this.router.navigate(['home']);
+            }, 1000);
+          });
+      }, (errorSocial) => {
+        console.log(errorSocial);
+        if (errorSocial.email) {
+          this.socialUser = errorSocial;
+          const data = {
+            isSocial: true,
+            username: this.socialUser.email,
+            email: this.socialUser.email,
+            password: this.socialUser.email
+          };
+          this.authService.login(data)
+            .subscribe((response: any) => {
+              this.userService.user = this.authService.user = response.success.user;
+              const message = 'Login successfully';
+              this.feedbackService.feedbackReceived.next({feedback: 'success', message});
+              setTimeout(() => {
+                this.router.navigate(['home']);
+              }, 1000);
+            }, (error: any) => {
+              const message = error.error;
+              this.feedbackService.feedbackReceived.next({feedback: 'error', message});
+            });
+        }
+      });
+  }
+
 
   signOut(): void {
     this.angularAuth.signOut().then(response => {

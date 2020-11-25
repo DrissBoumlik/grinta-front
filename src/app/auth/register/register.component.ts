@@ -10,6 +10,7 @@ import {SportService} from '../../shared/sport.service';
 import {FeedbackService} from '../../shared/feedback/feedback.service';
 import {AngularFireAuth} from '@angular/fire/auth';
 import firebase from 'firebase/app';
+import * as faker from 'faker';
 
 @Component({
   selector: 'app-register',
@@ -50,13 +51,9 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['home']);
     }
 
-    // this.sportService.getSports().subscribe((response: any) => {
-    //   this.sports = response.sports;
-    // });
+    // this.sportService.getSports().subscribe((response: any) => this.sports = response.sports);
 
-    // this.toolsService.getCities().subscribe((response: any) => {
-    //   this.cities = response;
-    // });
+    // this.toolsService.getCities().subscribe((response: any) => this.cities = response);
 
     this.angularAuth.authState.subscribe((data: any) => console.log(data));
 
@@ -256,6 +253,54 @@ export class RegisterComponent implements OnInit {
             this.feedbackService.feedbackReceived.next({feedback: 'error', message});
           });
       }, (errorSocial) => {
+        console.log(errorSocial);
+      });
+  }
+
+  signUpWithTwitter() {
+    this.angularAuth.signInWithPopup(new firebase.auth.TwitterAuthProvider())
+      .then((responseAuth: any) => {
+        console.clear();
+        console.log(responseAuth);
+        this.socialUser = responseAuth.user;
+        const username = responseAuth.additionalUserInfo.username;
+        const registerData = {
+          isSocial: true, username,
+          firstname: this.socialUser.displayName.split(' ')[0],
+          lastname: this.socialUser.displayName.split(' ')[1],
+          email: faker.internet.email(),
+          password: username,
+          password_confirmation: username,
+          gender: null,
+          picture: this.socialUser.photoURL,
+          cover: null,
+          sport: null,
+          city: null
+        };
+        console.log(registerData);
+        this.authService.register(registerData)
+          .subscribe((response: any) => {
+            const data =  {
+              isSocial: true,
+              username,
+              password: username
+            };
+            this.authService.login(data)
+              .subscribe((response2: any) => {
+                this.userService.user = this.authService.user = response2.success.user;
+                const message = 'Login successfully';
+                this.feedbackService.feedbackReceived.next({feedback: 'success', message});
+                setTimeout(() => {
+                  this.router.navigate(['home']);
+                }, 1000);
+              });
+          }, (error) => {
+            console.log(error);
+            const message = error.error.errors ? error.error.errors : error.error.message;
+            this.feedbackService.feedbackReceived.next({feedback: 'error', message});
+          });
+      }, (errorSocial) => {
+        console.clear();
         console.log(errorSocial);
       });
   }

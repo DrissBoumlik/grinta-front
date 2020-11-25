@@ -1,0 +1,8 @@
+
+.social-auth .iq-social-media {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  margin-top: 2rem;
+  float: none;
+}
