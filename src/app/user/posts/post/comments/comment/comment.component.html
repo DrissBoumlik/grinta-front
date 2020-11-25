@@ -5,7 +5,7 @@
         <a routerLink="/{{ comment.user.username }}"><img src="{{ comment?.user?.picture }}" alt="" class="round w-h-30"></a>
       </div>
       <div class="comment-user-content pd-sides-5">
-        <div class="comment bg-gray">
+        <div class="comment bg-gray border-radius-30">
           <div class="comment-content" *ngIf="!editMode">
             <span class="user-name"><a routerLink="/{{ comment?.user?.username }}">{{ comment?.user?.fullName }}</a></span>
             <i class="fas fa-caret-right mg-sides"></i>
@@ -26,7 +26,8 @@
 <!--                <button type="submit" class="btn btn-update btn-default" (click)="onCancel()">Annuler</button>-->
 <!--                <button type="submit" class="btn btn-update btn-primary" (click)="onUpdateComment()">Valider</button>-->
 <!--              </div>-->
-              <input formControlName="body" type="text" class="form-control rounded new-content" placeholder="Ecrire un commentaire..."/>
+              <input formControlName="body" type="text" class="form-control border-radius-30 new-content"
+                     placeholder="Ecrire un commentaire..."/>
               <div class="comment-attagement d-flex">
 <!--                <a><i class="ri-link mr-3"></i></a>-->
 <!--                <a><i class="ri-user-smile-line mr-3"></i></a>-->
@@ -66,13 +67,15 @@
 <!--            </form>-->
             <form [formGroup]="ReplyForm" class="comment-text d-flex align-items-center mt-3">
               <img src="{{ user?.picture }}" alt="" class="avatar-35 mx-1 round">
-              <input formControlName="body" type="text" class="form-control rounded" id="reply-{{ comment?.id }}"
+              <input formControlName="body" type="text" class="form-control border-radius-30" id="reply-{{ comment?.id }}"
                      placeholder="Ecrire un commentaire..." />
               <div class="comment-attagement d-flex">
                 <a class="d-none"><i class="ri-link mr-3"></i></a>
                 <a class="d-none"><i class="ri-user-smile-line mr-3"></i></a>
                 <a class="d-none"><i class="ri-camera-line mr-3"></i></a>
-                <button class="btn btn-success btn-send-comment mr-1" type="submit" (click)="onCreateReply()"><i class="fas fa-paper-plane"></i></button>
+                <button class="btn btn-success btn-send-comment border-radius-30 mr-1" type="submit" (click)="onCreateReply()">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
               </div>
             </form>
           </div>

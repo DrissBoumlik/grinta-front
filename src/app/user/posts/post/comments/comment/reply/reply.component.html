@@ -5,16 +5,23 @@
         <img src="{{ reply?.user?.picture }}" alt="" class="round w-h-30">
       </div>
       <div class="reply-user-content pd-sides-5">
-        <div class="reply bg-gray">
+        <div class="reply bg-gray border-radius-30">
           <div class="reply-content" *ngIf="!editMode">
             <span class="user-name"><a routerLink="/{{ reply?.user?.username }}">{{ reply?.user?.fullName }}</a></span>
             <i class="fas fa-caret-right mg-sides"></i>
             <span>{{ reply?.body }}</span>
+            <div class="reply-interaction">
+              <button class="btn btn-action-comment btn-action-reply btn-like-reply capitalize" (click)='onLikeReply()' [ngClass]="{'liked': replyLiked}">j'aime</button>
+              <span class="mg-sides">·</span>
+              <span>{{ reply?.created_at | date : 'mediumDate'}}</span>
+              <!-- <span class="mg-sides">.</span>
+              <button class="btn btn-action-comment btn-action-reply btn-answer-reply capitalize">répondre</button> -->
+            </div>
           </div>
 
           <div class="reply-edit" *ngIf="editMode">
             <form [formGroup]="editReplyForm" class="comment-text d-flex align-items-center">
-              <input formControlName="body" type="text" class="form-control rounded new-content" placeholder="Ecrire un commentaire..."/>
+              <input formControlName="body" type="text" class="form-control border-radius-30 new-content" placeholder="Ecrire un commentaire..."/>
 <!--              <textarea formControlName="content" cols="60" rows="4" class="form-control new-content"></textarea>-->
 <!--              <div class="">-->
 <!--                <button type="submit" class="btn btn-update btn-default" (click)="onCancel()">Annuler</button>-->
@@ -30,13 +37,6 @@
             </form>
           </div>
 
-          <div class="reply-interaction">
-            <button class="btn btn-action-comment btn-action-reply btn-like-reply capitalize" (click)='onLikeReply()' [ngClass]="{'liked': replyLiked}">j'aime</button>
-            <span class="mg-sides">·</span>
-            <span>{{ reply?.created_at | date : 'mediumDate'}}</span>
-            <!-- <span class="mg-sides">.</span>
-            <button class="btn btn-action-comment btn-action-reply btn-answer-reply capitalize">répondre</button> -->
-          </div>
         </div>
       </div>
       <div class="reply-edition dropdown" *ngIf="ownReply">
