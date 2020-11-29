@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {EventService} from '../../../shared/event.service';
 import {Event} from '../event.model';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-events-wrapper',
@@ -13,9 +14,11 @@ export class EventsWrapperComponent implements OnInit {
   loadMore = false;
   scroll = true;
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService,
+              private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle('Events');
     // GET latest events page
     this.queryPage = 1;
     const params = {page: this.queryPage};

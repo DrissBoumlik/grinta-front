@@ -6,6 +6,7 @@ import {AuthService} from '../../../auth/auth.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {FeedbackService} from '../../../shared/feedback/feedback.service';
 import {RelationService} from '../../friends/relation.service';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -23,10 +24,12 @@ export class ProfileComponent implements OnInit {
               private profileService: ProfileService,
               private authService: AuthService,
               private feedbackService: FeedbackService,
+              private titleService: Title,
               private route: ActivatedRoute,
               private router: Router) {}
 
   ngOnInit() {
+    this.titleService.setTitle('Profile');
     let username = this.route.snapshot.params.username;
     this.onGetProfile(username);
     this.route.params.subscribe((params: Params) => {
@@ -43,6 +46,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.getProfile(username).subscribe(
       (response: any) => {
         this.profile = response.user;
+        this.titleService.setTitle(this.profile.fullName);
         this.ownProfile = true;
         if (this.profile.id !== this.authService.user.id) {
           this.ownProfile = false;

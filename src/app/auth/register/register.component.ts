@@ -11,6 +11,7 @@ import {FeedbackService} from '../../shared/feedback/feedback.service';
 import {AngularFireAuth} from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import * as faker from 'faker';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -43,9 +44,12 @@ export class RegisterComponent implements OnInit {
               private http: HttpClient,
               private sportService: SportService,
               private toolsService: ToolsService,
+              private titleService: Title,
               private feedbackService: FeedbackService) { }
 
   ngOnInit() {
+    this.titleService.setTitle('Sign-Up');
+
     const userLogged = localStorage.getItem('token') !== null && localStorage.getItem('token') !== undefined;
     if (userLogged) {
       this.router.navigate(['home']);
