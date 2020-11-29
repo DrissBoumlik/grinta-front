@@ -8,11 +8,15 @@
 .sign-in-detail {
   height: auto;
 }
-
-.social-auth .iq-social-media {
+.social-auth {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  position: relative;
   margin-top: 2rem;
+}
+.social-auth .iq-social-media {
+  position: relative;
+  margin-top: 0.5rem;
   float: none;
 }
