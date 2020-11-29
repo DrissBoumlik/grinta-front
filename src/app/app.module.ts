@@ -57,6 +57,7 @@ import { NewPhotoComponent } from './user/profile/profile-media/new-photo/new-ph
 import { NewVideoComponent } from './user/profile/profile-media/new-video/new-video.component';
 import { ProfileAlbumComponent } from './user/profile/profile-media/profile-albums/profile-album/profile-album.component';
 import { ProfileNotesComponent } from './user/profile/profile-notes/profile-notes.component';
+import {StaticModule} from './static/static.module';
 
 
 @NgModule({
@@ -111,6 +112,7 @@ import { ProfileNotesComponent } from './user/profile/profile-notes/profile-note
     FriendsModule,
     EventsModule,
     SearchModule,
+    StaticModule,
   ],
   exports: [
     BrowserModule,
