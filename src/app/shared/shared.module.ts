@@ -22,15 +22,17 @@ import {EventFeedbackComponent} from './events/event-feedback/event-feedback.com
 import {EventReviewComponent} from './events/event-review/event-review.component';
 import {EventFeedbackService} from './events/event-feedback/event-feedback.service';
 import {UserOptionsComponent} from './user-options/user-options.component';
-import {UserUpdatesComponent} from './user-updates/user-updates.component';
-import {LatestEventsComponent} from './user-updates/latest-events/latest-events.component';
-import {LatestBirthDatesComponent} from './user-updates/latest-birth-dates/latest-birth-dates.component';
+import {LatestEventsComponent} from './meta-info-wrapper/updates/latest-events/latest-events.component';
+import {LatestBirthDatesComponent} from './meta-info-wrapper/updates/latest-birth-dates/latest-birth-dates.component';
 import {MediaService} from './media.service';
 import {NoteService} from './note.service';
 import {MapService} from './map.service';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {environment} from '../../environments/environment';
+import { MetaInfoWrapperComponent } from './meta-info-wrapper/meta-info-wrapper.component';
+import { UpdatesComponent } from './meta-info-wrapper/updates/updates.component';
+import { GrintaaaDetailsComponent } from './meta-info-wrapper/grintaaa-details/grintaaa-details.component';
 
 @NgModule({
   declarations: [
@@ -47,9 +49,11 @@ import {environment} from '../../environments/environment';
     EventFeedbackComponent,
     EventReviewComponent,
     UserOptionsComponent,
-    UserUpdatesComponent,
     LatestEventsComponent,
     LatestBirthDatesComponent,
+    MetaInfoWrapperComponent,
+    UpdatesComponent,
+    GrintaaaDetailsComponent,
   ],
   imports: [
     RouterModule,
@@ -69,9 +73,11 @@ import {environment} from '../../environments/environment';
     MapPreviewComponent,
     LocationPipe,
     UserOptionsComponent,
-    UserUpdatesComponent,
     LatestEventsComponent,
     LatestBirthDatesComponent,
+    MetaInfoWrapperComponent,
+    UpdatesComponent,
+    GrintaaaDetailsComponent,
   ],
   providers: [
     SearchService,
