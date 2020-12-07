@@ -58,6 +58,8 @@ import { NewVideoComponent } from './user/profile/profile-media/new-video/new-vi
 import { ProfileAlbumComponent } from './user/profile/profile-media/profile-albums/profile-album/profile-album.component';
 import { ProfileNotesComponent } from './user/profile/profile-notes/profile-notes.component';
 import {StaticModule} from './static/static.module';
+import {BarChartModule} from '@swimlane/ngx-charts';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -113,6 +115,8 @@ import {StaticModule} from './static/static.module';
     EventsModule,
     SearchModule,
     StaticModule,
+    BarChartModule,
+    BrowserAnimationsModule,
   ],
   exports: [
     BrowserModule,
