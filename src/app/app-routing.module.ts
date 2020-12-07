@@ -51,11 +51,13 @@ import {PrivacyPolicyComponent} from './static/privacy-policy/privacy-policy.com
 import {TermsOfUseComponent} from './static/terms-of-use/terms-of-use.component';
 import {MaintenanceComponent} from './static/maintenance/maintenance.component';
 import {ComingSoonComponent} from './static/coming-soon/coming-soon.component';
+import {PageErrorServerComponent} from './static/page-error-server/page-error-server.component';
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'error-server', component: PageErrorServerComponent},
   {
     path: '', canActivate: [AuthenticationGuard], children: [
       {path: '', component: HomeComponent},
