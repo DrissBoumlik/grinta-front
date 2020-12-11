@@ -16,9 +16,10 @@ export class EventService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents(params = {page: 1}) {
+  getEvents(params = {page: 1, searchTerm: ''}) {
     AuthService.getHeaders();
-    return this.http.get(environment.baseApiUrl + '/events?page=' + params.page, {headers: AuthService.headers})
+    return this.http.get(environment.baseApiUrl + `/events?page=${params.page || 1}&searchTerm=${params.searchTerm || ''}`,
+      {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),

@@ -2,46 +2,15 @@
 
   <app-header></app-header>
 
-  <div id="content-page" class="content-page search-wrapper px-0">
-    <div class="container-fluid px-0">
-      <div class="row">
-        <div class="col-3">
-          <!-- Sidebar  -->
-          <div class="iq-sidebar">
-            <div id="sidebar-scrollbar">
-              <nav class="iq-sidebar-menu">
-                <ul id="iq-sidebar-toggle" class="iq-menu">
-                  <li [ngClass]="{'active': !type || type === 'search'}">
-                    <a class="iq-waves-effect" routerLink="/search"><i class="las la-columns"></i><span>All</span></a>
-                  </li>
-                  <li [ngClass]="{ 'active': type === 'people'}">
-                    <a class="iq-waves-effect" routerLink="/search/people"><i class="ri-user-line"></i><span>People</span></a>
-                  </li>
-                  <li [ngClass]="{ 'active': type === 'posts'}">
-                    <a class="iq-waves-effect" routerLink="/search/posts"><i class="ri-article-line"></i><span>Posts</span></a>
-                  </li>
-                  <li [ngClass]="{ 'active': type === 'pages'}">
-                    <a class="iq-waves-effect" routerLink="/search/pages"><i class="ri-pages-line"></i><span>Pages</span></a>
-                  </li>
-                  <li [ngClass]="{ 'active': type === 'events'}">
-                    <a class="iq-waves-effect" routerLink="/search/events"><i class="ri-calendar-event-line"></i><span>Events</span></a>
-                  </li>
-                </ul>
-              </nav>
-              <div class="p-3"></div>
-            </div>
-          </div>
-          <!-- TOP Nav Bar -->
+  <app-friends></app-friends>
 
-        </div>
-        <div class="col-md-9 col-12">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-8 offset-md-2 col-10 offset-1">
-                <router-outlet></router-outlet>
-              </div>
-            </div>
-          </div>
+  <app-search-menu></app-search-menu>
+
+  <div id="content-page" class="content-page search-wrapper px-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <router-outlet></router-outlet>
         </div>
       </div>
     </div><!-- /.container -->

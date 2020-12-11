@@ -36,6 +36,7 @@ export class SearchResultsComponent implements OnInit {
   }
 
   onSearch(value: string) {
+    this.searchService.searchTerm = value;
     clearTimeout(this.sendRequest);
     if (value && value.length > 0) {
       this.sendRequest = setTimeout(() => {
