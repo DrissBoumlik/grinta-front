@@ -57,13 +57,10 @@ export class ProfileNotesComponent implements OnInit {
         Object.keys(noteSum).forEach((key) => {
           this.chartData.push({name: key, value: noteSum[key]});
         });
-        console.clear();
-        console.log(this.chartData);
         this.notes = response.notes.map((note) => {
           return {user: note.noting_user, value: note.value};
         });
         this.loadingData = false;
-        console.log(this.notes);
       }
     );
   }

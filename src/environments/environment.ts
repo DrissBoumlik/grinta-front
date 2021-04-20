@@ -3,6 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  SCARF_ANALYTICS: false,
   production: false,
   baseApiUrl: 'http://127.0.0.1:8000/api',
   baseUrl: 'http://127.0.0.1:8000',

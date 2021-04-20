@@ -46,6 +46,7 @@ import { EventItemComponent } from './event-item/event-item.component';
     NewEventComponent,
     EventComponent,
     EventOptionsComponent,
+    EventItemComponent
   ],
   providers: [EventService]
 })

@@ -33,6 +33,9 @@ import {environment} from '../../environments/environment';
 import { MetaInfoWrapperComponent } from './meta-info-wrapper/meta-info-wrapper.component';
 import { UpdatesComponent } from './meta-info-wrapper/updates/updates.component';
 import { GrintaaaDetailsComponent } from './meta-info-wrapper/grintaaa-details/grintaaa-details.component';
+import { CalendarModule } from 'angular-calendar';
+import { DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,8 @@ import { GrintaaaDetailsComponent } from './meta-info-wrapper/grintaaa-details/g
     CommonModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
   ],
   exports: [
     HeaderComponent,
