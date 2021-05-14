@@ -3,6 +3,7 @@ import {HeaderComponent} from './header/header.component';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import {SearchResultsComponent} from './search-results/search-results.component';
 import {SearchService} from './search.service';
 import {SearchResultComponent} from './search-results/search-result/search-result.component';
@@ -64,6 +65,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    LeafletModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
   ],
   exports: [

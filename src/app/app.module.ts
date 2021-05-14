@@ -6,6 +6,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from './auth/login/login.component';
@@ -109,6 +110,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     FormsModule,
     InfiniteScrollModule,
     NgxSpinnerModule,
+    LeafletModule,
     SharedModule,
     PostsModule,
     FriendsModule,
