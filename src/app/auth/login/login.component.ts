@@ -39,11 +39,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle('Sign-In');
 
-    this.loginForm = new FormGroup({
-      username: new FormControl(('a@a.a'), Validators.required),
-      password: new FormControl('123123123', Validators.required),
-      remember_me: new FormControl(true)
-    });
+    // this.loginForm = new FormGroup({
+    //   username: new FormControl(('a@a.a'), Validators.required),
+    //   password: new FormControl('123123123', Validators.required),
+    //   remember_me: new FormControl(true)
+    // });
 
     // this.helperService.getRandomUser().subscribe(
     //   (response: any) => {
