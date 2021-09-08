@@ -105,6 +105,7 @@ export class PostsComponent implements OnInit {
           if (!response.posts.length) {
             this.gotAllPosts = true;
           }
+          this.scroll = true;
         },
         (error: any) => console.log(error)
       );
@@ -124,7 +125,6 @@ export class PostsComponent implements OnInit {
         const profileId = this.isProfile ? this.user.id : null;
         this.getPosts(profileId, 'user');
       }
-      this.scroll = true;
     }
   }
 
