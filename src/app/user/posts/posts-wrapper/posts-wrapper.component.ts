@@ -9,7 +9,7 @@ import {User} from '../../user.model';
 })
 export class PostsWrapperComponent implements OnInit {
 
-  authUser: User;
+  authUser: User | any;
   constructor(private authService: AuthService) { }
 
   ngOnInit() {

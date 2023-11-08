@@ -13,7 +13,7 @@ export class Album {
     public thumbnail: string) {}
 
   getThumnail() {
-     let _media = this.medias.find((media) => {
+     let _media = this.medias.find((media: any) => {
       if (media.type !== 'video') {
         return media;
       }

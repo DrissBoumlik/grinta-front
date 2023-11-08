@@ -12,13 +12,13 @@ import {FormBuilder, FormControl} from '@angular/forms';
   styleUrls: ['./reply.component.css']
 })
 export class ReplyComponent implements OnInit {
-  @Input() reply: Comment;
-  user: User;
+  @Input() reply: Comment | any;
+  user: User | any;
   replyLiked = false;
   ownReply = false;
 
   editMode = false;
-  editReplyForm = this.fb.group({
+  editReplyForm: any = this.fb.group({
     body: new FormControl(null),
   });
 

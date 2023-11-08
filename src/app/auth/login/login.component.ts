@@ -18,12 +18,12 @@ import {Title} from '@angular/platform-browser';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: User;
+  user: User | any;
 
   private socialUser: any;
-  private loggedIn: boolean;
+  private loggedIn: boolean | any;
 
-  loginForm: FormGroup;
+  loginForm: FormGroup | any;
 
   constructor(private authService: AuthService,
               public angularAuth: AngularFireAuth,
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
       // window.location.reload();
     }
 
-    this.angularAuth.authState.subscribe((user) => {
+    this.angularAuth.authState.subscribe((user: any) => {
       this.socialUser = user;
       this.loggedIn = (user != null);
     });
@@ -182,7 +182,7 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['home']);
             }, 1000);
           });
-      }, (errorSocial) => {
+      }, (errorSocial: any) => {
         console.log(errorSocial);
         if (errorSocial.email) {
           this.socialUser = errorSocial;
@@ -228,7 +228,7 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['home']);
             }, 1000);
           });
-      }, (errorSocial) => {
+      }, (errorSocial: any) => {
         console.log(errorSocial);
         if (errorSocial.email) {
           this.socialUser = errorSocial;
@@ -256,7 +256,7 @@ export class LoginComponent implements OnInit {
 
 
   signOut(): void {
-    this.angularAuth.signOut().then(response => {
+    this.angularAuth.signOut().then((response: any) => {
       console.log(response);
     });
   }

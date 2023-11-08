@@ -15,12 +15,12 @@ import {DatePipe} from '@angular/common';
 })
 export class ChatBoxComponent implements OnInit, AfterViewChecked {
 
-  @ViewChild('scrollToBottom', {static: false}) scrollToBottomBox: ElementRef;
-  user: User;
-  authUser: User;
+  @ViewChild('scrollToBottom', {static: false}) scrollToBottomBox: ElementRef | any;
+  user: User | any;
+  authUser: User | any;
   chats: any[] = [];
   fbDB = firebase.database();
-  chatId = null;
+  chatId: string | null = null;
   sendingMessage = false;
   toggleChatList = true;
   constructor(private chatService: ChatService,
@@ -36,7 +36,7 @@ export class ChatBoxComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     this.authUser = this.authService.user;
     this.route.params.subscribe((params: Params) => {
-      const username = params.username;
+      const username = params['username'];
       if (username) {
         this.chatService.getUser(username).subscribe(
           (response: any) => {
@@ -48,7 +48,7 @@ export class ChatBoxComponent implements OnInit, AfterViewChecked {
               this.chatId = (this.user.username + '_' + this.authUser.username).replace(/\.|\#|\$|\[|\]/g, '_');
             }
 
-            this.fbDB.ref('chats/' + this.chatId).on('value', resp => {
+            this.fbDB.ref('chats/' + this.chatId).on('value', (resp: any) => {
               // console.log(resp);
               this.chats = [];
               this.chats = this.snapshotToArray(resp);
@@ -79,7 +79,7 @@ export class ChatBoxComponent implements OnInit, AfterViewChecked {
   }
 
   snapshotToArray(snapshot: any) {
-    const returnArr = [];
+    const returnArr: any = [];
 
     snapshot.forEach((childSnapshot: any) => {
       const item = childSnapshot.val();

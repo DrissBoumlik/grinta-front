@@ -11,7 +11,7 @@ import {UserService} from '../../../user.service';
   styleUrls: ['./chat-list.component.css']
 })
 export class ChatListComponent implements OnInit {
-  authUser: User;
+  authUser: User | any;
   fbDB = firebase.database();
   chatDB = 'chats';
   chatList: (User | any)[] = [];
@@ -26,13 +26,13 @@ export class ChatListComponent implements OnInit {
       (value) => console.log(value),
     );
 
-    this.fbDB.ref(this.chatDB).on('value', resp => {
+    this.fbDB.ref(this.chatDB).on('value', (resp: any) => {
       const results = this.snapshotToArray(resp);
       this.userService.getUsers(results.userNames).subscribe(
         (response: any) => {
           this.chatList = response.users;
           this.chatService.chatList = this.chatList = this.chatList.filter((user) => {
-            return results.chats.filter((chat) => {
+            return results.chats.filter((chat: any) => {
                 if (user.username === chat.username) {
                   user.lastMsg = chat.lastMsg;
                   user.dateMsg = chat.date;
@@ -59,8 +59,8 @@ export class ChatListComponent implements OnInit {
   }
 
   snapshotToArray(snapshot: any) {
-    const returnArr = [];
-    const chats = [];
+    const returnArr: any = [];
+    const chats: any = [];
 
     snapshot.forEach((childSnapshot: any) => {
       const items: any = Object.values(childSnapshot.val());

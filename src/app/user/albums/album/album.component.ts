@@ -10,19 +10,19 @@ import {User} from '../../user.model';
   styleUrls: ['./album.component.css']
 })
 export class AlbumComponent implements OnInit {
-  @Input() album: Album;
-  profile: User;
+  @Input() album: Album | any;
+  profile: User | any;
   constructor(private route: ActivatedRoute,
               private profileService: ProfileService) { }
 
   ngOnInit() {
     this.profileService.profileLoaded.subscribe((profile: User) => {
       this.profile = profile;
-      this.album = this.profileService.getAlbum(+this.route.snapshot.params.id);
+      this.album = this.profileService.getAlbum(+this.route.snapshot.params['id']);
     });
     this.profile = this.profileService.profile;
     this.route.params.subscribe((params: Params) => {
-      this.album = this.profileService.getAlbum(+params.id);
+      this.album = this.profileService.getAlbum(+params['id']);
     });
   }
 

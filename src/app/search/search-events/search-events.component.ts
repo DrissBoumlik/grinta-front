@@ -27,7 +27,7 @@ export class SearchEventsComponent implements OnInit {
     this.getEvents(params);
   }
 
-  getEvents(params) {
+  getEvents(params: any) {
     this.loadMore = true;
     this.eventService.getEvents(params).subscribe(
       (response: any) => {

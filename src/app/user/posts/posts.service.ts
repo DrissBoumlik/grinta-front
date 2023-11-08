@@ -11,8 +11,8 @@ import {HandlerService} from '../../shared/handler.service';
 
 @Injectable()
 export class PostsService {
-  user: User;
-  posts: Post[];
+  user: User | any;
+  posts: Post[] = [];
   postsLoaded = new Subject<Post[]>();
   postsUpdated = new Subject<Post[]>();
   postLoaded = new Subject<Post>();
@@ -101,7 +101,7 @@ export class PostsService {
       );
   }
 
-  sharePost(body: string = null, image: string = null, postOwnerId: number = null, pageId: number = null): Observable<any> {
+  sharePost(body: string | null, image: string | null, postOwnerId: number | null, pageId: number | null): Observable<any> {
     AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/posts',
       {body, image, postOwnerId, page_id: pageId}, {headers: AuthService.headers})
@@ -142,6 +142,7 @@ export class PostsService {
         return post.id === id;
       });
     }
+    return null;
   }
 
   getPost(id: number) {

@@ -8,7 +8,7 @@ import {AuthService} from '../../auth/auth.service';
   styleUrls: ['./user-options.component.css']
 })
 export class UserOptionsComponent implements OnInit {
-  user: User;
+  user: User | any;
 
   constructor(private authService: AuthService) { }
 

@@ -9,8 +9,8 @@ import {User} from '../user/user.model';
 
 @Injectable()
 export class EventService {
-  user: User;
-  event: Event;
+  user: User | any;
+  event: Event | any;
   eventLoaded = new Subject<Event>();
   eventUpdated = new Subject<Event>();
 

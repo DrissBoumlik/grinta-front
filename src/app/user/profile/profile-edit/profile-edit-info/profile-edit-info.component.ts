@@ -15,13 +15,13 @@ import {FeedbackService} from '../../../../shared/feedback/feedback.service';
 })
 export class ProfileEditInfoComponent implements OnInit {
 
-  profile: User;
+  profile: User | any;
   sports: Sport[] = [];
   cities = [];
   imageToUpload: any = File;
   srcImage: string | any;
 
-  editUserForm = new FormGroup({
+  editUserForm: any = new FormGroup({
     username: new FormControl(null, Validators.required),
     firstname: new FormControl(null, Validators.required),
     lastname: new FormControl(null, Validators.required),
@@ -61,7 +61,7 @@ export class ProfileEditInfoComponent implements OnInit {
   }
 
   selectedSport(sport: Sport) {
-    return this.profile.sports.some(selectedSport => selectedSport.id === sport.id);
+    return this.profile.sports.some((selectedSport: any) => selectedSport.id === sport.id);
   }
 
   initForm() {

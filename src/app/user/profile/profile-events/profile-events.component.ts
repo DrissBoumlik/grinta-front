@@ -9,11 +9,11 @@ import {ProfileService} from '../profile.service';
   styleUrls: ['./profile-events.component.css']
 })
 export class ProfileEventsComponent implements OnInit {
-  profile: User;
+  profile: User | any;
   events: Event[] = [];
   type = 'events';
   emptyList = false;
-  urls = {
+  urls: any = {
     events: () => {
       this.events = this.profile.events;
       this.emptyList = !this.events.length;

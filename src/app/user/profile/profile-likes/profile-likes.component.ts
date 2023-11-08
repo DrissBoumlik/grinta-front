@@ -10,11 +10,11 @@ import {PagesService} from '../../pages/pages.service';
   styleUrls: ['./profile-likes.component.css']
 })
 export class ProfileLikesComponent implements OnInit {
-  profile: User;
+  profile: User | any;
   pages: Page[] = [];
   type = 'pages';
   emptyList = false;
-  urls = {
+  urls: any = {
     pages: () => {
       this.pages = this.profile.pages;
       this.emptyList = !this.pages.length;

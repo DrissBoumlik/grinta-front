@@ -12,10 +12,10 @@ import {Album} from '../../../albums/album/album.model';
   styleUrls: ['./profile-albums.component.css']
 })
 export class ProfileAlbumsComponent implements OnInit {
-  authUser: User;
-  profile: User;
-  ownProfile: boolean;
-  albums: (Album | any)[];
+  authUser: User | any;
+  profile: User | any;
+  ownProfile: boolean = true;
+  albums: (Album | any)[] = [];
   emptyAlbums = false;
 
   constructor(private profileService: ProfileService,
@@ -34,7 +34,7 @@ export class ProfileAlbumsComponent implements OnInit {
   init() {
     this.ownProfile = this.authUser.uuid === this.profile.uuid;
     this.emptyAlbums = !this.profile.albums.length;
-    this.albums = this.profile.albums.filter((album) => {
+    this.albums = this.profile.albums.filter((album: any) => {
       return album.medias.length;
     });
     this.albums = this.albums.map((album: Album | any) => {

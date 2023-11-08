@@ -11,7 +11,7 @@ import {FeedbackService} from '../../../../shared/feedback/feedback.service';
 })
 export class ProfileEditContactComponent implements OnInit {
 
-  profile: User;
+  profile: User | any;
 
   editUserForm = new FormGroup({
     phone_number: new FormControl(null, Validators.required),

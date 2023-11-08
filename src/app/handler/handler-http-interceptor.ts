@@ -14,7 +14,7 @@ export class HandlerHttpInterceptor implements HttpInterceptor {
               private router: Router) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const authUser = JSON.parse(localStorage.getItem('authUser'));
+    const authUser = JSON.parse(localStorage.getItem('authUser') as string);
     const token = localStorage.getItem('token');
     if (authUser && token) {
       request = request.clone({
@@ -35,7 +35,7 @@ export class HandlerHttpInterceptor implements HttpInterceptor {
               this.router.navigate(['/error-server']);
             }, 1000);
           }
-          if (err.status !== 401 || err.url.includes('register')) {
+          if (err.status !== 401 || err?.url?.includes('register')) {
             return;
           }
           this.authService.isLogged = false;

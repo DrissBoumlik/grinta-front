@@ -9,13 +9,13 @@ import {tap} from 'rxjs/operators';
 @Injectable()
 export class AuthService {
   static headers = new HttpHeaders({'Content-Type': 'application/json'});
-  public user: User;
+  public user: User | any;
   public isLogged;
 
   constructor(private http: HttpClient,
               private router: Router) {
-    this.user = JSON.parse(localStorage.getItem('authUser')) as User;
-    this.isLogged = JSON.parse(localStorage.getItem('isLogged'));
+    this.user = JSON.parse(localStorage.getItem('authUser') as string) as User;
+    this.isLogged = JSON.parse(localStorage.getItem('isLogged') as string);
   }
 
   static getHeaders() {

@@ -9,12 +9,12 @@ import {NoteService} from '../../../shared/note.service';
   styleUrls: ['./profile-notes.component.css']
 })
 export class ProfileNotesComponent implements OnInit {
-  profile: User;
-  notes: (User | any)[];
+  profile: User | any;
+  notes: (User | any)[] = [];
   loadingData = true;
 
   chartData: any[] = [];
-  multi: any[];
+  multi: any[] = [];
   view: any[] = [600, 400];
   // options
   showXAxis = true;
@@ -42,12 +42,12 @@ export class ProfileNotesComponent implements OnInit {
     this.onGetNotes(this.profile.uuid);
   }
 
-  onGetNotes(uuid: string = null) {
+  onGetNotes(uuid: string | null) {
     this.noteService.getNotesByUser(uuid)
       .subscribe((response: any) => {
         this.notes = [];
         this.chartData = [];
-        const noteSum = response.notes.reduce((accumulator, noteItem) => {
+        const noteSum = response.notes.reduce((accumulator: any, noteItem: any) => {
           accumulator = {
             behavior: accumulator.behavior + noteItem.value.behavior,
             performance: accumulator.performance + noteItem.value.performance
@@ -57,7 +57,7 @@ export class ProfileNotesComponent implements OnInit {
         Object.keys(noteSum).forEach((key) => {
           this.chartData.push({name: key, value: noteSum[key]});
         });
-        this.notes = response.notes.map((note) => {
+        this.notes = response.notes.map((note: any) => {
           return {user: note.noting_user, value: note.value};
         });
         this.loadingData = false;
@@ -65,7 +65,7 @@ export class ProfileNotesComponent implements OnInit {
     );
   }
 
-  onSelect(event) {
+  onSelect(event: any) {
     console.log(this.notes);
     console.log(event);
   }

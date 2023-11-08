@@ -9,7 +9,7 @@ import {Event} from '../../event.model';
 })
 export class EventAboutComponent implements OnInit {
 
-  event: Event;
+  event: Event | any;
   constructor(private eventService: EventService) { }
 
   ngOnInit() {

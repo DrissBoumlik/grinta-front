@@ -8,14 +8,14 @@ import {tap} from 'rxjs/operators';
 
 @Injectable()
 export class ChatService {
-  user: User;
+  user: User | any;
   chatList: (User | any)[] = [];
   userLoaded = new Subject<User>();
   toggleChatList = new Subject();
 
   constructor(private http: HttpClient) { }
 
-  getUser(username: string = null) {
+  getUser(username: string | null) {
     AuthService.getHeaders();
     const url = environment.baseApiUrl + '/users/profile/' + (username === null ? '' : username);
     return this.http.get(url, {headers: AuthService.headers})

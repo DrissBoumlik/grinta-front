@@ -18,8 +18,8 @@ import {FeedbackService} from '../../../shared/feedback/feedback.service';
   providers: [PostService]
 })
 export class PostComponent implements OnInit {
-  @Input() post: Post;
-  user: User;
+  @Input() post: Post | any;
+  user: User | any;
   ownPost = false;
   postLiked = false;
   editMode = false;
@@ -77,11 +77,11 @@ export class PostComponent implements OnInit {
 
   updateCommentsCount() {
     this.commentsCount = 0;
-    this.post.comments.forEach((comment) => {
+    this.post.comments.forEach((comment: any) => {
       if (comment.is_visible) {
         this.commentsCount += 1;
         // this.commentsCount += comment.replies.length + 1;
-        const visibleReplies = comment.replies.filter((reply) => {
+        const visibleReplies = comment.replies.filter((reply: any) => {
           return reply.is_visible;
         });
         this.commentsCount += visibleReplies.length;

@@ -9,14 +9,14 @@ import {AuthService} from '../../../auth/auth.service';
   styleUrls: ['./profile-friends.component.css']
 })
 export class ProfileFriendsComponent implements OnInit {
-  authUser: User;
+  authUser: User | any;
   friends: User[] = [];
   type = 'friends';
   loading = false;
   emptyList = false;
   shouldScroll = false;
-  queryPage: number;
-  urls = {
+  queryPage: number = 1;
+  urls: any = {
     friends: () => {
       this.loading = true;
       this.emptyList = false;

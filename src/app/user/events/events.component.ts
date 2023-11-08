@@ -9,7 +9,7 @@ import {ProfileService} from '../profile/profile.service';
 })
 export class EventsComponent implements OnInit {
 
-  profile: User;
+  profile: User | any;
   noEvents = false;
 
   constructor(private profileService: ProfileService) { }

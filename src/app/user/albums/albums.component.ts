@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./albums.component.css']
 })
 export class AlbumsComponent implements OnInit {
-  @Input() albums: Album[];
+  @Input() albums: Album[] = [];
   constructor(private authService: AuthService) { }
 
   ngOnInit() {

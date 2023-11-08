@@ -9,8 +9,8 @@ import {Subject} from 'rxjs';
 
 @Injectable()
 export class PageService {
-  user: User;
-  page: Page;
+  user: User | any;
+  page: Page | any;
   pageLoaded = new Subject<Page>();
 
   constructor(private http: HttpClient,
@@ -18,7 +18,7 @@ export class PageService {
     this.user = this.authService.user;
   }
 
-  getPage(pagename) {
+  getPage(pagename: any) {
     AuthService.getHeaders();
     return this.http.get(environment.baseApiUrl + '/pages/' + pagename, {headers: AuthService.headers})
       .pipe(

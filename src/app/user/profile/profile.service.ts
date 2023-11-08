@@ -9,15 +9,15 @@ import {AuthService} from '../../auth/auth.service';
 
 @Injectable()
 export class ProfileService {
-  profile: User;
-  posts: Post;
+  profile: User | any;
+  posts: Post | any;
   profileLoaded = new Subject<User>();
   profileUpdated = new Subject<User>();
   alreadyLoaded = false;
 
   constructor(private http: HttpClient) {}
 
-  getProfile(username: string = null) {
+  getProfile(username: string | null) {
     AuthService.getHeaders();
     const url = environment.baseApiUrl + '/users/profile/' + (username === null ? '' : username);
     return this.http.get(url, {headers: AuthService.headers})
@@ -96,7 +96,7 @@ export class ProfileService {
 
   getAlbum(id: number) {
     if (this.profile) {
-      return this.profile.albums.find(album => {
+      return this.profile.albums.find((album: any) => {
         return album.id === id;
       });
     }

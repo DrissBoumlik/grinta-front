@@ -10,7 +10,7 @@ import {Media} from '../../albums/album/medias/media/media.model';
   styleUrls: ['./profile-home.component.css']
 })
 export class ProfileHomeComponent implements OnInit {
-  profile: User;
+  profile: User | any;
   emptyListPhotos = false;
   emptyListFriends = false;
   constructor(private profileService: ProfileService) { }

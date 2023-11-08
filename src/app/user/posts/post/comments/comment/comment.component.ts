@@ -13,17 +13,17 @@ import {User} from 'src/app/user/user.model';
   providers: [CommentService]
 })
 export class CommentComponent implements OnInit {
-  @Input() comment: Comment;
-  user: User;
+  @Input() comment: Comment | any;
+  user: User | any;
   commentLiked = false;
   willReply = false;
   ownComment = false;
-  ReplyForm = this.fb.group({
+  ReplyForm: any = this.fb.group({
     body: new FormControl(null, Validators.required),
   });
 
   editMode = false;
-  editCommentForm = this.fb.group({
+  editCommentForm: any = this.fb.group({
     body: new FormControl(null),
   });
 

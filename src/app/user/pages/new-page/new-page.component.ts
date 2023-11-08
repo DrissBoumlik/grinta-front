@@ -16,10 +16,10 @@ import {Page} from '../page/page.model';
   styleUrls: ['./new-page.component.css']
 })
 export class NewPageComponent implements OnInit {
-  user: User;
+  user: User | any;
   sports: Sport[] = [];
   imageToUpload: any = File;
-  page: Page;
+  page: Page | any;
   editMode = false;
   srcCover: string | any;
   srcImage: string | any;
@@ -30,7 +30,7 @@ export class NewPageComponent implements OnInit {
     finish: {active: false, done: false}
   };
 
-  CreatePageForm = this.fb.group({
+  CreatePageForm: any = this.fb.group({
     name: new FormControl('This is a tennis page', Validators.required),
     pagename: new FormControl('tennis_page', Validators.required),
     image: new FormControl(null),
@@ -55,10 +55,9 @@ export class NewPageComponent implements OnInit {
       this.sports = response.sports;
     });
     this.route.params.subscribe((params: Params) => {
-      this.editMode = params.pagename !== undefined;
+      this.editMode = params['pagename'] !== undefined;
       if (this.editMode) {
-        let page = this.pagesService.getPageByPagename(params.pagename)
-          .subscribe((response: any) => {
+        let page = this.pagesService?.getPageByPagename(params['pagename'])?.subscribe((response: any) => {
             page = response.page;
             this.CreatePageForm.patchValue({
               name: page.name,

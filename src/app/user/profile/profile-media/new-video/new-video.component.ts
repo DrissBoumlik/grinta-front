@@ -11,8 +11,8 @@ import {MediaService} from '../../../../shared/media.service';
   styleUrls: ['./new-video.component.css']
 })
 export class NewVideoComponent implements OnInit {
-  profile: User;
-  private allowedTypes: string[];
+  profile: User | any;
+  private allowedTypes: string[] = [];
   CreateVideoForm = this.fb.group({
     medias: this.fb.array([])
   });
@@ -39,8 +39,8 @@ export class NewVideoComponent implements OnInit {
 
   onFileMediaChange(files: FileList) {
     for (let i = 0; i < files.length; i++) {
-      const file = files.item(i);
-      const type = file.type.split('/')[1];
+      const file: any | null = files.item(i);
+      const type: any | null = file?.type.split('/')[1];
       if (this.allowedTypes.includes(type)) {
         try {
           const reader = new FileReader();
@@ -52,8 +52,8 @@ export class NewVideoComponent implements OnInit {
               name: new FormControl(null, Validators.required),
               description: new FormControl(null, Validators.required),
               media: new FormControl({
-                filename: file.name,
-                filetype: file.type,
+                filename: file?.name,
+                filetype: file?.type,
                 value: reader.result
               })
             };
@@ -67,7 +67,7 @@ export class NewVideoComponent implements OnInit {
   }
 
   onCreateVideo() {
-    const params = this.CreateVideoForm.value.medias.map((mediaData) => {
+    const params = this.CreateVideoForm.value?.medias?.map((mediaData: any) => {
       return {
         name: mediaData.name,
         description: mediaData.description,

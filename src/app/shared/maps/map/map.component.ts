@@ -15,8 +15,8 @@ import {MapService} from '../../map.service';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  private map;
-  events: [];
+  private map: any;
+  events: [] = [];
   markers: Marker[] = [];
   Kilometers = 50;
   GetEventsForm = this.fb.group({
@@ -27,10 +27,10 @@ export class MapComponent implements OnInit, AfterViewInit {
     searchTerm: new FormControl(),
   });
   results = [];
-  user: User;
-  event: Event;
+  user: User | any;
+  event: Event | any;
   showResults = false;
-  sendRequest = null;
+  sendRequest: any | null;
 
   constructor(private eventService: EventService,
               private fb: FormBuilder,
@@ -51,7 +51,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.initMap(this.storedPosition);
     } else {
       try {
-        this.getCurrentPosition((position) => {
+        this.getCurrentPosition((position: any) => {
           this.storedPosition = position;
           localStorage.setItem('position', JSON.stringify(this.storedPosition));
           this.initMap(this.storedPosition);
@@ -65,7 +65,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private initMap(position): void {
+  private initMap(position: any): void {
     this.map = L.map('map', {
       center: [position.latitude, position.longitude],
       zoom: 7
@@ -94,7 +94,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.getNearEvents(this.Kilometers, position);
   }
 
-  getCurrentPosition(resolve, reject = null) {
+  getCurrentPosition(resolve: any, reject = null) {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -109,7 +109,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getNearEvents(kilometers, position) {
+  getNearEvents(kilometers: any, position: any) {
     this.eventService.getNearEvents(kilometers, position)
       .subscribe(
         (response: any) => {
@@ -120,7 +120,7 @@ export class MapComponent implements OnInit, AfterViewInit {
             iconSize.y = 35;
           }
           this.events.forEach((event: any) => {
-            const location = event.location.split(',').map((str) => parseFloat(str));
+            const location = event.location.split(',').map((str: any) => parseFloat(str));
             const marker = L.marker(location, {
               icon: L.icon({
                 iconSize,
@@ -152,7 +152,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     if (this.storedPosition) {
       this.getNearEvents(this.Kilometers, this.storedPosition);
     } else {
-      this.getCurrentPosition((position) => {
+      this.getCurrentPosition((position: any) => {
         this.storedPosition = position;
         localStorage.setItem('position', JSON.stringify(this.storedPosition));
         this.getNearEvents(this.Kilometers, this.storedPosition);
@@ -171,14 +171,14 @@ export class MapComponent implements OnInit, AfterViewInit {
     }, 500);
   }
 
-  onChooseAddress(positionData) {
+  onChooseAddress(positionData: any) {
     // Add marker
     this.onAddMarker(positionData);
     // Update chosen address for Map service => new Event component
     this.mapService.adresseChosen.next(positionData);
   }
 
-  onAddMarker(positionData) {
+  onAddMarker(positionData: any) {
     console.log('marked');
     this.showResults = false;
     const location: LatLngExpression = [positionData.y, positionData.x];

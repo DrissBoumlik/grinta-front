@@ -7,7 +7,7 @@ import {Event} from '../event.model';
   styleUrls: ['./event-item.component.css']
 })
 export class EventItemComponent implements OnInit {
-  @Input() event: Event;
+  @Input() event: Event | any;
 
   constructor() { }
 

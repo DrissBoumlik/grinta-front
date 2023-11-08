@@ -11,7 +11,7 @@ import {Title} from '@angular/platform-browser';
 })
 export class ChatComponent implements OnInit {
 
-  user: User;
+  user: User | any;
   constructor(private titleService: Title) { }
 
   ngOnInit() {

@@ -16,13 +16,13 @@ import {Post} from './post/post.model';
   styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent implements OnInit {
-  posts: Post[];
+  posts: Post[] = [];
   @Input() isProfile = false;
   @Input() isPage = false;
-  @Input() page: Page;
-  @Input() user: User;
-  authUser: User;
-  queryPage: number;
+  @Input() page: Page | any;
+  @Input() user: User | any;
+  authUser: User | any;
+  queryPage: number = 1;
   scroll = true;
   gotAllPosts = false;
   postsLoaded = false;
@@ -40,8 +40,8 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     // this.authService.isLogged(this.router);
     this.authUser = this.authService.user;
-    this.user = JSON.parse(localStorage.getItem('profile'));
-    this.page = JSON.parse(localStorage.getItem('page'));
+    this.user = JSON.parse(localStorage.getItem('profile') as string);
+    this.page = JSON.parse(localStorage.getItem('page') as string);
     if (this.user) {
       this.initLoad(this.user);
       localStorage.removeItem('profile');
@@ -95,7 +95,7 @@ export class PostsComponent implements OnInit {
     this.queryPage = 1;
   }
 
-  getPosts(id = null, type = null) {
+  getPosts(id: any = null, type: any = null) {
     this.postsService.getPosts(this.queryPage++, id, type)
       .subscribe(
         (response: any) => {

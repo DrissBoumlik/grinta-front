@@ -23,8 +23,8 @@ export class RegisterComponent implements OnInit {
   imageToUpload: any = File;
   cities = [];
   private socialUser: any;
-  private loggedIn: boolean;
-  registerForm = new FormGroup({
+  private loggedIn: boolean | any;
+  registerForm: any = new FormGroup({
     username: new FormControl('jd', Validators.required),
     firstname: new FormControl('John', Validators.required),
     lastname: new FormControl('Doe', Validators.required),
@@ -256,7 +256,7 @@ export class RegisterComponent implements OnInit {
             const message = error.error.errors ? error.error.errors : error.error.message;
             this.feedbackService.feedbackReceived.next({feedback: 'error', message});
           });
-      }, (errorSocial) => {
+      }, (errorSocial: any) => {
         console.log(errorSocial);
       });
   }
@@ -303,7 +303,7 @@ export class RegisterComponent implements OnInit {
             const message = error.error.errors ? error.error.errors : error.error.message;
             this.feedbackService.feedbackReceived.next({feedback: 'error', message});
           });
-      }, (errorSocial) => {
+      }, (errorSocial: any) => {
         console.clear();
         console.log(errorSocial);
       });

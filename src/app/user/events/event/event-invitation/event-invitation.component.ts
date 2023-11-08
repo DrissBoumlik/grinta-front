@@ -12,13 +12,13 @@ import {User} from '../../../user.model';
   styleUrls: ['./event-invitation.component.css']
 })
 export class EventInvitationComponent implements OnInit {
-  @ViewChild('modal', {static: false}) modal: ElementRef;
-  @ViewChild('modalWrapper', {static: false}) modalWrapper: ElementRef;
-  event: EventModel;
+  @ViewChild('modal', {static: false}) modal: ElementRef | any;
+  @ViewChild('modalWrapper', {static: false}) modalWrapper: ElementRef | any;
+  event: EventModel | any;
   relations: (User | any)[] = [];
-  sendRequest = null;
+  sendRequest: any = null;
   searchTerm = '';
-  queryPage: number;
+  queryPage: number = 1;
   loadingData = true;
   stopLoadingMore = true;
   @Output() closeModal = new Subject();

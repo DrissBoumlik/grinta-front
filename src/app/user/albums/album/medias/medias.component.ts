@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./medias.component.css']
 })
 export class MediasComponent implements OnInit {
-  @Input() medias: Media[];
+  @Input() medias: Media[] = [];
   constructor() { }
 
   ngOnInit() {

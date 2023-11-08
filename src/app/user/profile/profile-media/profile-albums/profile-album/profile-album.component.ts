@@ -10,8 +10,8 @@ import {Album} from '../../../../albums/album/album.model';
   styleUrls: ['./profile-album.component.css']
 })
 export class ProfileAlbumComponent implements OnInit {
-  profile: User;
-  album: Album;
+  profile: User | any;
+  album: Album | any;
   emptyList = false;
 
   constructor(private profileService: ProfileService,
@@ -19,9 +19,9 @@ export class ProfileAlbumComponent implements OnInit {
 
   ngOnInit() {
     console.clear();
-    let uuid = this.route.snapshot.params.username;
+    let uuid = this.route.snapshot.params['username'];
     this.route.params.subscribe((params: Params) => {
-      uuid = params.uuid;
+      uuid = params['uuid'];
       this.onLoadProfile(uuid);
     });
     this.onLoadProfile(uuid);

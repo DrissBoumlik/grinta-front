@@ -11,10 +11,10 @@ import {ProfileService} from './profile/profile.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  profile: User;
+  profile: User | any;
   isFollowed = false;
   isFriend = false;
-  ownProfile: boolean;
+  ownProfile: boolean = true;
 
   constructor(private userService: UserService,
               private profileService: ProfileService,
@@ -27,7 +27,7 @@ export class UserComponent implements OnInit {
     // let username = this.route.snapshot.params.username;
     this.route.params.subscribe((params: Params) => {
       window.scroll(0, 0);
-      const username = params.username;
+      const username = params['username'];
       this.profileService.getProfile(username).subscribe(
         (response: any) => {
           this.profile = response.user;

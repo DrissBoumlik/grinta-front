@@ -11,8 +11,8 @@ import {Post} from '../post.model';
   styleUrls: ['./comments.component.css'],
 })
 export class CommentsComponent implements OnInit {
-  @Input() post: Post;
-  user: User;
+  @Input() post: Post | any;
+  user: User | any;
 
   CommentForm = this.fb.group({
     body: new FormControl(null, Validators.required),
@@ -34,7 +34,7 @@ export class CommentsComponent implements OnInit {
     if (this.CommentForm.valid) {
       const userId = this.user.id;
       const postId = this.post.id;
-      const body = this.CommentForm.get('body').value;
+      const body = this.CommentForm?.get('body')?.value;
       this.postService.createComment({user_id: userId, post_id: postId, body, parent_id: null})
       .subscribe((response: any) => {
         // this.comments.unshift(response.comment)

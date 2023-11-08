@@ -10,7 +10,7 @@ import {AuthService} from '../../../auth/auth.service';
 
 @Injectable()
 export class PostService {
-  post: Post;
+  post: Post | any;
   postCommentsUpdated = new Subject<Comment[]>();
 
   constructor(private http: HttpClient) {}
@@ -34,7 +34,7 @@ export class PostService {
   }
 
   removeComment(comment: Comment) {
-    this.post.comments = this.post.comments.filter((commentItem) => commentItem.id !== comment.id);
+    this.post.comments = this.post.comments.filter((commentItem: any) => commentItem.id !== comment.id);
     this.postCommentsUpdated.next(this.post.comments);
   }
 

@@ -7,7 +7,7 @@ import {AuthService} from '../auth/auth.service';
 
 @Injectable()
 export class UserService {
-  user: User;
+  user: User | any;
   friends: User[] = [];
   // posts: Post[] = [];
 
@@ -35,7 +35,7 @@ export class UserService {
       );
   }
 
-  getLatestBirthDates(params) {
+  getLatestBirthDates(params: any) {
     AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/users/birthdates/latests',
       { limit: params.limit, period: params.periode},

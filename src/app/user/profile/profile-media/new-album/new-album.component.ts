@@ -11,9 +11,9 @@ import {ProfileService} from '../../profile.service';
   styleUrls: ['./new-album.component.css']
 })
 export class NewAlbumComponent implements OnInit {
-  profile: User;
-  mediaList: { src, type }[];
-  private allowedTypes: string[];
+  profile: User | any;
+  mediaList: { src: any, type: any }[] = [];
+  private allowedTypes: string[] = [];
   CreateAlbumForm = this.fb.group({
     name: new FormControl('eventoosss'),
     description: new FormControl('kokokokokosss'),
@@ -41,7 +41,7 @@ export class NewAlbumComponent implements OnInit {
     return this.CreateAlbumForm.get('medias') as FormArray;
   }
 
-  newFile(params): FormGroup {
+  newFile(params: any): FormGroup {
     return this.fb.group(params);
   }
 
@@ -50,8 +50,8 @@ export class NewAlbumComponent implements OnInit {
 
     // for (const file of files) {
     for (let i = 0; i < files.length; i++) {
-      const file = files.item(i);
-      const type = file.type.split('/')[1];
+      const file: any | null = files.item(i);
+      const type: any | null = file?.type.split('/')[1];
       if (this.allowedTypes.includes(type)) {
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -60,8 +60,8 @@ export class NewAlbumComponent implements OnInit {
           this.mediaList.push(media);
           // Update form
           this.medias.push(this.newFile({
-            filename: file.name,
-            filetype: file.type,
+            filename: file?.name,
+            filetype: file?.type,
             value: reader.result
           }));
         };

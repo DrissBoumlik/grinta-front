@@ -14,10 +14,10 @@ import {Title} from '@angular/platform-browser';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  profile: User;
+  profile: User | any;
   followParams = {text: 'follow', status: 0};
   friendParams = {text: 'add friend', status: 0};
-  ownProfile: boolean;
+  ownProfile: boolean = true;
 
   constructor(private userService: UserService,
               private relationService: RelationService,
@@ -30,11 +30,11 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('Profile');
-    let username = this.route.snapshot.params.username;
+    let username = this.route.snapshot.params['username'];
     this.onGetProfile(username);
     this.route.params.subscribe((params: Params) => {
       window.scroll(0, 0);
-      username = params.username;
+      username = params['username'];
       this.onGetProfile(username);
     });
     this.profileService.profileUpdated.subscribe((profile: User) => {

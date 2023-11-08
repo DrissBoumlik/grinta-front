@@ -9,9 +9,9 @@ import {AuthService} from '../../../../auth/auth.service';
   styleUrls: ['./profile-videos.component.css']
 })
 export class ProfileVideosComponent implements OnInit {
-  authUser: User;
-  profile: User;
-  ownProfile: boolean;
+  authUser: User | any;
+  profile: User | any;
+  ownProfile: boolean = true;
   emptyList = false;
 
   constructor(private profileService: ProfileService,

@@ -8,9 +8,9 @@ import * as L from 'leaflet';
 })
 export class MapPreviewComponent implements OnInit, AfterViewInit {
 
-  private map;
+  private map: any;
   provider = null;
-  @Input() position;
+  @Input() position: any;
   constructor() { }
 
   ngOnInit() {
@@ -20,7 +20,7 @@ export class MapPreviewComponent implements OnInit, AfterViewInit {
     this.initMap(this.position);
   }
 
-  private initMap(position): void {
+  private initMap(position: any): void {
     const zoomValue = 10;
     this.map = L.map('map', {
       center: [position.latitude, position.longitude],

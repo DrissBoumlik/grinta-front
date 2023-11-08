@@ -11,7 +11,7 @@ import {User} from '../../../user.model';
 })
 export class ProfileEditPasswordComponent implements OnInit {
 
-  profile: User;
+  profile: User | any;
 
   editUserForm = new FormGroup({
     password_old: new FormControl(null, Validators.required),

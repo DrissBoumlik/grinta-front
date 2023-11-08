@@ -17,14 +17,14 @@ import {Router} from '@angular/router';
   styleUrls: ['./new-event.component.css']
 })
 export class NewEventComponent implements OnInit {
-  user: User;
+  user: User | any;
   sports: Sport[] = [];
   imageToUpload: any = File;
-  event: Event;
+  event: Event | any;
   @Input() editMode = true;
   srcCover: string | any;
   srcImage: string | any;
-  CreateEventForm = this.fb.group({
+  CreateEventForm: any = this.fb.group({
     name: new FormControl(null, Validators.required),
     date: new FormControl(null, Validators.required),
     limit_signup: new FormControl(null, Validators.required),
@@ -65,7 +65,7 @@ export class NewEventComponent implements OnInit {
       this.event = event;
       this.initForm();
     });
-    this.event = JSON.parse(localStorage.getItem('_event'));
+    this.event = JSON.parse(localStorage.getItem('_event') as string);
     localStorage.removeItem('_event');
     // this.event = this.eventService.event;
     this.initForm();
@@ -213,7 +213,7 @@ export class NewEventComponent implements OnInit {
     console.log(this.CreateEventForm.value);
     // validation
     if (!this.CreateEventForm.valid) {
-      const texts = [];
+      const texts: any = [];
       Object.keys(this.CreateEventForm.controls).forEach(key => {
         const controlErrors: ValidationErrors = this.CreateEventForm.get(key).errors;
         if (controlErrors != null) {

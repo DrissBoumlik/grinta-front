@@ -12,8 +12,8 @@ import {AuthService} from '../../../auth/auth.service';
   styleUrls: ['./profile-posts.component.css']
 })
 export class ProfilePostsComponent implements OnInit {
-  user: User;
-  authUser: User;
+  user: User | any;
+  authUser: User | any;
   ownProfile = false;
   justLoaded = false;
 

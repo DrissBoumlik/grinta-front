@@ -12,9 +12,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./page-item.component.css']
 })
 export class PageItemComponent implements OnInit {
-  @Input() page: Page;
+  @Input() page: Page | any;
   @Input() type = null;
-  user: User;
+  user: User | any;
   ownPage = false;
 
   constructor(private authService: AuthService,

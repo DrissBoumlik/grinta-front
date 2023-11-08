@@ -14,7 +14,7 @@ import {ProfileService} from '../../user/profile/profile.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  user: User;
+  user: User | any;
   alertNewNotification = false;
   alertNewMessage = false;
   showNotifications = false;
@@ -25,8 +25,8 @@ export class HeaderComponent implements OnInit {
   emptyChatList = false;
   fbDB = firebase.database();
   chatDB = 'chats';
-  chatList = [];
-  newChatList = [];
+  chatList: any = [];
+  newChatList: any = [];
 
   constructor(private authService: AuthService,
               private eventFeedbackService: EventFeedbackService,
@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit {
     }
     this.emptyChatList = !this.chatList.length;
 
-    this.fbDB.ref(this.chatDB).on('value', resp => {
+    this.fbDB.ref(this.chatDB).on('value', (resp: any) => {
       const results = this.snapshotToArray(resp);
       this.chatList = results.chats;
       this.emptyChatList = !this.chatList.length;
@@ -84,7 +84,7 @@ export class HeaderComponent implements OnInit {
 
 
   snapshotToArray(snapshot: any) {
-    const returnArr = [];
+    const returnArr: any = [];
     snapshot.forEach((childSnapshot: any) => {
       const items: any = Object.values(childSnapshot.val());
       const lastItem = items[items.length - 1];
@@ -136,7 +136,7 @@ export class HeaderComponent implements OnInit {
     // }
     this.alertNewMessage = true;
     // this.chatList.unshift(...this.newChatList);
-    this.newChatList = this.newChatList.sort((chatItem1, chatItem2) => {
+    this.newChatList = this.newChatList.sort((chatItem1: any, chatItem2: any) => {
       if (chatItem1.dateMsg > chatItem2.dateMsg) {
         return -1;
       }
@@ -150,7 +150,7 @@ export class HeaderComponent implements OnInit {
   }
 
   setUpNotifications() {
-    this.notifications = JSON.parse(localStorage.getItem('notifications'));
+    this.notifications = JSON.parse(localStorage.getItem('notifications') as string);
     if (!this.notifications) {
       this.notifications = this.newNotifications = [];
     }
@@ -168,7 +168,7 @@ export class HeaderComponent implements OnInit {
     let channel = '';
     channel = 'event.created';
     echo.private(channel)
-      .listen('.EventCreated', (e) => {
+      .listen('.EventCreated', (e: any) => {
         this.alertNewNotification = true;
         console.log(e.data);
         const data = {...e.data, seen: false};
@@ -176,7 +176,7 @@ export class HeaderComponent implements OnInit {
       });
     channel = 'event.ended';
     echo.private(channel)
-      .listen('.EventEnded', (e) => {
+      .listen('.EventEnded', (e: any) => {
         this.alertNewNotification = true;
         console.log(e.data);
         const data = {...e.data, seen: false};

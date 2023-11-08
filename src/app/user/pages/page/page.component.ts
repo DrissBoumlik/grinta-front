@@ -10,17 +10,17 @@ import {PageService} from './page.service';
   styleUrls: ['./page.component.css']
 })
 export class PageComponent implements OnInit {
-  user: User;
-  page: Page;
+  user: User | any;
+  page: Page | any;
   constructor(private route: ActivatedRoute,
               private pageService: PageService) { }
 
   ngOnInit() {
-    let pagename = this.route.snapshot.params.pagename;
+    let pagename = this.route.snapshot.params['pagename'];
     this.onGetPage(pagename);
     this.route.params.subscribe((params: Params) => {
       window.scroll(0, 0);
-      pagename = params.pagename;
+      pagename = params['pagename'];
       this.onGetPage(pagename);
     });
   }

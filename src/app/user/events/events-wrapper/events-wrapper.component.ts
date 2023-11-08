@@ -9,8 +9,8 @@ import {Title} from '@angular/platform-browser';
   styleUrls: ['./events-wrapper.component.css']
 })
 export class EventsWrapperComponent implements OnInit {
-  events: Event[];
-  queryPage: number;
+  events: Event[] = [];
+  queryPage: number = 1;
   loadMore = false;
   scroll = true;
 
@@ -25,7 +25,7 @@ export class EventsWrapperComponent implements OnInit {
     this.getEvents(params);
   }
 
-  getEvents(params) {
+  getEvents(params: any) {
     this.loadMore = true;
     this.eventService.getEvents(params).subscribe(
       (response: any) => {

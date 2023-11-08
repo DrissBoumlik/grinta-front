@@ -13,9 +13,9 @@ import {Title} from '@angular/platform-browser';
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
-  authUser: User;
-  user: User;
-  event: Event;
+  authUser: User | any;
+  user: User | any;
+  event: Event | any;
   showInvitationModal = false;
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
@@ -26,11 +26,11 @@ export class EventComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle('Event');
     this.authUser = this.authService.user;
-    let uuid = this.route.snapshot.params.uuid;
+    let uuid = this.route.snapshot.params['uuid'];
     this.onGetEvent(uuid);
     this.route.params.subscribe((params: Params) => {
       window.scroll(0, 0);
-      uuid = params.uuid;
+      uuid = params['uuid'];
       this.onGetEvent(uuid);
     });
     this.eventService.eventUpdated.subscribe((event: Event) => {

@@ -12,7 +12,7 @@ import {ToolsService} from '../../../shared/tools.service';
   styleUrls: ['./post-wrapper.component.css']
 })
 export class PostWrapperComponent implements OnInit {
-  post: Post;
+  post: Post | any;
 
   constructor(private route: ActivatedRoute,
               private titleService: Title,
@@ -26,8 +26,8 @@ export class PostWrapperComponent implements OnInit {
       if (Object.entries(params).length === 0 && params.constructor === Object) {
         return;
       }
-      if (params.uuid) {
-        this.postsService.getPostByUuid(params.uuid).subscribe(
+      if (params['uuid']) {
+        this.postsService.getPostByUuid(params['uuid']).subscribe(
           (response: any) => {
             this.post = response.post;
             this.titleService.setTitle('Post - ' + this.toolService.excerpt(this.post.body, 30));

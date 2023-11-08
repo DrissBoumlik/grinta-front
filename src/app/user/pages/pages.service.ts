@@ -9,9 +9,9 @@ import {AuthService} from '../../auth/auth.service';
 
 @Injectable()
 export class PagesService {
-  pages: Page[];
-  adminedPages: Page[];
-  moderatedPages: Page[];
+  pages: Page[] = [];
+  adminedPages: Page[] = [];
+  moderatedPages: Page[] = [];
   pagesUpdated = new Subject();
 
   constructor(private http: HttpClient,
@@ -61,7 +61,7 @@ export class PagesService {
     this.pagesUpdated.next({pages: this.pages, adminedPages: this.adminedPages, moderatedPages: this.moderatedPages});
   }
 
-  deletePage(id: number, type: string = null) {
+  deletePage(id: number, type: string | null) {
     AuthService.getHeaders();
     return this.http.delete(environment.baseApiUrl + '/pages/' + id + '?type=' + (type ? type : ''), {headers: AuthService.headers})
       .pipe(

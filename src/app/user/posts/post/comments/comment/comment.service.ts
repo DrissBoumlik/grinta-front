@@ -5,7 +5,7 @@ import {PostService} from '../../post.service';
 
 @Injectable()
 export class CommentService {
-  comment: Comment;
+  comment: Comment | any;
   repliesUpdated = new Subject<Comment>();
 
   constructor(private  postService: PostService) {}
@@ -13,7 +13,7 @@ export class CommentService {
   addReply(reply: Comment) {
     this.comment.replies.unshift(reply);
     this.repliesUpdated.next(this.comment);
-    this.postService.post.comments = this.postService.post.comments.map(commentItem => {
+    this.postService.post.comments = this.postService.post.comments.map((commentItem: any) => {
       if (commentItem.id === this.comment.id) {
         return this.comment;
       }
@@ -23,9 +23,9 @@ export class CommentService {
   }
 
   removeReply(reply: Comment) {
-    this.comment.replies = this.comment.replies.filter((replyItem) => replyItem.id !== reply.id);
+    this.comment.replies = this.comment.replies.filter((replyItem: any) => replyItem.id !== reply.id);
     this.repliesUpdated.next(this.comment);
-    this.postService.post.comments = this.postService.post.comments.map(commentItem => {
+    this.postService.post.comments = this.postService.post.comments.map((commentItem: any) => {
       if (commentItem.id === this.comment.id) {
         return this.comment;
       }

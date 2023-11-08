@@ -8,7 +8,7 @@ import {ProfileService} from '../profile.service';
   styleUrls: ['./profile-media.component.css']
 })
 export class ProfileMediaComponent implements OnInit {
-  profile: User;
+  profile: User | any;
 
   constructor(private profileService: ProfileService) { }
 

@@ -9,7 +9,7 @@ import {PagesService} from './pages.service';
   styleUrls: ['./pages.component.css']
 })
 export class PagesComponent implements OnInit {
-  profile: User;
+  profile: User | any;
   noPages = false;
 
   constructor(private profileService: ProfileService,

@@ -12,12 +12,12 @@ import {FeedbackService} from '../../../shared/feedback/feedback.service';
   styleUrls: ['./new-post.component.css']
 })
 export class NewPostComponent implements OnInit {
-  @Input() user: User;
+  @Input() user: User | any;
   mediaToUpload: any = File;
-  srcMedia = null;
-  mediaType = null;
+  srcMedia: any = null;
+  mediaType: any = null;
 
-  sharePostForm = this.fb.group({
+  sharePostForm: any = this.fb.group({
     body: new FormControl(null),
     media: new FormControl(null)
   });
@@ -34,7 +34,7 @@ export class NewPostComponent implements OnInit {
 
   onFileChange(files: FileList) {
     const file = this.mediaToUpload = files.item(0);
-    this.mediaType = file.type.split('/')[1];
+    this.mediaType = file?.type.split('/')[1];
     const reader = new FileReader();
     reader.readAsDataURL(this.mediaToUpload);
     reader.onload = (data) => {

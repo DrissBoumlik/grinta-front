@@ -10,10 +10,10 @@ import {isObject} from 'util';
   styleUrls: ['./feedback.component.css']
 })
 export class FeedbackComponent implements OnInit {
-  flag = null;
-  bgClassName: string;
-  icon: string;
-  texts = [];
+  flag: any = null;
+  bgClassName: string | any;
+  icon: string | any;
+  texts: any = [];
   duration = 5000;
 
   constructor(private feedbackService: FeedbackService,
@@ -41,7 +41,7 @@ export class FeedbackComponent implements OnInit {
       this.texts.push(message.error);
     } else if (isObject(message)) {
       message = Object.values(message);
-      message.forEach((msg) => {
+      message.forEach((msg: any) => {
         this.texts.push(msg[0]);
       });
     } else {
@@ -76,8 +76,8 @@ export class FeedbackComponent implements OnInit {
     }
   }
 
-  onCloseAlert(textIndex) {
-    this.texts = this.texts.filter((text, index) => {
+  onCloseAlert(textIndex: any) {
+    this.texts = this.texts.filter((text: any, index: any) => {
         return index !== textIndex;
     });
     if (!this.texts.length) {

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import * as jquery from 'jquery';
-import firebase from 'firebase';
+import firebase from 'firebase/';
 import {environment} from '../environments/environment';
 
 

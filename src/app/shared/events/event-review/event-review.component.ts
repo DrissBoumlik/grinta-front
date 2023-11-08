@@ -13,13 +13,13 @@ import {FeedbackService} from '../../feedback/feedback.service';
   styleUrls: ['./event-review.component.css']
 })
 export class EventReviewComponent implements OnInit {
-  authUser: User;
-  user: User;
-  participants: (User | any)[];
-  event: Event;
+  authUser: User | any;
+  user: User | any;
+  participants: (User | any)[] = [];
+  event: Event | any;
   loadingData = true;
   emptyList = false;
-  allUsersNotes = {behavior: null, performance: null};
+  allUsersNotes: any = {behavior: null, performance: null};
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
               private feedbackService: FeedbackService,
@@ -28,12 +28,12 @@ export class EventReviewComponent implements OnInit {
 
   ngOnInit() {
     this.authUser = this.authService.user;
-    let uuid = this.route.snapshot.params.uuid;
+    let uuid = this.route.snapshot.params['uuid'];
     if (uuid) {
       this.onGetEvent(uuid);
       this.route.params.subscribe((params: Params) => {
         window.scroll(0, 0);
-        uuid = params.uuid;
+        uuid = params['uuid'];
         this.onGetEvent(uuid);
       });
     } else {
@@ -47,7 +47,7 @@ export class EventReviewComponent implements OnInit {
     });
   }
 
-  onInitProperties(event) {
+  onInitProperties(event: any) {
     this.loadingData = false;
     this.event = event;
     this.user = this.event.user;

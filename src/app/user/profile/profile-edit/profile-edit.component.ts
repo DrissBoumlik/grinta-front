@@ -13,7 +13,7 @@ import {ToolsService} from '../../../shared/tools.service';
   styleUrls: ['./profile-edit.component.css']
 })
 export class ProfileEditComponent implements OnInit {
-  profile: User;
+  profile: User | any;
   sports: Sport[] = [];
 
   constructor(private userService: UserService,

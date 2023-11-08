@@ -9,7 +9,7 @@ export class NoteService {
 
   constructor(private http: HttpClient) { }
 
-  getNotesByUser(uuid: string = null) {
+  getNotesByUser(uuid: string | null) {
     uuid = uuid || '';
     AuthService.getHeaders();
     return this.http.get(environment.baseApiUrl + `/notes/${uuid}`, {headers: AuthService.headers})

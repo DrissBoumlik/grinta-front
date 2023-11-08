@@ -9,9 +9,9 @@ import {RelationService} from './relation.service';
   styleUrls: ['./friends.component.css']
 })
 export class FriendsComponent implements OnInit {
-  friends: User[];
+  friends: User[] = [];
   noFriends = false;
-  @ViewChild('chatBox', {static: false}) chatBox: ElementRef;
+  @ViewChild('chatBox', {static: false}) chatBox: ElementRef | any;
 
   constructor(private userService: UserService,
               private relationService: RelationService) { }

@@ -10,9 +10,9 @@ import {Album} from '../../../albums/album/album.model';
   styleUrls: ['./profile-photos.component.css']
 })
 export class ProfilePhotosComponent implements OnInit {
-  authUser: User;
-  profile: User;
-  ownProfile: boolean;
+  authUser: User | any;
+  profile: User | any;
+  ownProfile: boolean = true;
   emptyList = false;
   constructor(private profileService: ProfileService,
               private authService: AuthService) { }

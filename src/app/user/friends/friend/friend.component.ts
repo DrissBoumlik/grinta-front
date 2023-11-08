@@ -7,7 +7,7 @@ import { User } from '../../user.model';
   styleUrls: ['./friend.component.css']
 })
 export class FriendComponent implements OnInit {
-  @Input() friend: User;
+  @Input() friend: User | any;
   constructor() { }
   
   ngOnInit() {
