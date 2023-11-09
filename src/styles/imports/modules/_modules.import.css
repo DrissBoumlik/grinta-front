@@ -1,46 +1,46 @@
 
-@import "_login.css";
+@import "auth/_login.css";
 
-@import "_user-item.css";
-@import "_alert.css";
-@import "_preview-page.css";
-@import "_checkbox.css";
-@import "_search-input.css";
-@import "_event-feedback.css";
-@import "_user-options.css";
-@import "_user-reaction.css";
+@import "shared/_user-item.css";
+@import "shared/_alert.css";
+@import "shared/_preview-page.css";
+@import "shared/_checkbox.css";
+@import "shared/_search-input.css";
+@import "shared/_event-feedback.css";
+@import "shared/_user-options.css";
+@import "shared/_user-reaction.css";
 
-@import "_header.css";
-@import "_menu.css";
-@import "_edit-form.css";
-@import "_list-users.css";
-@import "_gallery.css";
-@import "_list.css";
-@import "_list.css";
-@import "_about.css";
+@import "profile/common/_header.css";
+@import "profile/edit/_menu.css";
+@import "profile/edit/_edit-form.css";
+@import "profile/friends/_list-users.css";
+@import "profile/media/albums/_gallery.css";
+@import "profile/likes/pages/_list.css";
+@import "profile/events/_list.css";
+@import "profile/about/_about.css";
 
-@import "_comments.css";
-@import "_comment.css";
-@import "_reply.css";
+@import "comments/_comments.css";
+@import "comments/_comment.css";
+@import "comments/_reply.css";
 
-@import "_search.css";
-@import "_search-result.css";
-@import "_search-results.css";
+@import "search/_search.css";
+@import "search/_search-result.css";
+@import "search/_search-results.css";
 
-@import "_list.css";
-@import "_new-post.css";
+@import "posts/_list.css";
+@import "posts/_new-post.css";
 
-@import "_event-date.css";
-@import "_event.css";
-@import "_event-invitations.css";
-@import "_event-review.css";
-@import "_event-options.css";
-@import "_new-event.css";
-@import "_map.css";
+@import "events/_event-date.css";
+@import "events/_event.css";
+@import "events/_event-invitations.css";
+@import "events/_event-review.css";
+@import "events/_event-options.css";
+@import "events/_new-event.css";
+@import "events/_map.css";
 
-@import "_list.css";
+@import "friends/_list.css";
 
-@import "_list-msg.css";
-@import "_layout.css";
+@import "chat/_list-msg.css";
+@import "chat/_layout.css";
 
-@import "_birth-dates.css";
+@import "updates/_birth-dates.css";

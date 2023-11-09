@@ -1,9 +1,9 @@
 
-@import "_navbar.css";
-@import "_notifications.css";
-@import "_messages.css";
+@import "header/_navbar.css";
+@import "header/_notifications.css";
+@import "header/_messages.css";
 
-@import "_sidebar-toggle.css";
-@import "_sidebar.css";
+@import "sidebar/_sidebar-toggle.css";
+@import "sidebar/_sidebar.css";
 
-@import "_page-wrapper.css";
+@import "body/_page-wrapper.css";
