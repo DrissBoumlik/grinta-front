@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  baseApiUrl: 'https://api.grintaaa.essorline.com/api',
-  baseUrl: 'https://api.grintaaa.essorline.com/',
+  baseApiUrl: 'https://projects.drissboumlik.com/grinta-back/public/api',
+  baseUrl: 'https://projects.drissboumlik.com/grinta-back/public/',
   maxWidthCover: 1000,
   maxHeightCover: 400,
 };
