@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
       localStorage.setItem('profile', JSON.stringify(profile));
     });
 
-    this.setUpNotifications();
+    // this.setUpNotifications();
 
     this.setupChatNotifications();
 
