@@ -9,7 +9,7 @@ import {UserService} from '../../user/user.service';
 import {ToolsService} from '../../shared/tools.service';
 import {HelperService} from '../../helper.service';
 import {FeedbackService} from '../../shared/feedback/feedback.service';
-import {environment} from "../../../environments/environment";
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
+  readonly environment = environment;
   constructor(private authService: AuthService,
               private userService: UserService,
               private router: Router,
@@ -154,5 +155,4 @@ export class LoginComponent implements OnInit {
   signOut(): void {
     this.socialService.signOut();
   }
-  protected readonly environment = environment;
 }

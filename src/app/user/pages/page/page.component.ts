@@ -3,7 +3,7 @@ import {Page} from './page.model';
 import {ActivatedRoute, Params} from '@angular/router';
 import {User} from '../../user.model';
 import {PageService} from './page.service';
-import {environment} from "../../../../environments/environment";
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-page',
@@ -15,6 +15,7 @@ export class PageComponent implements OnInit {
   page: Page;
   constructor(private route: ActivatedRoute,
               private pageService: PageService) { }
+  readonly environment = environment;
 
   ngOnInit() {
     let pagename = this.route.snapshot.params.pagename;
@@ -33,5 +34,4 @@ export class PageComponent implements OnInit {
     });
   }
 
-  protected readonly environment = environment;
 }

@@ -5,7 +5,7 @@ import {User} from '../../user.model';
 import {PostsService} from '../posts.service';
 import {PageService} from '../../pages/page/page.service';
 import {FeedbackService} from '../../../shared/feedback/feedback.service';
-import {environment} from "../../../../environments/environment";
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-new-post',
@@ -29,6 +29,7 @@ export class NewPostComponent implements OnInit {
               private feedbackService: FeedbackService,
               private fb: FormBuilder) {
   }
+  readonly environment = environment;
 
   ngOnInit() {
   }
@@ -61,5 +62,4 @@ export class NewPostComponent implements OnInit {
     this.srcMedia = null;
   }
 
-  protected readonly environment = environment;
 }

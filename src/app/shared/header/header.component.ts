@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
               private toolService: ToolsService,
               private profileService: ProfileService,
               private router: Router) { }
+  readonly environment = environment;
 
   ngOnInit() {
     this.user = this.authService.user;
@@ -233,5 +234,4 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  protected readonly environment = environment;
 }

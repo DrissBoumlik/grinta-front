@@ -10,8 +10,8 @@ export class SpinnerComponent implements OnInit {
 
   constructor() { }
 
+  readonly environment = environment;
   ngOnInit() {
   }
 
-  protected readonly environment = environment;
 }

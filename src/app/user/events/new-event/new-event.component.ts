@@ -46,6 +46,7 @@ export class NewEventComponent implements OnInit {
               private mapService: MapService,
               private userService: UserService) {
   }
+  readonly environment = environment;
 
   ngOnInit() {
     console.log(this.editMode);
@@ -229,5 +230,4 @@ export class NewEventComponent implements OnInit {
     }
   }
 
-  protected readonly environment = environment;
 }

@@ -48,6 +48,7 @@ export class RegisterComponent implements OnInit {
               private sportService: SportService,
               private toolsService: ToolsService,
               private feedbackService: FeedbackService) { }
+  readonly environment = environment;
 
   ngOnInit() {
     const userLogged = localStorage.getItem('token') !== null && localStorage.getItem('token') !== undefined;
@@ -250,5 +251,4 @@ export class RegisterComponent implements OnInit {
       });
   }
 
-    protected readonly environment = environment;
 }

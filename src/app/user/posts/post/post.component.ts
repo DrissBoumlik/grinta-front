@@ -9,7 +9,7 @@ import {ProfileService} from '../../profile/profile.service';
 import {PageService} from '../../pages/page/page.service';
 import {FormBuilder, FormControl} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {environment} from "../../../../environments/environment";
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-post',
@@ -39,6 +39,7 @@ export class PostComponent implements OnInit {
               private fb: FormBuilder,
               private route: ActivatedRoute) {
   }
+  readonly environment = environment;
 
   ngOnInit() {
     this.user = this.authService.user;
@@ -165,5 +166,4 @@ export class PostComponent implements OnInit {
     this.likersListShown = !this.likersListShown;
   }
 
-  protected readonly environment = environment;
 }
