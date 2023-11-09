@@ -1,8 +1,0 @@
-.iq-search-bar .search-input {
-  padding: 5px 15px;
-}
-
-.iq-search-bar .search-input,
-.iq-search-bar .search-input:focus {
-  background-color: var(--grintaaa-light);
-}
