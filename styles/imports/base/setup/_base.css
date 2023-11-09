@@ -1,0 +1,38 @@
+
+/******************** Tags *****************/
+
+* {
+  outline: none!important;
+}
+
+body {
+  margin: 0;
+  background-color: var(--light-gray);
+}
+
+hr {
+  margin: 10px 0;
+}
+/*::-webkit-scrollbar {*/
+/*  width: 1.2rem;*/
+/*}*/
+/*::-webkit-scrollbar-thumb {*/
+/*  background-color: var(--grintaaa);*/
+/*  -webkit-box-shadow: inset 0 0 5px grey;*/
+/*  box-shadow: inset 0 0 5px grey;*/
+/*}*/
+/*::-webkit-scrollbar-track {*/
+/*  background-color: #fafafa;*/
+/*}*/
+/*::selection {*/
+/*  background-color: var(--grintaaa);*/
+/*  color: #fafafa;*/
+/*}*/
+
+a {
+  color: var(--grintaaa);
+}
+a:hover {
+  color: #5e9a00;
+  text-decoration: none;
+}

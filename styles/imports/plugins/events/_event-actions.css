@@ -1,0 +1,15 @@
+.event-actions-wrapper {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+.event-actions-wrapper .event-actions .event-btn {
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 50%;
+}
+
+.event-actions-wrapper .event-actions .event-btns a {
+  color: #fff;
+}

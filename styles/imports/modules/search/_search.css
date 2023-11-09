@@ -1,0 +1,10 @@
+.sidebar-main .search-wrapper .iq-sidebar {
+  width: 350px;
+  z-index: 1010;
+}
+
+@media(max-width: 1299px) {
+  .sidebar-main .search-wrapper .iq-sidebar {
+    width: 250px;
+  }
+}

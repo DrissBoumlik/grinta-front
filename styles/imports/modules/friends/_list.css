@@ -1,0 +1,43 @@
+
+.iq-friendlist-block {
+  border-radius: 5px;
+  position: relative;
+}
+
+.friends-list.right-sidebar-mini {
+  /*width: 300px;*/
+  z-index: 1100;
+  /*transform: translateX(100%);*/
+  transform: translateX(5px);
+}
+
+.friends-list.right-sidebar {
+  /*transform: translateX(0%);*/
+  z-index: 1100;
+  transform: translateX(100%);
+}
+
+.friends-list.right-sidebar-mini .side-right-icon {
+  display: none;
+}
+.friends-list.right-sidebar-mini .side-left-icon {
+  display: block;
+}
+
+.friends-list.right-sidebar .side-left-icon {
+  display: none;
+}
+.friends-list.right-sidebar .side-right-icon {
+  display: block;
+}
+
+
+.friend-info * {
+  font-size: 15px;
+}
+
+.iq-friendlist-block .iq-card-header-toolbar {
+  position: absolute;
+  right: 10px;
+  top: 0;
+}

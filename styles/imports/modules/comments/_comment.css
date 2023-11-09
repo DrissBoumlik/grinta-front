@@ -1,0 +1,124 @@
+
+.comment-wrapper {
+  margin: 0 0 10px;
+}
+
+.comment-container {
+  padding-left: 15px;
+  position: relative;
+}
+.comment-container > .row {
+  position: relative;
+}
+.btn-action-comment {
+  background-color: transparent;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.btn-update {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+}
+.btn-update.btn-primary {
+  color: #428bca;
+}
+
+.user-name {
+  color: var(--grintaaa);
+}
+.comment {
+  background-color: var(--light-gray);
+  border-radius: 10px;
+  padding: 10px;
+  display: inline-block;
+}
+.comment-user-content {
+  /* width: 90%; */
+  max-width: calc(100% - 100px);
+  word-break: break-word;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.comment-edition {
+  /*display: inline-block;*/
+  /*position: absolute;*/
+  /*top: 50%;*/
+  /*right: 0;*/
+  /*transform: translateY(-50%);*/
+  /*z-index: 1;*/
+  align-self: center;
+
+}
+.comment-edition .dropdown-menu {
+  /*right: 0;*/
+  /*left: unset;*/
+  padding: .5rem;
+}
+.comment-edition .dropdown-menu li > a:hover {
+  color: var(--grintaaa);
+}
+
+.replies {
+  margin-top: 10px;
+  padding-left: 30px;
+}
+
+.comment-reply-form {
+  margin-top: 5px;
+}
+
+.comment-reply-form {
+  margin: 5px 20px 0;
+}
+.comment-reply-form .input-comment {
+  width: calc(100% - 50px);
+  display: inline-block;
+}
+.comment-reply-form img {
+  width: 40px;
+  margin-right: 5px;
+}
+
+.btn-send-comment {
+  position: relative;
+  /*top: -1px;*/
+  right: -3px;
+  background-color: var(--grintaaa);
+  border-color: var(--grintaaa);
+  padding: 5px 10px;
+}
+
+.comment-reply-form .btn-send-comment{
+  right: 7px;
+}
+
+/* Mobile styles */
+@media (max-width: 1200px) {
+  .comment-user-content {
+    /* width: 87%; */
+  }
+}
+
+@media (max-width: 692px) {
+  .comment-user-content {
+    /* width: 88%; */
+  }
+}
+
+@media (max-width: 565px) {
+  .comment-user-content {
+    /*width: 85%;*/
+  }
+}
+@media (max-width: 500px) {
+  .comment-user-content {
+    max-width: calc(100% - 60px);
+  }
+  .user-picture {
+    width: 30px;
+    height: 30px;
+  }
+}

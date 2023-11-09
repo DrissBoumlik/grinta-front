@@ -1,0 +1,33 @@
+.list-tab .nav-link.active {
+  color: var(--grintaaa)!important;
+}
+
+.list-empty {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*background-color: var(--middle-gray);*/
+  padding: 5px 10px;
+  border-radius: 5px;
+  /*line-height: 100px;*/
+  height: 100px;
+  min-height: 100px;
+  max-height: 200px;
+}
+.list-empty *{
+  transform: translateY(25%);
+}
+
+
+.iq-friendlist-wrapper .profile-img-wrapper {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.profile-img-item {
+  height: 100px;
+  width: 100px;
+  max-width: 100px;
+  object-fit: cover;
+}

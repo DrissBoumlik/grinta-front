@@ -1,0 +1,9 @@
+
+.no-shadow {
+  box-shadow: none;
+}
+
+.no-border-shadow, .no-border-shadow:focus {
+  border-color: var(--grintaaa) !important;
+  box-shadow: none;
+}

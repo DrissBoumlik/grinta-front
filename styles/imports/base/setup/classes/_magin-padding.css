@@ -1,0 +1,19 @@
+
+.pd-10 {
+  padding: 10px;
+}
+
+.pd-sides {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.pd-sides-5 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.mg-sides {
+  margin-right: 10px;
+  margin-left: 10px;
+}

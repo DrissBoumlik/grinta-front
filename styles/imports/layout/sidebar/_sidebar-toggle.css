@@ -1,0 +1,21 @@
+
+
+.right-sidebar-mini {
+  top: var(--navbar-height);
+}
+
+.right-sidebar-toggle {
+  z-index: -1;
+}
+
+.right-sidebar-toggle.bg-primary {
+  background-color: var(--grintaaa) !important;
+}
+
+
+@media (min-width: 1500px) {
+  /*.right-sidebar-toggle {*/
+  /*  opacity: 1;*/
+  /*  margin-left: -44px;*/
+  /*}*/
+}
