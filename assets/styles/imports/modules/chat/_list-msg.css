@@ -1,0 +1,25 @@
+
+
+
+
+.chat-item-wrapper:hover {
+  background-color: var(--middle-gray);
+}
+
+.iq-chat-ui li a {
+  padding: 0;
+  border: none;
+}
+
+.iq-chat-ui li:nth-child(2) a,
+.iq-chat-ui li:nth-child(6) a {
+  /*border: 1px solid var(--iq-border-light);*/
+}
+
+
+@media (max-width: 992px) {
+  .chat-data-left {
+    position: absolute;
+    height: calc(100% - 15px);
+  }
+}

@@ -1,0 +1,23 @@
+.create-album .wrapper {
+  font-size: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: gray;
+  color: white;
+  border-radius: 5px;
+}
+
+.gallery-img {
+  border-radius: 5px;
+  height: 100px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.photo-item,
+.video-item {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}

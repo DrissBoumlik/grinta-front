@@ -1,0 +1,24 @@
+
+
+.event-date .wrapper {
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 12px var(--light-gray);
+}
+
+.event-date .header {
+  height: 20px;
+  background-color: red;
+}
+
+.event-date .text {
+  width: 80px;
+  height: 60px;
+  line-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  font-size: 2.5rem;
+  font-weight: 600;
+}

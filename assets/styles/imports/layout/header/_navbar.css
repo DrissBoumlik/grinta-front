@@ -1,0 +1,44 @@
+
+.navbar,
+.iq-top-navbar {
+  line-height: var(--navbar-height);
+  height: var(--navbar-height);
+  min-height: var(--navbar-height);
+}
+
+a, .navbar-list li > a,
+.navbar-list li > a:not([href]) {
+  color: var(--grintaaa);
+}
+
+ul.header-nav li a,
+ul.header-nav li a:not([href]):not([tabindex]) {
+  color: var(--grintaaa);
+}
+
+.navbar-list img.profile-img-30 {
+  width: 30px;
+  height: 30px;
+}
+
+.navbar-list li > a {
+  line-height: var(--navbar-height);
+  min-height: var(--navbar-height);
+}
+
+.iq-top-navbar .navbar-collapse.collapsing {
+  top: 0;
+}
+
+@media (max-width: 479px) {
+  .iq-search-bar {
+    position: static;
+    margin: 0;
+  }
+}
+
+  @media (max-width: 767px) {
+  .navbar-collapse {
+    margin-top: 0;
+  }
+}

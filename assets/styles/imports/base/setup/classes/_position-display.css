@@ -1,0 +1,67 @@
+
+.align-left {
+  text-align: left !important;
+}
+.align-center {
+  text-align: center !important;
+}
+.align-right {
+  text-align: right !important;
+}
+
+.relative {
+  position: relative !important;
+}
+
+.absolute {
+  position: absolute !important;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.inline {
+  display: inline;
+}
+
+.left-unset {
+  left: unset !important;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.clear-both {
+  clear: both;
+}
+
+.clearfix:before {
+  display: table;
+  content: " ";
+}
+.clearfix:after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+
+.center-img .centered-img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  height: auto !important;
+}
+
+.justify-content-evenly {
+  justify-content: space-evenly!important
+}

@@ -1,0 +1,46 @@
+.user-item-wrapper {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.user-item-wrapper:hover {
+  background-color: var(--middle-gray);
+  border-radius: 5px;
+}
+
+.user-item-img-container {
+  position: relative;
+  top: -3px;
+}
+
+.user-item-wrapper .user-item-img-container {
+  padding: 0;
+  display: inline-block;
+  margin-right: 10px;
+}
+.user-item-wrapper .user-item-img-container img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid #ededed;
+}
+
+.user-item-wrapper .user-item-info {
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 2rem;
+  /*height: 100px;*/
+  /*padding-top: 40px;*/
+}
+
+.user-item-wrapper .user-item-img-wrapper {
+  font-size: 2rem;
+  position: relative;
+}
+
+.user-item-img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}

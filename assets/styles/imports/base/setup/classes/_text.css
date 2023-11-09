@@ -1,0 +1,28 @@
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.capitalize-first-letter:first-letter {
+  text-transform: capitalize;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.font-weight-600 {
+  font-weight: 600!important;
+}
+
+.font-size-10 {
+  font-size: 9px;
+}
+
+.fz-tiny {
+  font-size: .5rem;
+}

@@ -1,0 +1,14 @@
+.reviews-wrapper {
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+
+.header-review {
+  background-color: var(--light-gray);
+  border-radius: 5px 5px 0 0;
+}
+
+.user-event-choice {
+  /*transform: scale(1.5);*/
+}

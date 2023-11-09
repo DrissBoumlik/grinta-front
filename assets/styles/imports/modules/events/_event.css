@@ -1,0 +1,55 @@
+.host-wrapper {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.host-wrapper:hover {
+  background-color: var(--middle-gray);
+}
+
+.host-img-container {
+  position: relative;
+  top: -3px;
+}
+
+.host-wrapper .host-img-container {
+  padding: 0;
+  display: inline-block;
+  margin-right: 10px;
+}
+.host-wrapper .host-img-container img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid #ededed;
+}
+
+.host-wrapper .host-info {
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 2rem;
+  /*height: 100px;*/
+  /*padding-top: 40px;*/
+}
+
+.host-wrapper .host-img-wrapper {
+  font-size: 2rem;
+  position: relative;
+}
+
+.host-img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.map-preview .map-container {
+  height: 350px;
+}
+
+.event-date-place {
+  background-color: var(--light-gray);
+  border-radius: 5px;
+  margin-top: 1rem;
+}

@@ -1,0 +1,36 @@
+.modal-event-invitations {
+  background-color: rgba(242, 243, 245, .7);
+  z-index: 10000;
+}
+
+.modal-event-invitations .btn-close {
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.modal-dialog-scrollable .modal-body {
+  overflow: hidden;
+}
+
+/*.relations-list-wrapper {*/
+/*  height: 300px;*/
+/*  overflow-y: scroll;*/
+/*}*/
+
+.relations-list .user-item-wrapper {
+  position: relative;
+}
+
+.user-item-toggle {
+  position: absolute;
+  right: 10px;
+  margin-right: 0;
+}
+
+/*@media (min-width:576px) {*/
+/*  .modal-dialog {*/
+/*    max-width: 700px;*/
+/*  }*/
+/*}*/

@@ -1,0 +1,9 @@
+.iq-edit-profile.nav-pills .nav-link.active,
+.iq-edit-profile.nav-pills .show > .nav-link {
+  background-color: var(--grintaaa);
+}
+
+.iq-edit-profile {
+  align-items: center;
+  justify-content: center;
+}

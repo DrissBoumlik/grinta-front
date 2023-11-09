@@ -1,0 +1,19 @@
+
+.right-sidebar-panel {
+  height: 92vh;
+  overflow-x: hidden;
+}
+
+.search-friend {
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+@media (max-width: 1699px) {
+  .search-friend.iq-search-bar .searchbox {
+    width: 100%;
+  }
+}

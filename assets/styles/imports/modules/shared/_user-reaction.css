@@ -1,0 +1,15 @@
+.liked,
+.liked:hover,
+.liked:focus {
+  color: var(--grintaaa)!important;
+  text-decoration: underline;
+  font-weight: bolder;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.total-like-block .show {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.45s ease 0s;
+}

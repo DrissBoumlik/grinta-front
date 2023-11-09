@@ -1,0 +1,10 @@
+ul.media-story li > a img,
+ul.media-story li > a i {
+  height: 60px;
+  width: 60px;
+  line-height: 60px;
+  text-align: center;
+  border: 2px solid rgba(0, 0, 0, .1);
+  padding: 2px;
+  border-radius: 50%;
+}

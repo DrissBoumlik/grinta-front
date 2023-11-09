@@ -1,0 +1,31 @@
+
+.sign-in-page {
+  /*background-color: var(--grintaaa) !important;*/
+  background-image: linear-gradient(135deg, var(--grintaaa) 0%, #5a9400 100%) !important;
+}
+
+.login-wrapper .sign-in-page {
+   /*height: auto;*/
+   /*position: fixed;*/
+   overflow-y: hidden;
+ }
+
+.login-wrapper .sign-in-page .container {
+  position: relative;
+}
+
+
+.login-wrapper .sign-in-detail {
+  height: auto;
+}
+
+.sign-in-from {
+  border-radius: 5px;
+}
+
+@media (max-width: 767px) {
+  .login-wrapper .sign-in-page {
+    /*height: auto;*/
+    overflow-y: unset;
+  }
+}

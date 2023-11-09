@@ -1,0 +1,43 @@
+.custom-control-input:checked~.custom-control-label::before,
+.custom-radio .custom-control-input:disabled:checked~.custom-control-label::before {
+  color: #fff;
+  background-color: var(--grintaaa);
+  border-color: var(--grintaaa);
+}
+
+.event-note-choice {
+  font-size: 1.5rem;
+}
+
+.event-note-label {
+  margin: 0;
+}
+
+.event-note-input~.event-note-label i {
+  transition: transform .3s ease;
+}
+.event-note-input:checked~.event-note-label i {
+  /*font-size: 2rem;*/
+  transform: scale(1.2);
+}
+
+.event-note-input~.event-note-label i.fa-frown,
+.event-note-choice .event-note-input:disabled~.event-note-label i.fa-frown {
+  color: var(--danger);
+}
+.event-note-input~.event-note-label i.fa-smile,
+.event-note-choice .event-note-input:disabled~.event-note-label i.fa-smile {
+  color: var(--iq-warning);
+}
+.event-note-input~.event-note-label i.fa-smile-beam,
+.event-note-choice .event-note-input:disabled~.event-note-label i.fa-smile-beam {
+  color: var(--grintaaa);
+}
+
+.event-note-input:checked~.event-note-label i:before,
+.event-note-choice .event-note-input:disabled:checked~.event-note-label i:before {
+  font-weight: 900
+  /*color: #fff;*/
+  /*background-color: var(--grintaaa);*/
+  /*border-color: var(--grintaaa);*/
+}

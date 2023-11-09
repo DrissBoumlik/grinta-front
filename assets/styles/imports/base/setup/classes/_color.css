@@ -1,0 +1,39 @@
+
+.bgclr-grintaaa, .bgclr-grintaaa-hover:hover {
+  background-color: var(--grintaaa) !important;
+  border-color: var(--grintaaa) !important;
+}
+.clr-grintaaa, .clr-grintaaa-hover:hover {
+  color: var(--grintaaa) !important;
+}
+
+.bdclr-grintaaa, .bdclr-grintaaa-hover:hover {
+  border-color: var(--grintaaa) !important;
+}
+
+.bgclr-white {
+  background-color: #fff !important;
+  border-color: #fff !important;
+}
+.clr-white {
+  color: #fff !important;
+}
+
+
+.grintaaa-brd {
+  border: 1px solid var(--grintaaa);
+}
+
+.grintaaa-brd-left {
+  border: 1px solid var(--grintaaa);
+  border-left: none;
+}
+
+
+.clr-blue {
+  color: #337ab7;
+}
+
+.bg-gray {
+  background-color: var(--light-gray);
+}
