@@ -9,6 +9,7 @@ import {SportService} from '../../../shared/sport.service';
 import {ProfileService} from '../../profile/profile.service';
 import {FeedbackService} from '../../../shared/feedback/feedback.service';
 import {Page} from '../page/page.model';
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-new-page',
@@ -176,4 +177,6 @@ export class NewPageComponent implements OnInit {
     }
 
   }
+
+  protected readonly environment = environment;
 }

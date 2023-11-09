@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   baseApiUrl: 'http://127.0.0.1:8000/api',
   baseUrl: 'http://127.0.0.1:8000',
+  clientUrl: 'http://127.0.0.1:4200',
   maxWidthCover: 1000,
   maxHeightCover: 400,
 };

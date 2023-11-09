@@ -85,7 +85,7 @@
                           </label>
                         </div>
                         <div class="center-img h-200 h-md-300 ov-hidden">
-                          <img src="{{ srcCover || '/assets/images/default/cover.png' }}" alt="profile-bg"
+                          <img src="{{ srcCover || environment.clientUrl + '/assets/images/default/cover.png' }}" alt="profile-bg"
                                class="centered-img rounded img-fluid w-100">
                         </div>
                       </div>
@@ -93,7 +93,7 @@
                         <div class="profile-img">
                           <label class="m-0 pointer" for="image">
                             <div class="profile-img-wrapper edit-img mr-3">
-                              <img src="{{ srcImage || '/assets/images/default/image.png' }}" alt="profile-img"
+                              <img src="{{ srcImage || environment.clientUrl + '/assets/images/default/image.png' }}" alt="profile-img"
                                    class="avatar-130 img-fluid"/>
                             </div>
                             <div class="input-wrapper d-none">

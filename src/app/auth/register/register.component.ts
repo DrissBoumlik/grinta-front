@@ -14,6 +14,7 @@ import {
 import {ToolsService} from '../../shared/tools.service';
 import {SportService} from '../../shared/sport.service';
 import {FeedbackService} from '../../shared/feedback/feedback.service';
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-register',
@@ -248,4 +249,6 @@ export class RegisterComponent implements OnInit {
         //   });
       });
   }
+
+    protected readonly environment = environment;
 }

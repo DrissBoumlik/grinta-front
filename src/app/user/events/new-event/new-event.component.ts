@@ -228,4 +228,6 @@ export class NewEventComponent implements OnInit {
       this.onCreateEvent();
     }
   }
+
+  protected readonly environment = environment;
 }
