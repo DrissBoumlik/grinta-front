@@ -97,7 +97,8 @@
                 "output": "leaflet/"
               },
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/styles"
             ],
             "styles": [
               "src/styles.css",
