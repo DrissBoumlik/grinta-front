@@ -38,7 +38,7 @@ ul.header-nav li a i.active {
   position: absolute;
   top: -5px;
   right: -5px;
-  background: url("../../../../../images/icons/star.png") no-repeat scroll center center;
+  background: url("../../../../../assets/images/icons/star.png") no-repeat scroll center center;
   background-size: cover;
   /*background-color: var(--grintaaa);*/
   /*border-radius: 50%;*/
