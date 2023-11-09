@@ -101,6 +101,7 @@
             ],
             "styles": [
               "src/styles.css",
+              "src/assets/styles/styles.css",
               "./node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": [
