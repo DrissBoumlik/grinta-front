@@ -27,10 +27,10 @@ export class PostsService {
   getPosts(page = 1, id = null, type = null) {
     let urlParams = '';
     if (id && type) {
-      urlParams = id + '/type/' + type + '/';
+      urlParams = '/' + id + '/type/' + type;
     }
     AuthService.getHeaders();
-    return this.http.get(environment.baseApiUrl + '/posts/' + urlParams + '?page=' + page, {headers: AuthService.headers})
+    return this.http.get(environment.baseApiUrl + '/posts' + urlParams + '?page=' + page, {headers: AuthService.headers})
       .pipe(
         tap(
           (data: any) => {
