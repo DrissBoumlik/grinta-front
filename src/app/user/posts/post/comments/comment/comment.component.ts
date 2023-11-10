@@ -24,7 +24,7 @@ export class CommentComponent implements OnInit {
 
   editMode = false;
   editCommentForm = this.fb.group({
-    content: new FormControl(null),
+    body: new FormControl(null),
   });
 
   constructor(private authService: AuthService,
@@ -101,20 +101,21 @@ export class CommentComponent implements OnInit {
   }
 
   onUpdateComment() {
-    this.postService.updateComment({content: this.editCommentForm.value.content}, this.comment.id).subscribe((response: any) => {
+    this.postService.updateComment({body: this.editCommentForm.value.body}, this.comment.id).subscribe((response: any) => {
       // if ((this.profileService.profile && this.authService.user.id === this.profileService.profile.id) || this.pageService.page) {
       //   console.log(this.postsService.user.posts);
       // }
       // this.postsService.addPost(response.post);
-      this.comment.body = this.editCommentForm.value.content;
+      this.comment.body = this.editCommentForm.value.body;
       this.editMode = false;
     });
   }
 
   onEditComment() {
     this.editMode = true;
+    console.log(this.comment.body);
     this.editCommentForm.patchValue({
-      content: this.comment.body
+      body: this.comment.body
     });
   }
 
