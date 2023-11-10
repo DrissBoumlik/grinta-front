@@ -30,6 +30,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   user: User;
   event: Event;
   showResults = false;
+  sendRequest = null;
 
   constructor(private eventService: EventService,
               private fb: FormBuilder,
@@ -161,10 +162,13 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   onGetAddresses() {
     // search
-    this.mapService.getAddresses(this.GetAddresses.value.searchTerm).then((results) => {
-      this.results = results;
-      this.showResults = this.results.length > 0;
-    });
+    clearTimeout(this.sendRequest);
+    this.sendRequest = setTimeout(() => {
+      this.mapService.getAddresses(this.GetAddresses.value.searchTerm).then((results) => {
+        this.results = results;
+        this.showResults = this.results.length > 0;
+      });
+    }, 500);
   }
 
   onChooseAddress(positionData) {
