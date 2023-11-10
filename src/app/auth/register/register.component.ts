@@ -5,16 +5,10 @@ import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {Sport} from '../../user/sports/sport.model';
-import {
-  AuthService as SocialService,
-  FacebookLoginProvider,
-  GoogleLoginProvider,
-  SocialUser
-} from 'angularx-social-login';
 import {ToolsService} from '../../shared/tools.service';
 import {SportService} from '../../shared/sport.service';
 import {FeedbackService} from '../../shared/feedback/feedback.service';
-import {environment} from "../../../environments/environment";
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +19,6 @@ export class RegisterComponent implements OnInit {
   sports: Sport[] = [];
   imageToUpload: any = File;
   cities = [];
-  private socialUser: SocialUser;
   private loggedIn: boolean;
   registerForm = new FormGroup({
     username: new FormControl('jd', Validators.required),
@@ -44,7 +37,6 @@ export class RegisterComponent implements OnInit {
               private userService: UserService,
               private router: Router,
               private http: HttpClient,
-              private socialService: SocialService,
               private sportService: SportService,
               private toolsService: ToolsService,
               private feedbackService: FeedbackService) { }
@@ -63,12 +55,6 @@ export class RegisterComponent implements OnInit {
     // this.toolsService.getCities().subscribe((response: any) => {
     //   this.cities = response;
     // });
-
-    this.socialService.authState.subscribe((user) => {
-      this.socialUser = user;
-      this.loggedIn = (user != null);
-      console.log(user);
-    });
 
     /*---------------------------------------------------------------------
       Owl Carousel
@@ -180,75 +166,5 @@ export class RegisterComponent implements OnInit {
       });
   }
 
-  signUpWithGoogle() {
-    this.socialService.signIn(GoogleLoginProvider.PROVIDER_ID)
-      .then((socialUser: SocialUser) => {
-        console.log(socialUser);
-        const username = this.toolsService.slugify(socialUser.name);
-        const registerData = {
-          isSocial: true, username,
-          firstname: socialUser.firstName,
-          lastname: socialUser.lastName,
-          email: socialUser.email,
-          password: socialUser.id,
-          password_confirmation: socialUser.id,
-          gender: null,
-          picture: socialUser.photoUrl,
-          cover: null,
-          sport: null,
-          city: null
-        };
-        console.log(registerData);
-        this.authService.register(registerData)
-          .subscribe((response: any) => {
-            const data =  {
-              isSocial: true,
-              username,
-              password: socialUser.id
-            };
-            this.authService.login(data)
-              .subscribe((response2: any) => {
-                this.userService.user = this.authService.user = response2.success.user;
-                this.router.navigate(['home']);
-              });
-          });
-      });
-  }
-
-  signUpWithFacebook() {
-    this.socialService.signIn(FacebookLoginProvider.PROVIDER_ID)
-      .then((socialUser: SocialUser) => {
-        console.log(socialUser);
-        // const username = this.toolsService.slugify(socialUser.name);
-        // const registerData = {
-        //   isSocial: true, username,
-        //   firstname: socialUser.firstName,
-        //   lastname: socialUser.lastName,
-        //   email: socialUser.email,
-        //   password: socialUser.id,
-        //   password_confirmation: socialUser.id,
-        //   gender: null,
-        //   picture: socialUser.photoUrl,
-        //   cover: null,
-        //   sport: null,
-        //   city: null
-        // };
-        // console.log(registerData);
-        return;
-        // this.authService.register(registerData)
-        //   .subscribe((response: any) => {
-        //     const data =  {
-        //       isSocial: true,
-        //       username,
-        //       password: socialUser.id
-        //     };
-        //     this.authService.login(data)
-        //       .subscribe((response2: any) => {
-        //         this.userService.user = this.authService.user = response2.success.user;
-        //         this.router.navigate(['home']);
-        //       });
-        //   });
-      });
-  }
 
 }

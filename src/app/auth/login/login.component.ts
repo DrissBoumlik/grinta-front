@@ -4,7 +4,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../user/user.model';
 
-import {GoogleLoginProvider, AuthService as SocialService, SocialUser} from 'angularx-social-login';
 import {UserService} from '../../user/user.service';
 import {ToolsService} from '../../shared/tools.service';
 import {HelperService} from '../../helper.service';
@@ -19,7 +18,6 @@ import {environment} from '../../../environments/environment';
 export class LoginComponent implements OnInit {
   user: User;
 
-  private socialUser: SocialUser;
   private loggedIn: boolean;
 
   loginForm: FormGroup;
@@ -29,7 +27,6 @@ export class LoginComponent implements OnInit {
               private userService: UserService,
               private router: Router,
               private route: ActivatedRoute,
-              private socialService: SocialService,
               private helperService: HelperService,
               private feedbackService: FeedbackService,
               private toolsService: ToolsService) {
@@ -55,10 +52,6 @@ export class LoginComponent implements OnInit {
       // window.location.reload();
     }
 
-    this.socialService.authState.subscribe((user) => {
-      this.socialUser = user;
-      this.loggedIn = (user != null);
-    });
 
     /*---------------------------------------------------------------------
       Owl Carousel
@@ -134,25 +127,4 @@ export class LoginComponent implements OnInit {
         });
   }
 
-  signInWithGoogle(): void {
-    this.socialService.signIn(GoogleLoginProvider.PROVIDER_ID)
-      .then((socialUser: SocialUser) => {
-        const username = this.toolsService.slugify(socialUser.name);
-        const data = {
-          isSocial: true,
-          username,
-          email: socialUser.id
-        };
-        this.authService.login(data)
-          .subscribe((response: any) => {
-            this.userService.user = this.authService.user = response.success.user;
-            this.router.navigate(['home']);
-          });
-      });
-  }
-
-
-  signOut(): void {
-    this.socialService.signOut();
-  }
 }
