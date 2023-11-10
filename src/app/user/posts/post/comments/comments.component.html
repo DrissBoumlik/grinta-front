@@ -7,13 +7,15 @@
 <!--        <button class="btn btn-info btn-send-comment" type="submit" (click)="onCreateComment()"><i class="fas fa-paper-plane"></i></button>-->
 <!--      </form>-->
       <form [formGroup]="CommentForm" class="comment-text d-flex align-items-center mt-3">
-        <input formControlName="body" type="text" class="form-control rounded" id="comment-{{ post.id }}"
+        <input formControlName="body" type="text" class="form-control border-radius-30" id="comment-{{ post.id }}"
                placeholder="Ecrire un commentaire..." />
         <div class="comment-attagement d-flex mr-1">
           <a class="d-none"><i class="ri-link mr-3"></i></a>
           <a class="d-none"><i class="ri-user-smile-line mr-3"></i></a>
           <a class="d-none"><i class="ri-camera-line mr-3"></i></a>
-          <button class="btn btn-success btn-send-comment" type="submit" (click)="onCreateComment()"><i class="fas fa-paper-plane"></i></button>
+          <button class="btn btn-success btn-send-comment border-radius-30" type="submit" (click)="onCreateComment()">
+            <i class="fas fa-paper-plane"></i>
+          </button>
         </div>
       </form>
     </div>
