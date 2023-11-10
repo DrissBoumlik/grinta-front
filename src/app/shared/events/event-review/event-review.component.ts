@@ -19,7 +19,7 @@ export class EventReviewComponent implements OnInit {
   event: Event;
   loadingData = true;
   emptyList = false;
-  allUsersNotes = {};
+  allUsersNotes = {behavior: null, performance: null};
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
               private feedbackService: FeedbackService,
@@ -72,13 +72,10 @@ export class EventReviewComponent implements OnInit {
   }
 
   onNoteUser(user: User | any, value: number, type: string) {
-    const note = {};
-    note[type] = value;
-    if (user.note) {
-      user.note = {...user.note, ...note};
-    } else {
-      user.note = {...note};
+    if (!user.note) {
+      user.note = {};
     }
+    user.note[type] = value;
   }
 
   onNoteAllUsersBehavior(value: number) {
@@ -90,13 +87,7 @@ export class EventReviewComponent implements OnInit {
   }
 
   onNoteAllUsers(value: number, type: string) {
-    const note = {};
-    note[type] = value;
-    if (this.allUsersNotes) {
-      this.allUsersNotes = {...this.allUsersNotes, ...note};
-    } else {
-      this.allUsersNotes = {...note};
-    }
+    this.allUsersNotes[type] = value;
     this.participants.forEach((user) => {
       this.onNoteUser(user, value, type);
     });
@@ -113,6 +104,7 @@ export class EventReviewComponent implements OnInit {
       this.eventFeedbackService.noteUsers(notedUsers, this.event.uuid).subscribe(
         (response: any) => {
           console.log(response);
+          this.allUsersNotes = {behavior: null, performance: null};
           this.onGetEvent(response.event.uuid);
           this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
         }, (error: any) => {
