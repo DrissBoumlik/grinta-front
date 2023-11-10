@@ -1,11 +1,8 @@
 import {Component} from '@angular/core';
 import * as jquery from 'jquery';
 import * as firebase from 'firebase';
+import {environment} from '../environments/environment';
 
-const config = {
-  apiKey: 'AIzaSyBERjm6nvJubSHoBkkmwBDAyfb1mCL55nM',
-  databaseURL: 'https://grintaaa.firebaseio.com'
-};
 
 @Component({
   selector: 'app-root',
@@ -15,6 +12,6 @@ const config = {
 export class AppComponent {
 
   constructor() {
-    firebase.initializeApp(config);
+    firebase.initializeApp(environment.firebase);
   }
 }

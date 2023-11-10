@@ -9,6 +9,10 @@ export const environment = {
   clientUrl: 'http://127.0.0.1:4200',
   maxWidthCover: 1000,
   maxHeightCover: 400,
+  firebase : {
+    apiKey: 'AIzaSyBERjm6nvJubSHoBkkmwBDAyfb1mCL55nM',
+    databaseURL: 'https://grintaaa.firebaseio.com'
+  }
 };
 
 /*
