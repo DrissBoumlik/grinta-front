@@ -8,3 +8,10 @@
   text-decoration: underline;
   font-size: 1.6rem;
 }
+
+.post-menu {
+  /*transform: translate3d(-245px, 22px, 0px) !important;*/
+  transform: translate3d(5px, 25px, 0px) !important;
+  right: 0 !important;
+  left: unset !important;
+}

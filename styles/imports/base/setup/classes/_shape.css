@@ -3,6 +3,10 @@
   border-radius: 50%;
 }
 
+.border-radius-30 {
+  border-radius: 30px !important;
+}
+
 .border-grey {
   border: 1px solid #b8b8b8;
 }

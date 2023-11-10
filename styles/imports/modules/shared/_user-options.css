@@ -1,7 +1,4 @@
-body.sidebar-main .iq-sidebar {
+body.sidebar-main .iq-sidebar, .iq-sidebar {
   top: var(--navbar-height);
-}
-
-.iq-sidebar {
-  top: var(--navbar-height);
+  z-index: 1100;
 }
