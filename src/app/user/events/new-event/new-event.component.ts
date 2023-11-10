@@ -24,9 +24,6 @@ export class NewEventComponent implements OnInit {
   @Input() editMode = true;
   srcCover: string | any;
   srcImage: string | any;
-  slideStep = 10;
-  transformCoverX = 0;
-  transformCoverY = 0;
   CreateEventForm = this.fb.group({
     name: new FormControl(null, Validators.required),
     date: new FormControl(null, Validators.required),
@@ -57,13 +54,13 @@ export class NewEventComponent implements OnInit {
       this.sports = response.sports;
     });
 
-    this.mapService.adresseChosen.subscribe(((positionData: any) => {
+    this.mapService.adresseChosen.subscribe((positionData: any) => {
       console.log(positionData);
       this.CreateEventForm.patchValue({
         address: positionData.label,
         location: positionData.y + ',' + positionData.x
       });
-    }));
+    });
 
     this.eventService.eventLoaded.subscribe((event: Event) => {
       this.event = event;
@@ -90,6 +87,8 @@ export class NewEventComponent implements OnInit {
         description: this.event.description,
         sport: this.event.sport_id
       });
+      this.srcCover = this.event.cover;
+      this.srcImage = this.event.image;
     } else if (!this.editMode && !this.event) {
       const today = new Date();
       this.CreateEventForm.patchValue({
@@ -199,6 +198,9 @@ export class NewEventComponent implements OnInit {
       .subscribe((response: any) => {
           console.log(response);
           this.feedbackService.feedbackReceived.next({feedback: 'success', message: response.message});
+          setTimeout(() => {
+            this.router.navigate([`/events/${response.event.uuid}`]);
+          }, 1000);
         },
         (error: any) => {
           console.log(error);
