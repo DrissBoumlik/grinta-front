@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import * as L from 'leaflet';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-map-preview',
@@ -43,7 +44,7 @@ export class MapPreviewComponent implements OnInit, AfterViewInit {
       icon: L.icon({
         iconSize: [25, 41],
         iconAnchor: [13, 37],
-        iconUrl: '/assets/images/leaflet/marker-icon.png',
+        iconUrl:  environment.clientUrl + '/assets/images/leaflet/marker-icon.png',
         // shadowUrl: '/assets/images/leaflet/marker-shadow.png'
         className: 'event-marker'
       })
