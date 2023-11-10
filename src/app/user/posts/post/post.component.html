@@ -19,7 +19,7 @@
 <!--              <p class="mb-0 d-inline-block">Added New Image in a Post</p>-->
               <p class="mb-0 text-primary">{{ post?.updated_at | date : 'mediumDate'}}</p>
             </div>
-            <div class="iq-card-post-toolbar">
+            <div class="iq-card-post-toolbar" *ngIf="ownPost">
               <div class="dropdown pointer">
                 <span class="dropdown-toggle" id="postdata-5" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false" role="button">
