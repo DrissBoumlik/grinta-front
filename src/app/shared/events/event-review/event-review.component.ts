@@ -6,6 +6,7 @@ import {AuthService} from '../../../auth/auth.service';
 import {EventService} from '../../event.service';
 import {EventFeedbackService} from '../event-feedback/event-feedback.service';
 import {FeedbackService} from '../../feedback/feedback.service';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-event-review',
@@ -20,6 +21,8 @@ export class EventReviewComponent implements OnInit {
   loadingData = true;
   emptyList = false;
   allUsersNotes = {behavior: null, performance: null};
+
+  readonly environment = environment;
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
               private feedbackService: FeedbackService,
