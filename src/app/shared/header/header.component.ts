@@ -7,7 +7,7 @@ import {EventFeedbackService} from '../events/event-feedback/event-feedback.serv
 import * as firebase from 'firebase';
 import {ToolsService} from '../tools.service';
 import {ProfileService} from '../../user/profile/profile.service';
-import {environment} from "../../../environments/environment";
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-header',
