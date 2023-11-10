@@ -101,10 +101,10 @@ export class PostsService {
       );
   }
 
-  sharePost(content: string = null, image: string = null, postOwnerId: number = null, pageId: number = null): Observable<any> {
+  sharePost(body: string = null, image: string = null, postOwnerId: number = null, pageId: number = null): Observable<any> {
     AuthService.getHeaders();
     return this.http.post(environment.baseApiUrl + '/posts',
-      {content, image, postOwnerId, page_id: pageId}, {headers: AuthService.headers})
+      {body, image, postOwnerId, page_id: pageId}, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
@@ -113,10 +113,10 @@ export class PostsService {
       );
   }
 
-  updatePost(content: string, postId: number): Observable<any> {
+  updatePost(body: string, postId: number): Observable<any> {
     AuthService.getHeaders();
     return this.http.put(environment.baseApiUrl + '/posts/' + postId,
-      {content, post_id: postId}, {headers: AuthService.headers})
+      {body, post_id: postId}, {headers: AuthService.headers})
       .pipe(
         tap(
           data => console.log(data),
