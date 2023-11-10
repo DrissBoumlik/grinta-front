@@ -52,7 +52,7 @@ export class RelationService {
 
   getRelation(params) {
     AuthService.getHeaders();
-    return this.http.get(environment.baseApiUrl + `/relation/pair`,
+    return this.http.get(environment.baseApiUrl + `/relations/pair`,
       {headers: AuthService.headers, params})
       .pipe(
         tap(
