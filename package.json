@@ -23,6 +23,7 @@
     "@types/googlemaps": "^3.39.13",
     "@types/jquery": "^3.3.31",
     "@types/leaflet": "^1.5.17",
+    "faker": "^5.1.0",
     "firebase": "^7.19.1",
     "laravel-echo": "^1.8.1",
     "leaflet": "^1.6.0",
