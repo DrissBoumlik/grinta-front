@@ -103,7 +103,7 @@
                       {{ post?.likers?.length }} Likes
                     </span>
                     <div class="dropdown-menu" [ngClass]="{'show': likersListShown}" *ngIf="post?.likers?.length">
-                      <a class="dropdown-item" href="/{{ liker?.username }}" *ngFor="let liker of post?.likers">
+                      <a class="dropdown-item" href="{{ environment.clientUrl }}/{{ liker?.username }}" *ngFor="let liker of post?.likers">
                         {{ liker?.fullName }}
                       </a>
                     </div>

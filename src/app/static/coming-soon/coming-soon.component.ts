@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {timer} from 'rxjs';
 import {Title} from '@angular/platform-browser';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-coming-soon',
@@ -12,6 +13,7 @@ export class ComingSoonComponent implements OnInit {
   timeLeft = {days: 0, hours: 0, minutes: 0, seconds: 0};
   constructor(private titleService: Title) { }
 
+  readonly environment = environment;
   ngOnInit(): void {
     this.titleService.setTitle('Coming Soon');
     const launchDate = new Date( 'Jan 1, 2021 00:00:00' );
