@@ -1,4 +1,5 @@
 
+@import "auth/_shared.css";
 @import "auth/_login.css";
 
 @import "shared/_user-item.css";

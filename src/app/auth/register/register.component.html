@@ -16,9 +16,65 @@
         <div id="circle-xlarge"></div>
         <div id="circle-xxlarge"></div>
       </div>
-      <div class="container p-0">
-        <div class="row no-gutters">
-          <div class="col-md-6 text-center pt-5">
+      <div class="container py-4 px-0">
+        <div class="row no-gutters align-items-center">
+          <div class="col-md-6 bg-white pt-5 pb-4 m-md-0 m-3">
+            <div class="sign-in-from">
+              <h1 class="mb-3">Sign Up</h1>
+              <form class="mt-4" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+                <div class="form-group">
+                  <label for="username">User Name</label>
+                  <input formControlName="username" type="text" class="form-control mb-0" id="username" placeholder="User Name">
+                </div>
+                <div class="row">
+                  <div class="col-6 pr-2">
+                    <div class="form-group">
+                      <label for="firstname">First Name</label>
+                      <input formControlName="firstname" type="text" class="form-control mb-0" id="firstname" placeholder="First Name">
+                    </div>
+                  </div>
+                  <div class="col-6 pl-2">
+                    <div class="form-group">
+                      <label for="lastname">Last Name</label>
+                      <input formControlName="lastname" type="text" class="form-control mb-0" id="lastname" placeholder="Last Name">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="lastname">Sexe</label>
+                  <select formControlName="gender" type="text" class="form-control mb-0" id="gender">
+                    <option value="" disabled>Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input formControlName="email" type="email" class="form-control mb-0" id="email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input formControlName="password" type="password" class="form-control mb-0" id="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <label for="password_confirmation">Password confirmation</label>
+                  <input formControlName="password_confirmation" type="password" class="form-control mb-0" id="password_confirmation" placeholder="Password confirmation">
+                </div>
+                <div class="d-inline-block w-100">
+                  <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
+                    <input type="checkbox" class="custom-control-input" id="terms">
+                    <label class="custom-control-label" for="terms">I accept <a href="/terms-conditions">Terms and Conditions</a></label>
+                  </div>
+                  <button type="submit" class="btn btn-primary bgclr-grintaaa float-right">Sign Up</button>
+                </div>
+                <div class="sign-info">
+                  <span class="dark-color d-inline-block line-height-2">Already Have Account ? <a
+                    routerLink="/login">Log In</a></span>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-6 text-center py-3">
             <div class="sign-in-detail text-white">
               <a class="sign-in-logo mb-5" href="#"><img src="{{ environment.clientUrl }}/assets/plugins/socialV/images/logo-full.png" class="img-fluid" alt="logo"></a>
               <div class="owl-carousel" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true"
@@ -40,57 +96,6 @@
                   <p>It is a long established fact that a reader will be distracted by the readable content.</p>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="col-md-6 bg-white pt-5">
-            <div class="sign-in-from">
-              <h1 class="mb-0">Sign Up</h1>
-              <p>Enter your email address and password to access admin panel.</p>
-              <form class="mt-4" [formGroup]="registerForm" (ngSubmit)="onRegister()">
-                <div class="form-group">
-<!--                  <label for="username">User Name</label>-->
-                  <input formControlName="username" type="text" class="form-control mb-0" id="username" placeholder="User Name">
-                </div>
-                <div class="form-group">
-<!--                  <label for="firstname">First Name</label>-->
-                  <input formControlName="firstname" type="text" class="form-control mb-0" id="firstname" placeholder="First Name">
-                </div>
-                <div class="form-group">
-<!--                  <label for="lastname">Last Name</label>-->
-                  <input formControlName="lastname" type="text" class="form-control mb-0" id="lastname" placeholder="Last Name">
-                </div>
-                <div class="form-group">
-                  <!--                  <label for="lastname">Sexe</label>-->
-                  <select formControlName="gender" type="text" class="form-control mb-0" id="gender">
-                    <option value="" disabled>Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                  </select>
-                </div>
-                <div class="form-group">
-<!--                  <label for="email">Email address</label>-->
-                  <input formControlName="email" type="email" class="form-control mb-0" id="email" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-<!--                  <label for="password">Password</label>-->
-                  <input formControlName="password" type="password" class="form-control mb-0" id="password" placeholder="Password">
-                </div>
-                <div class="form-group">
-<!--                  <label for="password_confirmation">Password confirmation</label>-->
-                  <input formControlName="password_confirmation" type="password" class="form-control mb-0" id="password_confirmation" placeholder="Password confirmation">
-                </div>
-                <div class="d-inline-block w-100">
-                  <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
-                    <input type="checkbox" class="custom-control-input" id="terms">
-                    <label class="custom-control-label" for="terms">I accept <a href="/terms-conditions">Terms and Conditions</a></label>
-                  </div>
-                  <button type="submit" class="btn btn-primary bgclr-grintaaa float-right">Sign Up</button>
-                </div>
-                <div class="sign-info">
-                  <span class="dark-color d-inline-block line-height-2">Already Have Account ? <a
-                    routerLink="/login">Log In</a></span>
-                </div>
-              </form>
             </div>
           </div>
         </div>
