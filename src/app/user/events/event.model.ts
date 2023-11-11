@@ -9,6 +9,7 @@ export class Event {
     public sport_id: number,
     public name: string,
     public description: string,
+    public limit_invitations: number,
     public date: string,
     public address: string,
     public location: string,
