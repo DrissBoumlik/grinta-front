@@ -11,7 +11,7 @@ export class GrintaaaDetailsComponent implements OnInit {
   links: {text: string, href: string}[];
 
   constructor() {}
-  protected readonly environment = environment;
+  readonly environment = environment;
 
   ngOnInit(): void {
     this.links = [
