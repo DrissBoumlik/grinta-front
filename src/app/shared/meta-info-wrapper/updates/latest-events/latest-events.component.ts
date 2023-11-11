@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ToolsService} from '../../tools.service';
-import {Event} from '../../../user/events/event.model';
-import {EventService} from '../../event.service';
+import {ToolsService} from '../../../tools.service';
+import {Event} from '../../../../user/events/event.model';
+import {EventService} from '../../../event.service';
 
 @Component({
   selector: 'app-latest-events',

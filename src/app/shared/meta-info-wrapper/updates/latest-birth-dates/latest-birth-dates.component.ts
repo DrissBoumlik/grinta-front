@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../../../user/user.service';
-import {User} from '../../../user/user.model';
-import {ToolsService} from '../../tools.service';
+import {UserService} from '../../../../user/user.service';
+import {User} from '../../../../user/user.model';
+import {ToolsService} from '../../../tools.service';
 
 @Component({
   selector: 'app-latest-birth-dates',

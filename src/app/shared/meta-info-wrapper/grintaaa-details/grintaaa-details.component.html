@@ -1,0 +1,20 @@
+<div class="iq-card">
+  <div class="iq-card-body">
+    <div class="meta-links">
+      <ul class="d-flex justify-content-evenly m-0 p-0">
+        <li class="d-inline-block mb-4" *ngFor="let link of links">
+          <a class="d-flex align-items-center capitalize" target="_blank" rel="noreferrer" routerLink="/{{ link.href }}">
+            {{ link.text }}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="brand">
+      <div class="brand-text text-center">
+        <span class="capitalize">grintaaa</span>
+        <img src="/assets/images/logo-circle.png" class="ml-1 w-h-20" />
+        2020 <i class="far fa-copyright"></i> - All Rights Reserved
+      </div>
+    </div>
+  </div>
+</div>
