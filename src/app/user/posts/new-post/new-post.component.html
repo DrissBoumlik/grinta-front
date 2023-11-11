@@ -73,9 +73,9 @@
                       </div>
                       <div class="post-img-wrapper" *ngIf="srcMedia">
                         <hr>
-                        <div class="center-img h-200 h-md-300 ov-hidden">
+                        <div class="h-auto ov-hidden">
                           <img src="{{ srcMedia }}"
-                               class="centered-img rounded img-fluid w-100" alt="" *ngIf="mediaType  != 'mp4'" />
+                               class="rounded img-fluid w-100" alt="" *ngIf="mediaType  != 'mp4'" />
                           <video src="{{ srcMedia }}" controls class="w-100" *ngIf="mediaType  == 'mp4'"></video>
                         </div>
                       </div>
