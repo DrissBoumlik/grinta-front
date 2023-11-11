@@ -48,6 +48,10 @@
                         <span class="ml-2">{{ event?.users?.length }} peoples invited</span>
                       </div>
                       <div class="mb-2 d-flex">
+                        <i class="icon dripicons-clipboard"></i>
+                        <span class="ml-2">{{ event?.limit_invitations - event?.users?.length }} people to invite</span>
+                      </div>
+                      <div class="mb-2 d-flex">
                         <i class="icon dripicons-clock"></i>
                         <span class="ml-2">{{ event?.date | date }} at {{ event?.date | date:'shortTime' }}</span>
                       </div>
