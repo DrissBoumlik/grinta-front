@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-grintaaa-details',
@@ -10,6 +11,7 @@ export class GrintaaaDetailsComponent implements OnInit {
   links: {text: string, href: string}[];
 
   constructor() {}
+  protected readonly environment = environment;
 
   ngOnInit(): void {
     this.links = [
