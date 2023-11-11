@@ -9,6 +9,7 @@ import {ToolsService} from '../../shared/tools.service';
 import {HelperService} from '../../helper.service';
 import {FeedbackService} from '../../shared/feedback/feedback.service';
 import {environment} from '../../../environments/environment';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -29,10 +30,13 @@ export class LoginComponent implements OnInit {
               private route: ActivatedRoute,
               private helperService: HelperService,
               private feedbackService: FeedbackService,
+              private titleService: Title,
               private toolsService: ToolsService) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('Sign-In');
+
     this.loginForm = new FormGroup({
       username: new FormControl(('a@a.a'), Validators.required),
       password: new FormControl('123123123', Validators.required),

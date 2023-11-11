@@ -5,6 +5,7 @@ import {User} from '../../user.model';
 import {Event} from '../event.model';
 import {AuthService} from '../../../auth/auth.service';
 import {FeedbackService} from '../../../shared/feedback/feedback.service';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-event',
@@ -19,9 +20,11 @@ export class EventComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
               private feedbackService: FeedbackService,
+              private titleService: Title,
               private eventService: EventService) { }
 
   ngOnInit() {
+    this.titleService.setTitle('Event');
     this.authUser = this.authService.user;
     let uuid = this.route.snapshot.params.uuid;
     this.onGetEvent(uuid);
@@ -43,6 +46,7 @@ export class EventComponent implements OnInit {
       this.event = response.event;
       this.user = response.event.user;
       localStorage.setItem('_event', JSON.stringify(this.event));
+      this.titleService.setTitle('Event - ' + this.event.name);
     });
   }
 

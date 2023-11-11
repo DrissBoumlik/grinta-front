@@ -60,4 +60,11 @@ export class ToolsService {
       return Math.round(elapsed / msPerYear) + ' years ago';
     }
   }
+
+  excerpt(value: string, limit = 10) {
+    if (!value) {
+      return null;
+    }
+    return value.substr(0, limit) + '...';
+  }
 }

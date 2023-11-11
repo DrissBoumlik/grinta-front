@@ -9,6 +9,7 @@ import {ToolsService} from '../../shared/tools.service';
 import {SportService} from '../../shared/sport.service';
 import {FeedbackService} from '../../shared/feedback/feedback.service';
 import {environment} from '../../../environments/environment';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -39,22 +40,21 @@ export class RegisterComponent implements OnInit {
               private http: HttpClient,
               private sportService: SportService,
               private toolsService: ToolsService,
+              private titleService: Title,
               private feedbackService: FeedbackService) { }
   readonly environment = environment;
 
   ngOnInit() {
+    this.titleService.setTitle('Sign-Up');
+
     const userLogged = localStorage.getItem('token') !== null && localStorage.getItem('token') !== undefined;
     if (userLogged) {
       this.router.navigate(['home']);
     }
 
-    // this.sportService.getSports().subscribe((response: any) => {
-    //   this.sports = response.sports;
-    // });
+    // this.sportService.getSports().subscribe((response: any) => this.sports = response.sports);
 
-    // this.toolsService.getCities().subscribe((response: any) => {
-    //   this.cities = response;
-    // });
+    // this.toolsService.getCities().subscribe((response: any) => this.cities = response);
 
     /*---------------------------------------------------------------------
       Owl Carousel

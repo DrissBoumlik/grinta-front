@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../user.model';
+import {Title} from '@angular/platform-browser';
 
 
 
@@ -11,9 +12,10 @@ import {User} from '../../user.model';
 export class ChatComponent implements OnInit {
 
   user: User;
-  constructor() { }
+  constructor(private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle('Messages');
   }
 
 }
