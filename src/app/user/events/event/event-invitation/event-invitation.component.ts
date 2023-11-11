@@ -71,6 +71,12 @@ export class EventInvitationComponent implements OnInit {
     const usersUuids = this.relations.filter(user => user.chosen)
       .map(user => user.uuid);
 
+    const invitationsLeft = this.event.limit_invitations - this.event.users.length;
+    if (invitationsLeft < usersUuids.length) {
+      this.feedbackService.feedbackReceived.next({feedback: 'warning', message: `You only have ${invitationsLeft} people to invite !`});
+      return;
+    }
+
     if (usersUuids.length) {
       this.eventService.inviteUsers(usersUuids, this.event.uuid).subscribe(
         (response: any) => {
