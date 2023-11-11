@@ -47,6 +47,10 @@ import {NewPhotoComponent} from './user/profile/profile-media/new-photo/new-phot
 import {NewVideoComponent} from './user/profile/profile-media/new-video/new-video.component';
 import {ProfileAlbumComponent} from './user/profile/profile-media/profile-albums/profile-album/profile-album.component';
 import {ProfileNotesComponent} from './user/profile/profile-notes/profile-notes.component';
+import {PrivacyPolicyComponent} from './static/privacy-policy/privacy-policy.component';
+import {TermsOfUseComponent} from './static/terms-of-use/terms-of-use.component';
+import {MaintenanceComponent} from './static/maintenance/maintenance.component';
+import {ComingSoonComponent} from './static/coming-soon/coming-soon.component';
 
 
 const routes: Routes = [
@@ -102,6 +106,10 @@ const routes: Routes = [
           {path: 'events', component: SearchEventsComponent}
         ]
       },
+      {path: 'coming-soon', component: ComingSoonComponent},
+      {path: 'maintenance', component: MaintenanceComponent},
+      {path: 'privacy-policy', component: PrivacyPolicyComponent},
+      {path: 'terms-of-use', component: TermsOfUseComponent},
       {
         path: ':username', component: ProfileComponent, children: [
           {path: '', component: ProfileHomeComponent},

@@ -1,0 +1,7 @@
+.countdown li {
+  margin-right: 5px;
+  float: none;
+}
+.countdown li:last-child{
+  margin-right: 0;
+}
