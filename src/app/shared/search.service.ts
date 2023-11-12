@@ -10,6 +10,7 @@ export class SearchService {
   results: {header: string, image: string, link: string}[];
   resultsLoaded = new Subject<{header: string, image: string, link: string}>();
   resultsShowed = new Subject<boolean>();
+  searchTerm = null;
 
   constructor(private http: HttpClient) {}
 

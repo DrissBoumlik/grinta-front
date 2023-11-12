@@ -1,10 +1,31 @@
-<div class="row mt-5">
-  <div class="col-12">
-    <h3>Rechercher</h3>
+<!--<div class="row mt-5">-->
+<!--  <div class="col-12">-->
+<!--    <h3>Rechercher</h3>-->
+<!--  </div>-->
+<!--  <div class="col-12">-->
+<!--    <div class="event-search">-->
+<!--      <app-map></app-map>-->
+<!--    </div>-->
+<!--  </div>-->
+<div class="events-wrapper py-5 mt-4"
+     infiniteScroll
+     [infiniteScrollDistance]="1"
+     [infiniteScrollThrottle]="50"
+     [scrollWindow]="true"
+     (scrolled)="onLoadMore()"
+>
+  <div class="row">
+    <div class="col-12" *ngIf="!loadMore && !events.length">
+      <p>No events found !!</p>
+    </div>
+    <div class="col-4 event-item-wrapper" *ngFor="let event of events">
+      <app-event-item [event]="event"></app-event-item>
+    </div>
   </div>
-  <div class="col-12">
-    <div class="event-search">
-      <app-map></app-map>
+  <div class="row" *ngIf="loadMore">
+    <div class="col-12">
+      <app-spinner></app-spinner>
     </div>
   </div>
 </div>
+<!--</div>-->

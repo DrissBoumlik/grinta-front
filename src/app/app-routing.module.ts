@@ -52,6 +52,9 @@ import {TermsOfUseComponent} from './static/terms-of-use/terms-of-use.component'
 import {MaintenanceComponent} from './static/maintenance/maintenance.component';
 import {ComingSoonComponent} from './static/coming-soon/coming-soon.component';
 import {PageErrorServerComponent} from './static/page-error-server/page-error-server.component';
+import {SearchAllComponent} from './search/search-all/search-all.component';
+import {SearchUsersComponent} from './search/search-users/search-users.component';
+import {SearchPostsComponent} from './search/search-posts/search-posts.component';
 
 
 const routes: Routes = [
@@ -104,7 +107,10 @@ const routes: Routes = [
       },
       {
         path: 'search', component: SearchComponent, children: [
-          {path: '', component: SearchEventsComponent},
+          {path: '', component: SearchAllComponent},
+          {path: 'all', component: SearchAllComponent},
+          {path: 'people', component: SearchUsersComponent},
+          {path: 'posts', component: SearchPostsComponent},
           {path: 'events', component: SearchEventsComponent}
         ]
       },

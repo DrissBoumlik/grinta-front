@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-search',
@@ -8,15 +8,10 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-  type = null;
-  constructor(private route: ActivatedRoute,
-              private router: Router) { }
+  constructor(private titleService: Title) { }
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.type = this.router.url.replace('/', '');
-      console.log(this.router.url);
-    });
+    this.titleService.setTitle('Search');
   }
 
 }

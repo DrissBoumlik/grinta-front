@@ -15,7 +15,6 @@ import { EventInvitationComponent } from './event/event-invitation/event-invitat
 import { EventWrapperComponent } from './event-wrapper/event-wrapper.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { EventsWrapperComponent } from './events-wrapper/events-wrapper.component';
-import { EventItemComponent } from './event-item/event-item.component';
 
 
 
@@ -29,7 +28,6 @@ import { EventItemComponent } from './event-item/event-item.component';
     EventInvitationComponent,
     EventWrapperComponent,
     EventsWrapperComponent,
-    EventItemComponent,
   ],
   imports: [
     CommonModule,

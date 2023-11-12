@@ -30,6 +30,7 @@ import {MapService} from './map.service';
 import { MetaInfoWrapperComponent } from './meta-info-wrapper/meta-info-wrapper.component';
 import { UpdatesComponent } from './meta-info-wrapper/updates/updates.component';
 import { GrintaaaDetailsComponent } from './meta-info-wrapper/grintaaa-details/grintaaa-details.component';
+import {EventItemComponent} from './events/event-item/event-item.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { GrintaaaDetailsComponent } from './meta-info-wrapper/grintaaa-details/g
     MetaInfoWrapperComponent,
     UpdatesComponent,
     GrintaaaDetailsComponent,
+    EventItemComponent,
   ],
   imports: [
     RouterModule,
@@ -73,6 +75,7 @@ import { GrintaaaDetailsComponent } from './meta-info-wrapper/grintaaa-details/g
     MetaInfoWrapperComponent,
     UpdatesComponent,
     GrintaaaDetailsComponent,
+    EventItemComponent,
   ],
   providers: [
     SearchService,
