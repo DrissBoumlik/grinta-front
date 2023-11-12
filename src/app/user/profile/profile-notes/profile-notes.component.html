@@ -1,4 +1,30 @@
 <div class="tab-pane fade active show" id="about" role="tabpanel">
+  <div class="row pb-2">
+    <div class="col-12">
+      <div class="reviews-wrapper p-4 clearfix">
+        <div class="chart-header">
+          <h3 class="m-auto underline text-center p-3  pb-4">Stats</h3>
+        </div>
+        <div class="notes-charts">
+          <app-spinner *ngIf="loadingData"></app-spinner>
+          <ngx-charts-bar-vertical *ngIf="notes?.length"
+                                   [view]="view"
+                                   [scheme]="colorScheme"
+                                   [results]="chartData"
+                                   [gradient]="gradient"
+                                   [xAxis]="showXAxis"
+                                   [yAxis]="showYAxis"
+                                   [legend]="showLegend"
+                                   [showXAxisLabel]="showXAxisLabel"
+                                   [showYAxisLabel]="showYAxisLabel"
+                                   [xAxisLabel]="xAxisLabel"
+                                   [yAxisLabel]="yAxisLabel"
+                                   (select)="onSelect($event)">
+          </ngx-charts-bar-vertical>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-12">
       <div class="reviews-wrapper p-4">
@@ -85,8 +111,8 @@
               </div>
             </div>
           </div>
-          <!--          <app-spinner *ngIf="loadingData"></app-spinner>-->
-          <div class="reviews-list" *ngIf="!notes?.length">
+          <app-spinner *ngIf="loadingData"></app-spinner>
+          <div class="reviews-list" *ngIf="!loadingData && !notes?.length">
             <div class="text-center list-empty m-0">
               <p class="">Pas de Notes à afficher</p>
             </div>
