@@ -15,7 +15,7 @@ export class ProfileNotesComponent implements OnInit {
 
   chartData: any[] = [];
   multi: any[];
-  view: any[] = [700, 400];
+  view: any[] = [600, 400];
   // options
   showXAxis = true;
   showYAxis = true;
@@ -26,7 +26,7 @@ export class ProfileNotesComponent implements OnInit {
   showYAxisLabel = true;
   yAxisLabel = 'Note';
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#242D40', '#2E7B8C', '#C7B42C']
   };
 
   constructor(private profileService: ProfileService,

@@ -1,33 +1,37 @@
 <div class="tab-pane fade active show" id="about" role="tabpanel">
-  <div class="row pb-2">
-    <div class="col-12">
-      <div class="reviews-wrapper p-4 clearfix">
-        <div class="chart-header">
-          <h3 class="m-auto underline text-center p-3  pb-4">Stats</h3>
-        </div>
-        <div class="notes-charts">
-          <app-spinner *ngIf="loadingData"></app-spinner>
-          <ngx-charts-bar-vertical *ngIf="notes?.length"
-                                   [view]="view"
-                                   [scheme]="colorScheme"
-                                   [results]="chartData"
-                                   [gradient]="gradient"
-                                   [xAxis]="showXAxis"
-                                   [yAxis]="showYAxis"
-                                   [legend]="showLegend"
-                                   [showXAxisLabel]="showXAxisLabel"
-                                   [showYAxisLabel]="showYAxisLabel"
-                                   [xAxisLabel]="xAxisLabel"
-                                   [yAxisLabel]="yAxisLabel"
-                                   (select)="onSelect($event)">
-          </ngx-charts-bar-vertical>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="row">
     <div class="col-12">
-      <div class="reviews-wrapper p-4">
+      <div class="reviews-wrapper p-4" *ngIf="!loadingData && !notes?.length">
+        <div class="reviews-list">
+          <div class="text-center list-empty m-0">
+            <p class="">Pas de Notes à afficher</p>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-wrapper p-4" *ngIf="notes?.length">
+        <div class="reviews-chart-wrapper">
+          <div class="chart-header">
+            <h3 class="m-auto underline text-center p-3 pb-4">Stats</h3>
+          </div>
+          <div class="notes-charts clearfix">
+            <app-spinner *ngIf="loadingData"></app-spinner>
+            <ngx-charts-bar-vertical *ngIf="notes?.length"
+                                     [view]="view"
+                                     [scheme]="colorScheme"
+                                     [results]="chartData"
+                                     [gradient]="gradient"
+                                     [xAxis]="showXAxis"
+                                     [yAxis]="showYAxis"
+                                     [legend]="showLegend"
+                                     [showXAxisLabel]="showXAxisLabel"
+                                     [showYAxisLabel]="showYAxisLabel"
+                                     [xAxisLabel]="xAxisLabel"
+                                     [yAxisLabel]="yAxisLabel"
+                                     (select)="onSelect($event)">
+            </ngx-charts-bar-vertical>
+          </div>
+        </div>
+        <hr class="my-4">
         <div class="reviews-list-wrapper">
           <div class="reviews-list" *ngIf="notes?.length">
             <div class="header-review py-4 mb-1 d-flex align-items-center justify-content-between text-center row m-0">
@@ -46,11 +50,11 @@
                     </div>
                   </div>
                   <div class="col-6">
-                <div class="_underline">
-                  <i class="fas fa-running"></i>
-                  <span class="underline d-md-block d-lg-block d-sm-block d-none">Performance</span>
-                </div>
-              </div>
+                    <div class="_underline">
+                      <i class="fas fa-running"></i>
+                      <span class="underline d-md-block d-lg-block d-sm-block d-none">Performance</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -112,11 +116,6 @@
             </div>
           </div>
           <app-spinner *ngIf="loadingData"></app-spinner>
-          <div class="reviews-list" *ngIf="!loadingData && !notes?.length">
-            <div class="text-center list-empty m-0">
-              <p class="">Pas de Notes à afficher</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
